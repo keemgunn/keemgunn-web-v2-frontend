@@ -1,3 +1,12 @@
+function setScale(width) {
+  return (width > 2400) ? "XXL" :
+  (width > 1920) ? "XL" :
+  (width > 1320) ? "L" :
+  (width > 960) ? "M" :
+  (width > 680) ? "S" :
+  (width > 320) ? "XS" : "XXS"
+}
+
 export default {
   namespaced: false,
   
@@ -11,6 +20,9 @@ export default {
     getFrameSize(state) {
       return {width: state.vw, height: state.vh}
     },
+    getScale(state) {
+      return state.scale
+    },
     getRatio(state) {
       return state.vw / state.vh
     },
@@ -20,6 +32,7 @@ export default {
     resize(state, payload) {
       state.vw = payload.width;
       state.vh = payload.height;
+      state.scale = setScale(payload.width);
     },
   },
 

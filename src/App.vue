@@ -1,5 +1,6 @@
 <template>
   <h1>frame size: {{getFrameSize}} </h1>
+  <h1>scale: {{getScale}} </h1>
   <router-view/>
 </template>
 
@@ -11,10 +12,10 @@ export default {
   components: {
   },
   computed: {
-    ...mapGetters('ui', {
-      getFrameSize: 'getFrameSize',
-      getRatio: 'getRatio',
-    })
+    ...mapGetters('ui',[
+      'getFrameSize',
+      'getScale'
+    ])
   },
   methods: {
     ...mapMutations('ui', {
