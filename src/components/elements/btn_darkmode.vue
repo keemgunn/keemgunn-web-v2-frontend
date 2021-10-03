@@ -14,16 +14,12 @@ export default {
   },
   computed: {
     ...mapGetters('ui',[
-      'isDarkmodeOn'
+      'isDarkmodeOn',
+      'getThemeColor'
     ])
   },
   methods: {
-    ...mapMutations('ui', {
-      toggleDarkmode: 'toggleDarkmode'
-    }),
-    toggle() {
-      this.toggleDarkmode();
-    }
+    ...mapMutations('ui', [ 'toggleDarkmode' ]),
   },
 }
 </script>

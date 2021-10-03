@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'KoPub Batang';
+  src: url('KoPubBatangLight.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'KoPub Batang';
+  src: url('KoPubBatangMedium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'KoPub Batang';
+  src: url('KoPubBatangBold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+

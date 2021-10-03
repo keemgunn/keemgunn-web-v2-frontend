@@ -1,9 +1,8 @@
 <template>
-  <div id="app_main"
-    :style="getColors"
-  >
-  <test-001/>
-  <router-view/>
+  <div id="app_main" :style="getColors">
+    <p>가나다라 <i>마바사</i> </p>
+    <test-001/>
+    <router-view/>
   </div>
 </template>
 
@@ -45,13 +44,12 @@ export default {
     }
   },
 
-  beforeCreate(){
+  beforeCreate(){ // ==================================
 
-    // document.body.style = "background-color: #333333"
-    console.log("beforeCreate");
   },
 
-  created() {
+  created() { // ======================================
+
     // Adjust Screen Size ---------------------
     this.fetchFrameSize()
     this.$nextTick(() => {
@@ -59,23 +57,33 @@ export default {
     });
 
 
+
+
   },
 }
 </script>
 
 <style lang="scss">
+@import "assets/fonts/KoPub/kopub.css";
+
 body {
   background-color: var(--i94);
 }
-#app {
-}
 #app_main {
   background-color: var(--i94);
+  color: var(--i0);
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
+  p {
+    font-family: 'KoPub Batang';
+    font-size: 8rem;
+    i{
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-style: normal;
+    }
+  }
 }
 </style>
