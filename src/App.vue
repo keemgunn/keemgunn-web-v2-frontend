@@ -1,9 +1,10 @@
 <template>
+  <h1>frame size: {{getFrameSize}} </h1>
   <router-view/>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'App',
@@ -11,19 +12,26 @@ export default {
   },
   computed: {
     ...mapGetters('ui', {
-      viewRatio: 'viewRatio'
+      getFrameSize: 'getFrameSize',
+      getRatio: 'getRatio',
     })
   },
   methods: {
-    ...mapActions('ui', {
-      hello: 'doHello'
+    ...mapMutations('ui', {
+      frameResize: 'resize'
     }),
-    onResize() {
-      this.hello();
+    fetchFrameSize() {
+      this.frameResize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
     }
   },
   created() {
-    this.onResize();
+    this.fetchFrameSize()
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.fetchFrameSize);
+    });
   },
 }
 </script>
