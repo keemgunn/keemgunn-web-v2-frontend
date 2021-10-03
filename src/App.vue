@@ -3,10 +3,28 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'App',
   components: {
-  }
+  },
+  computed: {
+    ...mapGetters('ui', {
+      viewRatio: 'viewRatio'
+    })
+  },
+  methods: {
+    ...mapActions('ui', {
+      hello: 'doHello'
+    }),
+    onResize() {
+      this.hello();
+    }
+  },
+  created() {
+    this.onResize();
+  },
 }
 </script>
 
