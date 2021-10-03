@@ -1,6 +1,10 @@
 <template>
+  <div id="app_main"
+    :style="getColors"
+  >
   <test-001/>
   <router-view/>
+  </div>
 </template>
 
 <script>
@@ -9,6 +13,12 @@ import test001 from '@/pages/test/001_UIstate.vue'
 
 export default {
   name: 'App',
+  metaInfo: {
+      // if no subcomponents specify a metaInfo.title, this title will be used
+      title: 'Default Title',
+      // all titles will be injected into this template
+      titleTemplate: '%s | My Awesome Webapp'
+  },
   components: {
     test001,
   },
@@ -17,7 +27,9 @@ export default {
     ...mapGetters(['getENV']),
     ...mapGetters('ui',[
       'getFrameSize',
-      'getScale'
+      'getScale',
+      'getColors',
+      'getThemeColor'
     ])
   },
 
@@ -33,6 +45,12 @@ export default {
     }
   },
 
+  beforeCreate(){
+
+    // document.body.style = "background-color: #333333"
+    console.log("beforeCreate");
+  },
+
   created() {
     // Adjust Screen Size ---------------------
     this.fetchFrameSize()
@@ -45,8 +63,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+body {
+  background-color: var(--i94);
+}
 #app {
+}
+#app_main {
+  background-color: var(--i94);
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

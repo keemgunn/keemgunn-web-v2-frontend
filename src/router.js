@@ -16,4 +16,4 @@ export default new createRouter({
       component: NotFound
     }
   ]
- })
+})
