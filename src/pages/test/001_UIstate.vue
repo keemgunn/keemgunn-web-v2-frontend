@@ -1,17 +1,23 @@
 <template>
-  <test-001/>
-  <router-view/>
+  <h1>{{this.name}}</h1>
+  <h4>frame size: {{getFrameSize}} </h4>
+  <h4>scale: {{getScale}} </h4>
+  <btn_darkmode/>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import test001 from '@/pages/test/001_UIstate.vue'
+import btn_darkmode from '@/components/elements/btn_darkmode.vue';
 
+const name = 'test001';
 export default {
-  name: 'App',
+  name,
   components: {
-    test001,
+    btn_darkmode
   },
+  data() { return {
+    name
+  }},
   computed: {
     ...mapGetters(['getENV']),
     ...mapGetters('ui',[
@@ -21,20 +27,12 @@ export default {
   },
   methods: {
     ...mapMutations('ui', {
-      frameResize: 'resize'
+
     }),
-    fetchFrameSize() {
-      this.frameResize({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-    }
+
   },
   created() {
-    this.fetchFrameSize()
-    this.$nextTick(() => {
-      window.addEventListener('resize', this.fetchFrameSize);
-    });
+
   },
 }
 </script>
