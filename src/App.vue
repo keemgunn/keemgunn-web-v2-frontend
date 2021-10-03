@@ -12,6 +12,7 @@ export default {
   components: {
     test001,
   },
+
   computed: {
     ...mapGetters(['getENV']),
     ...mapGetters('ui',[
@@ -19,6 +20,7 @@ export default {
       'getScale'
     ])
   },
+
   methods: {
     ...mapMutations('ui', {
       frameResize: 'resize'
@@ -30,11 +32,15 @@ export default {
       });
     }
   },
+
   created() {
+    // Adjust Screen Size ---------------------
     this.fetchFrameSize()
     this.$nextTick(() => {
       window.addEventListener('resize', this.fetchFrameSize);
     });
+
+
   },
 }
 </script>

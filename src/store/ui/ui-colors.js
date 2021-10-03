@@ -1,10 +1,15 @@
 import colors from '@/assets/styles/colors.json';
 
+// Dark Mode Detection ------------------------
+let matched = window.matchMedia('(prefers-color-scheme: dark)').matches;
+let startMode = matched;
+
+
 export default {
   namespaced: false,
   
   state: () => ({
-    darkmode: false,
+    darkmode: startMode,
     colorSource: colors
   }),
 
