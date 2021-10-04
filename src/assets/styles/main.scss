@@ -1,0 +1,30 @@
+
+
+
+
+h1 {
+  color: aquamarine;
+  
+}
+
+
+body {
+  background-color: var(--i94);
+}
+#app_main {
+  background-color: var(--i94);
+  color: var(--i0);
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  margin-top: 60px;
+  p {
+    font-family: 'KoPub Batang';
+    font-size: 8rem;
+    i{
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-style: normal;
+    }
+  }
+}

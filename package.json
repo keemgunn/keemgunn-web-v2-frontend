@@ -1,6 +1,6 @@
 {
   "name": "keemgunn.com-frontend",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "export NODE_ENV=development && vue-cli-service serve",
@@ -21,7 +21,10 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^7.0.0",
+    "sass": "^1.42.1",
+    "sass-loader": "^10.2.0",
+    "webpack-chain": "^6.5.1"
   },
   "eslintConfig": {
     "root": true,

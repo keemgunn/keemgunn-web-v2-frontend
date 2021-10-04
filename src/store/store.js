@@ -1,9 +1,18 @@
 import { createLogger, createStore } from 'vuex';
 import ui from '@/store/ui/ui-main'
 
-const debug = process.env.NODE_ENV !== 'production';
+const ENV = process.env.NODE_ENV;
+const debug = ENV !== 'production';
 
 export default createStore({
+  state: {
+    ENV
+  },
+  getters: {
+    getENV(state) {
+      return state.ENV
+    }
+  },
   modules: {
     ui
   },
