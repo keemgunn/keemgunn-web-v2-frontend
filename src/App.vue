@@ -1,6 +1,7 @@
 <template>
   <div id="app_main" :style="getColors">
     <p>가나다라 <i>마바사</i> </p>
+    <h2> something </h2>
     <test-001/>
     <router-view/>
   </div>
@@ -12,23 +13,20 @@ import test001 from '@/pages/test/001_UIstate.vue'
 
 export default {
   name: 'App',
-  metaInfo: {
-      // if no subcomponents specify a metaInfo.title, this title will be used
-      title: 'Default Title',
-      // all titles will be injected into this template
-      titleTemplate: '%s | My Awesome Webapp'
-  },
   components: {
     test001,
   },
+  data() { return {
 
+  }},
   computed: {
     ...mapGetters(['getENV']),
     ...mapGetters('ui',[
       'getFrameSize',
       'getScale',
       'getColors',
-      'getThemeColor'
+      'getThemeColor',
+      'whatLanguage',
     ])
   },
 
@@ -56,34 +54,19 @@ export default {
       window.addEventListener('resize', this.fetchFrameSize);
     });
 
-
-
-
   },
+
 }
 </script>
 
 <style lang="scss">
-@import "assets/fonts/KoPub/kopub.css";
 
-body {
-  background-color: var(--i94);
-}
-#app_main {
-  background-color: var(--i94);
-  color: var(--i0);
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  margin-top: 60px;
-  p {
-    font-family: 'KoPub Batang';
-    font-size: 8rem;
-    i{
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-style: normal;
-    }
-  }
-}
+@import "assets/fonts/kopub.css";
+
+
+
+
+@import "assets/styles/main.scss";
+
+
 </style>
