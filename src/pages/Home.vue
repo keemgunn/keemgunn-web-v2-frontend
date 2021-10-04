@@ -24,13 +24,13 @@ export default {
   methods: {
     ...mapMutations('ui', ['setLanguage']),
     ...mapActions('api', [
-      'pushCliInfo',
+      'openTheDoor',
     ]),
   },
   created() {
     this.setLanguage(this.lang);
     document.documentElement.lang = this.lang;
-    this.pushCliInfo()
+    this.openTheDoor()
 
   }
 }
