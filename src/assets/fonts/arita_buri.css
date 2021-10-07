@@ -1,0 +1,28 @@
+
+
+/* -------- FONT WEIGHT 400 -------- */
+@font-face {
+  font-family: "AritaBuri";
+  src: url('./AritaBuri/Arita-buriM.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+
+/* -------- FONT WEIGHT 600 -------- */
+@font-face {
+  font-family: "AritaBuri";
+  src: url('./AritaBuri/Arita-buriSB.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 600;
+}
+
+
+/* -------- FONT WEIGHT 700 -------- */
+@font-face {
+  font-family: "AritaBuri";
+  src: url('./AritaBuri/Arita-buriB.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+

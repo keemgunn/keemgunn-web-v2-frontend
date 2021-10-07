@@ -1,0 +1,28 @@
+
+
+/* -------- FONT WEIGHT 400 -------- */
+@font-face {
+  font-family: "CormorantGaramond";
+  src: url('./CormorantGaramond/CormorantGaramond-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+
+/* -------- FONT WEIGHT 600 -------- */
+@font-face {
+  font-family: "CormorantGaramond";
+  src: url('./CormorantGaramond/CormorantGaramond-SemiBold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 600;
+}
+
+
+/* -------- FONT WEIGHT 700 -------- */
+@font-face {
+  font-family: "CormorantGaramond";
+  src: url('./CormorantGaramond/CormorantGaramond-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+

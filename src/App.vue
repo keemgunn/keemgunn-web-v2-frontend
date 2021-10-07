@@ -73,13 +73,13 @@ export default {
 
 <style lang="scss">
 @import "assets/fonts/inter_sd.css";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 @import "assets/styles/main.scss";
 
 .aaaa {
   color: white;
   background-color: darkslategray;
-  
+
 }
 
 </style>
