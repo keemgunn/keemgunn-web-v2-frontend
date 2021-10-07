@@ -1,0 +1,131 @@
+@import "assets/fonts/inter_sd.css";
+@import "assets/fonts/cormorant_garamond.css";
+@import "assets/fonts/arita_buri.css";
+
+
+@mixin Typeface($family, $weight) {
+  font-family: $family;
+  font-weight: $weight;
+}
+@mixin marginBlockProp($start, $end) {
+  margin-block-start: $start;
+  margin-block-end: $end;
+}
+
+
+@mixin EnCopy($index, $size, $ls, $lh, $block-start, $block-end) {
+  .typo-copy-#{$index} {
+    @include Typeface('CormorantGaramond',600);
+    font-size: $size;
+    letter-spacing: $ls;
+    line-height: $lh;
+    @include marginBlockProp($block-start, $block-end);
+  }
+}
+@mixin KoCopy($index, $size, $ls, $lh, $block-start, $block-end) {
+  p.typo-copy-#{$index} {
+    @include Typeface('AritaBuri',600);
+    font-size: $size;
+    letter-spacing: $ls;
+    line-height: $lh;
+    @include marginBlockProp($block-start, $block-end);
+  }
+}
+@mixin Header($index, $size, $ls, $lh, $block-start, $block-end) {
+  h#{$index} {
+    @include Typeface('Inter_SD',600);
+    font-size: $size;
+    letter-spacing: $ls;
+    line-height: $lh;
+    @include marginBlockProp($block-start, $block-end);
+  }
+}
+@mixin Body($index, $size, $ls, $lh, $block-start, $block-end) {
+  p.body-#{$index} {
+    @include Typeface('Inter_SD',400);
+    font-size: $size;
+    letter-spacing: $ls;
+    line-height: $lh;
+    @include marginBlockProp($block-start, $block-end);
+  }
+}
+@mixin Caption($index, $size, $lh, $block-start, $block-end) {
+  p.caption-#{$index} {
+    @include Typeface('Inter_SD',400);
+    letter-spacing: 0.005em;
+    font-size: $size;
+    line-height: $lh;
+    @include marginBlockProp($block-start, $block-end);
+  }
+}
+
+
+@mixin weightShift($origin, $ext, $weight) {
+  #{$origin}--#{$ext} {
+    @extend #{$origin};
+    font-weight: $weight;
+  }
+}
+
+
+
+
+
+// ------------- TYPO : EN - COPY -------------
+.en {
+  @include EnCopy(1, 6.0em, -0.03em, 0.85, 1em, 1em);
+    @include weightShift('.typo-copy-1', 'light', 400);
+    @include weightShift('.typo-copy-1', 'thick', 700);
+  @include EnCopy(2, 4.0em, -0.03em, 0.85, 1em, 1em);
+    @include weightShift('.typo-copy-2', 'light', 400);
+    @include weightShift('.typo-copy-2', 'thick', 700);
+  @include EnCopy(3, 2.125em, -0.03em, 1.05, 1em, 1em);
+    @include weightShift('.typo-copy-3', 'light', 400);
+    @include weightShift('.typo-copy-3', 'thick', 700);
+}
+  
+  
+  
+  // ------------- TYPO : KO - COPY -------------
+.ko {
+  @include KoCopy(1, 5.25em, -0.03em, 1.15, 1em, 1em);
+    @include weightShift('.typo-copy-1', 'light', 400);
+    @include weightShift('.typo-copy-1', 'thick', 700);
+  @include KoCopy(2, 3.5em, -0.03em, 1.15, 1em, 1em);
+    @include weightShift('.typo-copy-2', 'light', 400);
+    @include weightShift('.typo-copy-2', 'thick', 700);
+  @include KoCopy(3, 1.75em, -0.02em, 1.25, 1em, 1em);
+    @include weightShift('.typo-copy-3', 'light', 400);
+    @include weightShift('.typo-copy-3', 'thick', 700);
+}
+
+
+
+// ------------- TYPO : HEADER ----------------
+
+@include Header(1, 3.0em, -0.02em, 1.2, 1em, 1em);
+@include Header(2, 2.5em, -0.02em, 1.2, 1em, 1em);
+@include Header(3, 2.125em, -0.013em, 1.2, 1em, 1em);
+@include Header(4, 1.75em, -0.013em, 1.2, 1em, 1em);
+@include Header(5, 1.5em, -0.01em, 1.2, 1em, 1em);
+@include Header(6, 1.25em, -0.01em, 1.25, 1em, 1em);
+
+
+
+// ------------- TYPO : BODY ------------------
+
+@include Body(1, 1.125em, -0.013em, 1.45, 1em, 1em);
+@include Body(2, 1.0em, 0.0em, 1.5, 1em, 1em);
+@include Body(3, 0.875em, 0.0em, 1.58, 1em, 1em);
+
+
+
+// ------------- TYPO : CAPTION ---------------
+
+@include Caption(1, 1.5em, 1.2, 1em, 1em);
+@include Caption(2, 1.313em, 1.2, 1em, 1em);
+@include Caption(3, 1.125em, 1.4, 1em, 1em);
+@include Caption(4, 0.938em, 1.4, 1em, 1em);
+@include Caption(5, 0.75em, 1.5, 1em, 1em);
+
+

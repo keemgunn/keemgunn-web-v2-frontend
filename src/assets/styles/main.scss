@@ -1,3 +1,34 @@
+@import 'typography';
+
+#prime {
+  background-color: var(--i94);
+  color: var(--i0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  // margin-block-start: 0rem;
+//   margin-block-end: 0rem; // line after
+//   margin-inline-start: 0rem; // line after
+//   margin-inline-end: 0rem; // line after
+}
+
+
+
+.test-a {
+  width: 100px;
+  height: 100px;
+  background-color: bisque;
+}
+.test-b {
+  width: 0.5em;
+  height: 0.5em;
+  background-color: rgb(179, 112, 30);
+}
+
+
+
 
 .XXS{
   font-size: 85%;
@@ -61,12 +92,6 @@
 //   line-height: 1.2;
 // }
 
-// p {
-//   // margin-block-start: 0rem;
-//   // margin-block-end: 0rem; // line after
-//   // margin-inline-start: 0rem; // line after
-//   // margin-inline-end: 0rem; // line after
-// }
 
 // .aaaa {
 //   margin: 0;

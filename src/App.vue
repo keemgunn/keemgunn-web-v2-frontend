@@ -3,13 +3,22 @@
 :class="[ getScale, whatLanguage ]" 
 :style="getColors">
 
-  <div>
-    <p class="aaaa"> 가나다라 </p>
-  </div>
-    <h2> something </h2>
-    <!-- <test-001/> -->
-    <router-view/>
 
+  <p class="aaaa"> 가나다라 </p>
+  <h2> something </h2>
+
+  <p class="typo-copy-1">Attribute</p>
+
+  <div class="test-a">
+    <div class="test-b"></div>
+  </div>
+
+
+
+
+  <!-- <test-001/> -->
+
+  <router-view/>
 </div>
 </template>
 
@@ -72,14 +81,7 @@ export default {
 
 
 <style lang="scss">
-@import "assets/fonts/inter_sd.css";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 @import "assets/styles/main.scss";
 
-.aaaa {
-  color: white;
-  background-color: darkslategray;
-
-}
 
 </style>
