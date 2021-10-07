@@ -1,10 +1,19 @@
 <template>
-  <div id="app_main" :style="getColors">
-    <p>가나다라 <i>마바사</i> </p>
+
+<br><br><br><br><br>
+this is from app
+
+<div id="app_main" :class="[ getScale, whatLanguage ]" :style="getColors">
+
+
+  <div>
+    <p class="aaaa"> 가나다라 </p>
+  </div>
     <h2> something </h2>
     <test-001/>
     <router-view/>
-  </div>
+
+</div>
 </template>
 
 <script>
@@ -17,7 +26,7 @@ export default {
     test001,
   },
   data() { return {
-
+    appFontSize: '100p%',
   }},
   computed: {
     ...mapGetters(['getENV']),
@@ -60,7 +69,16 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/fonts/kopub.css";
+@import "assets/fonts/inter_sd.css";
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 @import "assets/styles/main.scss";
+
+#app {
+  font-size: v-bind('appFontSize');
+}
+
+#app_main {
+  // this overrides scss mixins
+  color: darkseagreen;
+}
 </style>

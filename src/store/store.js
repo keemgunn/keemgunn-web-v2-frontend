@@ -7,11 +7,15 @@ const debug = ENV !== 'production';
 
 export default createStore({
   state: {
-    ENV
+    ENV,
+    vendorURL: ENV === 'production' ? "http://13.76.155.192/" : "http://localhost:4433/"
   },
   getters: {
     getENV(state) {
       return state.ENV
+    },
+    getVendorURL: (state) => (url) => {
+      return state.vendorURL + url
     }
   },
   modules: {
