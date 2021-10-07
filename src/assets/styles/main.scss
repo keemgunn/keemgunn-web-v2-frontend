@@ -4,27 +4,76 @@
 
 h1 {
   color: aquamarine;
-  
+  line-height: 1.2;
+}
+
+p {
+  // margin-block-start: 0rem;
+  // margin-block-end: 0rem; // line after
+  // margin-inline-start: 0rem; // line after
+  // margin-inline-end: 0rem; // line after
+}
+
+.aaaa {
+  margin: 0;
+
 }
 
 
-body {
-  background-color: var(--i94);
-}
-#app_main {
+@mixin app_main($p_size) {
   background-color: var(--i94);
   color: var(--i0);
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 60px;
+  font-family: 'Inter_SD';
+
+
   p {
-    font-family: 'KoPub Batang';
-    font-size: 8rem;
+    background-color: chartreuse;
+    font-size: $p_size;
+    line-height: 1.5;
+    letter-spacing: -0.1em;
     i{
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       font-style: normal;
     }
   }
+  
+  #uistatetest {
+    background-color: rgba(0, 0, 0, 0.288);
+    
+    h4 {
+      // color: rgb(255, 196, 0);
+      background-color: rgba(0, 0, 0, 0.288);
+    }
+    
+    .a {
+      background-color: rgba(42, 42, 240, 0.13);
+    }
+    .b {
+      color: rgb(234, 0, 255);
+      i {
+        color: yellow;
+      }
+    }
+  }
+
+}
+
+
+.en {
+  // font-family: Avenir;
+}
+.ko {
+  // font-family: Helvetica;
+}
+
+.M {
+  $p_size: 8em;
+  @include app_main($p_size);
+}
+.S {
+  $p_size: 7em;
+  @include app_main($p_size);
 }

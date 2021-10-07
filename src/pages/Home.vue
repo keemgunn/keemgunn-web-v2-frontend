@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 
 export default {
   name: 'Home',
@@ -23,12 +23,14 @@ export default {
   },
   methods: {
     ...mapMutations('ui', ['setLanguage']),
-
+    ...mapActions('api', [
+      'openTheDoor',
+    ]),
   },
   created() {
     this.setLanguage(this.lang);
     document.documentElement.lang = this.lang;
-
+    this.openTheDoor()
 
   }
 }

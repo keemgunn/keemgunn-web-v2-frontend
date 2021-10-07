@@ -1,0 +1,21 @@
+
+
+
+
+
+@font-face {
+  font-family: "Inter_SD";
+  src: url('./AppleSDGothicNeo/AppleSDGothicNeoT.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100;
+}
+
+
+@font-face {
+  font-family: "Inter_SD";
+  src: url('./Inter/Inter-Thin.ttf') format('truetype');
+  unicode-range: U+0020-007E;
+  font-style: normal;
+  font-weight: 100;
+  ascent-override: 10%;
+}
