@@ -5,7 +5,6 @@ this is from app
 
 <div id="app_main" :class="[ getScale, whatLanguage ]" :style="getColors">
 
-
   <div>
     <p class="aaaa"> 가나다라 </p>
   </div>
