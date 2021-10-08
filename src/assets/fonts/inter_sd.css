@@ -1,21 +1,5 @@
 
 
-/* -------- FONT WEIGHT 100 -------- */
-@font-face {
-  font-family: "Inter_SD";
-  src: url('./AppleSDGothicNeo/AppleSDGothicNeoT.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 100;
-}
-@font-face {
-  font-family: "Inter_SD";
-  src: url('./Inter/Inter-Thin.ttf') format('truetype');
-  unicode-range: U+0020-007E;
-  font-style: normal;
-  font-weight: 100;
-}
-
-
 /* -------- FONT WEIGHT 200 -------- */
 @font-face {
   font-family: "Inter_SD";
@@ -67,7 +51,7 @@
 /* -------- FONT WEIGHT 500 -------- */
 @font-face {
   font-family: "Inter_SD";
-  src: url('./AppleSDGothicNeo/AppleSDGothicNeoM.ttf') format('truetype');
+  src: url('./AppleSDGothicNeo/AppleSDGothicNeoSB.ttf') format('truetype');
   font-style: normal;
   font-weight: 500;
 }
@@ -96,22 +80,6 @@
 }
 
 
-/* -------- FONT WEIGHT 700 -------- */
-@font-face {
-  font-family: "Inter_SD";
-  src: url('./AppleSDGothicNeo/AppleSDGothicNeoB.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 700;
-}
-@font-face {
-  font-family: "Inter_SD";
-  src: url('./Inter/Inter-Bold.ttf') format('truetype');
-  unicode-range: U+0020-007E;
-  font-style: normal;
-  font-weight: 700;
-}
-
-
 /* -------- FONT WEIGHT 800 -------- */
 @font-face {
   font-family: "Inter_SD";
@@ -126,21 +94,4 @@
   font-style: normal;
   font-weight: 800;
 }
-
-
-/* -------- FONT WEIGHT 900 -------- */
-@font-face {
-  font-family: "Inter_SD";
-  src: url('./AppleSDGothicNeo/AppleSDGothicNeoH.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 900;
-}
-@font-face {
-  font-family: "Inter_SD";
-  src: url('./Inter/Inter-Black.ttf') format('truetype');
-  unicode-range: U+0020-007E;
-  font-style: normal;
-  font-weight: 900;
-}
-
 

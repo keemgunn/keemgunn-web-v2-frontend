@@ -1,11 +1,8 @@
-<template>
-  <teleport to='head'>
-    <title>keemgunn | home</title>
+<template><div id="home">
+<teleport to='head'><title>keemgunn | home</title></teleport>
 
-  </teleport>
-  <div>
-    <h1> {{lang}} </h1>
-  </div>
+
+</div>
 </template>
 
 <script>

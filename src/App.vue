@@ -3,20 +3,7 @@
 :class="[ getScale, whatLanguage ]" 
 :style="getColors">
 
-
-  <p class="aaaa"> 가나다라 </p>
-  <h2> something </h2>
-
-  <p class="typo-copy-1">Attribute</p>
-
-  <div class="test-a">
-    <div class="test-b"></div>
-  </div>
-
-
-
-
-  <!-- <test-001/> -->
+  <test-002/>
 
   <router-view/>
 </div>
@@ -24,12 +11,12 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-// import test001 from '@/pages/test/001_UIstate.vue'
+import test002 from '@/pages/test/002_Typography.vue'
 
 export default {
   name: 'App',
   components: {
-    // test001,
+    test002,
   },
   data() { return {
     fontScale: 200,
@@ -81,7 +68,8 @@ export default {
 
 
 <style lang="scss">
+@import "assets/fonts/cormorant_garamond.css";
+@import "assets/fonts/inter_sd.css";
+@import "assets/fonts/arita_buri.css";
 @import "assets/styles/main.scss";
-
-
 </style>
