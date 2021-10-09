@@ -3,7 +3,7 @@
 :class="[ getScale, whatLanguage ]" 
 :style="getColors">
 
-  <test-002/>
+  <test-003/>
 
   <router-view/>
 </div>
@@ -11,12 +11,12 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import test002 from '@/pages/test/002_Typography.vue'
+import test003 from '@/pages/test/003_Grid.vue'
 
 export default {
   name: 'App',
   components: {
-    test002,
+    test003,
   },
   data() { return {
     fontScale: 200,
