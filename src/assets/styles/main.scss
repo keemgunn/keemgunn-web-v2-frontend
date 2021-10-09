@@ -8,17 +8,27 @@
 }
 
 
+
+
+p {
+  background-color: darkslategray;
+}
+
+.test-k {
+  background-color: darkseagreen;
+}
+
 .test-a {
   width: 30%;
-  height: 80em;
-  margin: 10em; 
+  height: 80rem;
+  margin: 10rem; 
   background-color: bisque;
  
 
   .test-b {
-    width: 50em;
-    height: 50em;
-    margin: 5em;
+    width: 50rem;
+    height: 50rem;
+    margin: 5rem;
     background-color: rgb(179, 112, 30);
   }
 
@@ -27,62 +37,95 @@
 
 
 
+.flex-container--row {
+  display: flex;
+  max-width: 1400px;
+  padding: 10px;
+  gap: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+
+  background-color: rgba(0, 255, 255, 0.37);
+
+  .flex-item {
+    // width: 200px;
+    min-width: 200px;
+    max-width: 300px;
+    flex-grow: 1;
+    
+    text-align: center;
+    background-color: tomato;
+    color: white;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .XXS{
-  font-size: 88%;
-  @include typo.SizeAdjust('.typo-en-header1', 63em);
-  @include typo.SizeAdjust('.typo-en-header2', 56em);
-  @include typo.SizeAdjust('.typo-en-header3', 49em);
-  @include typo.SizeAdjust('.typo-en-header4', 42em);
-  @include typo.SizeAdjust('.typo-en-header5', 34em);
-  @include typo.SizeAdjust('.typo-en-header6', 27em);
+  @include typo.SizeAdjust('.typo-en-header1', 63rem);
+  @include typo.SizeAdjust('.typo-en-header2', 56rem);
+  @include typo.SizeAdjust('.typo-en-header3', 49rem);
+  @include typo.SizeAdjust('.typo-en-header4', 42rem);
+  @include typo.SizeAdjust('.typo-en-header5', 34rem);
+  @include typo.SizeAdjust('.typo-en-header6', 27rem);
 }
 
 .XS{
-  font-size: 100%;
-  @include typo.SizeAdjust('.typo-en-header1', 64em);
-  @include typo.SizeAdjust('.typo-en-header2', 57em);
-  @include typo.SizeAdjust('.typo-en-header3', 50em);
-  @include typo.SizeAdjust('.typo-en-header4', 44em);
-  @include typo.SizeAdjust('.typo-en-header5', 36em);
-  @include typo.SizeAdjust('.typo-en-header6', 29em);
+  @include typo.SizeAdjust('.typo-en-header1', 64rem);
+  @include typo.SizeAdjust('.typo-en-header2', 57rem);
+  @include typo.SizeAdjust('.typo-en-header3', 50rem);
+  @include typo.SizeAdjust('.typo-en-header4', 44rem);
+  @include typo.SizeAdjust('.typo-en-header5', 36rem);
+  @include typo.SizeAdjust('.typo-en-header6', 29rem);
 }
 
 .S{
-  font-size: 100%;
 }
 
 .M{
-  font-size: 100%;
 }
 
 .L{
-  font-size: 110%;
-  @include typo.SizeAdjust('.typo-en-header1', 114em);
-  @include typo.SizeAdjust('.typo-en-header2', 84em);
-  @include typo.SizeAdjust('.typo-en-header3', 68em);
-  @include typo.SizeAdjust('.typo-en-header4', 50em);
-  @include typo.SizeAdjust('.typo-en-header5', 38em);
-  @include typo.SizeAdjust('.typo-en-header6', 29em);
+  @include typo.SizeAdjust('.typo-en-header1', 114rem);
+  @include typo.SizeAdjust('.typo-en-header2', 84rem);
+  @include typo.SizeAdjust('.typo-en-header3', 68rem);
+  @include typo.SizeAdjust('.typo-en-header4', 50rem);
+  @include typo.SizeAdjust('.typo-en-header5', 38rem);
+  @include typo.SizeAdjust('.typo-en-header6', 29rem);
 }
 
 .XL{
-  font-size: 120%;
-  @include typo.SizeAdjust('.typo-en-header1', 114em);
-  @include typo.SizeAdjust('.typo-en-header2', 84em);
-  @include typo.SizeAdjust('.typo-en-header3', 68em);
-  @include typo.SizeAdjust('.typo-en-header4', 50em);
-  @include typo.SizeAdjust('.typo-en-header5', 38em);
-  @include typo.SizeAdjust('.typo-en-header6', 29em);
+  @include typo.SizeAdjust('.typo-en-header1', 114rem);
+  @include typo.SizeAdjust('.typo-en-header2', 84rem);
+  @include typo.SizeAdjust('.typo-en-header3', 68rem);
+  @include typo.SizeAdjust('.typo-en-header4', 50rem);
+  @include typo.SizeAdjust('.typo-en-header5', 38rem);
+  @include typo.SizeAdjust('.typo-en-header6', 29rem);
 }
 
 .XXL{
-  font-size: 130%;
-  @include typo.SizeAdjust('.typo-en-header1', 114em);
-  @include typo.SizeAdjust('.typo-en-header2', 84em);
-  @include typo.SizeAdjust('.typo-en-header3', 68em);
-  @include typo.SizeAdjust('.typo-en-header4', 50em);
-  @include typo.SizeAdjust('.typo-en-header5', 38em);
-  @include typo.SizeAdjust('.typo-en-header6', 29em);
+  @include typo.SizeAdjust('.typo-en-header1', 114rem);
+  @include typo.SizeAdjust('.typo-en-header2', 84rem);
+  @include typo.SizeAdjust('.typo-en-header3', 68rem);
+  @include typo.SizeAdjust('.typo-en-header4', 50rem);
+  @include typo.SizeAdjust('.typo-en-header5', 38rem);
+  @include typo.SizeAdjust('.typo-en-header6', 29rem);
 }
 
 

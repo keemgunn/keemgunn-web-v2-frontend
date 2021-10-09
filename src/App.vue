@@ -3,7 +3,7 @@
 :class="[ getScale, whatLanguage ]" 
 :style="getColors">
 
-  <test-003 :testContent="testContent"/>
+  <test004/>
 
   <router-view/>
 </div>
@@ -11,13 +11,13 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import test003 from '@/pages/test/003_ContentImport.vue';
+import test004 from '@/pages/test/004_FlexBox.vue';
 import testContent from "@/assets/contents/testContent";
 
 export default {
   name: 'App',
   components: {
-    test003,
+    test004,
   },
   data() { return {
     testContent
@@ -68,6 +68,29 @@ export default {
 
 
 <style lang="scss">
+@media (max-width: 6000px) { //XXL
+  html { font-size: 8.125%; }
+}
+@media (max-width: 2400px) { //XL
+  html { font-size: 7.5%; }
+}
+@media (max-width: 1920px) { //L
+  html { font-size: 6.875%; }
+}
+@media (max-width: 1320px) { //M
+  html { font-size: 6.25%; }
+}
+@media (max-width: 960px) { //S
+  html { font-size: 6.25%; }
+}
+@media (max-width: 680px) { //XS
+  html { font-size: 6.25%; }
+}
+@media (max-width: 320px) { //XXS
+  html { font-size: 5.625%; }
+}
+
+
 @import "assets/fonts/cormorant_garamond.css";
 @import "assets/fonts/inter_sd.css";
 @import "assets/fonts/arita_buri.css";
