@@ -1,0 +1,173 @@
+// Inter_SD : 200  (300)  [400]  (500)  (600)  800 
+// CormorantGaramond : (400)  [600]  (700) 
+// AritaBuri : (400)  [600]  (700) 
+
+@mixin Typeface($family, $weight) {
+  font-family: $family;
+  font-weight: $weight;
+}
+@mixin FontSquare($size, $ls, $lh) {
+  font-size: $size;
+  letter-spacing: $ls;
+  line-height: $lh;
+}
+@mixin marginBlockProp($start, $end) {
+  margin-block-start: $start;
+  margin-block-end: $end;
+}
+
+
+
+@mixin EnHeader($index, $size, $ls, $lh, $block-start, $block-end) {
+  .typo-en-header#{$index} {
+    @include Typeface('CormorantGaramond',600);
+    @include FontSquare($size, $ls, $lh);
+    @include marginBlockProp($block-start, $block-end);
+    font-feature-settings: 'pnum' on, 'lnum' on;
+  }
+}
+@mixin KoHeader($index, $size, $ls, $lh, $block-start, $block-end) {
+  .typo-ko-header#{$index} {
+    @include Typeface('AritaBuri',600);
+    @include FontSquare($size, $ls, $lh);
+    @include marginBlockProp($block-start, $block-end);
+  }
+}
+@mixin Body($index, $size, $ls, $lh, $block-start, $block-end) {
+  .typo-body#{$index} {
+    @include Typeface('Inter_SD',400);
+    @include FontSquare($size, $ls, $lh);
+    @include marginBlockProp($block-start, $block-end);
+  }
+}
+@mixin Caption($index, $size, $ls, $lh, $block-start, $block-end) {
+  .typo-caption#{$index} {
+    @include Typeface('Inter_SD',400);
+    @include FontSquare($size, $ls, $lh);
+    @include marginBlockProp($block-start, $block-end);
+  }
+}
+@mixin CaptionCaps($index, $size, $ls, $lh, $block-start, $block-end) {
+  .typo-caption#{$index}--caps {
+    @include Typeface('Inter_SD',400);
+    @include FontSquare($size, $ls, $lh);
+    @include marginBlockProp($block-start, $block-end);
+    text-transform: uppercase;
+  }
+}
+
+
+@mixin TypeMutate($origin, $ext, $weight) {
+  #{$origin}--#{$ext} {
+    @extend #{$origin};
+    font-weight: $weight;
+  }
+}
+
+@mixin SizeAdjust($origin, $var) {
+  #{$origin} {
+    font-size: $var
+  }
+}
+
+
+// ------------- TYPO : - HEADER --------------
+.en {
+  @include EnHeader(1, 96em, -0.02em, 0.9, 1em, 1em);
+    @include TypeMutate('.typo-en-header1', 'light', 400);
+    @include TypeMutate('.typo-en-header1', 'thick', 700);
+  @include EnHeader(2, 72em, -0.02em, 0.89, 1em, 1em);
+    @include TypeMutate('.typo-en-header2', 'light', 400);
+    @include TypeMutate('.typo-en-header2', 'thick', 700);
+  @include EnHeader(3, 64em, -0.013em, 0.88, 1em, 1em);
+    @include TypeMutate('.typo-en-header3', 'light', 400);
+    @include TypeMutate('.typo-en-header3', 'thick', 700);
+  @include EnHeader(4, 44em, -0.013em, 0.86, 1em, 1em);
+    @include TypeMutate('.typo-en-header4', 'light', 400);
+    @include TypeMutate('.typo-en-header4', 'thick', 700);
+  @include EnHeader(5, 32em, -0.01em, 0.89, 1em, 1em);
+    @include TypeMutate('.typo-en-header5', 'light', 400);
+    @include TypeMutate('.typo-en-header5', 'thick', 700);
+  @include EnHeader(6, 24em, -0.005em, 0.92, 1em, 1em);
+    @include TypeMutate('.typo-en-header6', 'light', 400);
+    @include TypeMutate('.typo-en-header6', 'thick', 700);
+}
+.ko {
+  @include KoHeader(1, 78em, -0.03em, 1.19, 1em, 1em);
+    @include TypeMutate('.typo-en-header1', 'light', 400);
+    @include TypeMutate('.typo-en-header1', 'thick', 700);
+  @include KoHeader(2, 64em, -0.03em, 1.20, 1em, 1em);
+    @include TypeMutate('.typo-en-header2', 'light', 400);
+    @include TypeMutate('.typo-en-header2', 'thick', 700);
+  @include KoHeader(3, 56em, -0.024em, 1.21, 1em, 1em);
+    @include TypeMutate('.typo-en-header3', 'light', 400);
+    @include TypeMutate('.typo-en-header3', 'thick', 700);
+  @include KoHeader(4, 40em, -0.024em, 1.25, 1em, 1em);
+    @include TypeMutate('.typo-en-header4', 'light', 400);
+    @include TypeMutate('.typo-en-header4', 'thick', 700);
+  @include KoHeader(5, 30em, -0.02em, 1.30, 1em, 1em);
+    @include TypeMutate('.typo-en-header5', 'light', 400);
+    @include TypeMutate('.typo-en-header5', 'thick', 700);
+  @include KoHeader(6, 22em, -0.02em, 1.32, 1em, 1em);
+    @include TypeMutate('.typo-en-header6', 'light', 400);
+    @include TypeMutate('.typo-en-header6', 'thick', 700);
+}
+
+
+// ------------- TYPO : BODY ------------------
+@include Body(1, 18.5em, 0.0em, 1.45, 1em, 1em);
+  @include TypeMutate('.typo-body1', 'light', 300);
+  @include TypeMutate('.typo-body1', 'thick', 500);
+@include Body(2, 16.5em, 0.0em, 1.50, 1em, 1em);
+  @include TypeMutate('.typo-body2', 'light', 300);
+  @include TypeMutate('.typo-body2', 'thick', 500);
+@include Body(3, 14.5em, 0.0em, 1.58, 1em, 1em);
+  @include TypeMutate('.typo-body3', 'light', 300);
+  @include TypeMutate('.typo-body3', 'thick', 500);
+
+
+// ------------- TYPO : CAPTION ---------------
+@include Caption(1, 26em, -0.005em, 1.35, 1em, 1em);
+  @include TypeMutate('.typo-caption1', 'light', 300);
+  @include TypeMutate('.typo-caption1', 'thick', 600);
+@include Caption(2, 23em, -0.005em, 1.30, 1em, 1em);
+  @include TypeMutate('.typo-caption2', 'light', 300);
+  @include TypeMutate('.typo-caption2', 'thick', 600);
+@include Caption(3, 20em, -0.005em, 1.30, 1em, 1em);
+  @include TypeMutate('.typo-caption3', 'light', 300);
+  @include TypeMutate('.typo-caption3', 'thick', 600);
+@include Caption(4, 17em, -0.005em, 1.40, 1em, 1em);
+  @include TypeMutate('.typo-caption4', 'light', 300);
+  @include TypeMutate('.typo-caption4', 'thick', 600);
+@include Caption(5, 14em, -0.005em, 1.40, 1em, 1em);
+  @include TypeMutate('.typo-caption5', 'light', 300);
+  @include TypeMutate('.typo-caption5', 'thick', 600);
+@include Caption(6, 11em, -0.005em, 1.50, 1em, 1em);
+  @include TypeMutate('.typo-caption6', 'light', 300);
+  @include TypeMutate('.typo-caption6', 'thick', 600);
+
+@include CaptionCaps(1, 26em, 0.03em, 1.35, 1em, 1em);
+  @include TypeMutate('.typo-caption1--caps', 'light', 300);
+  @include TypeMutate('.typo-caption1--caps', 'thick', 600);
+@include CaptionCaps(2, 23em, 0.03em, 1.30, 1em, 1em);
+  @include TypeMutate('.typo-caption2--caps', 'light', 300);
+  @include TypeMutate('.typo-caption2--caps', 'thick', 600);
+@include CaptionCaps(3, 20em, 0.038em, 1.30, 1em, 1em);
+  @include TypeMutate('.typo-caption3--caps', 'light', 300);
+  @include TypeMutate('.typo-caption3--caps', 'thick', 600);
+@include CaptionCaps(4, 17em, 0.046em, 1.40, 1em, 1em);
+  @include TypeMutate('.typo-caption4--caps', 'light', 300);
+  @include TypeMutate('.typo-caption4--caps', 'thick', 600);
+@include CaptionCaps(5, 14em, 0.054em, 1.40, 1em, 1em);
+  @include TypeMutate('.typo-caption5--caps', 'light', 300);
+  @include TypeMutate('.typo-caption5--caps', 'thick', 600);
+@include CaptionCaps(6, 11em, 0.062em, 1.50, 1em, 1em);
+  @include TypeMutate('.typo-caption6--caps', 'light', 300);
+  @include TypeMutate('.typo-caption6--caps', 'thick', 600);
+
+  
+  .en {
+    p {
+      background-color: rgba(127, 255, 212, 0.062);
+    }
+  }

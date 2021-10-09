@@ -1,32 +1,27 @@
 <template>
+<div id="prime" 
+:class="[ getScale, whatLanguage ]" 
+:style="getColors">
 
-<br><br><br><br><br>
-this is from app
+  <test-002/>
 
-<div id="app_main" :class="[ getScale, whatLanguage ]" :style="getColors">
-
-
-  <div>
-    <p class="aaaa"> 가나다라 </p>
-  </div>
-    <h2> something </h2>
-    <test-001/>
-    <router-view/>
-
+  <router-view/>
 </div>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import test001 from '@/pages/test/001_UIstate.vue'
+import test002 from '@/pages/test/002_Typography.vue'
 
 export default {
   name: 'App',
   components: {
-    test001,
+    test002,
   },
   data() { return {
-    appFontSize: '100p%',
+    fontScale: 200,
+    testcol: "red",
+
   }},
   computed: {
     ...mapGetters(['getENV']),
@@ -36,7 +31,10 @@ export default {
       'getColors',
       'getThemeColor',
       'whatLanguage',
-    ])
+    ]),
+    appFontSize() {
+      return String(this.fontScale) + "%"
+    }
   },
 
   methods: {
@@ -68,17 +66,10 @@ export default {
 }
 </script>
 
+
 <style lang="scss">
+@import "assets/fonts/cormorant_garamond.css";
 @import "assets/fonts/inter_sd.css";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import "assets/fonts/arita_buri.css";
 @import "assets/styles/main.scss";
-
-#app {
-  font-size: v-bind('appFontSize');
-}
-
-#app_main {
-  // this overrides scss mixins
-  color: darkseagreen;
-}
 </style>
