@@ -3,7 +3,7 @@
 :class="[ getScale, whatLanguage ]" 
 :style="getColors">
 
-  <test-003/>
+  <test-003 :testContent="testContent"/>
 
   <router-view/>
 </div>
@@ -11,7 +11,8 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import test003 from '@/pages/test/003_Grid.vue'
+import test003 from '@/pages/test/003_ContentImport.vue';
+import testContent from "@/assets/contents/testContent";
 
 export default {
   name: 'App',
@@ -19,8 +20,7 @@ export default {
     test003,
   },
   data() { return {
-    fontScale: 200,
-    testcol: "red",
+    testContent
 
   }},
   computed: {
