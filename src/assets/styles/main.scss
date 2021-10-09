@@ -1,4 +1,4 @@
-@use 'typography';
+@use 'typography' as typo;
 
 #prime {
   background-color: var(--i94);
@@ -36,11 +36,23 @@ p {
 
 
 .XXS{
-  font-size: 85%;
+  font-size: 88%;
+  @include typo.SizeAdjust('.typo-en-header1', 63em);
+  @include typo.SizeAdjust('.typo-en-header2', 56em);
+  @include typo.SizeAdjust('.typo-en-header3', 49em);
+  @include typo.SizeAdjust('.typo-en-header4', 42em);
+  @include typo.SizeAdjust('.typo-en-header5', 34em);
+  @include typo.SizeAdjust('.typo-en-header6', 27em);
 }
 
 .XS{
-  font-size: 90%;
+  font-size: 100%;
+  @include typo.SizeAdjust('.typo-en-header1', 64em);
+  @include typo.SizeAdjust('.typo-en-header2', 57em);
+  @include typo.SizeAdjust('.typo-en-header3', 50em);
+  @include typo.SizeAdjust('.typo-en-header4', 44em);
+  @include typo.SizeAdjust('.typo-en-header5', 36em);
+  @include typo.SizeAdjust('.typo-en-header6', 29em);
 }
 
 .S{
@@ -53,14 +65,32 @@ p {
 
 .L{
   font-size: 110%;
+  @include typo.SizeAdjust('.typo-en-header1', 114em);
+  @include typo.SizeAdjust('.typo-en-header2', 84em);
+  @include typo.SizeAdjust('.typo-en-header3', 68em);
+  @include typo.SizeAdjust('.typo-en-header4', 50em);
+  @include typo.SizeAdjust('.typo-en-header5', 38em);
+  @include typo.SizeAdjust('.typo-en-header6', 29em);
 }
 
 .XL{
   font-size: 120%;
+  @include typo.SizeAdjust('.typo-en-header1', 114em);
+  @include typo.SizeAdjust('.typo-en-header2', 84em);
+  @include typo.SizeAdjust('.typo-en-header3', 68em);
+  @include typo.SizeAdjust('.typo-en-header4', 50em);
+  @include typo.SizeAdjust('.typo-en-header5', 38em);
+  @include typo.SizeAdjust('.typo-en-header6', 29em);
 }
 
 .XXL{
   font-size: 130%;
+  @include typo.SizeAdjust('.typo-en-header1', 114em);
+  @include typo.SizeAdjust('.typo-en-header2', 84em);
+  @include typo.SizeAdjust('.typo-en-header3', 68em);
+  @include typo.SizeAdjust('.typo-en-header4', 50em);
+  @include typo.SizeAdjust('.typo-en-header5', 38em);
+  @include typo.SizeAdjust('.typo-en-header6', 29em);
 }
 
 

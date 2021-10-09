@@ -1,11 +1,11 @@
 <template><div :id="typography">
   <p class="typo-caption1--caps--thick">current scale : {{ getScale }}</p>
-  <h1>h1: {{single}}</h1>
-  <h2>h2: {{extraShort}}</h2>
-  <h3>h3: {{short}}</h3>
-  <h4>h4: {{medium}}</h4>
-  <h5>h5: {{long}}</h5>
-  <h6>h6: {{extraLong}}</h6>
+  <h1 class="typo-en-header1">h1: {{single}}</h1>
+  <h2 class="typo-en-header2">h2: {{extraShort}}</h2>
+  <h3 class="typo-en-header3">h3: {{short}}</h3>
+  <h4 class="typo-en-header4">h4: {{medium}}</h4>
+  <h5 class="typo-en-header5">h5: {{long}}</h5>
+  <h6 class="typo-en-header6">h6: {{extraLong}}</h6>
   <br><br><br><br>
   <p class="typo-caption1">caption1: {{medium}}</p>
   <p class="typo-caption2">caption2: {{long}}</p>
