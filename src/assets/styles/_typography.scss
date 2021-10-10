@@ -165,3 +165,64 @@
   @include Typremutate('.typo-caption6--caps', 'light', 300);
   @include Typremutate('.typo-caption6--caps', 'thick', 600);
 
+
+
+
+
+
+
+.XXS{
+  @include SizeAdjust('.typo-en-header1', 63rem);
+  @include SizeAdjust('.typo-en-header2', 56rem);
+  @include SizeAdjust('.typo-en-header3', 49rem);
+  @include SizeAdjust('.typo-en-header4', 42rem);
+  @include SizeAdjust('.typo-en-header5', 34rem);
+  @include SizeAdjust('.typo-en-header6', 27rem);
+}
+
+.XS{
+  @include SizeAdjust('.typo-en-header1', 64rem);
+  @include SizeAdjust('.typo-en-header2', 57rem);
+  @include SizeAdjust('.typo-en-header3', 50rem);
+  @include SizeAdjust('.typo-en-header4', 44rem);
+  @include SizeAdjust('.typo-en-header5', 36rem);
+  @include SizeAdjust('.typo-en-header6', 29rem);
+}
+
+.S{
+}
+
+.M{
+}
+
+.L{
+  @include SizeAdjust('.typo-en-header1', 114rem);
+  @include SizeAdjust('.typo-en-header2', 84rem);
+  @include SizeAdjust('.typo-en-header3', 68rem);
+  @include SizeAdjust('.typo-en-header4', 50rem);
+  @include SizeAdjust('.typo-en-header5', 38rem);
+  @include SizeAdjust('.typo-en-header6', 29rem);
+}
+
+.XL{
+  @include SizeAdjust('.typo-en-header1', 114rem);
+  @include SizeAdjust('.typo-en-header2', 84rem);
+  @include SizeAdjust('.typo-en-header3', 68rem);
+  @include SizeAdjust('.typo-en-header4', 50rem);
+  @include SizeAdjust('.typo-en-header5', 38rem);
+  @include SizeAdjust('.typo-en-header6', 29rem);
+}
+
+.XXL{
+  @include SizeAdjust('.typo-en-header1', 114rem);
+  @include SizeAdjust('.typo-en-header2', 84rem);
+  @include SizeAdjust('.typo-en-header3', 68rem);
+  @include SizeAdjust('.typo-en-header4', 50rem);
+  @include SizeAdjust('.typo-en-header5', 38rem);
+  @include SizeAdjust('.typo-en-header6', 29rem);
+}
+
+
+
+  
+  

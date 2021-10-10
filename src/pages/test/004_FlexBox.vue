@@ -11,7 +11,6 @@
 
 
 
-
   <div class="test-a"></div>
 
 
@@ -22,8 +21,11 @@
 
 
 
-  <div class="test-c"></div>
+  <section class="section-type-c">
+  </section>
 
+
+  <div class="test-c"></div>
 
 
 

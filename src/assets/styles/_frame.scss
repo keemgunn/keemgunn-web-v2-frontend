@@ -1,0 +1,83 @@
+
+.section-type-a, .section-type-b, .section-type-c {
+  margin: auto;
+}
+
+
+
+
+
+
+
+.XXS{
+  .section-type-c {
+    width: 80vw;
+  }
+}
+
+.XS{
+  .section-type-c {
+    width: 70vw;
+  }
+}
+
+.S{
+  .section-type-b {
+    max-width: 760rem;
+  }
+  .section-type-c {
+    width : calc(var(--min-vw) - var(--margin-safe-col)*2);
+  }
+}
+
+.M{
+  .section-type-b {
+    max-width: 1080rem;
+  }
+  .section-type-c {
+    width : calc(var(--min-vw) - var(--margin-safe-col)*2);
+  }
+}
+
+.L{
+  .section-type-b {
+    width: 1280rem;
+  }
+  .section-type-c {
+    width: 1000rem;
+  }
+}
+
+.XL{
+  .section-type-b {
+    width: 1280rem;
+  }
+  .section-type-c {
+    width: 1000rem;
+  }
+}
+
+.XXL{
+  .section-type-b {
+    width: 1280rem;
+  }
+  .section-type-c {
+    width: 1000rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
