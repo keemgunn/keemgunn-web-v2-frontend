@@ -22,6 +22,9 @@
 
 
 
+  <div class="test-c"></div>
+
+
 
 
 </div>
@@ -64,12 +67,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.test003_content_import {
-  margin: 1vw;
-  padding-bottom: 6vw;
-}
-
-
-</style>

@@ -20,7 +20,8 @@ p {
 
 .test-a {
   width: 30%;
-  height: 80rem;
+  // height: calc(1rem + env(safe-area-inset-bottom));
+  height: 1rem;
   margin: 10rem; 
   background-color: bisque;
  
@@ -32,6 +33,15 @@ p {
     background-color: rgb(179, 112, 30);
   }
 
+}
+
+
+.test-c {
+  // width: calc(100vw - var(--margin-saf-col));
+  height: 100rem;
+  background-color: crimson;
+  margin-left: var(--margin-safe-col);
+  margin-right: var(--margin-safe-col);
 }
 
 
