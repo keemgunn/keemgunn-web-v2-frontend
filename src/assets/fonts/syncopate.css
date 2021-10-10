@@ -1,0 +1,19 @@
+
+
+/* -------- FONT WEIGHT 400 -------- */
+@font-face {
+  font-family: "Syncopate";
+  src: url('./Syncopate/Syncopate-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+
+/* -------- FONT WEIGHT 700 -------- */
+@font-face {
+  font-family: "Syncopate";
+  src: url('./Syncopate/Syncopate-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+
