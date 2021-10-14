@@ -2,7 +2,72 @@
 .section-type-a, .section-type-b, .section-type-c {
   margin: auto;
   height: fit-content;
+
 }
+
+
+
+.w-fit {
+  width: fit-content;
+}
+.h-fit {
+  height: fit-content;
+}
+
+
+
+
+
+.flex {
+  display: flex;
+}
+.f-dir-col {
+  flex-direction: column;
+}
+.f-dir-row {
+  flex-direction: row;
+}
+.f-al-item-start {
+  align-items: flex-start;
+}
+.f-al-item-start {
+  align-items: flex-end;
+}
+.f-js-cont-space {
+  justify-content: space-between;
+}
+@mixin Gap($val) {
+  .gap#{$val} {
+    gap: $val + rem;
+  }
+} @for $i from 1 through 30 {
+  @include Gap($i);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

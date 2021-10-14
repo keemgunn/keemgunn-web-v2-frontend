@@ -1,28 +1,35 @@
 <template>
-<div class="to-back">
-
-</div>
-
-
 <div id="prime" 
 :class="[ getScale, whatLanguage ]" 
 :style="getColors">
 
+
+  <NavBar/>
+
   <test004/>
 
-  <router-view/>
+
+
+<router-view/>
 </div>
 </template>
+
+
+
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 import test004 from '@/pages/test/004_FlexBox.vue';
 import testContent from "@/assets/contents/testContent";
 
+import NavBar from "@/components/NavBar.vue";
+
 export default {
   name: 'App',
   components: {
+    NavBar,
     test004,
+
   },
   data() { return {
     testContent

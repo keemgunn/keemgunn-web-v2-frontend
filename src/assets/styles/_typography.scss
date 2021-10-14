@@ -155,13 +155,7 @@
   @include SizeAdjust('.typo-header6', 29rem);
 }
 
-.S{
-}
-
-.M{
-}
-
-.L{
+.L , .XL , .XXL {
   @include SizeAdjust('.typo-header1', 114rem);
   @include SizeAdjust('.typo-header2', 84rem);
   @include SizeAdjust('.typo-header3', 68rem);
@@ -169,25 +163,6 @@
   @include SizeAdjust('.typo-header5', 38rem);
   @include SizeAdjust('.typo-header6', 29rem);
 }
-
-.XL{
-  @include SizeAdjust('.typo-header1', 114rem);
-  @include SizeAdjust('.typo-header2', 84rem);
-  @include SizeAdjust('.typo-header3', 68rem);
-  @include SizeAdjust('.typo-header4', 50rem);
-  @include SizeAdjust('.typo-header5', 38rem);
-  @include SizeAdjust('.typo-header6', 29rem);
-}
-
-.XXL{
-  @include SizeAdjust('.typo-header1', 114rem);
-  @include SizeAdjust('.typo-header2', 84rem);
-  @include SizeAdjust('.typo-header3', 68rem);
-  @include SizeAdjust('.typo-header4', 50rem);
-  @include SizeAdjust('.typo-header5', 38rem);
-  @include SizeAdjust('.typo-header6', 29rem);
-}
-
 
 
   
