@@ -1,0 +1,149 @@
+
+.section-type-a, .section-type-b, .section-type-c {
+  margin: auto;
+  height: fit-content;
+
+}
+
+
+
+.w-fit {
+  width: fit-content;
+}
+.h-fit {
+  height: fit-content;
+}
+
+
+
+
+
+.flex {
+  display: flex;
+}
+.f-dir-col {
+  flex-direction: column;
+}
+.f-dir-row {
+  flex-direction: row;
+}
+.f-al-item-start {
+  align-items: flex-start;
+}
+.f-al-item-start {
+  align-items: flex-end;
+}
+.f-js-cont-space {
+  justify-content: space-between;
+}
+@mixin Gap($val) {
+  .gap#{$val} {
+    gap: $val + rem;
+  }
+} @for $i from 1 through 30 {
+  @include Gap($i);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.XXS{
+  .section-type-c {
+    width: 80vw;
+  }
+}
+
+.XS{
+  .section-type-c {
+    width: 70vw;
+  }
+}
+
+.S{
+  .section-type-b {
+    max-width: 760rem;
+  }
+  .section-type-c {
+    width : calc(var(--min-vw) - var(--margin-safe-col)*2);
+  }
+}
+
+.M{
+  .section-type-b {
+    max-width: 1080rem;
+  }
+  .section-type-c {
+    width : calc(var(--min-vw) - var(--margin-safe-col)*2);
+  }
+}
+
+.L{
+  .section-type-b {
+    width: 1280rem;
+  }
+  .section-type-c {
+    width: 1000rem;
+  }
+}
+
+.XL{
+  .section-type-b {
+    width: 1280rem;
+  }
+  .section-type-c {
+    width: 1000rem;
+  }
+}
+
+.XXL{
+  .section-type-b {
+    width: 1280rem;
+  }
+  .section-type-c {
+    width: 1000rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

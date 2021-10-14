@@ -17,7 +17,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import btn_darkmode from '@/components/elements/btn_darkmode.vue';
+import btn_darkmode from '@/components/elements/nav_bar/btn_darkmode.vue';
 
 
 const name = 'test001';

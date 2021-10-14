@@ -3,24 +3,36 @@
 :class="[ getScale, whatLanguage ]" 
 :style="getColors">
 
-  <test-003/>
 
-  <router-view/>
+  <NavBar/>
+
+  <test004/>
+
+
+
+<router-view/>
 </div>
 </template>
 
+
+
+
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import test003 from '@/pages/test/003_Grid.vue'
+import test004 from '@/pages/test/004_FlexBox.vue';
+import testContent from "@/assets/contents/testContent";
+
+import NavBar from "@/components/NavBar.vue";
 
 export default {
   name: 'App',
   components: {
-    test003,
+    NavBar,
+    test004,
+
   },
   data() { return {
-    fontScale: 200,
-    testcol: "red",
+    testContent
 
   }},
   computed: {
@@ -68,8 +80,8 @@ export default {
 
 
 <style lang="scss">
-@import "assets/fonts/cormorant_garamond.css";
+@import "assets/styles/root_config.css";
+@import "assets/fonts/syncopate.css";
 @import "assets/fonts/inter_sd.css";
-@import "assets/fonts/arita_buri.css";
 @import "assets/styles/main.scss";
 </style>
