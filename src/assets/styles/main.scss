@@ -2,12 +2,12 @@
 @use 'typography' as typo;
 @use 'basics' as basics;
 @use './components/nav' as nav;
+@use './components/errorpage' as errpg;
 
 
 #prime {
   left: 10rem;
-  color: black;
-  background-color: white;
+  color: var(--i0);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   // padding-left: env(safe-area-inset-left);

@@ -13,6 +13,7 @@
     "public-ip": "^4.0.4",
     "vue": "^3.2.16",
     "vue-blotter": "^0.1.3",
+    "vue-plugin-load-script": "^1.3.4",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.2"
   },

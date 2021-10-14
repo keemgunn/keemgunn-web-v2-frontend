@@ -3,10 +3,9 @@
 :class="[ getScale, whatLanguage ]" 
 :style="getColors">
 
-
-  <NavBar/>
-
-  <test004/>
+  <!-- <test004/> -->
+  <!-- <NavBar/> -->
+  <NotFound/>
 
 
 
@@ -19,16 +18,19 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import test004 from '@/pages/test/004_FlexBox.vue';
+import NotFound from '@/pages/NotFound.vue';
+
 import testContent from "@/assets/contents/testContent";
 
-import NavBar from "@/components/NavBar.vue";
+// import test004 from '@/pages/test/004_FlexBox.vue';
+// import NavBar from "@/components/NavBar.vue";
 
 export default {
   name: 'App',
   components: {
-    NavBar,
-    test004,
+    // NavBar,
+    // test004,
+    NotFound, 
 
   },
   data() { return {
