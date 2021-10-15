@@ -5,7 +5,6 @@
 
   <!-- <test004/> -->
   <!-- <NavBar/> -->
-  <NotFound/>
 
 
 
@@ -18,7 +17,6 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import NotFound from '@/pages/NotFound.vue';
 
 import testContent from "@/assets/contents/testContent";
 
@@ -30,7 +28,6 @@ export default {
   components: {
     // NavBar,
     // test004,
-    NotFound, 
 
   },
   data() { return {

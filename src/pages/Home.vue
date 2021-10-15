@@ -1,5 +1,5 @@
 <template><div id="home">
-<teleport to='head'><title>keemgunn | home</title></teleport>
+<teleport to='head'><title>home | keemgunn</title></teleport>
 
 
 </div>
