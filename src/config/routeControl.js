@@ -59,42 +59,44 @@ export const pages = [
 
   new Page( 'ErrorPage',
     false,
-    [ routeParams('code', ['404', '503']) ],
+    [routeParams('code',
+      ['404', '503']
+    )],
     inbounds_type_0(),
     ['404']
   ),
 
   new Page( 'Home',
     false,
-    [ routeParams('lang', ['en', 'ko']) ],
+    [ routeParams('lang', ['en']) ],
     inbounds_type_1(),
     ['en']
   ),
   
   new Page( 'About',
     false,
-    [ routeParams('lang', ['en', 'ko']) ],
+    [ routeParams('lang', ['en']) ],
     inbounds_type_1(),
     ['en']
   ),
 
   new Page( 'Works',
     true,
-    [ routeParams('lang', ['en', 'ko']) ],
+    [ routeParams('lang', ['en']) ],
     inbounds_type_1(),
     ['en']
   ),
 
   new Page( 'Blog',
     false,
-    [ routeParams('lang', ['en', 'ko']) ],
+    [ routeParams('lang', ['en']) ],
     inbounds_type_1(),
     ['en']
   ),
 
   new Page( 'Lab',
     false,
-    [ routeParams('lang', ['en', 'ko']) ],
+    [ routeParams('lang', ['en']) ],
     inbounds_type_1(),
     ['en']
   ),
@@ -114,20 +116,27 @@ export const pages = [
 
 export const baseRoutes = []
 for (let p of pages) {
-  baseRoutes.push( BaseRoute(p.basePath, p.name) )
+  baseRoutes.push(BaseRoute(p.basePath, p.name));
 }
 
 export const redirections = []
 for (let p of pages) {
   for (let i of p.inbounds) {
-    redirections.push( Redirection(i, p.redirectPath) )
+    redirections.push(Redirection(i, p.redirectPath));
   }
 }
 
 export const blockPages = []
 for (let p of pages) {
   if (p.blocked) {
-    blockPages.push( Redirection(p.redirectPath, '/errorpage/503') )
+    blockPages.push(Redirection(p.redirectPath, '/errorpage/503'));
+  }
+}
+
+export const navigations = []
+for (let p of pages) {
+  if (!p.blocked && (p.name !== 'ErrorPage')) {
+    navigations.push(p.name.toLowerCase());
   }
 }
 

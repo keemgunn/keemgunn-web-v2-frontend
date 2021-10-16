@@ -1,17 +1,16 @@
+import { navigations } from "@/config/routeControl";
+if (process.env.NODE_ENV === 'development') {
+  console.log('== Navigations =================');
+  console.log(navigations);
+}
+
 export default {
   namespaced: false,
 
   state: () => ({
     navigation: {
-      menuShown: [
-        'works',
-        'blog',
-        'lab',
-        'about',
-        'idas'
-      ]
+      menuShown: navigations
     }
-
   }),
 
   getters: {
