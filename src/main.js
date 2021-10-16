@@ -7,8 +7,12 @@ import LoadScript from "vue-plugin-load-script";
 
 
 
-createApp(App)
-  .use(store)
+const app = createApp(App)
+  
+app.use(store)
   .use(router)
-  .use(LoadScript)
-  .mount("#app")
+  .use(LoadScript);
+
+app.config.globalProperties.$envIsDev = process.env.NODE_ENV == 'development';
+
+app.mount("#app");

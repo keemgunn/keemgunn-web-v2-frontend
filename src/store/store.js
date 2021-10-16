@@ -2,18 +2,11 @@ import { createLogger, createStore } from 'vuex';
 import ui from '@/store/ui/ui-main';
 import api from '@/store/api/api-main';
 
-const ENV = process.env.NODE_ENV;
-const debug = ENV !== 'production';
-
 export default createStore({
   state: {
-    ENV,
-    vendorURL: ENV === 'production' ? "http://13.76.155.192/" : "http://localhost:4433/"
+    vendorURL: process.env.NODE_ENV === 'production' ? "http://13.76.155.192/" : "http://localhost:4433/"
   },
   getters: {
-    getENV(state) {
-      return state.ENV
-    },
     getVendorURL: (state) => (url) => {
       return state.vendorURL + url
     }
@@ -22,6 +15,6 @@ export default createStore({
     ui,
     api
   },
-  strict: debug,
-  plugins: debug ? [createLogger()] : []
+  strict: process.env.NODE_ENV !== 'production',
+  plugins: process.env.NODE_ENV !== 'production' ? [createLogger()] : []
 })

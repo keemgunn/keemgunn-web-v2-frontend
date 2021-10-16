@@ -1,18 +1,19 @@
 <template>
   <teleport to='head'>
-    <title>keemgunn | {{this.code}}</title>
+    <title>{{this.code}} | keemgunn</title>
   </teleport>
 <main class="err">
 
 
-<div :class="['flex', 'f-dir-col', 'f-js-cont-space']">
-  <div class="code m-auto">
+<div 
+:class="['flex', 'f-dir-col', 'f-js-cont-space']">
+  <div id="code" class="m-auto">
     <h1 class="typo-header1">{{this.code}}</h1>
   </div>
-  <div class="title m-auto">
+  <div id="title" class="m-auto">
     <h5 class="typo-header5">{{this.title}}</h5>
   </div>
-  <div class="message m-auto">
+  <div id="message" class="m-auto">
     <p class="typo-caption3">{{this.message}}</p>
   </div>
 </div>

@@ -1,6 +1,7 @@
 <template><div id="home">
 <teleport to='head'><title>home | keemgunn</title></teleport>
 
+<h1 class="typo-header1">home</h1>
 
 </div>
 </template>
