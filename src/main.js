@@ -2,8 +2,17 @@ import { createApp } from 'vue';
 import App from '@/App.vue';
 import store from '@/store/store';
 import router from '@/router';
+import LoadScript from "vue-plugin-load-script";
 
-createApp(App)
-  .use(store)
+
+
+
+const app = createApp(App)
+  
+app.use(store)
   .use(router)
-  .mount("#app")
+  .use(LoadScript);
+
+app.config.globalProperties.$envIsDev = process.env.NODE_ENV == 'development';
+
+app.mount("#app");

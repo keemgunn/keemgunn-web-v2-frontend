@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "public-ip": "^4.0.4",
     "vue": "^3.2.16",
+    "vue-plugin-load-script": "^2.0.1",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.2"
   },

@@ -3,11 +3,10 @@
 :class="[ getScale, whatLanguage ]" 
 :style="getColors">
 
+  <!-- <test004/> -->
+  <!-- <NavBar/> -->
 
-  <NavBar/>
-
-  <test004/>
-
+{{$envIsDev}}
 
 
 <router-view/>
@@ -19,16 +18,17 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import test004 from '@/pages/test/004_FlexBox.vue';
+
 import testContent from "@/assets/contents/testContent";
 
-import NavBar from "@/components/NavBar.vue";
+// import test004 from '@/pages/test/004_FlexBox.vue';
+// import NavBar from "@/components/NavBar.vue";
 
 export default {
   name: 'App',
   components: {
-    NavBar,
-    test004,
+    // NavBar,
+    // test004,
 
   },
   data() { return {
@@ -80,7 +80,7 @@ export default {
 
 
 <style lang="scss">
-@import "assets/styles/root_config.css";
+@import "assets/styles/rootStyle.css";
 @import "assets/fonts/syncopate.css";
 @import "assets/fonts/inter_sd.css";
 @import "assets/styles/main.scss";
