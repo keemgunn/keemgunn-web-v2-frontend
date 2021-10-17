@@ -10,7 +10,7 @@ export default {
       base: 'flex f-dir-col f-js-cont-space',
       states: {
         menu: {
-          false: 'nav-top--normal',
+          false: '',
           true: 'nav-top--expand'
         }
       }

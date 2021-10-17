@@ -35,9 +35,6 @@
 
 </section>
 
-
-
-
 </header>
 </template>
 
@@ -49,10 +46,6 @@ import navItem from '@/components/elements/nav_bar/nav_item.vue';
 import BtnMenu from '@/components/elements/nav_bar/btn_menu.vue';
 import BtnDarkmode from '@/components/elements/nav_bar/btn_darkmode.vue';
 import { NavBar as cls, createFetchers } from '@/assets/styles/classControl';
-if(process.env.NODE_ENV === 'development') {
-  console.log("== NavBar Classes ==============");
-  console.log(cls);
-}
 
 
 function data() { return {
