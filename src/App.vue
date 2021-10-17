@@ -80,7 +80,7 @@ export default {
 
 
 <style lang="scss">
-@import "assets/styles/rootStyle.css";
+@import "assets/styles/stylesheets/rootStyle.css";
 @import "assets/fonts/syncopate.css";
 @import "assets/fonts/inter_sd.css";
 @import "assets/styles/main.scss";

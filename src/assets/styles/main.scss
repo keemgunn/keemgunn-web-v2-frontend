@@ -1,8 +1,8 @@
-@use 'frame' as frame;
-@use 'typography' as typo;
-@use 'basics' as basics;
-@use './components/nav' as nav;
-@use './components/errorpage' as errpg;
+@use './stylesheets/frame' as frame;
+@use './stylesheets/typography' as typo;
+@use './stylesheets/basics' as basics;
+@use './stylesheets/components/nav' as nav;
+@use './stylesheets/components/errorpage' as errpg;
 
 
 #prime {

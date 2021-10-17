@@ -8,25 +8,24 @@
   :class="[class_top_contents, 'flex f-dir-row f-js-cont-space']">
 
     <div id="nav-menu-btn"
-     v-if="this.showMenuBtn"
-    class="btns flex f-dir-row f-al-item-start f-js-cont-start gap8">
-      <BtnMenu class="btn"/>
-    </div>
+      v-if="this.showMenuBtn"
+      class="btns flex f-dir-row f-al-item-start f-js-cont-start gap8">
+    <BtnMenu class="btn"/></div>
 
     <div id="nav-logo-gunn" 
-    :class="['logo-gunn', 'svg', 'h-fit']">
+      :class="['logo-gunn', 'svg', 'h-fit']">
     <svgLogoGunn/></div>
 
     <nav id="nav-top-links" 
-     v-if="this.showLinks"
-    :class="['links', flex_top_links]">
+       v-if="this.showLinks"
+      :class="nav_top_links">
     <navItem v-for="menuItem in getNavMenuArr" 
-    :goTo="menuItem" :key="menuItem.name"></navItem></nav>
+      :goTo="menuItem" :key="menuItem.name">
+    </navItem></nav>
 
     <div id="nav-top-btns"
-    class="btns flex f-dir-row f-al-item-start f-js-cont-end gap8">
-      <BtnDarkmode class="btn"/>
-    </div>
+      class="btns flex f-dir-row f-al-item-start f-js-cont-end gap8">
+    <BtnDarkmode class="btn"/></div>
 
   </div>
 
@@ -47,6 +46,11 @@ import navItem from '@/components/elements/nav_bar/nav_item.vue';
 import BtnMenu from '@/components/elements/nav_bar/btn_menu.vue';
 import BtnDarkmode from '@/components/elements/nav_bar/btn_darkmode.vue';
 
+import { NavBar as cls } from '@/assets/styles/classControl';
+if(process.env.NODE_ENV === 'development') {
+  console.log(cls);
+
+}
 
 export default {
   name: 'nav_bar',
@@ -56,20 +60,22 @@ export default {
       normal: "nav-top--normal",
       expand: "nav-top--expand"
     },
-
     class_top_contents_types : {
       wide: "contents--wide",
       short: "contents--short"
-    },
-    logo_gunn_vertical_style : {
-      expand: "logo--gunn--expand",
-      shrink: "logo--gunn--shrink"
     },
     flex_top_links_types : {
       wide: "flex f-dir-row f-al-item-start",
       short: "flex f-dir-col f-al-item-start"
     },
+    logo_gunn_vertical_style : {
+      expand: "logo--gunn--expand",
+      shrink: "logo--gunn--shrink"
+    },
 
+
+    states: cls.states,
+    classKit: cls.classKit
 
   }},
   components: {
@@ -78,14 +84,14 @@ export default {
     BtnMenu,
     BtnDarkmode,
   },
-  props: {
-
-  },
   computed: {
     ...mapGetters('ui',[
       'getNavMenuArr', 'getNavWidthScale', 'isNavMenuToggle',
       'getFrameSize'
     ]),
+
+    nav_top_links: cls.Fetcher('nav-top-links'),
+
 
     class_nav_top() {
       if (this.getNavWidthScale === 'wide') {
@@ -103,9 +109,9 @@ export default {
     class_logo_gunn_horizontal() {
       return this["logo_gunn_vertical_style"]["expand"]
     },
-    flex_top_links() {
-      return this['flex_top_links_types'][this.getNavWidthScale]
-    },
+
+
+
 
     showMenuBtn() {
       return this.getNavWidthScale === 'short'
@@ -126,6 +132,7 @@ export default {
   created() {
   },
   mounted() {
+
   }
 }
 </script>
