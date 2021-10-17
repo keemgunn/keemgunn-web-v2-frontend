@@ -4,7 +4,7 @@ import colors from '@/assets/styles/colors.json';
 
 // UI functions -------------------------------
 function setBodyStyle(document, backgroundColor) {
-  document.body.style = `background-color: ${backgroundColor}; padding: 0px; margin: 0px; margin-top: 0px; height: 100vh; width: 100vw;`
+  document.body.style = `background-color: ${backgroundColor}; padding: 0px; margin: 0px; margin-top: 0px; height: 100vh; width: 100vw; -webkit-text-size-adjust: 100%;`
 }
 
 

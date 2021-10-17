@@ -13,6 +13,9 @@
 .h-fit {
   height: fit-content;
 }
+.al-self-str {
+  align-self: stretch;
+}
 
 .m-auto {
   margin: auto;
@@ -32,11 +35,20 @@
 .f-al-item-start {
   align-items: flex-start;
 }
-.f-al-item-start {
+.f-al-item-end {
   align-items: flex-end;
+}
+.f-al-cont-space {
+  align-content: space-between;
 }
 .f-js-cont-space {
   justify-content: space-between;
+}
+.f-js-cont-start {
+  justify-content: flex-start;
+}
+.f-js-cont-end {
+  justify-content: flex-end;
 }
 @mixin Gap($val) {
   .gap#{$val} {

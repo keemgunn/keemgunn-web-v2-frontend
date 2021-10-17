@@ -6,7 +6,7 @@
   <!-- <test004/> -->
   <!-- <NavBar/> -->
 
-{{$envIsDev}}
+
 
 
 <router-view/>

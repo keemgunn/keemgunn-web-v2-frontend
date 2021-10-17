@@ -2,16 +2,21 @@
   <teleport to='head'>
     <title>keemgunn | IDAS</title>
   </teleport>
-  <div>
-    <h1> {{lang}} </h1>
-  </div>
+  <NavBar/>
+<main id="idas">
+
+
+
+</main>
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue';
 
 export default {
   name: 'IDAS',
   components: {
+    NavBar,
   },
   data() { return {
     lang: this.$route.params.lang

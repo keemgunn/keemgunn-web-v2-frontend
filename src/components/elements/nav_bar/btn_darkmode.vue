@@ -1,5 +1,5 @@
 <template>
-<div class="btn-toggle--darkmode">
+<div id="mode-btn">
 
   <IconModeNormal @click="toggleDarkmode"/>
 
@@ -8,7 +8,7 @@
 
 <script>
 import { mapGetters, mapMutations} from 'vuex';
-import IconModeNormal from '@/components/elements/nav_bar/icon_mode_normal.vue';
+import IconModeNormal from '@/assets/icons/icon_mode_normal.vue';
 
 export default {
   name: 'btn_darkmode',

@@ -1,58 +1,123 @@
-.nav-bar {
+#nav-bar {
   background-color: rgb(224, 230, 230);
-
-}
-
-
-.nav-top {
-  padding-top: 16rem;
-}
-.top-set {
-  position: relative;
-  top: 2rem;
-  padding: 0rem 26rem;
-  // margin-left: calc(env(safe-area-inset-left) * 26);
-  // padding-left: calc(constant(safe-area-inset-left));
-  // padding-right: calc(env(safe-area-inset-right));
-  // padding-right: calc(constant(safe-area-inset-right));
-}
-.nav-top-line {
-  background-color: var(--black); 
 }
 
 
 
-.logo-gunn {
-  width: 90rem;
-  height: fit-content;
-  margin-top: 4rem;
-}
-
-
-.btn-toggle--darkmode {
-  width: 32rem;
-  margin-left: 10rem;
+.nav-top--normal {
   height: fit-content;
 }
-
-
-
-.nav-links--expand {
-  gap: 64rem;
-  margin-top: 5rem;
+.nav-top--expand {
+  height: 100vh;
 }
+#nav-top {
+  .contents--wide {
+    padding-top: 16rem;
+    position: relative;
+    top: 2rem;
+    margin: 0rem 24rem;
+    // margin-left: calc(env(safe-area-inset-left) * 26);
+    // padding-left: calc(constant(safe-area-inset-left));
+    // padding-right: calc(env(safe-area-inset-right));
+    // padding-right: calc(constant(safe-area-inset-right));
+    .logo-gunn {
+      min-width: 90rem;
+      max-width: 90rem;
+      margin-top: 4rem;
+    }
+    .links {
+      gap: 54rem;
+      margin-top: 5rem;
+      .link {
+        gap: 16rem;
+        .text {
+          color: var(--black);
+        }
+        .line {
+          visibility: hidden;
+          height: 3rem;
+          align-self: stretch;
+          background-color: var(--black); 
+        }
+      }
+      .link:hover { 
+        cursor: pointer;
+        .text {
+          color: #5e5e5e;
+        }
+        .line {
+          visibility: visible;
+        }
+      }
+    }
+    .btns {
+      max-width: 90rem;
+      min-width: 32rem;
+      padding-left: 4vw;
+      .btn {
+        min-width: 32rem;
+        max-width: 32rem;
+      }
+    }
+  }
 
-
-.nav-item {
-  width: fit-content;
-  height: fit-content;
-}
-
-.nav-item-text {
-  a {
-    color: var(--black);
+  .contents--short {
+    padding: 6rem 0;
+    position: relative;
+    top: 2rem;
+    margin: 0rem 16rem;
+    // margin-left: calc(env(safe-area-inset-left) * 26);
+    // padding-left: calc(constant(safe-area-inset-left));
+    // padding-right: calc(env(safe-area-inset-right));
+    // padding-right: calc(constant(safe-area-inset-right));
+    .logo-gunn {
+      min-width: 90rem;
+      max-width: 90rem;
+      width: 90rem;
+      margin-top: 4rem;
+    }
+    .links {
+      position: fixed;
+        top: 60rem; left: 0rem;
+      width: calc(100vw - 36rem);
+      padding: 0 18rem;
+      // background-color: white;
+      .link {
+        gap: 10rem;
+        padding-top: 10rem;
+        align-self: stretch;
+        .text {
+          color: var(--black);
+        }
+        .line {
+          height: 1rem;
+          align-self: stretch;
+          background-color: var(--black); 
+        }
+      }
+      .link:hover { 
+        cursor: pointer;
+        .text {
+          color: #5e5e5e;
+        }
+        .line {
+          background-color: #5e5e5e;
+        }
+      }
+    }
+    .btns {
+      .btn {
+        min-width: 32rem;
+        max-width: 32rem;
+      }
+    }
   }
 }
-.nav-item-line {
-  background-color: var(--black);
-}
+
+
+
+
+
+
+
+

@@ -1,9 +1,15 @@
 <template>
-  <div class="nav-item flex f-dir-col f-al-item-start gap15">
-    <div class="nav-item-text">
-      <a href="#" class="typo-mark4--light">{{this.goTo}}</a>
+  <div 
+  :class="['link flex f-dir-col f-al-item-start']">
+
+    <div class="text">
+      <p class="typo-mark4--light">
+        {{this.goTo.name}}
+      </p>
     </div>
-    <div class="nav-item-line line-ver-3"></div>
+
+    <div class="line"></div>
+
   </div>
 </template>
 
@@ -13,8 +19,10 @@ import { mapGetters, mapMutations} from 'vuex';
 export default {
   name: 'btn_darkmode',
   props: {
-    goTo: String
+    goTo: Object
   },
+  data() { return{
+  }},
   computed: {
     ...mapGetters('ui',[
       'isDarkmodeOn',

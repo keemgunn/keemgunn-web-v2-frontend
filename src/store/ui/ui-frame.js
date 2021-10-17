@@ -7,13 +7,24 @@ function setScale(width) {
   (width > 320) ? "XS" : "XXS"
 }
 
+function setNavWidthScale(width) {
+  return (width > 780) ? "wide" : "short"
+}
+
+function setHTMLClass(document, classes) {
+  document.documentElement.className = classes;
+}
+
+
 export default {
   namespaced: false,
   
   state: () => ({
     vw: null,
     vh: null,
-    scale: null
+    scale: null,
+    navWidthScale: null,
+    navMenuToggle: false
   }),
 
   getters: {
@@ -26,6 +37,12 @@ export default {
     getRatio(state) {
       return state.vw / state.vh
     },
+    getNavWidthScale(state) {
+      return state.navWidthScale
+    },
+    isNavMenuToggle(state) {
+      return state.navMenuToggle
+    }
   },
 
   mutations: {
@@ -33,7 +50,15 @@ export default {
       state.vw = payload.width;
       state.vh = payload.height;
       state.scale = setScale(payload.width);
+      state.navWidthScale = setNavWidthScale(payload.width);
     },
+    setNavMenuToggle(state, bool) {
+      state.navMenuToggle = (bool === 'switch' ? !state.navMenuToggle : bool);
+      setHTMLClass(document,
+        state.navMenuToggle ? 'no-scroll no-scroll-lang'
+          : ''
+      )
+    }
   },
 
   actions: {

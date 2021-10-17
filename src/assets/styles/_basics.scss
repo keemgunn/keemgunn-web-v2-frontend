@@ -6,6 +6,7 @@ a {
 .svg {
   svg {
     width: 100%;
+    height: 100%;
   }
 }
 
@@ -16,6 +17,7 @@ a {
   .line-ver-#{$val} {
     height: $val + rem;
     align-self: stretch;
+    background-color: var(--black); 
   }
 } @for $i from 1 through 8 {
   @include Line($i);

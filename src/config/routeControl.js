@@ -136,7 +136,9 @@ for (let p of pages) {
 export const navigations = []
 for (let p of pages) {
   if (!p.blocked && (p.name !== 'ErrorPage')) {
-    navigations.push(p.name.toLowerCase());
+    navigations.push({
+      name: p.name.toLowerCase()
+    });
   }
 }
 
