@@ -1,124 +1,107 @@
 #nav-bar {
   background-color: rgb(224, 230, 230);
-}
 
-.nav-top {
-  transition: all ease 200ms 0s;
-  height: 45rem;
-}
-.nav-top--expand {
-  height: 100vh;
-}
+  .nt--wide { height: 66rem; }
+  .nt--short { height: 47rem; }
+  .nt--expand { height: 100vh; }
 
-.contents--wide {
-  padding-top: 16rem;
-  position: relative;
-  top: 2rem;
-  margin: 0rem 24rem;
-  // margin-left: calc(env(safe-area-inset-left) * 26);
-  // padding-left: calc(constant(safe-area-inset-left));
-  // padding-right: calc(env(safe-area-inset-right));
-  // padding-right: calc(constant(safe-area-inset-right));
   .nav-logo-gunn {
     min-width: 90rem;
     max-width: 90rem;
     margin-top: 4rem;
+  }.nav-logo-gunn:hover {
+    cursor: pointer;
   }
-  .nav-top-links {
-    gap: 54rem;
-    margin-top: 5rem;
-    .link {
-      gap: 16rem;
-      .text {
-        transition: all ease 200ms 0s;
-        color: var(--black);
-      }
-      .line {
-        transition: all ease 200ms 0s;
-        opacity: 0;
-        height: 3rem;
-        align-self: stretch;
-        background-color: var(--black); 
-      }
+
+  .nav-top-links-item {
+    .text {
+      transition: all ease 200ms 0s;
+      color: var(--black);
     }
-    .link:hover { 
-      cursor: pointer;
-      .text {
-        color: #5e5e5e;
-      }
-      .line {
-        opacity: 1;
-      }
+    .line {
+      transition: all ease 200ms 0s;
+      opacity: 0;
+      align-self: stretch;
+      background-color: var(--black); 
+    }
+  }.nav-top-links-item:hover { 
+    cursor: pointer;
+    .text {
+      color: #5e5e5e;
+    }
+    .line {
+      opacity: 1;
     }
   }
-  .btns {
+
+  .nav-top-btns {
     max-width: 90rem;
     min-width: 32rem;
     padding-left: 4vw;
-    .btn {
-      min-width: 32rem;
-      max-width: 32rem;
+  }
+
+  .btn {
+    min-width: 32rem;
+    max-width: 32rem;
+  }.btn:hover {
+    cursor: pointer;
+  }
+
+  .ntc--wide { // -- states.horizontal --------
+    padding-top: 16rem;
+    position: relative;
+    top: 2rem;
+    margin: 0rem 24rem;
+    .nav-top-links {
+      gap: 54rem;
+      margin-top: 5rem;
+      .nav-top-links-item {
+        gap: 16rem;
+        .line {
+          height: 3rem;
+        }
+      }
+      .nav-top-links-item:hover { 
+        .text {
+          color: #5e5e5e;
+        }
+        .line {
+          opacity: 1;
+        }
+      }
     }
   }
-}
-
-.contents--short {
-  padding: 6rem 0;
-  position: relative;
-  top: 2rem;
-  margin: 0rem 16rem;
-  // margin-left: calc(env(safe-area-inset-left) * 26);
-  // padding-left: calc(constant(safe-area-inset-left));
-  // padding-right: calc(env(safe-area-inset-right));
-  // padding-right: calc(constant(safe-area-inset-right));
-  .nav-logo-gunn {
-    min-width: 90rem;
-    max-width: 90rem;
-    width: 90rem;
-    margin-top: 4rem;
-  }
-  .nav-top-links {
-    position: fixed;
-      top: 60rem; left: 0rem;
-    width: calc(100vw - 36rem);
-    padding: 0 18rem;
-    // background-color: white;
-    .link {
-      gap: 10rem;
-      padding-top: 10rem;
-      align-self: stretch;
-      .text {
-        color: var(--black);
-      }
-      .line {
-        height: 1rem;
+  
+  .ntc--short {  // -- states.horizontal ------
+    padding: 6rem 0 8rem 0;
+    position: relative;
+    top: 2rem;
+    margin: 0rem 16rem;
+    .nav-top-links {
+      position: fixed;
+        top: 60rem; left: 0rem;
+      width: calc(100vw - 36rem);
+      padding: 0 18rem;
+      // background-color: white;
+      .nav-top-links-item {
+        gap: 10rem;
+        padding-top: 10rem;
         align-self: stretch;
-        background-color: var(--black); 
+        .line {
+          opacity: 1;
+          height: 1rem;
+        }
       }
-    }
-    .link:hover { 
-      cursor: pointer;
-      .text {
-        color: #5e5e5e;
-      }
-      .line {
-        background-color: #5e5e5e;
+      .nav-top-links-item:hover { 
+        .line {
+          background-color: #5e5e5e;
+        }
       }
     }
   }
-  .btns {
-    .btn {
-      min-width: 32rem;
-      max-width: 32rem;
-    }
-  }
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-

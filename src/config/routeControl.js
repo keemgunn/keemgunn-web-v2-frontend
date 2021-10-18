@@ -134,10 +134,13 @@ for (let p of pages) {
 }
 
 export const navigations = []
+let navIndex = 0;
 for (let p of pages) {
   if (!p.blocked && (p.name !== 'ErrorPage')) {
+    navIndex += 1;
     navigations.push({
-      name: p.name.toLowerCase()
+      name: p.name.toLowerCase(),
+      index: navIndex
     });
   }
 }

@@ -1,4 +1,5 @@
 export default {
+  pageName: 'NavBar',
   states: {
     horizontal: 'wide', // ['wide', 'short']
     vertical: 'expanded', // ['expanded', 'shrinked'],
@@ -7,11 +8,15 @@ export default {
   classKit: {
 
     'nav-top': {
-      base: 'flex f-dir-col f-js-cont-space',
+      base: 'flex f-dir-col f-js-cont-space tr-nav-top',
       states: {
+        horizontal: {
+          wide: 'nt--wide',
+          short: 'nt--short'
+        },
         menu: {
           false: '',
-          true: 'nav-top--expand'
+          true: 'nt--expand'
         }
       }
     },
@@ -20,8 +25,8 @@ export default {
       base: 'flex f-dir-row f-js-cont-space',
       states: {
         horizontal: {
-          wide: 'contents--wide',
-          short: 'contents--short'
+          wide: 'ntc--wide',
+          short: 'ntc--short'
         }
       }
     },
@@ -37,11 +42,25 @@ export default {
     },
 
     'nav-top-links': {
-      base: 'flex f-al-item-start',
+      base: 'flex f-al-item-start noselect',
       states: {
         horizontal: {
           wide: 'f-dir-row',
           short: 'f-dir-col'
+        }
+      }
+    },
+    
+    'nav-top-links-item': {
+      base: 'flex f-dir-col f-al-item-start',
+      states: {
+        horizontal: {
+          wide: 'op1',
+          short: ''
+        },
+        menu: {
+          true: 'op1',
+          false: 'op0'
         }
       }
     },

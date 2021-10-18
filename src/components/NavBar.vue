@@ -2,7 +2,6 @@
 <header id="nav-bar">
 
 <section id="nav-top" :class="nav_top">
-
   <div id="nav-top-contents" 
   :class="nav_top_contents">
 
@@ -19,21 +18,23 @@
     <svgLogoGunn/></div>
 
     <nav id="nav-top-links" 
-       v-if="showLinks"
       :class="nav_top_links">
-    <navItem v-for="page in getNavMenuArr" 
-      :goTo="page" :key="page.name">
-    </navItem></nav>
+    <NavItem v-for="page in getNavMenuArr" 
+      :class="nav_top_links_item"
+      :goTo="page" :shown="showLinks" :key="page.name">
+    </NavItem></nav>
 
     <div id="nav-top-btns"
       :class="nav_top_btns">
-    <BtnDarkmode class="btn"/></div>
+    <BtnDarkmode class="btn"
+      @mouseenter="setModal({target: 'BtnDarkMode', set: true})"
+    /></div>
 
   </div>
 
   <div class="bottomline line-ver-1"></div>
-
 </section>
+
 
 </header>
 </template>
@@ -42,7 +43,7 @@
 const name = 'NavBar';
 import { mapGetters, mapMutations } from 'vuex';
 import svgLogoGunn from '@/components/elements/nav_bar/logo_gunn.vue';
-import navItem from '@/components/elements/nav_bar/nav_item.vue';
+import NavItem from '@/components/elements/nav_bar/nav_item.vue';
 import BtnMenu from '@/components/elements/nav_bar/btn_menu.vue';
 import BtnDarkmode from '@/components/elements/nav_bar/btn_darkmode.vue';
 import { NavBar as cls, createFetchers } from '@/assets/styles/classControl';
@@ -50,13 +51,16 @@ import { NavBar as cls, createFetchers } from '@/assets/styles/classControl';
 
 function data() { return {
   states: cls.states,
-  classKit: cls.classKit
+  classKit: cls.classKit,
+  modal: {
+    BtnDarkmode: false
+  }
 }}
 
 
 const components = {
   svgLogoGunn,
-  navItem,
+  NavItem,
   BtnMenu,
   BtnDarkmode,
 };
@@ -73,10 +77,9 @@ const computed = {
   },
   showLinks() {
     return (this.states.horizontal === 'wide') || (this.states.menu)
-  }
+  },
 };
 createFetchers(computed, cls);
-
 
 
 const methods = {
@@ -84,7 +87,12 @@ const methods = {
   setMenu(payload){
     this.states.menu = (payload === 'toggle' ? !this.states.menu : payload);
     document.documentElement.className = this.states.menu ? 'no-scroll no-scroll-lang' : '';
-  } 
+  },
+  setModal(payload){
+    this['modal'][payload.target] = (payload.set === 'toggle' ? !this['modal'][payload.target] : payload.set);
+    this.$logg(`-- setModal : ${payload.target} --`);
+    this.$logg(this['modal'][payload.target]);
+  }
 };
 
 
@@ -103,8 +111,6 @@ function created() {
 
 
 function mounted() {
-  console.log(computed['nav-top']);
-    // modify states to current width scale.
 }
 
 

@@ -1,5 +1,6 @@
 function Controller(page) {
   return {
+    pageName: page.pageName,
     states: page.states, 
     classKit: page.classKit,
     Fetcher: (id) => {
@@ -17,9 +18,15 @@ function Controller(page) {
 }
 
 export function createFetchers(computed, cls) {
+  if (process.env.NODE_ENV === 'development') {
+    console.log("== Created Fetchers ========");
+    console.log(`page: ${cls.pageName}`);
+  }
   for (let id of Object.keys(cls['classKit'])) {
     const classifyName = id.replace(/-/g, '_');
-    console.log(classifyName);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(classifyName);
+    }
     computed[classifyName] = cls.Fetcher(id)
   }
 }
