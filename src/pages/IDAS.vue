@@ -20,13 +20,13 @@
 const name = 'IDAS';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import NavBar from '@/components/NavBar.vue';
-import { NavBar as cls, createFetchers } from '@/assets/styles/classControl';
+// import { NavBar as cls, createFetchers } from '@/assets/styles/classControl';
 
 
 function data() { return {
   lang: this.$route.params.lang,
-  states: cls.states,
-  classKit: cls.classKit,
+  // states: cls.states,
+  // classKit: cls.classKit,
   modal: {
 
   }
@@ -42,7 +42,7 @@ const computed = {
   ...mapGetters('',[  ]),
   
 };
-createFetchers(computed, cls);
+// createFetchers(computed, cls);
 
 
 const methods = {

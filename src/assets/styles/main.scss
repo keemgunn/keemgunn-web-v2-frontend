@@ -2,6 +2,7 @@
 @use './stylesheets/typography' as typo;
 @use './stylesheets/basics' as basics;
 @use './stylesheets/animations' as ani;
+@use './stylesheets/icons' as icon;
 @use './stylesheets/pages/idas' as idas;
 @use './stylesheets/components/nav' as nav;
 @use './stylesheets/components/errorpage' as errpg;
@@ -12,10 +13,12 @@
   color: var(--i0);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
   // padding-left: env(safe-area-inset-left);
   // padding-right: env(safe-area-inset-right);
   // padding: 15px 0 calc(constant(safe-area-inset-bottom) + 15px);
   // padding: 15px 0 calc(env(safe-area-inset-bottom) + 15px);
+  // shape-rendering: crispEdges;
 }
 
 body {

@@ -26,9 +26,7 @@
 
     <div id="nav-top-btns"
       :class="nav_top_btns">
-    <BtnDarkmode class="btn"
-      @mouseenter="setModal({target: 'BtnDarkMode', set: true})"
-    /></div>
+    <BtnDarkmode class="btn"/></div>
 
   </div>
 
@@ -87,11 +85,6 @@ const methods = {
   setMenu(payload){
     this.states.menu = (payload === 'toggle' ? !this.states.menu : payload);
     document.documentElement.className = this.states.menu ? 'no-scroll no-scroll-lang' : '';
-  },
-  setModal(payload){
-    this['modal'][payload.target] = (payload.set === 'toggle' ? !this['modal'][payload.target] : payload.set);
-    this.$logg(`-- setModal : ${payload.target} --`);
-    this.$logg(this['modal'][payload.target]);
   }
 };
 

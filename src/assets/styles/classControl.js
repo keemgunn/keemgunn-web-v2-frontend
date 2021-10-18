@@ -34,6 +34,12 @@ export function createFetchers(computed, cls) {
 
 
 
-import bundle_NavBar from '@/assets/styles/classes/cls-NavBar';
-export const NavBar = Controller(bundle_NavBar)
+import _NavBar from '@/assets/styles/classes/cls-com-NavBar';
+export const NavBar = Controller(_NavBar)
+
+import _btn_darkmode from '@/assets/styles/classes/cls-el-btn-darkmode';
+export const btn_darkmode = Controller(_btn_darkmode)
+
+import _btn_menu from '@/assets/styles/classes/cls-el-btn-menu';
+export const btn_menu = Controller(_btn_menu)
 
