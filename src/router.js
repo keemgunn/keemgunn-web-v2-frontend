@@ -8,6 +8,8 @@ if (process.env.NODE_ENV === 'development') {
   console.log(baseRoutes);
   console.log(redirections);
   console.log(blockPages);
+  console.log('-- BASE_URL --');
+  console.log(process.env.BASE_URL);
 }
 
 export default new createRouter({

@@ -1,0 +1,47 @@
+
+
+// SVG ANIMATIONS =============================
+
+@mixin make-all-ease($val) {
+  .all-ease-#{$val*100}{
+    transition: all (($val * 100) + ms) ease;
+  }
+} @for $i from 1 through 30 {
+  @include make-all-ease($i);
+}
+
+
+
+
+
+
+// CSS TRANSITIONS ============================
+
+.tr-nav-top {
+  transition-property: all;
+  transition-duration: 600ms;
+  transition-timing-function: cubic-bezier(.34,.25,.61,.98);
+  transition-delay: 0ms;
+}
+
+
+
+// VUE TRANSITIONS ============================
+
+@mixin nav-item-fade($val) {
+  .nav-item-fade-#{$val}-enter-active{
+    transition: all 500ms ease (($val * 100) + ms);
+  }
+  .nav-item-fade-#{$val}-leave-active {
+    transition: all 500ms ease;
+  }
+  .nav-item-fade-#{$val}-enter-from,
+  .nav-item-fade-#{$val}-leave-to {
+    transform: translateY(10rem);
+    opacity: 0;
+  }
+} @for $i from 1 through 8 {
+  @include nav-item-fade($i);
+}
+
+

@@ -7,13 +7,17 @@ function setScale(width) {
   (width > 320) ? "XS" : "XXS"
 }
 
+function setNavWidthScale(width) {
+  return (width > 780) ? "wide" : "short"
+}
+
 export default {
   namespaced: false,
-  
   state: () => ({
     vw: null,
     vh: null,
-    scale: null
+    scale: null,
+    navWidthScale: null,
   }),
 
   getters: {
@@ -26,6 +30,9 @@ export default {
     getRatio(state) {
       return state.vw / state.vh
     },
+    getNavWidthScale(state) {
+      return state.navWidthScale
+    },
   },
 
   mutations: {
@@ -33,7 +40,8 @@ export default {
       state.vw = payload.width;
       state.vh = payload.height;
       state.scale = setScale(payload.width);
-    },
+      state.navWidthScale = setNavWidthScale(payload.width);
+    }
   },
 
   actions: {

@@ -1,0 +1,105 @@
+#nav-bar {
+  background-color: var(--i94);
+
+  .nt--wide { height: 66rem; }
+  .nt--short { height: 47rem; }
+  .nt--expand { height: 100vh; }
+
+  .nav-logo-gunn {
+    min-width: 90rem;
+    max-width: 90rem;
+    margin-top: 4rem;
+  }.nav-logo-gunn:hover {
+    cursor: pointer;
+  }
+
+  .nav-top-links-item {
+    .text {
+      transition: all ease 200ms 0s;
+      color: var(--i0);
+    }
+    .line {
+      transition: all ease 200ms 0s;
+      opacity: 0;
+      align-self: stretch;
+      background-color: var(--i0);  
+    }
+  }.nav-top-links-item:hover { 
+    cursor: pointer;
+    .text {
+      opacity: 0.72;
+    }
+    .line {
+      opacity: 1;
+    }
+  }
+
+  .nav-top-btns {
+    max-width: 90rem;
+    min-width: 32rem;
+    padding-left: 4vw;
+  }
+
+  .btn {
+    min-width: 32rem;
+    max-width: 32rem;
+  }
+
+  .ntc--wide { // -- states.horizontal --------
+    padding-top: 16rem;
+    position: relative;
+    top: 2rem;
+    margin: 0rem 24rem;
+    .nav-top-links {
+      gap: 54rem;
+      margin-top: 5rem;
+      .nav-top-links-item {
+        gap: 16rem;
+        .line {
+          height: 3rem;
+        }
+      }
+      .nav-top-links-item:hover { 
+        .text {
+          color: var(--i0);
+        }
+        .line {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  
+  .ntc--short {  // -- states.horizontal ------
+    padding: 6rem 0 8rem 0;
+    position: relative;
+    top: 2rem;
+    margin: 0rem 16rem;
+    .nav-top-links {
+      position: fixed;
+        top: 60rem; left: 0rem;
+      width: calc(100vw - 36rem);
+      padding: 0 18rem;
+      // background-color: white;
+      .nav-top-links-item {
+        gap: 10rem;
+        padding-top: 10rem;
+        align-self: stretch;
+        .line {
+          opacity: 1;
+          height: 1rem;
+        }
+      }
+      .nav-top-links-item:hover { 
+        .line {
+          opacity: 0.72;
+        }
+      }
+    }
+  }
+
+
+
+
+
+}

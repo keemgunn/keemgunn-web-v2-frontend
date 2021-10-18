@@ -1,10 +1,19 @@
 <template>
-  <div class="nav-item flex f-dir-col f-al-item-start gap15">
-    <div class="nav-item-text">
-      <a href="#" class="typo-mark4--light">{{this.goTo}}</a>
-    </div>
-    <div class="nav-item-line line-ver-3"></div>
+<transition :name="transitName">
+<div v-if="shown"
+  @click="this.$redirect(page.url)"
+>
+
+  <div class="text">
+    <p class="typo-mark4--light">
+      {{this.page.name}}
+    </p>
   </div>
+
+  <div class="line"></div>
+
+</div>
+</transition>
 </template>
 
 <script>
@@ -12,9 +21,13 @@ import { mapGetters, mapMutations} from 'vuex';
 
 export default {
   name: 'btn_darkmode',
-  props: {
-    goTo: String
+  props: { 
+    page: Object, 
+    shown: Boolean, 
   },
+  data() { return{
+    transitName : `nav-item-fade-${this.page.index}`
+  }},
   computed: {
     ...mapGetters('ui',[
       'isDarkmodeOn',
