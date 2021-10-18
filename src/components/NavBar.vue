@@ -21,7 +21,7 @@
       :class="nav_top_links">
     <NavItem v-for="page in getNavMenuArr" 
       :class="nav_top_links_item"
-      :goTo="page" :shown="showLinks" :key="page.name">
+      :page="page" :shown="showLinks" :key="page.name">
     </NavItem></nav>
 
     <div id="nav-top-btns"

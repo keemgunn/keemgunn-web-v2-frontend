@@ -1,10 +1,12 @@
 <template>
 <transition :name="transitName">
-<div v-if="shown">
+<div v-if="shown"
+  @click="this.$redirect(page.url)"
+>
 
   <div class="text">
     <p class="typo-mark4--light">
-      {{this.goTo.name}}
+      {{this.page.name}}
     </p>
   </div>
 
@@ -20,11 +22,11 @@ import { mapGetters, mapMutations} from 'vuex';
 export default {
   name: 'btn_darkmode',
   props: { 
-    goTo: Object, 
+    page: Object, 
     shown: Boolean, 
   },
   data() { return{
-    transitName : `nav-item-fade-${this.goTo.index}`
+    transitName : `nav-item-fade-${this.page.index}`
   }},
   computed: {
     ...mapGetters('ui',[
