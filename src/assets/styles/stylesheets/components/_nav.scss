@@ -1,5 +1,5 @@
 #nav-bar {
-  background-color: rgb(224, 230, 230);
+  background-color: var(--i94);
 
   .nt--wide { height: 66rem; }
   .nt--short { height: 47rem; }
@@ -22,12 +22,12 @@
       transition: all ease 200ms 0s;
       opacity: 0;
       align-self: stretch;
-      background-color: var(--black);  
+      background-color: var(--i0);  
     }
   }.nav-top-links-item:hover { 
     cursor: pointer;
     .text {
-      color: #5e5e5e;
+      opacity: 0.72;
     }
     .line {
       opacity: 1;
@@ -61,7 +61,7 @@
       }
       .nav-top-links-item:hover { 
         .text {
-          color: #5e5e5e;
+          color: var(--i0);
         }
         .line {
           opacity: 1;
@@ -92,7 +92,7 @@
       }
       .nav-top-links-item:hover { 
         .line {
-          background-color: #5e5e5e;
+          opacity: 0.72;
         }
       }
     }
