@@ -13,7 +13,6 @@ function setNavWidthScale(width) {
 
 export default {
   namespaced: false,
-  
   state: () => ({
     vw: null,
     vh: null,

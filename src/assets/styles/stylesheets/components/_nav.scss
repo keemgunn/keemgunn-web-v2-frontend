@@ -16,13 +16,13 @@
   .nav-top-links-item {
     .text {
       transition: all ease 200ms 0s;
-      color: var(--black);
+      color: var(--i0);
     }
     .line {
       transition: all ease 200ms 0s;
       opacity: 0;
       align-self: stretch;
-      background-color: var(--black); 
+      background-color: var(--black);  
     }
   }.nav-top-links-item:hover { 
     cursor: pointer;

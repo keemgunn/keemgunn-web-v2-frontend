@@ -1,7 +1,6 @@
 <template>
 <div id="prime" 
-:class="[ getScale, whatLanguage ]" 
-:style="getColors">
+:class="[ getScale, whatLanguage ]" >
 
   <!-- <test004/> -->
   <!-- <NavBar/> -->
@@ -20,9 +19,6 @@
 import { mapGetters, mapMutations } from 'vuex';
 
 import testContent from "@/assets/contents/testContent";
-
-// import test004 from '@/pages/test/004_FlexBox.vue';
-// import NavBar from "@/components/NavBar.vue";
 
 export default {
   name: 'App',
@@ -61,11 +57,8 @@ export default {
     }
   },
 
-  beforeCreate(){ // ==================================
 
-  },
-
-  created() { // ======================================
+  created() {
 
     // Adjust Screen Size ---------------------
     this.fetchFrameSize()
@@ -81,7 +74,10 @@ export default {
 
 <style lang="scss">
 @import "assets/styles/stylesheets/rootStyle.css";
+@import "assets/styles/stylesheets/colors.css";
 @import "assets/fonts/syncopate.css";
 @import "assets/fonts/inter_sd.css";
 @import "assets/styles/main.scss";
+
+
 </style>

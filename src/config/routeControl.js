@@ -1,7 +1,5 @@
 import bundle from "@/functions/bundler";
 
-// const baseURL = (process.env.NODE_ENV === 'development') ? 
-
 function routeParams(name, examples) {
   // make router parameter strings like: '/:name('ex1'||'ex2')'
   const result = examples.length ? 
