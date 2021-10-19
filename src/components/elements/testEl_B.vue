@@ -18,7 +18,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-
+console.log("test Element B");
 
 const name = 'test-el-b';
 export default {

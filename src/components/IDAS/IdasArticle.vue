@@ -6,27 +6,34 @@
 
 </template>
 <script>
-const name = 'NavBar';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
-import { NavBar as cls, createFetchers } from '@/assets/styles/classControl';
 
 
 function data() { return {
-  states: cls.states,
-  classKit: cls.classKit,
+
 }}
 
 
-const components = {
+const components = {};
+const blockFiles = require.context(
+  '@/components/IDAS/blocks/',
+  true,
+  /^.*\.vue$/
+);
+for (let file of blockFiles.keys()) {
+  const blockName = file.replace('./', '').replace('.vue', '')
+  const filepath = '@/components/IDAS/blocks' + file.replace('./', '/')
+  components[blockName] = () => import(filepath);
+}
 
-};
+
+
 
 
 const computed = {
   ...mapGetters('',[  ]),
   
 };
-createFetchers(computed, cls);
 
 
 const methods = {

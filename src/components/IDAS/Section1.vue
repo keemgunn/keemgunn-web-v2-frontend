@@ -1,24 +1,44 @@
-<template>
-<div></div>
+<template><section id="s1-testSection">
+
+
+
+  <div class="grid-test">
+    <div class="child-1">
+      <p class="typo-body1">{{long}}</p>
+    </div>
+    <div class="child-2">
+      <p class="typo-body1">{{long}}</p>
+    </div>
+    <div class="child-3">
+      <p class="typo-body1">{{long}}</p>
+    </div>
+  </div>
+
+  
 
 
 
 
+
+<IdasFields
+
+/>
+
+
+</section>
 </template>
 <script>
-const name = 'NavBar';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
-import { NavBar as cls, createFetchers } from '@/assets/styles/classControl';
+import IdasFields from '@/components/IDAS/IdasField.vue'
 
 
 function data() { return {
-  states: cls.states,
-  classKit: cls.classKit,
+  long: 'asdfsafsadfjnwog;isn;oasdfsadfsafasgewrgvdsfvvloj'
 }}
 
 
 const components = {
-
+  IdasFields
 };
 
 
@@ -26,7 +46,6 @@ const computed = {
   ...mapGetters('',[  ]),
   
 };
-createFetchers(computed, cls);
 
 
 const methods = {

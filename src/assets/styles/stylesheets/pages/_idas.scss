@@ -1,0 +1,170 @@
+#idas {
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
+
+  .field-type-a, .field-type-b, .field-type-c {
+    display: grid;
+    margin: auto;
+    height: fit-content;
+    grid-template-rows: auto;
+  }
+  .field-type-a {
+    width: 100vw;
+  }
+
+
+  article {
+    display: flex;
+  }
+  
+  
+  
+  .XXS{
+    .field-type-c {
+      width: 284vw;
+    }
+    .field-gap {
+      gap: 3rem
+    }
+  }
+  
+  .XS{
+    .field-type-c {
+      width: 284vw;
+    }
+  }
+  
+  .S{
+    .field-type-b {
+      max-width: 760rem;
+    }
+    .field-type-c {
+      width : 620rem
+    }
+  }
+  
+  .M{
+    .field-type-b {
+      max-width: 1080rem;
+    }
+    .field-type-c {
+      width : calc(var(--min-vw) - var(--margin-safe-col)*2);
+    }
+  }
+  
+  .L{
+    .field-type-b {
+      max-width: 1280rem;
+    }
+    .field-type-c {
+      width: 1000rem;
+    }
+  }
+  
+  .XL{
+    .field-type-b {
+      max-width: 1400rem;
+    }
+    .field-type-c {
+      width: 1080rem;
+    }
+  }
+  
+  .XXL{
+    .field-type-b {
+      max-width: 1720rem;
+    }
+    .field-type-c {
+      width: 1280rem;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  .grid-test{
+    display: grid; //
+    // width: 600rem;
+    max-width: 900rem; //
+    height: fit-content; //
+    margin: auto; //
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto; //
+  }
+
+  .child-1{
+    grid-column: 1 / 3 ;
+    width: 100%;
+    background-color: rgb(26, 26, 148);
+  }
+  .child-2{
+    grid-area: 1 / 3 / 2 / 5;
+    width: 100%;
+    background-color: rgb(26, 26, 148);
+  }
+  .child-3{
+    grid-column: 3 / 5;
+    width: 100%;
+    background-color: rgb(26, 26, 148);
+  }
+
+
+
+  .scrollTest {
+    width: 100vw;
+    height: 400rem;
+    background-color: darkkhaki;
+  }
+  .keyBlock {
+    width: 100vw;
+    height: 400rem;
+    background-color: rgb(47, 232, 72);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

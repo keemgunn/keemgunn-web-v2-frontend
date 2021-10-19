@@ -6,14 +6,13 @@
 
 </template>
 <script>
-const name = 'NavBar';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
-import { NavBar as cls, createFetchers } from '@/assets/styles/classControl';
+
 
 
 function data() { return {
-  states: cls.states,
-  classKit: cls.classKit,
+
+
 }}
 
 
@@ -26,7 +25,6 @@ const computed = {
   ...mapGetters('',[  ]),
   
 };
-createFetchers(computed, cls);
 
 
 const methods = {

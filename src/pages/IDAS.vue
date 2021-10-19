@@ -2,14 +2,29 @@
 <teleport to='head'>
   <title>keemgunn | IDAS</title>
 </teleport>
-
 <NavBar/>
-
-
-
-
-
 <main id="idas">
+
+<Section1/>
+
+
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div id="keyBlock" class="keyBlock"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+<div class="scrollTest"></div>
+
 
 
 
@@ -20,34 +35,37 @@
 const name = 'IDAS';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import NavBar from '@/components/NavBar.vue';
-// import { NavBar as cls, createFetchers } from '@/assets/styles/classControl';
-
+import Section1 from '@/components/IDAS/Section1.vue'
 
 function data() { return {
   lang: this.$route.params.lang,
-  // states: cls.states,
-  // classKit: cls.classKit,
-  modal: {
 
-  }
 }}
 
 
 const components = {
-  NavBar,
+  NavBar, Section1
 };
 
 
 const computed = {
-  ...mapGetters('',[  ]),
+  ...mapGetters('ui',[ 'getFrameSize' ]),
   
 };
-// createFetchers(computed, cls);
 
 
 const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
+
+  onScroll() {
+    console.log('scroll');
+  }
+
+
+  // attachScrollDetector() {
+
+  // }
 
 };
 
@@ -61,14 +79,36 @@ function beforeCreate() {
 
 
 function created() {
+
 }
 
 
 function beforeMount() {
-}
+  }
 
 
 function mounted() {
+  console.log('getFrameSize:',this.getFrameSize);
+
+  let element = document.querySelector("#keyBlock");
+
+  console.log(element.getBoundingClientRect());
+
+
+
+  const observer = new IntersectionObserver((entries) => {
+    let ent = entries[0]
+    if (ent.intersectionRatio < 0.2) {
+      if(ent.isIntersecting) {
+        console.log('observer - start');
+      }else{
+        console.log('observer - end');
+      }
+    } 
+  }, { threshold: [0, 1] });
+
+  observer.observe(element);
+
 }
 
 

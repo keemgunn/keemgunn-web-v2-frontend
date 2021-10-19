@@ -6,7 +6,8 @@
   <!-- <NavBar/> -->
 
 
-
+  <test003 :testContent="testContent" :classTestName="'abcd'"
+  :dynamicTest="'compA'"/>
 
 <router-view/>
 </div>
@@ -17,7 +18,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-
+import test003 from '@/pages/test/003_ContentImport.vue'
 import testContent from "@/assets/contents/testContent";
 
 export default {
@@ -25,7 +26,7 @@ export default {
   components: {
     // NavBar,
     // test004,
-
+    test003
   },
   data() { return {
     testContent

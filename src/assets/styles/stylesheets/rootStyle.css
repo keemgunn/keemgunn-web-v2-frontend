@@ -2,7 +2,7 @@
 @media (max-width: 6000px) { 
   html { 
     font-size: 1.3px; 
-    --margin-safe-col : 50rem; 
+    --margin-safe-col : 56rem; 
     --max-vw : 6000rem;
     --min-vw : 2400rem;
   }
@@ -10,7 +10,7 @@
 @media (max-width: 2400px) { 
   html { 
     font-size: 1.2px; 
-    --margin-safe-col : 40rem; 
+    --margin-safe-col : 48rem; 
     --max-vw : 2400rem;
     --min-vw : 1920rem;
   }
