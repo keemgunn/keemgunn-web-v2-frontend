@@ -7,6 +7,7 @@
 
 <Section1/>
 
+<IdasArticle/>
 
 <div class="scrollTest"></div>
 <div class="scrollTest"></div>
@@ -37,14 +38,25 @@ import { mapGetters, mapMutations, mapActions } from 'vuex';
 import NavBar from '@/components/NavBar.vue';
 import Section1 from '@/components/IDAS/Section1.vue'
 
+import IdasArticle from '@/components/IDAS/IdasArticle.vue'
+
+
+// async function moduleLoad(name) {
+//   return await import(`@/pages/test/objects/${name}`)
+// }
+
+
+
+
 function data() { return {
   lang: this.$route.params.lang,
-
+  showRatio : 0,
 }}
 
 
 const components = {
-  NavBar, Section1
+  NavBar, Section1,
+  IdasArticle
 };
 
 
@@ -58,14 +70,17 @@ const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
 
-  onScroll() {
-    console.log('scroll');
+  onScroll(target) {
+    console.log(target);
+  },
+
+
+  attachScrollDetector(target) {
+    window.addEventListener('scroll', this.onScroll(target));
+  },
+  detachScrollDetector(target) {
+    window.removeEventListener('scroll', this.onScroll(target));
   }
-
-
-  // attachScrollDetector() {
-
-  // }
 
 };
 
@@ -101,8 +116,10 @@ function mounted() {
     if (ent.intersectionRatio < 0.2) {
       if(ent.isIntersecting) {
         console.log('observer - start');
+        this.attachScrollDetector()
       }else{
         console.log('observer - end');
+        this.detachScrollDetector()
       }
     } 
   }, { threshold: [0, 1] });

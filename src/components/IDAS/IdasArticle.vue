@@ -1,33 +1,31 @@
 <template>
 <div></div>
 
-
-
+    <Quote/>
 
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { defineAsyncComponent } from 'vue';
 
+const name = 'block-init';
+
+const props = {}
 
 function data() { return {
-
 }}
 
-
+  // ---- DYNAMIC COMPONENT IMPORT
 const components = {};
+  // get filenames in the directory using webpack method.
 const blockFiles = require.context(
-  '@/components/IDAS/blocks/',
-  true,
-  /^.*\.vue$/
+  '@/components/IDAS/blocks/', true, /^.*\.vue$/
 );
+  // for filenames, dynamically import the modules.
 for (let file of blockFiles.keys()) {
   const blockName = file.replace('./', '').replace('.vue', '')
-  const filepath = '@/components/IDAS/blocks' + file.replace('./', '/')
-  components[blockName] = () => import(filepath);
+  components[blockName] = defineAsyncComponent(() => import("./blocks/" + blockName + ".vue"))
 }
-
-
-
 
 
 const computed = {
@@ -80,7 +78,7 @@ function unmounted() {
 
 
 export default {
-  name, 
+  name, props, 
   components, 
   data, computed, 
   methods, 

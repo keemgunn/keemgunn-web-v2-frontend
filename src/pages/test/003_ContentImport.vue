@@ -6,11 +6,12 @@
   </div>
 </div>
 
-  <p class="typo-body1">{{seeModules.compA}}</p>
+<p class="typo-body1">{{seeModules.compA}}</p>
 
 
 <p class="typo-body1">
-  {{ testContent.type }}
+  testContent.type : {{ testContent.type }} <br>
+  Element : {{ Element }}
 </p>
 
 
@@ -25,16 +26,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-// import testEl_A from '@/components/elements/testEl_A.vue';
-// import testEl_B from '@/components/elements/testEl_B.vue';
-const testEl_A = () => import('@/components/elements/testEl_A.vue');
-const testEl_B = () => import('@/components/elements/testEl_B.vue');
-// CALLBACK SUCCESS !!!!
-
-// const dynamics = {}
-//   dynamics['compA'] = () => import('@/assets/contents/compDynamicTest');
-
-
+import { defineAsyncComponent } from 'vue';
 
 async function load(list) {
   const loads = {};
@@ -44,58 +36,110 @@ async function load(list) {
   return loads
 }
 
+// const testEl_A = defineAsyncComponent(
+//   () => new Promise((resolve, reject) => {
+//       resolve(import('@/components/elements/testEl_A.vue'))
+//       reject({ error: 'error'})
+//     })
+// )
+
+function loadDynamicComp(compName) {
+  return defineAsyncComponent(() =>
+    import("./dydir1/" + compName + ".vue")
+  )
+}
 
 
 const name = 'test003_content_import';
-export default {
-  name,
-  components: {
-    testEl_A,
-    testEl_B,
-  },
-  data() { return {
-    Element,
-    modules : {},
 
-  }},
-  props: {
-    testContent : Object,
-    classTestName: String,
-    dynamicTest: String,
-  },
-  computed: {
-    ...mapGetters([ 'getENV', 'getVendorURL' ]),
-    ...mapGetters('ui',[
-      'getFrameSize',
-      'getScale'
-    ]),
-    seeModules() {
-      return this.modules
-    }
+const components = {};
+components.testEl_A = loadDynamicComp('testEl_A');
+components.testEl_B = loadDynamicComp('testEl_B');
 
-  },
-  methods: {
-    ...mapMutations('ui', {
+function data() { return {
+  Element,
+  modules : {},
+}}
 
-    }),
+const props = {
+  testContent : Object,
+  classTestName: String,
+  dynamicTest: String,
+};
 
-  },
-  created() {
-    this.Element = this.testContent.type;
-    load(['compA']).then( (value) => {
-      console.log(value)
-      this.modules = value;
-    })
-
+const computed = {
+  ...mapGetters([ 'getENV', 'getVendorURL' ]),
+  ...mapGetters('ui',[
+    'getFrameSize',
+    'getScale'
+  ]),
+  seeModules() {
+    return this.modules
   }
+};
+
+const methods = {
+  ...mapMutations('', [  ]),
+};
+
+const watch = {
+};
+
+function beforeCreate() {
+  }
+
+
+
+
+
+
+function created() {
+  console.log('created');
+  console.log(this.testContent);
+
+
+  this.Element = this.testContent.type;
+
+  load(['compA']).then( (value) => {
+    console.log(value)
+    this.modules = value;
+  })
+
+
+}
+
+function beforeMount() {
+}
+
+
+function mounted() {
+}
+
+
+function beforeUpdate() {
+}
+
+
+function updated() {
+}
+
+
+function beforeUnmount() {
+}
+
+
+function unmounted() {
+}
+
+
+export default {
+  name, components, 
+  data, props, computed, 
+  methods, 
+  watch, 
+  beforeCreate, created, 
+  beforeMount, mounted, 
+  beforeUpdate, updated, 
+  beforeUnmount, unmounted
 }
 </script>
-
-<style lang="scss" scoped>
-#test003_content_import {
-  margin: 1vw;
-  padding-bottom: 6vw;
-}
-
-
-</style>

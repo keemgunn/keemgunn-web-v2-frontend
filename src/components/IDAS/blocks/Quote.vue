@@ -1,7 +1,7 @@
 <template>
 <div></div>
 
-
+<p class="typo-caption1">example</p>
 
 
 </template>

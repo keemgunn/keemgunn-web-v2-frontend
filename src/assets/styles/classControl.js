@@ -18,16 +18,16 @@ function Controller(page) {
 }
 
 export function createFetchers(computed, cls) {
-  if (process.env.NODE_ENV === 'development') {
-    console.log("== Created Fetchers ========");
-    console.log(`page: ${cls.pageName}`);
-  }
+  const logOutput = {}; logOutput[cls.pageName] = [];
   for (let id of Object.keys(cls['classKit'])) {
     const classifyName = id.replace(/-/g, '_');
     if (process.env.NODE_ENV === 'development') {
-      console.log(classifyName);
+      logOutput[cls.pageName].push(classifyName);
     }
     computed[classifyName] = cls.Fetcher(id)
+  }
+  if (process.env.NODE_ENV === 'development') {
+    console.log("== Created Fetchers", logOutput);
   }
 }
 
