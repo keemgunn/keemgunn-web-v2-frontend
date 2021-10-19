@@ -1,7 +1,6 @@
 import { navigations } from "@/config/routeControl";
 if (process.env.NODE_ENV === 'development') {
-  console.log('== Navigations =================');
-  console.log(navigations);
+  console.log('== Navigations', navigations);
 }
 
 export default {

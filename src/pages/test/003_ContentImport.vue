@@ -36,18 +36,11 @@ async function load(list) {
   return loads
 }
 
-// const testEl_A = defineAsyncComponent(
-//   () => new Promise((resolve, reject) => {
-//       resolve(import('@/components/elements/testEl_A.vue'))
-//       reject({ error: 'error'})
-//     })
-// )
-
 function loadDynamicComp(compName) {
   return defineAsyncComponent(() =>
     import("./dydir1/" + compName + ".vue")
   )
-}
+} // warning : 충분히 가까운 경로에서 불러와야함... 정확한 이유는 불명확.
 
 
 const name = 'test003_content_import';
@@ -94,14 +87,9 @@ function beforeCreate() {
 
 
 function created() {
-  console.log('created');
-  console.log(this.testContent);
-
-
   this.Element = this.testContent.type;
 
-  load(['compA']).then( (value) => {
-    console.log(value)
+  load(['compA']).then((value) => {
     this.modules = value;
   })
 
