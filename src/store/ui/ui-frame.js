@@ -33,6 +33,14 @@ export default {
     getNavWidthScale(state) {
       return state.navWidthScale
     },
+    getStageArea(state) {
+      return {
+        top: state.vh * 0.1,
+        bottom: state.vh * 0.87,
+        left: state.vw * 0.1,
+        right: state.vw * 0.9
+      }
+    },
   },
 
   mutations: {

@@ -43,6 +43,18 @@ function loadDynamicComp(compName) {
 } // warning : 충분히 가까운 경로에서 불러와야함... 정확한 이유는 불명확.
 
 
+const importSome = "compA"
+const testImportA = require('@/assets/contents/compDynamicTest')[importSome];
+console.log('testImportA:', testImportA);
+
+
+
+
+
+
+
+
+
 const name = 'test003_content_import';
 
 const components = {};

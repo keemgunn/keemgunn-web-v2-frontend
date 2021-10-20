@@ -20,8 +20,8 @@
 
 
 
-<IdasFields
-
+<FieldContainer
+  :name="'s1f1'"
 />
 
 
@@ -29,7 +29,7 @@
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex';
-import IdasFields from '@/components/IDAS/IdasField.vue'
+import FieldContainer from '@/components/IDAS/FieldContainer.vue'
 
 
 function data() { return {
@@ -38,7 +38,7 @@ function data() { return {
 
 
 const components = {
-  IdasFields
+  FieldContainer
 };
 
 

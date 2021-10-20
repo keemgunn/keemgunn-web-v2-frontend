@@ -7,7 +7,6 @@
 
 <Section1/>
 
-<IdasArticle/>
 
 <div class="scrollTest"></div>
 <div class="scrollTest"></div>
@@ -38,7 +37,7 @@ import { mapGetters, mapMutations, mapActions } from 'vuex';
 import NavBar from '@/components/NavBar.vue';
 import Section1 from '@/components/IDAS/Section1.vue'
 
-import IdasArticle from '@/components/IDAS/IdasArticle.vue'
+
 
 
 // async function moduleLoad(name) {
@@ -56,32 +55,17 @@ function data() { return {
 
 const components = {
   NavBar, Section1,
-  IdasArticle
 };
 
 
 const computed = {
   ...mapGetters('ui',[ 'getFrameSize' ]),
-  
 };
 
 
 const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
-
-  onScroll(target) {
-    console.log(target);
-  },
-
-
-  attachScrollDetector(target) {
-    window.addEventListener('scroll', this.onScroll(target));
-  },
-  detachScrollDetector(target) {
-    window.removeEventListener('scroll', this.onScroll(target));
-  }
-
 };
 
 
@@ -99,33 +83,10 @@ function created() {
 
 
 function beforeMount() {
-  }
+}
 
 
 function mounted() {
-  console.log('getFrameSize:',this.getFrameSize);
-
-  let element = document.querySelector("#keyBlock");
-
-  console.log(element.getBoundingClientRect());
-
-
-
-  const observer = new IntersectionObserver((entries) => {
-    let ent = entries[0]
-    if (ent.intersectionRatio < 0.2) {
-      if(ent.isIntersecting) {
-        console.log('observer - start');
-        this.attachScrollDetector()
-      }else{
-        console.log('observer - end');
-        this.detachScrollDetector()
-      }
-    } 
-  }, { threshold: [0, 1] });
-
-  observer.observe(element);
-
 }
 
 
