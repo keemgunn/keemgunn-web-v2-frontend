@@ -15,8 +15,8 @@ export const s1_f1 = {
     gap: "10rem 10rem",
     widthOverride: "",
   },
-  sensors: {
-    position: true,
+  sensorConfigs: {
+    position: {}
   },
   classKit: {
     base: [],
@@ -66,8 +66,8 @@ export const s1_f2 = {
     gap: "10rem 10rem",
     widthOverride: "",
   },
-  sensors: {
-    position: true,
+  sensorConfigs: {
+    position: {}
   },
   classKit: {
     base: [],
@@ -118,8 +118,8 @@ export const s2_f1 = {
     gap: "10rem 10rem",
     widthOverride: "",
   },
-  sensors: {
-    position: true,
+  sensorConfigs: {
+    position: {}
   },
   classKit: {
     base: [],
@@ -169,8 +169,8 @@ export const s2_f2 = {
     gap: "10rem 10rem",
     widthOverride: "",
   },
-  sensors: {
-    position: true,
+  sensorConfigs: {
+    position: {}
   },
   classKit: {
     base: [],

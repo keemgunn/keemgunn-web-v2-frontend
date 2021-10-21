@@ -11,6 +11,128 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 
+
+const recievedSeedExample = {
+  _type: "article",
+  serial: "s1-f1-a1",
+  name: "article-name",
+  customArticle: null,
+  bindAssets: {
+    XXS: {
+      sensors: {
+        position: true,
+      },
+
+      classKit: {
+        base: [],
+        mouseover: {
+          true: 'mouse-over'
+        },
+        touched: {
+          true: 'touched'
+        },
+        something: {
+          on: "something-on"
+        },
+      },
+      styleKit: {
+        base: [{
+          "margin" : "0 0",
+          "padding" : "0 0",
+          "grid-template-columns": 'repeat(6, 1fr)',
+          "gap": "10rem 10rem",
+          "width": ""
+        }],
+        mouseover: {
+          true: {
+            "opacity": "0.6"
+          }
+        },
+        touched: {
+          true: {
+            "opacity": "0.6"
+          }
+        },
+        something: {
+          on: {
+            "color": "red"
+          }
+        },
+      }
+    }
+    // XS : { ... }
+    // S : { ... }
+    // M : { ... }
+    // L : { ... }
+    // XL : { ... }
+    // XXL : { ... }
+  },
+  eventReactors: {
+    mouseEnter: () => {
+      return function () {
+      }
+    },
+    mouseMove: () => {
+      return function () {
+      }
+    },
+    mouseLeave: () => {
+      return function () {
+      }
+    },
+    touchStart: () => {
+      return function () {
+      }
+    },
+  } 
+
+
+
+
+
+}
+console.log("recievedSeedExample:", recievedSeedExample);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const name = 'ArticleContainer';
 const props = { seed: Object, }
 
@@ -51,7 +173,7 @@ const watch = {
 
 
 function beforeCreate() {
-  // console.log('ArticleContainer - beforeCreated:', this.package);
+  // console.log('ArticleContainer - beforeCreated:', this.seed);
 }
 
 

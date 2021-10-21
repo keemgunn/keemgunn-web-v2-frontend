@@ -38,6 +38,9 @@ import NavBar from '@/components/NavBar.vue';
 import Section1 from '@/components/IDAS/Section1.vue'
 
 
+import wholeBundle from '@/components/IDAS/configs/configs_bundle';
+console.log(wholeBundle);
+
 
 
 // async function moduleLoad(name) {

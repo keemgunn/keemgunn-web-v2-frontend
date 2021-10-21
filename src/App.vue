@@ -3,7 +3,7 @@
 :class="[ getScale, whatLanguage ]" >
 
 
-  <test005/>
+  <!-- <test005/> -->
 
 
   <test003 :testContent="testContent" :classTestName="'abcd'"
@@ -23,14 +23,14 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 import test003 from '@/pages/test/003_ContentImport.vue'
-import test005 from '@/pages/test/005_IdasBundleMonitor.vue'
+// import test005 from '@/pages/test/005_IdasBundleMonitor.vue'
 import testContent from "@/assets/contents/testContent";
 
 export default {
   name: 'App',
   components: {
     test003, 
-    test005, 
+    // test005, 
   },
   data() { return {
     testContent

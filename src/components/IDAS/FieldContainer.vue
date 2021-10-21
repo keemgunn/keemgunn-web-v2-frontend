@@ -135,10 +135,11 @@ const recievedSeedExample = {
     // XXL : { ... }
 
   },
-  nested: []
+  nested: [
+    // ,,, articles
+  ]
 }
-
-console.log(recievedSeedExample);
+console.log('recievedSeedExample:', recievedSeedExample);
 
 
 

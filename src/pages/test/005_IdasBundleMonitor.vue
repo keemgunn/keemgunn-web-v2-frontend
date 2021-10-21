@@ -12,8 +12,6 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 
-import idasConfigsBundle from '@/components/IDAS/configs/configs_bundle';
-
 
 const name = 'test003_content_import';
 export default {
@@ -22,7 +20,6 @@ export default {
 
   },
   data() { return {
-    idasConfigsBundle,
     message: "something <b>special</b>"
   }},
   props: {
