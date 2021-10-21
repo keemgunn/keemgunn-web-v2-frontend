@@ -45,6 +45,7 @@ function loadDynamicComp(compName) {
 
 const importSome = "compA"
 const testImportA = require('@/assets/contents/compDynamicTest')[importSome];
+// module 이름 지정 임포트 
 console.log('testImportA:', testImportA);
 
 

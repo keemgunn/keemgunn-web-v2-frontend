@@ -1,18 +1,23 @@
 <template>
-<div></div>
+<article :id="seed.serial">
 
 
+<p class="typo-header3">{{this.seed.serial}}</p>
 
+
+</article>
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 
-const name = 'block-init';
-
-const props = {}
+const name = 'ArticleContainer';
+const props = { seed: Object, }
 
 function data() { return {
+  states: {},
+  classKit: {},
+  styleKit: {},
 }}
 
   // ---- DYNAMIC COMPONENT IMPORT
@@ -46,6 +51,7 @@ const watch = {
 
 
 function beforeCreate() {
+  // console.log('ArticleContainer - beforeCreated:', this.package);
 }
 
 

@@ -2,39 +2,63 @@
 <div :id="name">
 
   <p class="typo-body2">{{states.position}}</p>
-  <div id="s1f1a1" class="fieldTest00"></div>
-  <div id="s1f1a2" class="fieldTest00"></div>
-  <div id="s1f1a3" class="fieldTest00"></div>
+  <div id="s1-f1-a1" class="fieldTest00"></div>
+  <div id="s1-f1-a2" class="fieldTest00"></div>
+  <div id="s1-f1-a3" class="fieldTest00"></div>
+
+  <ArticleContainer :seed="articleTest"/>
 
 </div>
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex';
+import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
 
-
-const articles = ['s1f1a1', 's1f1a2', 's1f1a3']
+const articles = ["s1-f1-a1", "s1-f1-a2", "s1-f1-a3"]
 
 const sensorConfigs = {
   position: {
+    XXS: {
+      self: true,
+      "s1-f1-a1": true,
+      "s1-f1-a2": true,
+      "s1-f1-a3": true,
+    },
     XS: {
-      s1f1a1: true,
-      s1f1a2: true,
-      s1f1a3: true,
+      self: true,
+      "s1-f1-a1": true,
+      "s1-f1-a2": true,
+      "s1-f1-a3": true,
+    },
+    S: {
+      self: true,
+      "s1-f1-a1": true,
+      "s1-f1-a2": true,
+      "s1-f1-a3": true,
     },
     M: {
-      s1f1a1: false,
-      s1f1a2: true,
-      s1f1a3: true,
+      self: true,
+      "s1-f1-a1": false,
+      "s1-f1-a2": true,
+      "s1-f1-a3": true,
     },
     L: {
-      s1f1a1: true,
-      s1f1a2: true,
-      s1f1a3: true,
+      self: false,
+      "s1-f1-a1": true,
+      "s1-f1-a2": true,
+      "s1-f1-a3": true,
     },
     XL: {
-      s1f1a1: true,
-      s1f1a2: true,
-      s1f1a3: true,
+      self: true,
+      "s1-f1-a1": true,
+      "s1-f1-a2": true,
+      "s1-f1-a3": true,
+    },
+    XXL: {
+      self: true,
+      "s1-f1-a1": true,
+      "s1-f1-a2": true,
+      "s1-f1-a3": true,
     },
   }
 }
@@ -42,11 +66,98 @@ const sensorConfigs = {
 const states = {
   position: {
     self: 1,
-    s1f1a1: 1,
-    s1f1a2: 1,
-    s1f1a3: 1,
+    "s1-f1-a1": 1,
+    "s1-f1-a2": 1,
+    "s1-f1-a3": 1,
   }
 }
+
+import {s1_f1_a1} from '@/components/IDAS/configs/articles/articles_0_XS';
+
+
+
+
+
+const recievedSeedExample = {
+  _type: "field",
+  serial: "s1-f1",
+  name: "field name example",
+  bindAssets: {
+
+    XXS: {
+      sensors:{
+        position: true,
+      },
+
+      classKit: {
+        base: ['field-type-a'],
+        mouseover: {
+          true: 'mouse-over'
+        },
+        touched: {
+          true: 'touched'
+        },
+        something: {
+          on: "something-on"
+        },
+      },
+
+      styleKit: {
+        base: [{
+          "margin" : "0 0",
+          "padding" : "0 0",
+          "grid-template-columns": 'repeat(6, 1fr)',
+          "gap": "10rem 10rem",
+          "width": ""
+        }],
+        mouseover: {
+          true: {
+            "opacity": "0.6"
+          }
+        },
+        touched: {
+          true: {
+            "opacity": "0.6"
+          }
+        },
+        something: {
+          on: {
+            "color": "red"
+          }
+        },
+      }
+    },
+    // XS : { ... }
+    // S : { ... }
+    // M : { ... }
+    // L : { ... }
+    // XL : { ... }
+    // XXL : { ... }
+
+  },
+  nested: []
+}
+
+console.log(recievedSeedExample);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -64,12 +175,14 @@ function data() { return {
   sensors: {},
   sensorConfigs: sensorConfigs,
   states: states,
+
+  articleTest: s1_f1_a1
 }}
 
 
 
 
-const components = {};
+const components = { ArticleContainer };
 
 
 
@@ -86,34 +199,31 @@ const methods = {
   // Chage Sensor Configurations with the new set
   sensorShift(target, payload){
     this["sensors"][target] = this["sensorConfigs"][target][payload]
-    if (target === 'position') {
-      this.sensors.position.self = true;
-    }
   },
 
   // Get Element Progress based on "Stage Area"
   // for Stage Area, see store/ui-frame 
-  getElementProgress(element) {
+  getElPos(element) {
     return (this.getStageArea.bottom - element.getBoundingClientRect().top) / element.offsetHeight
   },
 
   // Position Updator for position-state-chain
   // this is the Attachee || Detatchee
-  positionUpdator() {
+  positionUpdater() {
     for (const [key, value] of Object.entries(this.sensors.position)) {
-      this["states"]["position"][key] = value ? this.getElementProgress(this["doms"][key]) : 1
+      this["states"]["position"][key] = value ? this.getElPos(this["doms"][key]) : 1
     }
   },
 
-  // Attatch || Detatch positionUpdator -------
-  attachPositionUpdator() {
-    window.addEventListener('scroll', this.positionUpdator, { passive: true });
+  // Attatch || Detatch positionUpdater -------
+  attachpositionUpdater() {
+    if(this.sensors.position.self) {
+      window.addEventListener('scroll', this.positionUpdater, { passive: true });
+    }
   },
-  detatchPositionUpdator() {
-    window.removeEventListener('scroll', this.positionUpdator);
+  detatchpositionUpdater() {
+    window.removeEventListener('scroll', this.positionUpdater);
   }
-
-
 
 };
 
@@ -123,6 +233,12 @@ const watch = {
   // Decide sensors to react by Scale ---------
   getScale(newValue) {
     this.sensorShift('position', newValue)
+    if(this.sensors.position.self){
+      this.attachpositionUpdater();
+    }else{
+      this.detatchpositionUpdater();
+    }
+
   }
 
 };
@@ -152,15 +268,14 @@ function mounted() {
   for (let article of articles) {
     this.doms[article] = document.querySelector("#"+article);
   }
-  console.log(this.getElementProgress(this.doms.self));
+  // console.log(this.getElPos(this.doms.self));
 
   // Attach intersectObserver to itself -------
   const intersectObserver = new IntersectionObserver((entries) => {
-    let ent = entries[0];
-    if(ent.isIntersecting) {
-      this.attachPositionUpdator()
+    if(entries[0].isIntersecting) {
+      this.attachpositionUpdater()
     }else{
-      this.detatchPositionUpdator()
+      this.detatchpositionUpdater()
     }
   }, { threshold: [0, 1] })
   intersectObserver.observe(this.doms.self);
