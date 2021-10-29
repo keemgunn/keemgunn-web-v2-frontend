@@ -8,6 +8,7 @@
 </article>
 </template>
 <script>
+const name = 'ArticleContainer';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 
@@ -133,8 +134,9 @@ console.log("recievedSeedExample:", recievedSeedExample);
 
 
 
-const name = 'ArticleContainer';
+
 const props = { seed: Object, }
+
 
 function data() { return {
   states: {},

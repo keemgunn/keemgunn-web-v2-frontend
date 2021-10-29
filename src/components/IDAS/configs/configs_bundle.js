@@ -65,7 +65,7 @@ for (const fieldsByScale of FieldsRaw) {
         name: field.name,
         bindAssets,
         sensorConfigs: field.sensorConfigs,
-        nested: []
+        nested: {}
       };
     } else {
       Object.assign(wholeBundle[section][field.serial]['bindAssets'], bindAssets);
@@ -111,7 +111,7 @@ for (const articlesByScale of ArticlesRaw) {
         customArticle: article.customArticle,
         bindAssets,
         eventReactors: article.eventReactors,
-        nested: []
+        nested: {}
       };
     } else {
       Object.assign(wholeBundle[section][field]["nested"][article.serial]['bindAssets'], bindAssets);

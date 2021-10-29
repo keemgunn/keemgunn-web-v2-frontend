@@ -1,28 +1,7 @@
-<template><section id="s1-testSection">
+<template><section id="section-1">
 
 
-
-  <div class="grid-test">
-    <div class="child-1">
-      <p class="typo-body1">{{long}}</p>
-    </div>
-    <div class="child-2">
-      <p class="typo-body1">{{long}}</p>
-    </div>
-    <div class="child-3">
-      <p class="typo-body1">{{long}}</p>
-    </div>
-  </div>
-
-  
-
-
-
-
-
-<FieldContainer
-  :name="'s1f1'"
-/>
+  <FieldContainer :seed="seed['s1-f1']"/>
 
 
 </section>
@@ -31,6 +10,9 @@
 const name = "Section1"
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import FieldContainer from '@/components/IDAS/FieldContainer.vue'
+
+
+const props = { seed: Object };
 
 
 function data() { return {
@@ -65,6 +47,7 @@ function beforeCreate() {
 
 
 function created() { this.$logg(name, "~ created ~");
+  console.log(this.seed);
 }
 
 
@@ -93,9 +76,8 @@ function unmounted() {
 
 
 export default {
-  name, 
-  components, 
-  data, computed, 
+  name, components, 
+  props, data, computed, 
   methods, 
   watch, 
   beforeCreate, created, 

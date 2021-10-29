@@ -1,6 +1,6 @@
 <template>
 <teleport to='head'>
-  <title>keemgunn | IDAS</title>
+  <title>IDAS | keemgunn</title>
 </teleport>
 <NavBar/>
 <main id="idas">
@@ -14,8 +14,8 @@
 
 
 
-<div v-if="loadComplete">
-  <Section1/>
+<div v-if="loadComplete" id="idas-contents-container">
+  <Section1 :seed="configs_bundle.s1"/>
 </div>
 
 
@@ -45,7 +45,7 @@ async function importConfigs() {
 
 function data() { return {
   lang: this.$route.params.lang,
-  wholeBundle: {},
+  configs_bundle: {},
   loadState: 0,
   
   // showRatio : 0,
@@ -86,8 +86,8 @@ function beforeCreate() {
 function created() { this.$logg(name, "~ created ~");
   importConfigs("configs_bundle.js")
     .then((obj) => {
-      this.wholeBundle = obj.default;
-      this.$logg(this.wholeBundle);
+      this.configs_bundle = obj.default;
+      this.$logg(this.configs_bundle);
       this.loadState += 1;
       this.$logg("loadState:", this.loadState);
     });
@@ -101,7 +101,7 @@ function beforeMount() {
 
 function mounted() { this.$logg(name, "~ mounted ~");
   this.$logg("loadState:", this.loadState);
-  
+
 }
 
 
