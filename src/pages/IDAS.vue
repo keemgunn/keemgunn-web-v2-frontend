@@ -32,27 +32,34 @@
 </template>
 
 <script>
-const name = 'IDAS';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
+
+// config file will be imported 
+// after this component MOUNTED.
+async function importConfigs() {
+  try {
+    return await import("../components/IDAS/configs/configs_bundle.js")
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+
+
+
+
+
+const name = 'IDAS';
+
 import NavBar from '@/components/NavBar.vue';
-import Section1 from '@/components/IDAS/Section1.vue'
-
-
-import wholeBundle from '@/components/IDAS/configs/configs_bundle';
-console.log(wholeBundle);
-
-
-
-// async function moduleLoad(name) {
-//   return await import(`@/pages/test/objects/${name}`)
-// }
-
-
-
+import Section1 from '@/components/IDAS/sections/Section1.vue'
 
 function data() { return {
   lang: this.$route.params.lang,
-  showRatio : 0,
+  wholeBundle: {},
+  loadState: 0,
+  
+  // showRatio : 0,
 }}
 
 
@@ -81,6 +88,13 @@ function beforeCreate() {
 
 
 function created() {
+  importConfigs("configs_bundle.js")
+    .then((obj) => {
+      this.wholeBundle = obj.default;
+      this.$logg(this.wholeBundle);
+      this.loadState += 1;
+      this.$logg("loadState:", this.loadState);
+    });
 
 }
 
@@ -90,6 +104,8 @@ function beforeMount() {
 
 
 function mounted() {
+  this.$logg("loadState:", this.loadState);
+
 }
 
 
