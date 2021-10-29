@@ -6,33 +6,26 @@
 
 </template>
 <script>
-const name = 'NavBar';
+const name = 'PAGENAME';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
-import { NavBar as cls, createFetchers } from '@/assets/styles/classControl';
 
 
 function data() { return {
-  states: cls.states,
-  classKit: cls.classKit,
 }}
 
 
 const components = {
-
 };
 
 
 const computed = {
   ...mapGetters('',[  ]),
-  
 };
-createFetchers(computed, cls);
 
 
 const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
-
 };
 
 
@@ -44,7 +37,7 @@ function beforeCreate() {
 }
 
 
-function created() {
+function created() { this.$logg(name, "~ created ~");
 }
 
 
@@ -52,7 +45,7 @@ function beforeMount() {
 }
 
 
-function mounted() {
+function mounted() { this.$logg(name, "~ mounted ~");
 }
 
 
@@ -60,7 +53,7 @@ function beforeUpdate() {
 }
 
 
-function updated() {
+function updated() { this.$logg(name, "~ updated ~");
 }
 
 

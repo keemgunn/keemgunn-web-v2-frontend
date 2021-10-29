@@ -5,25 +5,19 @@
 <NavBar/>
 <main id="idas">
 
-<Section1/>
 
 
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div id="keyBlock" class="keyBlock"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
-<div class="scrollTest"></div>
+
+
+
+
+
+
+
+<div v-if="loadComplete">
+  <Section1/>
+</div>
+
 
 
 
@@ -32,7 +26,11 @@
 </template>
 
 <script>
+const name = 'IDAS';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
+import NavBar from '@/components/NavBar.vue';
+import Section1 from '@/components/IDAS/sections/Section1.vue'
+
 
 // config file will be imported 
 // after this component MOUNTED.
@@ -44,15 +42,6 @@ async function importConfigs() {
   }
 }
 
-
-
-
-
-
-const name = 'IDAS';
-
-import NavBar from '@/components/NavBar.vue';
-import Section1 from '@/components/IDAS/sections/Section1.vue'
 
 function data() { return {
   lang: this.$route.params.lang,
@@ -70,6 +59,13 @@ const components = {
 
 const computed = {
   ...mapGetters('ui',[ 'getFrameSize' ]),
+  loadComplete() {
+    if (this.loadState >= 1) {
+      return true
+    } else {
+      return false
+    }
+  },
 };
 
 
@@ -87,7 +83,7 @@ function beforeCreate() {
 }
 
 
-function created() {
+function created() { this.$logg(name, "~ created ~");
   importConfigs("configs_bundle.js")
     .then((obj) => {
       this.wholeBundle = obj.default;
@@ -103,9 +99,9 @@ function beforeMount() {
 }
 
 
-function mounted() {
+function mounted() { this.$logg(name, "~ mounted ~");
   this.$logg("loadState:", this.loadState);
-
+  
 }
 
 
@@ -113,7 +109,7 @@ function beforeUpdate() {
 }
 
 
-function updated() {
+function updated() { this.$logg(name, "~ updated ~");
 }
 
 

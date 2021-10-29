@@ -28,6 +28,7 @@
 </section>
 </template>
 <script>
+const name = "Section1"
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import FieldContainer from '@/components/IDAS/FieldContainer.vue'
 
@@ -63,7 +64,7 @@ function beforeCreate() {
 }
 
 
-function created() {
+function created() { this.$logg(name, "~ created ~");
 }
 
 
@@ -71,7 +72,7 @@ function beforeMount() {
 }
 
 
-function mounted() {
+function mounted() { this.$logg(name, "~ mouted ~");
 }
 
 
@@ -79,7 +80,7 @@ function beforeUpdate() {
 }
 
 
-function updated() {
+function updated() { this.$logg(name, "~ updated ~");
 }
 
 
