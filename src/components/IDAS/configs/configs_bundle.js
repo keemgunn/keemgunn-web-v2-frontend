@@ -3,17 +3,21 @@ import * as fields_XS from '@/components/IDAS/configs/fields/fields_0_XS';
 import * as fields_S from '@/components/IDAS/configs/fields/fields_1_S';
 import * as fields_M from '@/components/IDAS/configs/fields/fields_2_M';
 import * as fields_L from '@/components/IDAS/configs/fields/fields_3_L';
+import * as articlesBasics from '@/components/IDAS/configs/articles/articles_basics';
 import * as articles_XS from '@/components/IDAS/configs/articles/articles_0_XS';
 import * as articles_S from '@/components/IDAS/configs/articles/articles_1_S';
 import * as articles_M from '@/components/IDAS/configs/articles/articles_2_M';
 import * as articles_L from '@/components/IDAS/configs/articles/articles_3_L';
+const BlocksAll = require('@/components/IDAS/configs/blocks/blocks_All');
 
-
-
-// import * as BlocksRow from '@/components/IDAS/configs/blocks/blocks_All';
+console.log(BlocksAll);
 
 function getParentName(serial) {
   return serial.slice(0, -3)
+}
+
+function dashToUnder(str) {
+  return str.replace(/-/g, '_')
 }
 
 function fieldType(type) {
@@ -52,11 +56,11 @@ const sensorDefaults = {
 
 
 
+
 const wholeBundle = {};
 
 
-const FieldsRaw = [ fields_XS, fields_S, fields_M, fields_L ];
-for (const fieldsByScale of FieldsRaw) {
+for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
   for (const field of Object.values(fieldsByScale)) {
     const { modals, sensors } = field;
 
@@ -113,8 +117,9 @@ for (const fieldsByScale of FieldsRaw) {
 }
 
 
-const ArticlesRaw = [ articles_XS, articles_S, articles_M, articles_L ];
-for (const articlesByScale of ArticlesRaw) {
+
+
+for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L ]) {
   for (const article of Object.values(articlesByScale)) {
     const field = getParentName(article.serial);
     const section = getParentName(field);
@@ -141,7 +146,7 @@ for (const articlesByScale of ArticlesRaw) {
       // Inject position sensorConfig to Fields Objects
       wholeBundle[section][field]['sensorConfigs'][scale]['position'][article.serial] = sensors.position;
       // Inject position defualt state to Fields Objects
-      wholeBundle[section][field]['states']['sensors']['position'][article.serial] = sensorDefaults['position'];
+      wholeBundle[section][field]['states']['sensors']['position'][article.serial] = sensors.position ? 0 : 1;
     }
 
     // Make states Object from modalConfigs
@@ -157,13 +162,14 @@ for (const articlesByScale of ArticlesRaw) {
 
     // Make Bundle by article or only assign modalConfigs and sensorConfigs.
     if (!wholeBundle[section][field]["nested"][article.serial]) {
+      const basics = articlesBasics[dashToUnder(article.serial)];
       wholeBundle[section][field]["nested"][article.serial] = {
-        _type: article._type,
-        serial: article.serial,
-        name: article.name,
-        customArticle: article.customArticle,
         modalConfigs, sensorConfigs, states,
-        eventReactors: article.eventReactors,
+        _type: basics._type,
+        serial: basics.serial,
+        name: basics.name,
+        customArticle: basics.customArticle,
+        eventReactors: basics.eventReactors,
         nested: {}
       };
     } else {

@@ -18,25 +18,10 @@ import { mapGetters, mapMutations, mapActions } from 'vuex';
 import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
 
 
-const states = {
-  modals: {
-    mouseover: false, 
-    touched: false, 
-    something: 0
-  },
-  sensors: {
-    position: {
-      self: 1,
-      "s1-f1-a1": 1,
-      "s1-f1-a2": 1,
-      "s1-f1-a3": 1,
-    },
-  },
-}
-
 const props = {
   seed: Object,
 }
+
 
 function data() { return {
   // state data from seed obj.
@@ -47,15 +32,11 @@ function data() { return {
   // state data made in this component.
   doms: {}, // Injected at created(), used by updaters
   sensorsActive: {}, // Dynamically injected from sensorConfigs
-  states: states, // {modals, sensors}
+  states: {}, // {modals, sensors}
 }}
 
 
-
-
 const components = { ArticleContainer };
-
-
 
 
 const computed = {
@@ -82,7 +63,9 @@ const methods = {
   // this is the Attachee || Detatchee
   positionUpdater() {
     for (const [key, value] of Object.entries(this.sensorsActive.position)) {
-      this["states"]["sensors"]["position"][key] = value ? this.getElPos(this["doms"][key]) : 1
+      if (this["states"]["sensors"]["position"][key]) {
+        this["states"]["sensors"]["position"][key] = value ? this.getElPos(this["doms"][key]) : 1
+      }
     }
   },
 
@@ -126,6 +109,7 @@ function created() {
   this.articles = Object.keys(this.seed.nested);
   this.sensorConfigs = this.seed.sensorConfigs;
   this.modalConfigs = this.seed.modalConfigs;
+  this.states = this.seed.states;
 
   // Inject Sensors Configurations ------------
   this.sensorShift('position', this.getScale);
@@ -140,7 +124,7 @@ function beforeMount() {
 function mounted() { this.$logg(name, this.seed.serial, "~ mounted ~");
 
   // Inject DOM elements to data() ------------
-  this.doms.self = document.querySelector("#"+this.seed.serial);
+  this.doms.self = document.querySelector("#"+this.seed.serial)
   for (let article of this.articles) {
     this.doms[article] = document.querySelector("#"+article);
   }
@@ -156,6 +140,8 @@ function mounted() { this.$logg(name, this.seed.serial, "~ mounted ~");
   }, { threshold: [0, 1] })
   intersectObserver.observe(this.doms.self);
 
+  // initialize position state
+  this.positionUpdater();
 }
 
 
