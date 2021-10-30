@@ -88,9 +88,8 @@ function created() {
   this.$logg("articleSeed:",this.articleSeed);
 
 
-  console.log('methods:', methods);
-  this.articleSeed.createMethods(methods);
-
+  // Method Injections 
+  this.articleSeed.injectMethods(methods);
 }
 
 
