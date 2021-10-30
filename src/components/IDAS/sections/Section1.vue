@@ -1,7 +1,9 @@
 <template><section id="section-1">
 
 
-  <FieldContainer :seed="seed['s1-f1']"/>
+  <FieldContainer v-for="field in Object.keys(seed)"
+    :key="field.serial"
+    :seed="seed[field]"/>
 
 
 </section>

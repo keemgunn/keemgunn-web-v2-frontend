@@ -15,38 +15,38 @@ export const s1_f1 = {
     gap: "10rem 10rem",
     widthOverride: "",
   },
-  sensorConfigs: {
-    position: {}
+  sensors: {
+    position : { self: true }
   },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
     },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    }
-  },
-  styleKit: {
-    base: [],
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
-    }
+    },
   }
 }
 
@@ -66,38 +66,38 @@ export const s1_f2 = {
     gap: "10rem 10rem",
     widthOverride: "",
   },
-  sensorConfigs: {
-    position: {}
+  sensors: {
+    position : { self: true }
   },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
     },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    }
-  },
-  styleKit: {
-    base: [],
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
-    }
+    },
   }
 }
 
@@ -118,38 +118,38 @@ export const s2_f1 = {
     gap: "10rem 10rem",
     widthOverride: "",
   },
-  sensorConfigs: {
-    position: {}
+  sensors: {
+    position : { self: true }
   },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
     },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    }
-  },
-  styleKit: {
-    base: [],
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
-    }
+    },
   }
 }
 
@@ -169,38 +169,38 @@ export const s2_f2 = {
     gap: "10rem 10rem",
     widthOverride: "",
   },
-  sensorConfigs: {
-    position: {}
+  sensors: {
+    position : { self: true }
   },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
     },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    }
-  },
-  styleKit: {
-    base: [],
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
-    }
+    },
   }
 }
 

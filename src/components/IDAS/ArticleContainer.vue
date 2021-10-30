@@ -18,7 +18,7 @@ const recievedSeedExample = {
   serial: "s1-f1-a1",
   name: "article-name",
   customArticle: null,
-  bindAssets: {
+  modalConfigs: {
     XXS: {
       sensors: {
         position: true,

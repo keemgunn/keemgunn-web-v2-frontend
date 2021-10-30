@@ -1,29 +1,18 @@
 <template>
-<teleport to='head'>
-  <title>IDAS | keemgunn</title>
-</teleport>
-<NavBar/>
-<main id="idas">
 
+  <teleport to='head'>
+    <title>IDAS | keemgunn</title>
+  </teleport>
 
+  <NavBar/>
 
+  <main v-if="loadComplete" id="idas">
+    <Section1 :seed="configs_bundle.s1"/>
+  </main>
 
-
-
-
-
-
-
-<div v-if="loadComplete" id="idas-contents-container">
-  <Section1 :seed="configs_bundle.s1"/>
-</div>
-
-
-
-
-
-</main>
 </template>
+
+
 
 <script>
 const name = 'IDAS';

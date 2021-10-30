@@ -17,34 +17,36 @@ export const s1_f1_a1 = {
     justify: "flex-start",
     align: "flex-start"
   },
-  sensors: { position: true },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
-    },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    },
+  sensors: {
+    position: true
   },
-  styleKit: {
-    base: [],
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
+    },
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
     },
   },
@@ -86,34 +88,36 @@ export const s1_f1_a2 = {
     justify: "flex-start",
     align: "flex-start"
   },
-  sensors: { position: true },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
-    },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    },
+  sensors: {
+    position: true
   },
-  styleKit: {
-    base: [],
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
+    },
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
     },
   },
@@ -156,34 +160,36 @@ export const s1_f2_a1 = {
     justify: "flex-start",
     align: "flex-start"
   },
-  sensors: { position: true },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
-    },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    },
+  sensors: {
+    position: true
   },
-  styleKit: {
-    base: [],
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
+    },
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
     },
   },
@@ -226,34 +232,36 @@ export const s1_f2_a2 = {
     justify: "flex-start",
     align: "flex-start"
   },
-  sensors: { position: true },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
-    },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    },
+  sensors: {
+    position: true
   },
-  styleKit: {
-    base: [],
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
+    },
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
     },
   },
@@ -296,34 +304,36 @@ export const s2_f1_a1 = {
     justify: "flex-start",
     align: "flex-start"
   },
-  sensors: { position: true },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
-    },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    },
+  sensors: {
+    position: true
   },
-  styleKit: {
-    base: [],
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
+    },
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
     },
   },
@@ -366,34 +376,36 @@ export const s2_f1_a2 = {
     justify: "flex-start",
     align: "flex-start"
   },
-  sensors: { position: true },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
-    },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    },
+  sensors: {
+    position: true
   },
-  styleKit: {
-    base: [],
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
+    },
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
     },
   },
@@ -436,34 +448,36 @@ export const s2_f2_a1 = {
     justify: "flex-start",
     align: "flex-start"
   },
-  sensors: { position: true },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
-    },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    },
+  sensors: {
+    position: true
   },
-  styleKit: {
-    base: [],
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
+    },
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
     },
   },
@@ -506,34 +520,36 @@ export const s2_f2_a2 = {
     justify: "flex-start",
     align: "flex-start"
   },
-  sensors: { position: true },
-  classKit: {
-    base: [],
-    mouseover: {
-      true: 'mouse-over'
-    },
-    touched: {
-      true: 'touched'
-    },
-    something: {
-      on: "something-on"
-    },
+  sensors: {
+    position: true
   },
-  styleKit: {
-    base: [],
+  modals: {
+    base: {
+      class: [''],
+      style: [{}],
+    },
     mouseover: {
       true: {
-        "opacity": "0.6"
+        class: 'mouse-over',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     touched: {
       true: {
-        "opacity": "0.6"
+        class: 'touched',
+        style: {
+          "opacity": "0.6"
+        }
       }
     },
     something: {
-      on: {
-        "color": "red"
+      1: {
+        class: 'something-1',
+        style: {
+          "color": "red"
+        }
       }
     },
   },

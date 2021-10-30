@@ -9,6 +9,9 @@
 
 </div>
 </template>
+
+
+
 <script>
 const name = "FieldContainer"
 import { mapGetters, mapMutations, mapActions } from 'vuex';
@@ -16,14 +19,20 @@ import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
 
 
 const states = {
-  position: {
-    self: 1,
-    "s1-f1-a1": 1,
-    "s1-f1-a2": 1,
-    "s1-f1-a3": 1,
-  }
+  modals: {
+    mouseover: false, 
+    touched: false, 
+    something: 0
+  },
+  sensors: {
+    position: {
+      self: 1,
+      "s1-f1-a1": 1,
+      "s1-f1-a2": 1,
+      "s1-f1-a3": 1,
+    },
+  },
 }
-
 
 const props = {
   seed: Object,
@@ -31,14 +40,14 @@ const props = {
 
 function data() { return {
   // state data from seed obj.
-  articles: [],
-  sensorConfigs: {},
-  bindAssets: {},
+  articles: [], // Array of String
+  sensorConfigs: {}, // { ...Scales : { ...sensors } }
+  modalConfigs: {}, // { ...Scales : { ...modals } }
 
   // state data made in this component.
-  doms: {},
-  sensors: {},
-  states: states,
+  doms: {}, // Injected at created(), used by updaters
+  sensorsActive: {}, // Dynamically injected from sensorConfigs
+  states: states, // {modals, sensors}
 }}
 
 
@@ -58,9 +67,9 @@ const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
 
-  // Chage Sensor Configurations with the new set
-  sensorShift(target, payload){
-    this["sensors"][target] = this["sensorConfigs"][target][payload]
+  // Chage Sensor Configurations by Scale
+  sensorShift(target, scale){
+    this["sensorsActive"][target] = this["sensorConfigs"][scale][target]
   },
 
   // Get Element Progress based on "Stage Area"
@@ -72,14 +81,14 @@ const methods = {
   // Position Updator for position-state-chain
   // this is the Attachee || Detatchee
   positionUpdater() {
-    for (const [key, value] of Object.entries(this.sensors.position)) {
-      this["states"]["position"][key] = value ? this.getElPos(this["doms"][key]) : 1
+    for (const [key, value] of Object.entries(this.sensorsActive.position)) {
+      this["states"]["sensors"]["position"][key] = value ? this.getElPos(this["doms"][key]) : 1
     }
   },
 
   // Attatch || Detatch positionUpdater -------
   attachpositionUpdater() {
-    if(this.sensors.position.self) {
+    if(this.sensorsActive.position.self) {
       window.addEventListener('scroll', this.positionUpdater, { passive: true });
     }
   },
@@ -92,15 +101,14 @@ const methods = {
 
 const watch = {
 
-  // Decide sensors to react by Scale ---------
+  // Decide sensorsActive by Scale ---------
   getScale(newValue) {
     this.sensorShift('position', newValue)
-    if(this.sensors.position.self){
+    if(this.sensorsActive.position.self){
       this.attachpositionUpdater();
     }else{
       this.detatchpositionUpdater();
     }
-
   }
 
 };
@@ -117,7 +125,7 @@ function created() {
   // Inject State Data 
   this.articles = Object.keys(this.seed.nested);
   this.sensorConfigs = this.seed.sensorConfigs;
-  this.bindAssets = this.seed.bindAssets;
+  this.modalConfigs = this.seed.modalConfigs;
 
   // Inject Sensors Configurations ------------
   this.sensorShift('position', this.getScale);

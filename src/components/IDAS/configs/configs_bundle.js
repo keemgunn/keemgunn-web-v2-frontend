@@ -20,6 +20,27 @@ function fieldType(type) {
   return `field-type-${type.toLowerCase()}`
 }
 
+
+const modalDefaults = {
+  mouseover: false,
+  touched: false,
+  something2: 0
+}
+
+const sensorDefaults = {
+  position: 1,
+}
+
+// function arrAssign(A, B) {
+//   const origin = A;
+//   for (const item of B) {
+//     if (!origin.includes(item)) {
+//       origin.push(item)
+//     }
+//   }
+//   return origin
+// }
+
 // function seatCheck(obj, key) {
 //   if (!obj[key]) {
 //     obj[key] = {};
@@ -37,16 +58,18 @@ const wholeBundle = {};
 const FieldsRaw = [ fields_XS, fields_S, fields_M, fields_L ];
 for (const fieldsByScale of FieldsRaw) {
   for (const field of Object.values(fieldsByScale)) {
+    const { modals, sensors } = field;
 
     // Check and Make Section Object in wholeBundle
     const section = getParentName(field.serial);
     if (!wholeBundle[section]) { wholeBundle[section] = {}; }
     
-    // Make bindAssets by Scales
-    const bindAssets = {};
-    const { classKit, styleKit } = field;
-    classKit.base.push(fieldType(field.container.type));
-    styleKit.base.push({
+    // Make sensorConfigs, modalConfigs by its Scale
+    const modalConfigs = {};
+    const sensorConfigs = {};
+    modals.base.class.push(field.serial);
+    modals.base.class.push(fieldType(field.container.type));
+    modals.base.style.push({
       "margin": field.self.margin,
       "padding": field.self.padding,
       "grid-template-columns": `repeat(${field.container.columns}, 1fr)`,
@@ -54,21 +77,37 @@ for (const fieldsByScale of FieldsRaw) {
       "width": field.container.widthOverride
     });
     for (const scale of field.scale) {
-      bindAssets[scale] = { classKit, styleKit };
+      modalConfigs[scale] = modals;
+      sensorConfigs[scale] = sensors;
     }
-    
-    // Make Bundle by field or only assign bindAssets.
+
+    // Make states Object from modalConfigs
+    // default modal states: [ Boolean || Int ]
+    // default sensor states: [ 1 ]
+    const states = { modals: {}, sensors: {} };
+    for (const key of Object.keys(modals)) {
+      if (!(key === 'base')) {
+        states.modals[key] = Object.keys(modalDefaults).includes(key) ?
+          modalDefaults[key] : 0;
+      }
+    }
+    for (const key of Object.keys(sensors)) {
+      states.sensors[key] = {};
+      states.sensors[key]['self'] = Object.keys(sensorDefaults).includes(key) ? sensorDefaults[key] : 1;
+    }
+
+    // Make Bundle by field or only assign modalConfigs and sensorConfigs.
     if (!wholeBundle[section][field.serial]) {
       wholeBundle[section][field.serial] = {
         _type: field._type,
         serial: field.serial,
         name: field.name,
-        bindAssets,
-        sensorConfigs: field.sensorConfigs,
+        modalConfigs, sensorConfigs, states,
         nested: {}
       };
     } else {
-      Object.assign(wholeBundle[section][field.serial]['bindAssets'], bindAssets);
+      Object.assign(wholeBundle[section][field.serial]['modalConfigs'], modalConfigs);
+      Object.assign(wholeBundle[section][field.serial]['sensorConfigs'], sensorConfigs);
     }
   }
 }
@@ -79,11 +118,13 @@ for (const articlesByScale of ArticlesRaw) {
   for (const article of Object.values(articlesByScale)) {
     const field = getParentName(article.serial);
     const section = getParentName(field);
+    const { sensors, modals } = article;
 
-    // Make bindAssets by Scales
-    const bindAssets = {};
-    const { sensors, classKit, styleKit } = article;
-    styleKit.base.push({
+    // Make sensorConfigs, modalConfigs by Scales
+    const modalConfigs = {};
+    const sensorConfigs = {};
+    modals.base.class.push(article.serial);
+    modals.base.style.push({
       "grid-area": article.self.gridArea,
       "width": article.self.width,
       "place-self": article.self.place,
@@ -93,28 +134,41 @@ for (const articlesByScale of ArticlesRaw) {
       "align-items": article.container.align
     })
     for (const scale of article.scale) {
-      // bindAssets by Scales
-      bindAssets[scale] = { sensors, classKit, styleKit };
-      // sensorConfigs in Fields Objects
-      if (!wholeBundle[section][field]['sensorConfigs']['position'][scale]) {
-        wholeBundle[section][field]['sensorConfigs']['position'][scale] = { self: true };
-      }
-      wholeBundle[section][field]['sensorConfigs']['position'][scale][article.serial] = article.sensors.position;
+      // Configs by Scales
+      modalConfigs[scale] = modals;
+      sensorConfigs[scale] = sensors;
+
+      // Inject position sensorConfig to Fields Objects
+      wholeBundle[section][field]['sensorConfigs'][scale]['position'][article.serial] = sensors.position;
+      // Inject position defualt state to Fields Objects
+      wholeBundle[section][field]['states']['sensors']['position'][article.serial] = sensorDefaults['position'];
     }
 
-    // Make Bundle by article
+    // Make states Object from modalConfigs
+    // default modal states: [ Boolean || Int ]
+    // default sensor states: [ 1 ]
+    const states = { modals: {} };
+    for (const key of Object.keys(modals)) {
+      if (!(key === 'base')) {
+        states.modals[key] = Object.keys(modalDefaults).includes(key) ?
+          modalDefaults[key] : 0;
+      }
+    }
+
+    // Make Bundle by article or only assign modalConfigs and sensorConfigs.
     if (!wholeBundle[section][field]["nested"][article.serial]) {
       wholeBundle[section][field]["nested"][article.serial] = {
         _type: article._type,
         serial: article.serial,
         name: article.name,
         customArticle: article.customArticle,
-        bindAssets,
+        modalConfigs, sensorConfigs, states,
         eventReactors: article.eventReactors,
         nested: {}
       };
     } else {
-      Object.assign(wholeBundle[section][field]["nested"][article.serial]['bindAssets'], bindAssets);
+      Object.assign(wholeBundle[section][field]["nested"][article.serial]['modalConfigs'], modalConfigs);
+      Object.assign(wholeBundle[section][field]["nested"][article.serial]['sensorConfigs'], sensorConfigs);
     }
   }
 }
