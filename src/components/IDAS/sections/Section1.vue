@@ -2,7 +2,7 @@
 
 
   <FieldContainer v-for="field of Object.keys(sectionSeed)"
-    :key="field.serial"
+    :key="field"
     :fieldSeed="sectionSeed[field]"
     @trigger="handleTrigger"
   />
@@ -43,6 +43,7 @@ const computed = {
 // { serial: 'serial-of-departure', 
 // method: 'method-name' }
 const triggerHandler = {
+
   'from-somewhere': {
     'some-method-name': () => {
       console.log('success!!!');

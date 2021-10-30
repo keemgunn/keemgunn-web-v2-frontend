@@ -3,7 +3,7 @@
 
 
   <ArticleContainer v-for="article of Object.keys(fieldSeed.nested)"
-    :key="article.serial"
+    :key="article"
     :articleSeed="fieldSeed['nested'][article]"
     @trigger="conveyEvent"
   />

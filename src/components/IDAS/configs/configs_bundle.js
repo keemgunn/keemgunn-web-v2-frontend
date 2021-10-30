@@ -169,7 +169,7 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
         serial: basics.serial,
         name: basics.name,
         customArticle: basics.customArticle,
-        eventReactors: basics.eventReactors,
+        createMethods: basics.createMethods,
         nested: {}
       };
     } else {

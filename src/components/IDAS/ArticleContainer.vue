@@ -89,7 +89,7 @@ function created() {
 
 
   console.log('methods:', methods);
-  methods.mouseEnter = this.articleSeed.eventReactors.mouseEnter();
+  this.articleSeed.createMethods(methods);
 
 }
 
