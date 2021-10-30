@@ -1,141 +1,30 @@
 <template>
-<article :id="seed.serial">
+<article :id="articleSeed.serial" 
+@mouseenter="mouseEnter()"
+@trigger="conveyEvent" 
+>
 
 
-<p class="typo-header3">{{this.seed.serial}}</p>
+  <p class="typo-header3">{{this.articleSeed.serial}}</p>
 
 
 </article>
 </template>
+
+
+
 <script>
 const name = 'ArticleContainer';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 
 
-const recievedSeedExample = {
-  _type: "article",
-  serial: "s1-f1-a1",
-  name: "article-name",
-  customArticle: null,
-  modalConfigs: {
-    XXS: {
-      sensors: {
-        position: true,
-      },
-
-      classKit: {
-        base: [],
-        mouseover: {
-          true: 'mouse-over'
-        },
-        touched: {
-          true: 'touched'
-        },
-        something: {
-          on: "something-on"
-        },
-      },
-      styleKit: {
-        base: [{
-          "margin" : "0 0",
-          "padding" : "0 0",
-          "grid-template-columns": 'repeat(6, 1fr)',
-          "gap": "10rem 10rem",
-          "width": ""
-        }],
-        mouseover: {
-          true: {
-            "opacity": "0.6"
-          }
-        },
-        touched: {
-          true: {
-            "opacity": "0.6"
-          }
-        },
-        something: {
-          on: {
-            "color": "red"
-          }
-        },
-      }
-    }
-    // XS : { ... }
-    // S : { ... }
-    // M : { ... }
-    // L : { ... }
-    // XL : { ... }
-    // XXL : { ... }
-  },
-  eventReactors: {
-    mouseEnter: () => {
-      return function () {
-      }
-    },
-    mouseMove: () => {
-      return function () {
-      }
-    },
-    mouseLeave: () => {
-      return function () {
-      }
-    },
-    touchStart: () => {
-      return function () {
-      }
-    },
-  } 
+const props = { 
+  articleSeed: Object, 
+};
 
 
-
-
-
-}
-console.log("recievedSeedExample:", recievedSeedExample);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const props = { seed: Object, }
+const emits = [ 'trigger' ];
 
 
 function data() { return {
@@ -143,6 +32,7 @@ function data() { return {
   classKit: {},
   styleKit: {},
 }}
+
 
   // ---- DYNAMIC COMPONENT IMPORT
 const components = {};
@@ -167,6 +57,21 @@ const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
 
+  // Conveys Trigger Event
+  conveyEvent(payload) {
+    this.$emit('trigger', payload);
+  },
+
+  mouseEnter() {},
+
+  // Emits Trigger Event
+  triggerEvent(method) {
+    this.$emit('trigger', {
+      serial: this.articleSeed.serial,
+      method
+    })
+  },
+
 };
 
 
@@ -175,11 +80,17 @@ const watch = {
 
 
 function beforeCreate() {
-  // console.log('ArticleContainer - beforeCreated:', this.seed);
-}
+  }
 
 
 function created() {
+  this.$logg(name, this.articleSeed.serial, "~ created ~");
+  this.$logg("articleSeed:",this.articleSeed);
+
+
+  console.log('methods:', methods);
+  methods.mouseEnter = this.articleSeed.eventReactors.mouseEnter();
+
 }
 
 
@@ -187,7 +98,7 @@ function beforeMount() {
 }
 
 
-function mounted() {
+function mounted() { this.$logg(name, this.articleSeed.serial, "~ mounted ~");
 }
 
 
@@ -195,7 +106,7 @@ function beforeUpdate() {
 }
 
 
-function updated() {
+function updated() { this.$logg(name, this.articleSeed.serial, "~ updated ~");
 }
 
 
@@ -208,7 +119,7 @@ function unmounted() {
 
 
 export default {
-  name, props, 
+  name, props, emits,
   components, 
   data, computed, 
   methods, 

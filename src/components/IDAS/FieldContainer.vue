@@ -1,11 +1,13 @@
 <template>
-<div :id="seed.serial">
+<div :id="fieldSeed.serial">
 
 
+  <ArticleContainer v-for="article of Object.keys(fieldSeed.nested)"
+    :key="article.serial"
+    :articleSeed="fieldSeed['nested'][article]"
+    @trigger="conveyEvent"
+  />
 
-  <!-- <ArticleContainer v-for="article in "
-  
-   :seed="articleTest"/> -->
 
 </div>
 </template>
@@ -19,12 +21,15 @@ import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
 
 
 const props = {
-  seed: Object,
+  fieldSeed: Object,
 }
 
 
+const emits = [ 'trigger' ];
+
+
 function data() { return {
-  // state data from seed obj.
+  // state data from fieldSeed obj.
   articles: [], // Array of String
   sensorConfigs: {}, // { ...Scales : { ...sensors } }
   modalConfigs: {}, // { ...Scales : { ...modals } }
@@ -47,6 +52,19 @@ const computed = {
 const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
+
+  // Conveys Trigger Event
+  conveyEvent(payload) {
+    this.$emit('trigger', payload);
+  },
+
+  // Emits Trigger Event
+  triggerEvent(method) {
+    this.$emit('trigger', {
+      serial: this.fieldSeed.serial,
+      method
+    })
+  },
 
   // Chage Sensor Configurations by Scale
   sensorShift(target, scale){
@@ -102,14 +120,14 @@ function beforeCreate() {
 
 
 function created() { 
-  this.$logg(name, this.seed.serial, "~ created ~");
-  this.$logg("seed:",this.seed);
+  this.$logg(name, this.fieldSeed.serial, "~ created ~");
+  this.$logg("fieldSeed:",this.fieldSeed);
   
   // Inject State Data 
-  this.articles = Object.keys(this.seed.nested);
-  this.sensorConfigs = this.seed.sensorConfigs;
-  this.modalConfigs = this.seed.modalConfigs;
-  this.states = this.seed.states;
+  this.articles = Object.keys(this.fieldSeed.nested);
+  this.sensorConfigs = this.fieldSeed.sensorConfigs;
+  this.modalConfigs = this.fieldSeed.modalConfigs;
+  this.states = this.fieldSeed.states;
 
   // Inject Sensors Configurations ------------
   this.sensorShift('position', this.getScale);
@@ -121,10 +139,10 @@ function beforeMount() {
 }
 
 
-function mounted() { this.$logg(name, this.seed.serial, "~ mounted ~");
+function mounted() { this.$logg(name, this.fieldSeed.serial, "~ mounted ~");
 
   // Inject DOM elements to data() ------------
-  this.doms.self = document.querySelector("#"+this.seed.serial)
+  this.doms.self = document.querySelector("#"+this.fieldSeed.serial)
   for (let article of this.articles) {
     this.doms[article] = document.querySelector("#"+article);
   }
@@ -149,7 +167,7 @@ function beforeUpdate() {
 }
 
 
-function updated() { this.$logg(name, this.seed.serial, "~ updated ~");
+function updated() { this.$logg(name, this.fieldSeed.serial, "~ updated ~");
 }
 
 
@@ -163,7 +181,8 @@ function unmounted() {
 
 export default {
   name, components, 
-  props, data, computed, 
+  props, emits, 
+  data, computed, 
   methods, 
   watch, 
   beforeCreate, created, 

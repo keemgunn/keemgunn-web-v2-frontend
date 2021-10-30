@@ -8,6 +8,7 @@ export const s1_f1_a1 = {
   eventReactors: {
     mouseEnter: () => {
       return function () {
+        console.log('mouse-enter-test!!!');
       }
     },
     mouseMove: () => {
@@ -24,6 +25,7 @@ export const s1_f1_a1 = {
     },
     click: () => {
       return function () {
+
       }
     },
   }

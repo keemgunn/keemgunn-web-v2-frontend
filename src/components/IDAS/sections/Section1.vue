@@ -1,9 +1,11 @@
 <template><section id="section-1">
 
 
-  <FieldContainer v-for="field in Object.keys(seed)"
+  <FieldContainer v-for="field of Object.keys(sectionSeed)"
     :key="field.serial"
-    :seed="seed[field]"/>
+    :fieldSeed="sectionSeed[field]"
+    @trigger="handleTrigger"
+  />
 
 
 </section>
@@ -14,7 +16,10 @@ import { mapGetters, mapMutations, mapActions } from 'vuex';
 import FieldContainer from '@/components/IDAS/FieldContainer.vue'
 
 
-const props = { seed: Object };
+const props = { sectionSeed: Object };
+
+
+const emits = [ 'trigger' ];
 
 
 function data() { return {
@@ -33,10 +38,29 @@ const computed = {
 };
 
 
+// It handles Triggers Depend on Payloads.
+// Payload example : 
+// { serial: 'serial-of-departure', 
+// method: 'method-name' }
+const triggerHandler = {
+  'from-somewhere': {
+    'some-method-name': () => {
+      console.log('success!!!');
+    }
+  },
+
+};
+
+
 const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
 
+  // Handle Submitted Message via trigger
+  handleTrigger(payload) {
+    this.$logg("Handling Triggers...")
+    triggerHandler[payload.serial][payload.method]();
+  },
 };
 
 
@@ -49,7 +73,7 @@ function beforeCreate() {
 
 
 function created() { this.$logg(name, "~ created ~");
-  console.log(this.seed);
+  console.log(this.sectionSeed);
 }
 
 
@@ -79,7 +103,8 @@ function unmounted() {
 
 export default {
   name, components, 
-  props, data, computed, 
+  props, emits, 
+  data, computed, 
   methods, 
   watch, 
   beforeCreate, created, 

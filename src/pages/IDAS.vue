@@ -7,7 +7,7 @@
   <NavBar/>
 
   <main v-if="loadComplete" id="idas">
-    <Section1 :seed="configs_bundle.s1"/>
+    <Section1 :sectionSeed="configs_bundle.s1"/>
   </main>
 
 </template>
