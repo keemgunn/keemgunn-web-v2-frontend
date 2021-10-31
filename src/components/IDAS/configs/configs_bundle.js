@@ -16,14 +16,22 @@ function getParentName(serial) {
   return serial.slice(0, -3)
 }
 
-function dashToUnder(str) {
-  return str.replace(/-/g, '_')
-}
-
 function fieldType(type) {
   return `field-type-${type.toLowerCase()}`
 }
 
+
+function dashToUnder(str) {
+  return str.replace(/-/g, '_')
+}
+
+function TriggerCallback(obj) {
+  return function (context) {
+    return function () {
+      context.triggerEvent(obj.method, obj.data);
+    }
+  }
+}
 
 const modalDefaults = {
   hover: false,
@@ -163,13 +171,17 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
     // Make Bundle by article or only assign modalConfigs and sensorConfigs.
     if (!wholeBundle[section][field]["nested"][article.serial]) {
       const basics = articlesBasics[dashToUnder(article.serial)];
+      const injectTriggers = {};
+      for (const [key, value] of Object.entries(basics.eventTriggers)) {
+        injectTriggers[key] = TriggerCallback(value);
+      }
       wholeBundle[section][field]["nested"][article.serial] = {
         modalConfigs, sensorConfigs, states,
         _type: basics._type,
         serial: basics.serial,
         name: basics.name,
         customArticle: basics.customArticle,
-        injectListeners: basics.injectListeners,
+        injectTriggers,
         nested: {}
       };
     } else {

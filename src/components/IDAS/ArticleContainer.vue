@@ -136,12 +136,12 @@ function created() {
   this.states = this.articleSeed.states;
 
   // Inject Listener Callbacks 
-  const extensionMethodsList = Object.keys(this.articleSeed.injectListeners);
+  const extensionMethodsList = Object.keys(this.articleSeed.injectTriggers);
 
   for (const listener of listenersList) {
     const basic = this['_' + listener](this);
     if(extensionMethodsList.includes(listener)) {
-      const ext = this['articleSeed']['injectListeners'][listener](this);
+      const ext = this['articleSeed']['injectTriggers'][listener](this);
       this[listener] = function () {
         basic();
         ext();
