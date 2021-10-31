@@ -23,7 +23,6 @@ const emits = [ 'trigger' ];
 
 
 function data() { return {
-  long: 'asdfsafsadfjnwog;isn;oasdfsadfsafasgewrgvdsfvvloj'
 }}
 
 
@@ -39,10 +38,8 @@ const computed = {
 
 
 // It handles Triggers Depend on Payloads.
-// Payload example : 
-// { serial: 'serial-of-departure', 
-// method: 'method-name' }
 const triggerHandler = {
+  // Payload example : { serial: 'serial-of-departure', method: 'method-name' }
 
   's0-f0-a0': {
     'test!!!!!!': (context, data) => { 
@@ -57,10 +54,6 @@ const triggerHandler = {
 const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
-
-  methodCallTest() {
-    console.log('method CALL TEST !!!');
-  },
 
   // Handle Submitted Message via trigger
   handleTrigger(payload) {
@@ -86,7 +79,6 @@ function beforeCreate() {
 
 
 function created() { this.$logg(name, "~ created ~");
-  console.log(this.sectionSeed);
 }
 
 

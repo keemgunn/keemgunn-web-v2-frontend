@@ -1,6 +1,7 @@
 <template>
 <article :id="articleSeed.serial" 
-
+  :class="getCSS.class" 
+  :style="getCSS.style"
 
 @trigger="conveyEvent" 
 >
@@ -18,7 +19,7 @@
 const name = 'ArticleContainer';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { defineAsyncComponent } from 'vue';
-
+import modalFetcher from '@/functions/modalFetcher';
 
 const props = { 
   articleSeed: Object, 
@@ -29,24 +30,23 @@ const emits = [ 'trigger' ];
 
 
 function data() { return {
-  // state data from articleSeed obj.
+
+// state data from articleSeed obj.
   blocks: [], // Array of String
   sensorConfigs: {}, // { ...Scales : { ...sensors } }
   modalConfigs: {}, // { ...Scales : { ...modals } }
 
-  // state data made in this component.
-  el : {},
-  states: {}, // {modals, sensors}
+// state data made in this component.
+  el : {}, 
+  states: {}, // {modals}
 }}
 
 
-  // ---- DYNAMIC COMPONENT IMPORT
+// ---- DYNAMIC COMPONENT IMPORT
+// get filenames in the directory using webpack method.
+// for filenames, dynamically import the modules.
 const components = {};
-  // get filenames in the directory using webpack method.
-const blockFiles = require.context(
-  '@/components/IDAS/blocks/', true, /^.*\.vue$/
-);
-  // for filenames, dynamically import the modules.
+const blockFiles = require.context('@/components/IDAS/blocks/', true, /^.*\.vue$/);
 for (let file of blockFiles.keys()) {
   const blockName = file.replace('./', '').replace('.vue', '')
   components[blockName] = defineAsyncComponent(() => import("./blocks/" + blockName + ".vue"))
@@ -54,8 +54,18 @@ for (let file of blockFiles.keys()) {
 
 
 const computed = {
-  ...mapGetters('',[  ]),
-  
+  ...mapGetters('ui',[ 'getScale' ]),
+
+  // Fetched Element class and styles 
+  // based on window scale and component states.
+  getCSS() {
+    this.states;
+    const bundle = this.getCSSbyState(
+      this['modalConfigs'][this.getScale],
+      this['states']['modals']
+    );
+    return bundle
+  },
 };
 
 
@@ -77,33 +87,41 @@ const methods = {
     })
   },
 
+  // Change Component Modal States.
+  // Called by EventListener Callbacks.
   setModalState(name='modal-name', payload){
     this.$logg(this.articleSeed.serial, ': setModalState :', name, payload);
-    if (this['states']['modals'][name]) {
-      this['states']['modals'][name] = payload === 'toggle' ? !this['states']['modals'][name] : payload;
+    if (typeof this['states']['modals'][name] !== 'undefined') {
+      this['states']['modals'][name] = (payload === 'toggle') ? !this['states']['modals'][name] : payload;
     }
   },
 
+  // CSS Fetch Method will be injected in here.
+  // Since computed() properties are read-only, 
+  // Injection has to apply to method() property.
+  getCSSbyState() {},
+
+  // Event Listeners --------------------------
+  // eventListeners will be attached based on these names,
   _mouseEnter(context) { return function () {
-      context.$logg(context.articleSeed.serial, '- mouseEnter');
       context.setModalState('hover', true);
       context.setModalState('touched', false);
     }
   },
-  _mouseMove(context) { return function () {
-      context.$logg(context.articleSeed.serial, '- mouseMove');
+  _mouseMove() { return function () {
     }
   },
   _mouseLeave(context) { return function () {
-      context.$logg(context.articleSeed.serial, '- mouseLeave');
       context.setModalState('hover', false);
     }
   },
   _touchStart(context) { return function () {
-      context.$logg(context.articleSeed.serial, '- touchStart');
       context.setModalState('hover', true);
       context.setModalState('touched', true);
       setTimeout(context.mouseLeave, 2000);
+    }
+  },
+  _click() { return function () {
     }
   },
 
@@ -127,7 +145,6 @@ function beforeCreate() {
   
 function created() {
   this.$logg(name, this.articleSeed.serial, "~ created ~");
-  this.$logg("articleSeed:",this.articleSeed);
 
   // Inject State Data 
   this.blocks = Object.keys(this.articleSeed.nested);
@@ -135,9 +152,11 @@ function created() {
   this.modalConfigs = this.articleSeed.modalConfigs;
   this.states = this.articleSeed.states;
 
+  // Inject Modal Fetcher 
+  this.getCSSbyState = modalFetcher(this);
+
   // Inject Listener Callbacks 
   const extensionMethodsList = Object.keys(this.articleSeed.injectTriggers);
-
   for (const listener of listenersList) {
     const basic = this['_' + listener](this);
     if(extensionMethodsList.includes(listener)) {

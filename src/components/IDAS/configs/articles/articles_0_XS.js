@@ -25,7 +25,7 @@ export const s1_f1_a1 = {
     },
     hover: {
       true: {
-        class: 'mouse-over',
+        class: 'hover',
         style: {
           "opacity": "0.6"
         }

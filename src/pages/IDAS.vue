@@ -10,6 +10,8 @@
     <Section1 :sectionSeed="configs_bundle.s1"/>
   </main>
 
+  <!-- <div :class="testCompute.class" :style="testCompute.style"></div> -->
+
 </template>
 
 
@@ -55,6 +57,14 @@ const computed = {
       return false
     }
   },
+  
+  // testCompute() {
+  //   return {
+  //     class: ["this", "is", "test-compute"],
+  //     style: [{'background-color': 'red'}, {'width': '100rem', 'height': '100rem'}]
+  //   }
+  // }
+
 };
 
 
@@ -65,6 +75,9 @@ const methods = {
 
 
 const watch = {
+  loadState(newValue) {
+    this.$logg("loadState:", newValue)
+  }
 };
 
 
@@ -76,9 +89,7 @@ function created() { this.$logg(name, "~ created ~");
   importConfigs("configs_bundle.js")
     .then((obj) => {
       this.configs_bundle = obj.default;
-      this.$logg(this.configs_bundle);
       this.loadState += 1;
-      this.$logg("loadState:", this.loadState);
     });
 
 }
@@ -89,8 +100,6 @@ function beforeMount() {
 
 
 function mounted() { this.$logg(name, "~ mounted ~");
-  this.$logg("loadState:", this.loadState);
-
 }
 
 

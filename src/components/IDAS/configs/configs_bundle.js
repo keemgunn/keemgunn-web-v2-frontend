@@ -9,8 +9,10 @@ import * as articles_S from '@/components/IDAS/configs/articles/articles_1_S';
 import * as articles_M from '@/components/IDAS/configs/articles/articles_2_M';
 import * as articles_L from '@/components/IDAS/configs/articles/articles_3_L';
 const BlocksAll = require('@/components/IDAS/configs/blocks/blocks_All');
+console.log('BlocksAll:', BlocksAll);
 
-console.log(BlocksAll);
+import { dashToUnder } from '@/functions/stringMod';
+
 
 function getParentName(serial) {
   return serial.slice(0, -3)
@@ -18,11 +20,6 @@ function getParentName(serial) {
 
 function fieldType(type) {
   return `field-type-${type.toLowerCase()}`
-}
-
-
-function dashToUnder(str) {
-  return str.replace(/-/g, '_')
 }
 
 function TriggerCallback(obj) {
@@ -98,9 +95,8 @@ for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
     // default sensor states: [ 1 ]
     const states = { modals: {}, sensors: {} };
     for (const key of Object.keys(modals)) {
-      if (!(key === 'base')) {
-        states.modals[key] = Object.keys(modalDefaults).includes(key) ?
-          modalDefaults[key] : 0;
+      if (key !== 'base') {
+        states.modals[key] = Object.keys(modalDefaults).includes(key) ? modalDefaults[key] : 0;
       }
     }
     for (const key of Object.keys(sensors)) {

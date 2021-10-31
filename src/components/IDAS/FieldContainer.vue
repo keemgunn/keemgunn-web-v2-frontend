@@ -121,7 +121,7 @@ function beforeCreate() {
 
 function created() { 
   this.$logg(name, this.fieldSeed.serial, "~ created ~");
-  this.$logg("fieldSeed:",this.fieldSeed);
+  this.$logg("    fieldSeed:",this.fieldSeed);
   
   // Inject State Data 
   this.articles = Object.keys(this.fieldSeed.nested);
