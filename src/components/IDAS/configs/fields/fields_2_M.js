@@ -23,27 +23,11 @@ export const s1_f1 = {
       class: [''],
       style: [{}],
     },
-    hover: {
-      true: {
-        class: 'mouse-over',
+    shown: {
+      0: {
+        class: 'shown',
         style: {
-          "opacity": "0.6"
-        }
-      }
-    },
-    touched: {
-      true: {
-        class: 'touched',
-        style: {
-          "opacity": "0.6"
-        }
-      }
-    },
-    something: {
-      1: {
-        class: 'something-1',
-        style: {
-          "color": "red"
+          "opacity": "1"
         }
       }
     },
@@ -74,27 +58,11 @@ export const s1_f2 = {
       class: [''],
       style: [{}],
     },
-    hover: {
-      true: {
-        class: 'mouse-over',
+    shown: {
+      0: {
+        class: 'shown',
         style: {
-          "opacity": "0.6"
-        }
-      }
-    },
-    touched: {
-      true: {
-        class: 'touched',
-        style: {
-          "opacity": "0.6"
-        }
-      }
-    },
-    something: {
-      1: {
-        class: 'something-1',
-        style: {
-          "color": "red"
+          "opacity": "1"
         }
       }
     },
@@ -126,27 +94,11 @@ export const s2_f1 = {
       class: [''],
       style: [{}],
     },
-    hover: {
-      true: {
-        class: 'mouse-over',
+    shown: {
+      0: {
+        class: 'shown',
         style: {
-          "opacity": "0.6"
-        }
-      }
-    },
-    touched: {
-      true: {
-        class: 'touched',
-        style: {
-          "opacity": "0.6"
-        }
-      }
-    },
-    something: {
-      1: {
-        class: 'something-1',
-        style: {
-          "color": "red"
+          "opacity": "1"
         }
       }
     },
@@ -177,27 +129,11 @@ export const s2_f2 = {
       class: [''],
       style: [{}],
     },
-    hover: {
-      true: {
-        class: 'mouse-over',
+    shown: {
+      0: {
+        class: 'shown',
         style: {
-          "opacity": "0.6"
-        }
-      }
-    },
-    touched: {
-      true: {
-        class: 'touched',
-        style: {
-          "opacity": "0.6"
-        }
-      }
-    },
-    something: {
-      1: {
-        class: 'something-1',
-        style: {
-          "color": "red"
+          "opacity": "1"
         }
       }
     },

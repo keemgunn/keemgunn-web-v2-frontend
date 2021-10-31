@@ -33,33 +33,12 @@ function TriggerCallback(obj) {
 const modalDefaults = {
   hover: false,
   touched: false,
-  something2: 0
+  shown: 0
 }
 
 const sensorDefaults = {
   position: 1,
 }
-
-// function arrAssign(A, B) {
-//   const origin = A;
-//   for (const item of B) {
-//     if (!origin.includes(item)) {
-//       origin.push(item)
-//     }
-//   }
-//   return origin
-// }
-
-// function seatCheck(obj, key) {
-//   if (!obj[key]) {
-//     obj[key] = {};
-//     return false
-//   } else {
-//     return true
-//   }
-// }
-
-
 
 
 const wholeBundle = {};
@@ -90,7 +69,7 @@ for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
       sensorConfigs[scale] = sensors;
     }
 
-    // Make states Object from modalConfigs
+    // Make states Object from modalConfigs -------
     // default modal states: [ Boolean || Int ]
     // default sensor states: [ 1 ]
     const states = { modals: {}, sensors: {} };

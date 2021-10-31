@@ -85,7 +85,7 @@ function beforeCreate() {
 }
 
 
-function created() { this.$logg(name, "~ created ~");
+function created() {
   importConfigs("configs_bundle.js")
     .then((obj) => {
       this.configs_bundle = obj.default;
@@ -99,7 +99,7 @@ function beforeMount() {
 }
 
 
-function mounted() { this.$logg(name, "~ mounted ~");
+function mounted() {
 }
 
 
@@ -107,7 +107,7 @@ function beforeUpdate() {
 }
 
 
-function updated() { this.$logg(name, "~ updated ~");
+function updated() {
 }
 
 

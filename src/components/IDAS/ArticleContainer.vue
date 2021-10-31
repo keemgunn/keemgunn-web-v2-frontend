@@ -1,48 +1,35 @@
-<template>
-<article :id="articleSeed.serial" 
+<template><article :id="articleSeed.serial" 
   :class="getCSS.class" 
   :style="getCSS.style"
-
-@trigger="conveyEvent" 
+  @trigger="conveyEvent" 
 >
 
-
-  <p class="typo-header3">{{this.articleSeed.serial}}</p>
+  <p class="typo-header3">{{this.articleSeed.serial}} {{this.position}}</p>
 
 
 </article>
 </template>
-
-
-
 <script>
 const name = 'ArticleContainer';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 import modalFetcher from '@/functions/modalFetcher';
 
-const props = { 
-  articleSeed: Object, 
-};
 
-
+const props = { articleSeed: Object, position: Number };
 const emits = [ 'trigger' ];
-
-
 function data() { return {
-
-// state data from articleSeed obj.
+// state data from articleSeed obj. ---------------
   blocks: [], // Array of String
   sensorConfigs: {}, // { ...Scales : { ...sensors } }
   modalConfigs: {}, // { ...Scales : { ...modals } }
-
-// state data made in this component.
-  el : {}, 
+// state data made in this component. -------------
+  el : {}, // Injected at created(), used by updaters
   states: {}, // {modals}
 }}
 
 
-// ---- DYNAMIC COMPONENT IMPORT
+// ---- DYNAMIC COMPONENT IMPORT ------------------
 // get filenames in the directory using webpack method.
 // for filenames, dynamically import the modules.
 const components = {};
@@ -56,7 +43,7 @@ for (let file of blockFiles.keys()) {
 const computed = {
   ...mapGetters('ui',[ 'getScale' ]),
 
-  // Fetched Element class and styles 
+  // Fetched Element class and styles -------------
   // based on window scale and component states.
   getCSS() {
     this.states;
@@ -73,12 +60,12 @@ const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
 
-  // Conveys Trigger Event
+  // Conveys Trigger Event ------------------------
   conveyEvent(payload) {
     this.$emit('trigger', payload);
   },
   
-  // Emits Trigger Event
+  // Emits Trigger Event --------------------------
   triggerEvent(method, data=null) {
     this.$logg(this.articleSeed.serial, ': triggerEvent :', method);
     this.$emit('trigger', {
@@ -87,7 +74,7 @@ const methods = {
     })
   },
 
-  // Change Component Modal States.
+  // Change Component Modal States. ---------------
   // Called by EventListener Callbacks.
   setModalState(name='modal-name', payload){
     this.$logg(this.articleSeed.serial, ': setModalState :', name, payload);
@@ -96,12 +83,12 @@ const methods = {
     }
   },
 
-  // CSS Fetch Method will be injected in here.
+  // CSS Fetch Method will be injected in here. ---
   // Since computed() properties are read-only, 
   // Injection has to apply to method() property.
   getCSSbyState() {},
 
-  // Event Listeners --------------------------
+// Event Listeners ============================
   // eventListeners will be attached based on these names,
   _mouseEnter(context) { return function () {
       context.setModalState('hover', true);
@@ -124,8 +111,13 @@ const methods = {
   _click() { return function () {
     }
   },
+// ================================================
 
 };
+
+
+// Make Lists of evnetListeners -------------------
+//     => for Listeners Attachment
 const listenersList = Object.keys(methods)
   .filter(name => name.startsWith('_'))
   .map(name => name.replace('_', ''));
@@ -138,24 +130,21 @@ const watch = {
 };
 
 
-function beforeCreate() {
-  
-}
+function beforeCreate() {  }
   
   
 function created() {
-  this.$logg(name, this.articleSeed.serial, "~ created ~");
 
-  // Inject State Data 
+  // Inject State Data ----------------------------
   this.blocks = Object.keys(this.articleSeed.nested);
   this.sensorConfigs = this.articleSeed.sensorConfigs;
   this.modalConfigs = this.articleSeed.modalConfigs;
   this.states = this.articleSeed.states;
 
-  // Inject Modal Fetcher 
+  // Inject Modal Fetcher -------------------------
   this.getCSSbyState = modalFetcher(this);
 
-  // Inject Listener Callbacks 
+  // Inject Listener Callbacks --------------------
   const extensionMethodsList = Object.keys(this.articleSeed.injectTriggers);
   for (const listener of listenersList) {
     const basic = this['_' + listener](this);
@@ -175,15 +164,12 @@ function created() {
 }
 
 
-function beforeMount() {
-}
+function beforeMount() {  }
 
 
+function mounted() { 
 
-
-function mounted() { this.$logg(name, this.articleSeed.serial, "~ mounted ~");
-
-  // Attach DOM Event Listener
+  // Attach DOM Event Listener --------------------
   this.el = document.querySelector("#" + this.articleSeed.serial);
   for (const listener of listenersList) {
     this.el.addEventListener(listener.toLowerCase(), this[listener], { passive: true });
@@ -192,22 +178,10 @@ function mounted() { this.$logg(name, this.articleSeed.serial, "~ mounted ~");
 }
 
 
-function beforeUpdate() {
-}
-
-
-function updated() { this.$logg(name, this.articleSeed.serial, "~ updated ~");
-}
-
-
-function beforeUnmount() {
-}
-
-
-function unmounted() {
-}
-
-
+function beforeUpdate() {  }
+function updated() {  }
+function beforeUnmount() {  }
+function unmounted() {  }
 export default {
   name, props, emits,
   components, 

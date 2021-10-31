@@ -78,7 +78,7 @@ function beforeCreate() {
 }
 
 
-function created() { this.$logg(name, "~ created ~");
+function created() {
 }
 
 
@@ -86,7 +86,7 @@ function beforeMount() {
 }
 
 
-function mounted() { this.$logg(name, "~ mouted ~");
+function mounted() {
 }
 
 
@@ -94,7 +94,7 @@ function beforeUpdate() {
 }
 
 
-function updated() { this.$logg(name, "~ updated ~");
+function updated() {
 }
 
 

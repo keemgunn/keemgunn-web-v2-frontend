@@ -1,40 +1,34 @@
-<template>
-<div :id="fieldSeed.serial">
-
+<template><div :id="fieldSeed.serial"
+  :class="getCSS.class" 
+  :style="getCSS.style"
+  @trigger="conveyEvent" 
+>
 
   <ArticleContainer v-for="article of Object.keys(fieldSeed.nested)"
     :key="article"
     :articleSeed="fieldSeed['nested'][article]"
+    :position="states['sensors']['position'][article]"
     @trigger="conveyEvent"
   />
 
 
 </div>
 </template>
-
-
-
 <script>
 const name = "FieldContainer"
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
+import modalFetcher from '@/functions/modalFetcher';
 
 
-const props = {
-  fieldSeed: Object,
-}
-
-
+const props = { fieldSeed: Object };
 const emits = [ 'trigger' ];
-
-
 function data() { return {
-  // state data from fieldSeed obj.
+// state data from fieldSeed obj. -----------------
   articles: [], // Array of String
   sensorConfigs: {}, // { ...Scales : { ...sensors } }
   modalConfigs: {}, // { ...Scales : { ...modals } }
-
-  // state data made in this component.
+// state data made in this component. -------------
   doms: {}, // Injected at created(), used by updaters
   sensorsActive: {}, // Dynamically injected from sensorConfigs
   states: {}, // {modals, sensors}
@@ -46,6 +40,17 @@ const components = { ArticleContainer };
 
 const computed = {
   ...mapGetters('ui',[ 'getScale', 'getStageArea' ]),
+
+  // Fetched Element class and styles -------------
+  // based on window scale and component states.
+  getCSS() {
+    this.states;
+    const bundle = this.getCSSbyState(
+      this['modalConfigs'][this.getScale],
+      this['states']['modals']
+    );
+    return bundle
+  },
 };
 
 
@@ -53,22 +58,29 @@ const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
 
-  // Conveys Trigger Event
+  // Conveys Trigger Event ------------------------
   conveyEvent(payload) {
     this.$emit('trigger', payload);
   },
 
-  // Emits Trigger Event
-  triggerEvent(method) {
-    this.$emit('trigger', {
-      serial: this.fieldSeed.serial,
-      method
-    })
+  // Change Component Modal States. ---------------
+  // Called by EventListener Callbacks.
+  setModalState(name='modal-name', payload){
+    this.$logg(this.fieldSeed.serial, ': setModalState :', name, payload);
+    if (typeof this['states']['modals'][name] !== 'undefined') {
+      this['states']['modals'][name] = (payload === 'toggle') ? !this['states']['modals'][name] : payload;
+    }
   },
 
-  // Chage Sensor Configurations by Scale
+  // CSS Fetch Method will be injected in here. ---
+  // Since computed() properties are read-only, 
+  // Injection has to apply to method() property.
+  getCSSbyState() {},
+
+  // Chage Sensor Configurations by Scale ---------
   sensorShift(target, scale){
-    this["sensorsActive"][target] = this["sensorConfigs"][scale][target]
+    this["sensorsActive"][target] = this["sensorConfigs"][scale][target];
+    console.log(this["sensorsActive"]);
   },
 
   // Get Element Progress based on "Stage Area"
@@ -81,13 +93,13 @@ const methods = {
   // this is the Attachee || Detatchee
   positionUpdater() {
     for (const [key, value] of Object.entries(this.sensorsActive.position)) {
-      if (this["states"]["sensors"]["position"][key]) {
+      if (typeof this["states"]["sensors"]["position"][key] !== 'undefined') {
         this["states"]["sensors"]["position"][key] = value ? this.getElPos(this["doms"][key]) : 1
       }
     }
   },
 
-  // Attatch || Detatch positionUpdater -------
+  // Attatch || Detatch positionUpdater -----------
   attachpositionUpdater() {
     if(this.sensorsActive.position.self) {
       window.addEventListener('scroll', this.positionUpdater, { passive: true });
@@ -96,13 +108,12 @@ const methods = {
   detatchpositionUpdater() {
     window.removeEventListener('scroll', this.positionUpdater);
   }
-
 };
 
 
 const watch = {
 
-  // Decide sensorsActive by Scale ---------
+  // Decide sensorsActive by Scale -------------
   getScale(newValue) {
     this.sensorShift('position', newValue)
     if(this.sensorsActive.position.self){
@@ -110,45 +121,49 @@ const watch = {
     }else{
       this.detatchpositionUpdater();
     }
+    this.positionUpdater();
   }
 
 };
 
 
-function beforeCreate() {
-}
+function beforeCreate() {  }
 
 
 function created() { 
-  this.$logg(name, this.fieldSeed.serial, "~ created ~");
-  this.$logg("    fieldSeed:",this.fieldSeed);
+  this.$logg(
+    "Field Created", 
+    this.fieldSeed.serial, 
+    this.fieldSeed
+  );
   
-  // Inject State Data 
+  // Inject State Data ----------------------------
   this.articles = Object.keys(this.fieldSeed.nested);
   this.sensorConfigs = this.fieldSeed.sensorConfigs;
   this.modalConfigs = this.fieldSeed.modalConfigs;
   this.states = this.fieldSeed.states;
 
-  // Inject Sensors Configurations ------------
+  // Inject Sensors Configurations ----------------
   this.sensorShift('position', this.getScale);
 
+  // Inject Modal Fetcher -------------------------
+  this.getCSSbyState = modalFetcher(this);
+
 }
 
 
-function beforeMount() {
-}
+function beforeMount() {  }
 
 
-function mounted() { this.$logg(name, this.fieldSeed.serial, "~ mounted ~");
+function mounted() {
 
-  // Inject DOM elements to data() ------------
+  // Inject DOM elements to data() ----------------
   this.doms.self = document.querySelector("#"+this.fieldSeed.serial)
   for (let article of this.articles) {
     this.doms[article] = document.querySelector("#"+article);
   }
-  // console.log(this.getElPos(this.doms.self));
 
-  // Attach intersectObserver to itself -------
+  // Attach intersectObserver to itself -----------
   const intersectObserver = new IntersectionObserver((entries) => {
     if(entries[0].isIntersecting) {
       this.attachpositionUpdater()
@@ -158,27 +173,15 @@ function mounted() { this.$logg(name, this.fieldSeed.serial, "~ mounted ~");
   }, { threshold: [0, 1] })
   intersectObserver.observe(this.doms.self);
 
-  // initialize position state
+  // initialize position state --------------------
   this.positionUpdater();
 }
 
 
-function beforeUpdate() {
-}
-
-
-function updated() { this.$logg(name, this.fieldSeed.serial, "~ updated ~");
-}
-
-
-function beforeUnmount() {
-}
-
-
-function unmounted() {
-}
-
-
+function beforeUpdate() {  }
+function updated() {  }
+function beforeUnmount() {  }
+function unmounted() {  }
 export default {
   name, components, 
   props, emits, 
