@@ -26,7 +26,7 @@ function fieldType(type) {
 
 
 const modalDefaults = {
-  mouseover: false,
+  hover: false,
   touched: false,
   something2: 0
 }
@@ -169,7 +169,7 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
         serial: basics.serial,
         name: basics.name,
         customArticle: basics.customArticle,
-        injectMethods: basics.injectMethods,
+        injectListeners: basics.injectListeners,
         nested: {}
       };
     } else {

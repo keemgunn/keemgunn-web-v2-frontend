@@ -8,7 +8,7 @@ export default {
     type: "quote",
     states: { // [ sensorOn , Type , default ]
       position: [true, Boolean, true],
-      mouseover: [false, Boolean, false],
+      hover: [false, Boolean, false],
       touched: [false, Boolean, false], 
     },
     watchers: {
@@ -18,16 +18,16 @@ export default {
     },
     eventReactors: {
       parentState: {
-        mouseover: () => {
+        hover: () => {
           return function () {
-            console.log('s1-f1-a1-b1 :: Parent MouseOver');
+            console.log('s1-f1-a1-b1 :: Parent hover');
           }
         }
       },
       selfState: {
-        mouseover: () => {
+        hover: () => {
           return function () {
-            console.log('s1-f1-a1-b1 :: Self MouseOver');
+            console.log('s1-f1-a1-b1 :: Self hover');
           }
         }
       }

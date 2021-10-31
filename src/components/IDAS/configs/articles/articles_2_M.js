@@ -23,7 +23,7 @@ export const s1_f1_a1 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {
@@ -74,7 +74,7 @@ export const s1_f1_a2 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {
@@ -125,7 +125,7 @@ export const s1_f2_a1 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {
@@ -176,7 +176,7 @@ export const s1_f2_a2 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {
@@ -227,7 +227,7 @@ export const s2_f1_a1 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {
@@ -278,7 +278,7 @@ export const s2_f1_a2 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {
@@ -329,7 +329,7 @@ export const s2_f2_a1 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {
@@ -380,7 +380,7 @@ export const s2_f2_a2 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {

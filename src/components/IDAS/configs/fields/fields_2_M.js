@@ -23,7 +23,7 @@ export const s1_f1 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {
@@ -74,7 +74,7 @@ export const s1_f2 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {
@@ -126,7 +126,7 @@ export const s2_f1 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {
@@ -177,7 +177,7 @@ export const s2_f2 = {
       class: [''],
       style: [{}],
     },
-    mouseover: {
+    hover: {
       true: {
         class: 'mouse-over',
         style: {

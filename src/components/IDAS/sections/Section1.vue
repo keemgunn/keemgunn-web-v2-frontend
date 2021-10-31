@@ -44,8 +44,9 @@ const computed = {
 // method: 'method-name' }
 const triggerHandler = {
 
-  'from-somewhere': {
-    'some-method-name': () => {
+  's0-f0-a0': {
+    'test!!!!!!': (context, data) => { 
+      context.$logg('    data:', data);
       console.log('success!!!');
     }
   },
@@ -57,11 +58,22 @@ const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
 
+  methodCallTest() {
+    console.log('method CALL TEST !!!');
+  },
+
   // Handle Submitted Message via trigger
   handleTrigger(payload) {
-    this.$logg("Handling Triggers...")
-    triggerHandler[payload.serial][payload.method]();
+    this.$logg("Handling Triggers... from:", payload.serial, payload.method)
+    if(!triggerHandler[payload.serial]) {
+      this.$logg("    No Serial Found");
+    } else if ((!triggerHandler[payload.serial][payload.method])) {
+      this.$logg("    No Method Found");
+    } else {
+      triggerHandler[payload.serial][payload.method](this, payload.data);
+    }
   },
+
 };
 
 
