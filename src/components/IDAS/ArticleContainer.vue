@@ -1,6 +1,6 @@
 <template><article :id="articleSeed.serial" 
-  :class="getCSS.class" 
-  :style="getCSS.style"
+  :class="fetchCSS.class" 
+  :style="fetchCSS.style"
   @trigger="conveyEvent" 
 >
 
@@ -13,7 +13,7 @@
 const name = 'ArticleContainer';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { defineAsyncComponent } from 'vue';
-import modalFetcher from '@/functions/modalFetcher';
+import { modalFetcher } from '@/functions/cssFetchers';
 
 
 const props = { articleSeed: Object, position: Number };
@@ -21,11 +21,11 @@ const emits = [ 'trigger' ];
 function data() { return {
 // state data from articleSeed obj. ---------------
   blocks: [], // Array of String
-  sensorConfigs: {}, // { ...Scales : { ...sensors } }
+  sensorConfigs: {},
   modalConfigs: {}, // { ...Scales : { ...modals } }
 // state data made in this component. -------------
   el : {}, // Injected at created(), used by updaters
-  states: {}, // {modals}
+  states: {}, // { modals }
 }}
 
 
@@ -42,17 +42,23 @@ for (let file of blockFiles.keys()) {
 
 const computed = {
   ...mapGetters('ui',[ 'getScale' ]),
-
   // Fetched Element class and styles -------------
   // based on window scale and component states.
-  getCSS() {
-    this.states;
-    const bundle = this.getCSSbyState(
+  fetchCSS() {
+    const bundle = this.getCSSbyModal(
       this['modalConfigs'][this.getScale],
       this['states']['modals']
     );
+
+    const positionStyleCalc = 
+      typeof this['sensorConfigs'][this.getScale]['position'] !== 'undefined' ?
+      this['sensorConfigs'][this.getScale]['position']['StyleCalc'] : () => { return {} } ;
+   
+    bundle.style.push(positionStyleCalc(this.position));
+
     return bundle
   },
+
 };
 
 
@@ -64,14 +70,15 @@ const methods = {
   conveyEvent(payload) {
     this.$emit('trigger', payload);
   },
-  
   // Emits Trigger Event --------------------------
   triggerEvent(method, data=null) {
-    this.$logg(this.articleSeed.serial, ': triggerEvent :', method);
-    this.$emit('trigger', {
-      serial: this.articleSeed.serial,
-      method, data
-    })
+    if((method !== null) && (typeof method !== 'undefined')) {
+      this.$logg(this.articleSeed.serial, ': triggerEvent :', method);
+      this.$emit('trigger', {
+        serial: this.articleSeed.serial,
+        method, data
+      })
+    }
   },
 
   // Change Component Modal States. ---------------
@@ -86,7 +93,8 @@ const methods = {
   // CSS Fetch Method will be injected in here. ---
   // Since computed() properties are read-only, 
   // Injection has to apply to method() property.
-  getCSSbyState() {},
+  getCSSbyModal() {},
+  attachCSSbySensor() {},
 
 // Event Listeners ============================
   // eventListeners will be attached based on these names,
@@ -113,6 +121,46 @@ const methods = {
   },
 // ================================================
 
+  watchPosition(value) {
+    if (typeof this['sensorConfigs'][this.getScale]['position'] !== 'undefined') {
+      if (this['sensorConfigs'][this.getScale]['position']['watchKit']['breakpoints'][0] !== 999) {
+
+        const breakpoints = this['sensorConfigs'][this.getScale]['position']['watchKit']['breakpoints'];
+        const emits = this['sensorConfigs'][this.getScale]['position']['watchKit']['emits'];
+        
+        if (breakpoints[8] < value) {
+          this.triggerEvent(emits[8]);
+          this.states.modals.position = breakpoints[8];
+        } else if (breakpoints[7] < value) {
+          this.triggerEvent(emits[7]);
+          this.states.modals.position = breakpoints[7];
+        } else if (breakpoints[6] < value) {
+          this.triggerEvent(emits[6]);
+          this.states.modals.position = breakpoints[6];
+        } else if (breakpoints[5] < value) {
+          this.triggerEvent(emits[5]);
+          this.states.modals.position = breakpoints[5];
+        } else if (breakpoints[4] < value) {
+          this.triggerEvent(emits[4]);
+          this.states.modals.position = breakpoints[4];
+        } else if (breakpoints[3] < value) {
+          this.triggerEvent(emits[3]);
+          this.states.modals.position = breakpoints[3];
+        } else if (breakpoints[2] < value) {
+          this.triggerEvent(emits[2]);
+          this.states.modals.position = breakpoints[2];
+        } else if (breakpoints[1] < value) {
+          this.triggerEvent(emits[1]);
+          this.states.modals.position = breakpoints[1];
+        } else if (breakpoints[0] < value) {
+          this.triggerEvent(emits[0]);
+          this.states.position = breakpoints[0];
+        }
+      }
+    }
+  }
+
+
 };
 
 
@@ -127,6 +175,9 @@ for (const listener of listenersList) {
 
 
 const watch = {
+  position(newValue) {
+    this.watchPosition(newValue);
+  }
 };
 
 
@@ -142,7 +193,7 @@ function created() {
   this.states = this.articleSeed.states;
 
   // Inject Modal Fetcher -------------------------
-  this.getCSSbyState = modalFetcher(this);
+  this.getCSSbyModal = modalFetcher();
 
   // Inject Listener Callbacks --------------------
   const extensionMethodsList = Object.keys(this.articleSeed.injectTriggers);

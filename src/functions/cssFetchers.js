@@ -1,4 +1,4 @@
-export default function () {
+export function modalFetcher () {
   return function (configs, states) {
     let classBundle = [];
     let styleBundle = [];
@@ -20,3 +20,4 @@ export default function () {
     return { class: classBundle, style: styleBundle }
   }
 }
+

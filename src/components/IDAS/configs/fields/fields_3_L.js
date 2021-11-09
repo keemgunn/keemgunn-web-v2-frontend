@@ -16,7 +16,18 @@ export const s1_f1 = {
     widthOverride: "",
   },
   sensors: {
-    position : { self: true }
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {
@@ -51,7 +62,18 @@ export const s1_f2 = {
     widthOverride: "",
   },
   sensors: {
-    position : { self: true }
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {
@@ -87,7 +109,18 @@ export const s2_f1 = {
     widthOverride: "",
   },
   sensors: {
-    position : { self: true }
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {
@@ -122,7 +155,18 @@ export const s2_f2 = {
     widthOverride: "",
   },
   sensors: {
-    position : { self: true }
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {

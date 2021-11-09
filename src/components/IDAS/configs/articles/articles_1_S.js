@@ -16,7 +16,18 @@ export const s1_f1_a1 = {
     align: "flex-start"
   },
   sensors: {
-    position: true
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {
@@ -67,7 +78,18 @@ export const s1_f1_a2 = {
     align: "flex-start"
   },
   sensors: {
-    position: true
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {
@@ -118,7 +140,18 @@ export const s1_f2_a1 = {
     align: "flex-start"
   },
   sensors: {
-    position: true
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {
@@ -169,7 +202,18 @@ export const s1_f2_a2 = {
     align: "flex-start"
   },
   sensors: {
-    position: true
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {
@@ -220,7 +264,18 @@ export const s2_f1_a1 = {
     align: "flex-start"
   },
   sensors: {
-    position: true
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {
@@ -271,7 +326,18 @@ export const s2_f1_a2 = {
     align: "flex-start"
   },
   sensors: {
-    position: true
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {
@@ -322,7 +388,18 @@ export const s2_f2_a1 = {
     align: "flex-start"
   },
   sensors: {
-    position: true
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {
@@ -373,7 +450,18 @@ export const s2_f2_a2 = {
     align: "flex-start"
   },
   sensors: {
-    position: true
+    position: {
+      StyleCalc: (position) => {
+        return {
+          opacity: position
+        }
+      },
+      reactors: {
+        0: null,
+        0.5: "half",
+        1: null
+      }
+    }
   },
   modals: {
     base: {

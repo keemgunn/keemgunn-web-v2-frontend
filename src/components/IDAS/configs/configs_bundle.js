@@ -30,6 +30,57 @@ function TriggerCallback(obj) {
   }
 }
 
+function SensorConfigs(sensors, containerType) {
+  const output = {};
+
+  for (const [ key, value ] of Object.entries(sensors)) {
+    const StyleCalc =
+      Object.keys(value).includes('StyleCalc') ?
+      value.StyleCalc :
+      () => { return {} };
+    const watchKit = {
+      breakpoints: [],
+      emits: []
+    };
+
+    let breakpoints = [];
+    const emits = [];
+    let reactorLength = 0;
+
+    // Make breakpoints and emits in Array.
+    if (Object.keys(value).includes('reactors')) {
+      for (const point of Object.keys(value.reactors)) {
+        breakpoints.push(Number(point));
+        reactorLength += 1;
+      }
+      breakpoints.sort((a, b) => a - b );
+      for (const i of breakpoints) {
+        emits.push(value['reactors'][i]);
+      }
+    }
+
+    const dummyPoints = Array(9 - reactorLength);
+    const dummyEmits = Array(9 - reactorLength);
+    dummyPoints.fill(999, 0, 8);
+    dummyEmits.fill(null, 0, 8);
+    watchKit.breakpoints = [...breakpoints, ...dummyPoints];
+    watchKit.emits = [...emits, ...dummyEmits];
+
+    if (containerType === 'field') {
+      output[key] = { self: { watchKit, StyleCalc } };
+    } else {
+      output[key] = { watchKit, StyleCalc };
+    }
+  }
+
+  // Safety Catch : Field Containers must have position sensor objects...
+  if (containerType === 'field' && !Object.keys(output).includes('position')) {
+    output.position = { self: {} };
+  }
+
+  return output
+}
+
 const modalDefaults = {
   hover: false,
   touched: false,
@@ -66,7 +117,7 @@ for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
     });
     for (const scale of field.scale) {
       modalConfigs[scale] = modals;
-      sensorConfigs[scale] = sensors;
+      sensorConfigs[scale] = SensorConfigs(sensors, 'field');
     }
 
     // Make states Object from modalConfigs -------
@@ -82,6 +133,10 @@ for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
       states.sensors[key] = {};
       states.sensors[key]['self'] = Object.keys(sensorDefaults).includes(key) ? sensorDefaults[key] : 1;
     }
+    // Safety Catch : Field Containers must have position sensor objects...
+    if (!Object.keys(sensors).includes('position')) {
+      states.sensors.position = { self: 1 };
+    }
 
     // Make Bundle by field or only assign modalConfigs and sensorConfigs.
     if (!wholeBundle[section][field.serial]) {
@@ -93,6 +148,7 @@ for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
         nested: {}
       };
     } else {
+      Object.assign(wholeBundle[section][field.serial]['states']['modals'], states.modals);
       Object.assign(wholeBundle[section][field.serial]['modalConfigs'], modalConfigs);
       Object.assign(wholeBundle[section][field.serial]['sensorConfigs'], sensorConfigs);
     }
@@ -124,10 +180,10 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
     for (const scale of article.scale) {
       // Configs by Scales
       modalConfigs[scale] = modals;
-      sensorConfigs[scale] = sensors;
+      sensorConfigs[scale] = SensorConfigs(sensors, 'article');
 
       // Inject position sensorConfig to Fields Objects
-      wholeBundle[section][field]['sensorConfigs'][scale]['position'][article.serial] = sensors.position;
+      wholeBundle[section][field]['sensorConfigs'][scale]['position'][article.serial] = typeof sensors.position !== 'undefined';
       // Inject position defualt state to Fields Objects
       wholeBundle[section][field]['states']['sensors']['position'][article.serial] = sensors.position ? 0 : 1;
     }
@@ -137,9 +193,8 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
     // default sensor states: [ 1 ]
     const states = { modals: {} };
     for (const key of Object.keys(modals)) {
-      if (!(key === 'base')) {
-        states.modals[key] = Object.keys(modalDefaults).includes(key) ?
-          modalDefaults[key] : 0;
+      if (key !== 'base') {
+        states.modals[key] = Object.keys(modalDefaults).includes(key) ? modalDefaults[key] : 0;
       }
     }
 
@@ -160,6 +215,7 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
         nested: {}
       };
     } else {
+      Object.assign(wholeBundle[section][field]["nested"][article.serial]['states']['modals'], states.modals);
       Object.assign(wholeBundle[section][field]["nested"][article.serial]['modalConfigs'], modalConfigs);
       Object.assign(wholeBundle[section][field]["nested"][article.serial]['sensorConfigs'], sensorConfigs);
     }

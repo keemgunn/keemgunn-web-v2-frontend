@@ -12,6 +12,7 @@
   letter-spacing: $ls;
   line-height: $lh;
   word-wrap:break-word;
+  word-break: break-all;
 }
 @mixin marginBlock($start, $end) {
   margin-block-start: $start;

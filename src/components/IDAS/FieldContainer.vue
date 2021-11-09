@@ -1,7 +1,6 @@
 <template><div :id="fieldSeed.serial"
   :class="getCSS.class" 
   :style="getCSS.style"
-  @trigger="conveyEvent" 
 >
 
   <ArticleContainer v-for="article of Object.keys(fieldSeed.nested)"
@@ -18,7 +17,7 @@
 const name = "FieldContainer"
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
-import modalFetcher from '@/functions/modalFetcher';
+import { modalFetcher } from '@/functions/cssFetchers';
 
 
 const props = { fieldSeed: Object };
@@ -45,7 +44,7 @@ const computed = {
   // based on window scale and component states.
   getCSS() {
     this.states;
-    const bundle = this.getCSSbyState(
+    const bundle = this.getCSSbyModal(
       this['modalConfigs'][this.getScale],
       this['states']['modals']
     );
@@ -62,6 +61,16 @@ const methods = {
   conveyEvent(payload) {
     this.$emit('trigger', payload);
   },
+  // Emits Trigger Event --------------------------
+  triggerEvent(method, data=null) {
+    if((method !== null) && (typeof method !== 'undefined')) {
+      this.$logg(this.articleSeed.serial, ': triggerEvent :', method);
+      this.$emit('trigger', {
+        serial: this.articleSeed.serial,
+        method, data
+      })
+    }
+  },
 
   // Change Component Modal States. ---------------
   // Called by EventListener Callbacks.
@@ -75,12 +84,11 @@ const methods = {
   // CSS Fetch Method will be injected in here. ---
   // Since computed() properties are read-only, 
   // Injection has to apply to method() property.
-  getCSSbyState() {},
+  getCSSbyModal() {},
 
   // Chage Sensor Configurations by Scale ---------
   sensorShift(target, scale){
     this["sensorsActive"][target] = this["sensorConfigs"][scale][target];
-    console.log(this["sensorsActive"]);
   },
 
   // Get Element Progress based on "Stage Area"
@@ -147,7 +155,7 @@ function created() {
   this.sensorShift('position', this.getScale);
 
   // Inject Modal Fetcher -------------------------
-  this.getCSSbyState = modalFetcher(this);
+  this.getCSSbyModal = modalFetcher(this);
 
 }
 
