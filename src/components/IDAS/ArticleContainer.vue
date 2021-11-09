@@ -14,6 +14,7 @@ const name = 'ArticleContainer';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 import { modalFetcher } from '@/functions/cssFetchers';
+import { watchPosition } from '@/functions/watchers';
 
 
 const props = { articleSeed: Object, position: Number };
@@ -120,47 +121,6 @@ const methods = {
     }
   },
 // ================================================
-
-  watchPosition(value) {
-    if (typeof this['sensorConfigs'][this.getScale]['position'] !== 'undefined') {
-      if (this['sensorConfigs'][this.getScale]['position']['watchKit']['breakpoints'][0] !== 999) {
-
-        const breakpoints = this['sensorConfigs'][this.getScale]['position']['watchKit']['breakpoints'];
-        const emits = this['sensorConfigs'][this.getScale]['position']['watchKit']['emits'];
-        
-        if (breakpoints[8] < value) {
-          this.triggerEvent(emits[8]);
-          this.states.modals.position = breakpoints[8];
-        } else if (breakpoints[7] < value) {
-          this.triggerEvent(emits[7]);
-          this.states.modals.position = breakpoints[7];
-        } else if (breakpoints[6] < value) {
-          this.triggerEvent(emits[6]);
-          this.states.modals.position = breakpoints[6];
-        } else if (breakpoints[5] < value) {
-          this.triggerEvent(emits[5]);
-          this.states.modals.position = breakpoints[5];
-        } else if (breakpoints[4] < value) {
-          this.triggerEvent(emits[4]);
-          this.states.modals.position = breakpoints[4];
-        } else if (breakpoints[3] < value) {
-          this.triggerEvent(emits[3]);
-          this.states.modals.position = breakpoints[3];
-        } else if (breakpoints[2] < value) {
-          this.triggerEvent(emits[2]);
-          this.states.modals.position = breakpoints[2];
-        } else if (breakpoints[1] < value) {
-          this.triggerEvent(emits[1]);
-          this.states.modals.position = breakpoints[1];
-        } else if (breakpoints[0] < value) {
-          this.triggerEvent(emits[0]);
-          this.states.position = breakpoints[0];
-        }
-      }
-    }
-  }
-
-
 };
 
 
@@ -176,7 +136,7 @@ for (const listener of listenersList) {
 
 const watch = {
   position(newValue) {
-    this.watchPosition(newValue);
+    watchPosition(newValue, this);
   }
 };
 
