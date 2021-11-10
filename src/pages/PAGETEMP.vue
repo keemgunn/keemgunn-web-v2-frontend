@@ -10,6 +10,8 @@ const name = 'PAGENAME';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 
 
+const props = {};
+const emits = {};
 function data() { return {
 }}
 
@@ -37,7 +39,7 @@ function beforeCreate() {
 }
 
 
-function created() { this.$logg(name, "~ created ~");
+function created() {
 }
 
 
@@ -45,7 +47,7 @@ function beforeMount() {
 }
 
 
-function mounted() { this.$logg(name, "~ mounted ~");
+function mounted() {
 }
 
 
@@ -53,7 +55,7 @@ function beforeUpdate() {
 }
 
 
-function updated() { this.$logg(name, "~ updated ~");
+function updated() {
 }
 
 
@@ -66,7 +68,7 @@ function unmounted() {
 
 
 export default {
-  name, 
+  name, props, emits, 
   components, 
   data, computed, 
   methods, 

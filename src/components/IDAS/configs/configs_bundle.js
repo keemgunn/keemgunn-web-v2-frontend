@@ -8,9 +8,7 @@ import * as articles_XS from '@/components/IDAS/configs/articles/articles_0_XS';
 import * as articles_S from '@/components/IDAS/configs/articles/articles_1_S';
 import * as articles_M from '@/components/IDAS/configs/articles/articles_2_M';
 import * as articles_L from '@/components/IDAS/configs/articles/articles_3_L';
-const BlocksAll = require('@/components/IDAS/configs/blocks/blocks_All');
-console.log('BlocksAll:', BlocksAll);
-
+import blocks_All from '@/components/IDAS/configs/blocks/blocks_All';
 import { dashToUnder } from '@/functions/stringMod';
 
 
@@ -25,7 +23,7 @@ function fieldType(type) {
 function TriggerCallback(obj) {
   return function (context) {
     return function () {
-      context.triggerEvent(obj.method, obj.data);
+      context.triggerEvent(context, obj.method, obj.data);
     }
   }
 }
@@ -231,21 +229,41 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
 
 
 
+for (const block of Object.values(blocks_All)) {
+  const article = getParentName(block.serial);
+  const field = getParentName(article);
+  const section = getParentName(field);
+  const { eventTriggers, contents } = block;
+
+  // Make modalConfigs
+  const modalConfigs = block.modals;
+  modalConfigs.base.class.push(block.serial);
+
+  // Make states Object from modalConfigs
+  const states = { modals: {} };
+  for (const key of Object.keys(modalConfigs)) {
+    if (key !== 'base') {
+      states.modals[key] = Object.keys(modalDefaults).includes(key) ? modalConfigs[key] : 0;
+    }
+  }
+
+  const injectTriggers = {};
+  for (const [key, value] of Object.entries(eventTriggers)) {
+    injectTriggers[key] = TriggerCallback(value);
+  }
+  wholeBundle[section][field]['nested'][article]['nested'][block.serial] = {
+    _type: block._type,
+    serial: block.serial,
+    name: block.name,
+    type: block.type,
+    modalConfigs, states,
+    injectTriggers,
+    contents
+  }
+
+}
 
 
 
-
-
-
-
-
-
-
-// for (const [key, value] of Object.entries(this.sensors.position)) {
-  //   this["states"]["position"][key] = value ? this.getElementScrollProgress(this["doms"][key]) : 1
-  // }
-  
-  
-  
 
 export default wholeBundle

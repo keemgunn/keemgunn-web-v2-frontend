@@ -4,6 +4,7 @@
   <FieldContainer v-for="field of Object.keys(sectionSeed)"
     :key="field"
     :fieldSeed="sectionSeed[field]"
+    :downstream="downstream"
     @trigger="handleTrigger"
   />
 
@@ -23,6 +24,9 @@ const emits = [ 'trigger' ];
 
 
 function data() { return {
+  downstream : { 
+  // Object that send to all components downward.
+  }
 }}
 
 

@@ -7,21 +7,22 @@
     :key="article"
     :articleSeed="fieldSeed['nested'][article]"
     :position="states['sensors']['position'][article]"
-    @trigger="conveyEvent"
+    :downstream="downstream" 
+    @trigger="tossEvent"
   />
-
 
 </div>
 </template>
 <script>
 const name = "FieldContainer"
-import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
-import { modalFetcher } from '@/functions/cssFetchers';
+import { getCSSbyModal, setModalState } from '@/functions/modals';
+import { triggerEvent } from '@/functions/triggers';
 import { watchPosition } from '@/functions/watchers';
 
 
-const props = { fieldSeed: Object };
+const props = { fieldSeed: Object, downstream: Object };
 const emits = [ 'trigger' ];
 function data() { return {
 // state data from fieldSeed obj. -----------------
@@ -39,8 +40,6 @@ function data() { return {
 
 
 const components = { ArticleContainer };
-
-
 const computed = {
   ...mapGetters('ui',[ 'getScale', 'getStageArea' ]),
 
@@ -59,6 +58,10 @@ const computed = {
     return bundle
   },
 
+  serial() {
+    return this.fieldSeed.serial
+  },
+
   position() {
     if (this.loadState >= 2) {
       return this.states.sensors.position.self
@@ -70,37 +73,12 @@ const computed = {
 
 
 const methods = {
-  ...mapMutations('', [  ]),
-  ...mapActions('', [  ]),
-
-  // Conveys Trigger Event ------------------------
-  conveyEvent(payload) {
+  tossEvent(payload) {
     this.$emit('trigger', payload);
   },
-  // Emits Trigger Event --------------------------
-  triggerEvent(method, data=null) {
-    if((method !== null) && (typeof method !== 'undefined')) {
-      this.$logg(this.articleSeed.serial, ': triggerEvent :', method);
-      this.$emit('trigger', {
-        serial: this.articleSeed.serial,
-        method, data
-      })
-    }
-  },
-
-  // Change Component Modal States. ---------------
-  // Called by EventListener Callbacks.
-  setModalState(name='modal-name', payload){
-    this.$logg(this.fieldSeed.serial, ': setModalState :', name, payload);
-    if (typeof this['states']['modals'][name] !== 'undefined') {
-      this['states']['modals'][name] = (payload === 'toggle') ? !this['states']['modals'][name] : payload;
-    }
-  },
-
-  // CSS Fetch Method will be injected in here. ---
-  // Since computed() properties are read-only, 
-  // Injection has to apply to method() property.
-  getCSSbyModal() {},
+  triggerEvent,
+  setModalState,
+  getCSSbyModal,
 
   // Chage Sensor Configurations by Scale ---------
   sensorShift(target, scale){
@@ -137,7 +115,6 @@ const methods = {
 
 
 const watch = {
-
   // Decide sensorsActive by Scale -------------
   getScale(newValue) {
     this.sensorShift('position', newValue)
@@ -152,11 +129,7 @@ const watch = {
   position(newValue) {
     watchPosition(newValue, this);
   }
-
 };
-
-
-function beforeCreate() {  }
 
 
 function created() { 
@@ -175,18 +148,11 @@ function created() {
   // Inject Sensors Configurations ----------------
   this.sensorShift('position', this.getScale);
 
-  // Inject Modal Fetcher -------------------------
-  this.getCSSbyModal = modalFetcher(this);
-
   this.loadState += 1;
 }
 
 
-function beforeMount() {  }
-
-
 function mounted() {
-
   // Inject DOM elements to data() ----------------
   this.doms.self = document.querySelector("#"+this.fieldSeed.serial)
   for (let article of this.articles) {
@@ -205,24 +171,17 @@ function mounted() {
 
   // initialize position state --------------------
   this.positionUpdater();
-
   this.loadState += 1;
 }
 
 
-function beforeUpdate() {  }
-function updated() {  }
-function beforeUnmount() {  }
-function unmounted() {  }
 export default {
   name, components, 
   props, emits, 
   data, computed, 
   methods, 
   watch, 
-  beforeCreate, created, 
-  beforeMount, mounted, 
-  beforeUpdate, updated, 
-  beforeUnmount, unmounted
+  created, 
+  mounted, 
 }
 </script>

@@ -1,23 +1,34 @@
 <template><article :id="articleSeed.serial" 
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
-  @trigger="conveyEvent" 
 >
 
-  <p class="typo-header3">{{this.articleSeed.serial}} {{this.position}}</p>
-
+  <component 
+    v-for="block of Object.keys(articleSeed.nested)"
+    :key="block"
+    :blockSeed="articleSeed['nested'][block]"
+    :is="articleSeed['nested'][block]['type']"
+    :downstream="downstream" 
+    @trigger="tossEvent"
+  />
 
 </article>
 </template>
 <script>
 const name = 'ArticleContainer';
-import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import { defineAsyncComponent } from 'vue';
-import { modalFetcher } from '@/functions/cssFetchers';
+import { getCSSbyModal, setModalState } from '@/functions/modals';
+import { triggerEvent } from '@/functions/triggers';
 import { watchPosition } from '@/functions/watchers';
+import { basicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
 
 
-const props = { articleSeed: Object, position: Number };
+const props = { 
+  articleSeed: Object, 
+  position: Number, 
+  downstream: Object
+};
 const emits = [ 'trigger' ];
 function data() { return {
 // state data from articleSeed obj. ---------------
@@ -58,77 +69,30 @@ const computed = {
     return bundle
   },
 
+  serial() {
+    return this.articleSeed.serial
+  },
 };
 
 
 const methods = {
-  ...mapMutations('', [  ]),
-  ...mapActions('', [  ]),
-
-  // Conveys Trigger Event ------------------------
-  conveyEvent(payload) {
+  tossEvent(payload) {
     this.$emit('trigger', payload);
   },
-  // Emits Trigger Event --------------------------
-  triggerEvent(method, data=null) {
-    if((method !== null) && (typeof method !== 'undefined')) {
-      this.$logg(this.articleSeed.serial, ': triggerEvent :', method);
-      this.$emit('trigger', {
-        serial: this.articleSeed.serial,
-        method, data
-      })
-    }
-  },
-
-  // Change Component Modal States. ---------------
-  // Called by EventListener Callbacks.
-  setModalState(name='modal-name', payload){
-    this.$logg(this.articleSeed.serial, ': setModalState :', name, payload);
-    if (typeof this['states']['modals'][name] !== 'undefined') {
-      this['states']['modals'][name] = (payload === 'toggle') ? !this['states']['modals'][name] : payload;
-    }
-  },
-
-  // CSS Fetch Method will be injected in here. ---
-  // Since computed() properties are read-only, 
-  // Injection has to apply to method() property.
-  getCSSbyModal() {},
-  attachCSSbySensor() {},
-
-// Event Listeners ============================
-  // eventListeners will be attached based on these names,
-  _mouseEnter(context) { return function () {
-      context.setModalState('hover', true);
-      context.setModalState('touched', false);
-    }
-  },
-  _mouseMove() { return function () {
-    }
-  },
-  _mouseLeave(context) { return function () {
-      context.setModalState('hover', false);
-    }
-  },
-  _touchStart(context) { return function () {
-      context.setModalState('hover', true);
-      context.setModalState('touched', true);
-      setTimeout(context.mouseLeave, 2000);
-    }
-  },
-  _click() { return function () {
-    }
-  },
-// ================================================
+  triggerEvent,
+  setModalState,
+  getCSSbyModal,
 };
 
 
 // Make Lists of evnetListeners -------------------
-//     => for Listeners Attachment
-const listenersList = Object.keys(methods)
-  .filter(name => name.startsWith('_'))
-  .map(name => name.replace('_', ''));
-for (const listener of listenersList) {
-  methods[listener] = function () {};
+// and inject basic listeners
+const listenersList = [];
+for ( const [key, value] of Object.entries(basicEventListeners)) {
+  methods[key] = value;
+  const realName = key.replace('_', '');
+  listenersList.push(realName);
+  methods[realName] = function () {};
 }
 
 
@@ -139,67 +103,31 @@ const watch = {
 };
 
 
-function beforeCreate() {  }
-  
-  
 function created() {
-
   // Inject State Data ----------------------------
   this.blocks = Object.keys(this.articleSeed.nested);
   this.sensorConfigs = this.articleSeed.sensorConfigs;
   this.modalConfigs = this.articleSeed.modalConfigs;
   this.states = this.articleSeed.states;
 
-  // Inject Modal Fetcher -------------------------
-  this.getCSSbyModal = modalFetcher();
-
   // Inject Listener Callbacks --------------------
-  const extensionMethodsList = Object.keys(this.articleSeed.injectTriggers);
-  for (const listener of listenersList) {
-    const basic = this['_' + listener](this);
-    if(extensionMethodsList.includes(listener)) {
-      const ext = this['articleSeed']['injectTriggers'][listener](this);
-      this[listener] = function () {
-        basic();
-        ext();
-      }
-    } else {
-      this[listener] = function () {
-        basic();
-      }
-    }
-  }
-
+  injectListnerCallbacks(this, listenersList, this.articleSeed.injectTriggers);
 }
-
-
-function beforeMount() {  }
 
 
 function mounted() { 
-
   // Attach DOM Event Listener --------------------
-  this.el = document.querySelector("#" + this.articleSeed.serial);
-  for (const listener of listenersList) {
-    this.el.addEventListener(listener.toLowerCase(), this[listener], { passive: true });
-  }
-
+  attachEventListeners(this, this.articleSeed.serial, listenersList);
 }
 
 
-function beforeUpdate() {  }
-function updated() {  }
-function beforeUnmount() {  }
-function unmounted() {  }
 export default {
   name, props, emits,
   components, 
   data, computed, 
   methods, 
   watch, 
-  beforeCreate, created, 
-  beforeMount, mounted, 
-  beforeUpdate, updated, 
-  beforeUnmount, unmounted
+  created, 
+  mounted, 
 }
 </script>
