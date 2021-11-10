@@ -1,6 +1,6 @@
 <template><div :id="fieldSeed.serial"
-  :class="getCSS.class" 
-  :style="getCSS.style"
+  :class="fetchCSS.class" 
+  :style="fetchCSS.style"
 >
 
   <ArticleContainer v-for="article of Object.keys(fieldSeed.nested)"
@@ -18,6 +18,7 @@ const name = "FieldContainer"
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
 import { modalFetcher } from '@/functions/cssFetchers';
+import { watchPosition } from '@/functions/watchers';
 
 
 const props = { fieldSeed: Object };
@@ -31,7 +32,10 @@ function data() { return {
   doms: {}, // Injected at created(), used by updaters
   sensorsActive: {}, // Dynamically injected from sensorConfigs
   states: {}, // {modals, sensors}
+// LOAD STATE
+  loadState: 0
 }}
+// Load States => 0: initial | 1: created | 2: mounted
 
 
 const components = { ArticleContainer };
@@ -42,14 +46,26 @@ const computed = {
 
   // Fetched Element class and styles -------------
   // based on window scale and component states.
-  getCSS() {
-    this.states;
+  fetchCSS() {
     const bundle = this.getCSSbyModal(
       this['modalConfigs'][this.getScale],
       this['states']['modals']
     );
+
+    if (typeof this['sensorConfigs'][this.getScale]['position']['self']['StyleCalc'] !== 'undefined') {
+      bundle.style.push(this['sensorConfigs'][this.getScale]['position']['self']['StyleCalc'](this.position));
+    }
+
     return bundle
   },
+
+  position() {
+    if (this.loadState >= 2) {
+      return this.states.sensors.position.self
+    } else {
+      return 1
+    }
+  }
 };
 
 
@@ -89,6 +105,7 @@ const methods = {
   // Chage Sensor Configurations by Scale ---------
   sensorShift(target, scale){
     this["sensorsActive"][target] = this["sensorConfigs"][scale][target];
+    this["sensorsActive"][target]['self'] = Object.keys(this["sensorConfigs"][scale][target]).length !== 0;
   },
 
   // Get Element Progress based on "Stage Area"
@@ -130,6 +147,10 @@ const watch = {
       this.detatchpositionUpdater();
     }
     this.positionUpdater();
+  },
+
+  position(newValue) {
+    watchPosition(newValue, this);
   }
 
 };
@@ -157,6 +178,7 @@ function created() {
   // Inject Modal Fetcher -------------------------
   this.getCSSbyModal = modalFetcher(this);
 
+  this.loadState += 1;
 }
 
 
@@ -183,6 +205,8 @@ function mounted() {
 
   // initialize position state --------------------
   this.positionUpdater();
+
+  this.loadState += 1;
 }
 
 

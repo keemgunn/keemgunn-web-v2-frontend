@@ -51,11 +51,9 @@ const computed = {
       this['states']['modals']
     );
 
-    const positionStyleCalc = 
-      typeof this['sensorConfigs'][this.getScale]['position'] !== 'undefined' ?
-      this['sensorConfigs'][this.getScale]['position']['StyleCalc'] : () => { return {} } ;
-   
-    bundle.style.push(positionStyleCalc(this.position));
+    if (typeof this['sensorConfigs'][this.getScale]['position']['StyleCalc'] !== 'undefined') {
+      bundle.style.push(this['sensorConfigs'][this.getScale]['position']['StyleCalc'](this.position));
+    }
 
     return bundle
   },

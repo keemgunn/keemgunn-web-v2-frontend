@@ -73,10 +73,16 @@ function SensorConfigs(sensors, containerType) {
     }
   }
 
-  // Safety Catch : Field Containers must have position sensor objects...
+  // Safety Catch 
+  // position 센서 아예 사용 안 하더라도 position {} Object는
+  // 빈 것이라도 내장하고 있도록. 
   if (containerType === 'field' && !Object.keys(output).includes('position')) {
     output.position = { self: {} };
   }
+  else if (containerType === 'article' && !Object.keys(output).includes('position')) {
+    output.position = {};
+  }
+
 
   return output
 }
@@ -183,7 +189,7 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
       sensorConfigs[scale] = SensorConfigs(sensors, 'article');
 
       // Inject position sensorConfig to Fields Objects
-      wholeBundle[section][field]['sensorConfigs'][scale]['position'][article.serial] = typeof sensors.position !== 'undefined';
+      wholeBundle[section][field]['sensorConfigs'][scale]['position'][article.serial] = (typeof sensors.position !== 'undefined');
       // Inject position defualt state to Fields Objects
       wholeBundle[section][field]['states']['sensors']['position'][article.serial] = sensors.position ? 0 : 1;
     }
