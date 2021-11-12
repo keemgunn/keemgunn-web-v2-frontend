@@ -32,12 +32,11 @@ const props = {
 const emits = [ 'trigger' ];
 function data() { return {
 // state data from articleSeed obj. ---------------
-  blocks: [], // Array of String
-  sensorConfigs: {},
+  blocks: [],
+  sensorConfigs: {}, // { ...Scales : { ...sensors: { WK, SC }}}
   modalConfigs: {}, // { ...Scales : { ...modals } }
 // state data made in this component. -------------
-  el : {}, // Injected at created(), used by updaters
-  states: {}, // { modals }
+  el : {}, states: {}
 }}
 
 

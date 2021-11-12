@@ -1,4 +1,3 @@
-console.log("============= configs_bundle =============");
 import * as fields_XS from '@/components/IDAS/configs/fields/fields_0_XS';
 import * as fields_S from '@/components/IDAS/configs/fields/fields_1_S';
 import * as fields_M from '@/components/IDAS/configs/fields/fields_2_M';
@@ -9,7 +8,7 @@ import * as articles_S from '@/components/IDAS/configs/articles/articles_1_S';
 import * as articles_M from '@/components/IDAS/configs/articles/articles_2_M';
 import * as articles_L from '@/components/IDAS/configs/articles/articles_3_L';
 import blocks_All from '@/components/IDAS/configs/blocks/blocks_All';
-import { dashToUnder } from '@/functions/stringMod';
+import { camelToDash, underToDash } from '@/functions/stringMod';
 
 
 function getParentName(serial) {
@@ -100,17 +99,23 @@ const wholeBundle = {};
 
 
 for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
-  for (const field of Object.values(fieldsByScale)) {
+  for (const [_serial, field] of Object.entries(fieldsByScale)) {
     const { modals, sensors } = field;
-
+    const serial = underToDash(_serial);
     // Check and Make Section Object in wholeBundle
-    const section = getParentName(field.serial);
+    const section = getParentName(serial);
     if (!wholeBundle[section]) { wholeBundle[section] = {}; }
     
     // Make sensorConfigs, modalConfigs by its Scale
     const modalConfigs = {};
     const sensorConfigs = {};
-    modals.base.class.push(field.serial);
+    if (typeof modals.base.class === 'undefined') {
+      modals.base.class = [];
+    }
+    if (typeof modals.base.style === 'undefined') {
+      modals.base.style = [];
+    }
+    modals.base.class.push(serial);
     modals.base.class.push(fieldType(field.container.type));
     modals.base.style.push({
       "margin": field.self.margin,
@@ -142,19 +147,20 @@ for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
       states.sensors.position = { self: 1 };
     }
 
-    // Make Bundle by field or only assign modalConfigs and sensorConfigs.
-    if (!wholeBundle[section][field.serial]) {
-      wholeBundle[section][field.serial] = {
-        _type: field._type,
-        serial: field.serial,
-        name: field.name,
-        modalConfigs, sensorConfigs, states,
-        nested: {}
-      };
-    } else {
-      Object.assign(wholeBundle[section][field.serial]['states']['modals'], states.modals);
-      Object.assign(wholeBundle[section][field.serial]['modalConfigs'], modalConfigs);
-      Object.assign(wholeBundle[section][field.serial]['sensorConfigs'], sensorConfigs);
+    const hasParents = typeof wholeBundle[section] !== 'undefined';
+    if (hasParents) {
+      // Make Bundle by field or only assign modalConfigs and sensorConfigs.
+      if (!wholeBundle[section][serial]) {
+        wholeBundle[section][serial] = {
+          serial,
+          modalConfigs, sensorConfigs, states,
+          nested: {}
+        };
+      } else {
+        Object.assign(wholeBundle[section][serial]['states']['modals'], states.modals);
+        Object.assign(wholeBundle[section][serial]['modalConfigs'], modalConfigs);
+        Object.assign(wholeBundle[section][serial]['sensorConfigs'], sensorConfigs);
+      }
     }
   }
 }
@@ -163,15 +169,22 @@ for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
 
 
 for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L ]) {
-  for (const article of Object.values(articlesByScale)) {
-    const field = getParentName(article.serial);
+  for (const [_serial, article] of Object.entries(articlesByScale)) {
+    const serial = underToDash(_serial);
+    const field = getParentName(serial);
     const section = getParentName(field);
     const { sensors, modals } = article;
 
     // Make sensorConfigs, modalConfigs by Scales
     const modalConfigs = {};
     const sensorConfigs = {};
-    modals.base.class.push(article.serial);
+    if (typeof modals.base.class === 'undefined') {
+      modals.base.class = [];
+    }
+    if (typeof modals.base.style === 'undefined') {
+      modals.base.style = [];
+    }
+    modals.base.class.push(serial);
     modals.base.style.push({
       "grid-area": article.self.gridArea,
       "width": article.self.width,
@@ -187,9 +200,9 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
       sensorConfigs[scale] = SensorConfigs(sensors, 'article');
 
       // Inject position sensorConfig to Fields Objects
-      wholeBundle[section][field]['sensorConfigs'][scale]['position'][article.serial] = (typeof sensors.position !== 'undefined');
+      wholeBundle[section][field]['sensorConfigs'][scale]['position'][serial] = (typeof sensors.position !== 'undefined');
       // Inject position defualt state to Fields Objects
-      wholeBundle[section][field]['states']['sensors']['position'][article.serial] = sensors.position ? 0 : 1;
+      wholeBundle[section][field]['states']['sensors']['position'][serial] = sensors.position ? 0 : 1;
     }
 
     // Make states Object from modalConfigs
@@ -202,42 +215,58 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
       }
     }
 
-    // Make Bundle by article or only assign modalConfigs and sensorConfigs.
-    if (!wholeBundle[section][field]["nested"][article.serial]) {
-      const basics = articlesBasics[dashToUnder(article.serial)];
-      const injectTriggers = {};
-      for (const [key, value] of Object.entries(basics.eventTriggers)) {
-        injectTriggers[key] = TriggerCallback(value);
+    const hasParents =
+      typeof wholeBundle[section] !== 'undefined' ?
+        typeof wholeBundle[section][field] !== 'undefined' ?
+          true : false
+        : false;
+    if (hasParents) {
+      // Make Bundle by article or only assign modalConfigs and sensorConfigs.
+      if (!wholeBundle[section][field]["nested"][serial]) {
+        const basics = articlesBasics[_serial];
+        const injectTriggers = {};
+        for (const [key, value] of Object.entries(basics.eventTriggers)) {
+          injectTriggers[key] = TriggerCallback(value);
+        }
+        wholeBundle[section][field]["nested"][serial] = {
+          modalConfigs, sensorConfigs, states,
+          serial,
+          customArticle: basics.customArticle,
+          injectTriggers,
+          nested: {}
+        };
+      } else {
+        Object.assign(wholeBundle[section][field]["nested"][serial]['states']['modals'], states.modals);
+        Object.assign(wholeBundle[section][field]["nested"][serial]['modalConfigs'], modalConfigs);
+        Object.assign(wholeBundle[section][field]["nested"][serial]['sensorConfigs'], sensorConfigs);
       }
-      wholeBundle[section][field]["nested"][article.serial] = {
-        modalConfigs, sensorConfigs, states,
-        _type: basics._type,
-        serial: basics.serial,
-        name: basics.name,
-        customArticle: basics.customArticle,
-        injectTriggers,
-        nested: {}
-      };
-    } else {
-      Object.assign(wholeBundle[section][field]["nested"][article.serial]['states']['modals'], states.modals);
-      Object.assign(wholeBundle[section][field]["nested"][article.serial]['modalConfigs'], modalConfigs);
-      Object.assign(wholeBundle[section][field]["nested"][article.serial]['sensorConfigs'], sensorConfigs);
     }
   }
 }
 
 
 
+const testBlockList = []
 
-for (const block of Object.values(blocks_All)) {
-  const article = getParentName(block.serial);
+for (const [_serial, block] of Object.entries(blocks_All)) {
+  const serial = underToDash(_serial);
+  const article = getParentName(serial);
   const field = getParentName(article);
   const section = getParentName(field);
-  const { eventTriggers, contents } = block;
+  const contents = typeof block.contents !== 'undefined' ? block.contents : {};
+  const eventTriggers = typeof block.eventTriggers !== 'undefined' ? block.eventTriggers : {};
 
   // Make modalConfigs
   const modalConfigs = block.modals;
-  modalConfigs.base.class.push(block.serial);
+  if (typeof modalConfigs.base.class === 'undefined') {
+    modalConfigs.base.class = [];
+  }
+  if (typeof modalConfigs.base.style === 'undefined') {
+    modalConfigs.base.style = [];
+  }
+  modalConfigs.base.class.push('block');
+  modalConfigs.base.class.push(serial);
+  modalConfigs.base.class.push(camelToDash(block.type));
 
   // Make states Object from modalConfigs
   const states = { modals: {} };
@@ -251,19 +280,29 @@ for (const block of Object.values(blocks_All)) {
   for (const [key, value] of Object.entries(eventTriggers)) {
     injectTriggers[key] = TriggerCallback(value);
   }
-  wholeBundle[section][field]['nested'][article]['nested'][block.serial] = {
-    _type: block._type,
-    serial: block.serial,
-    name: block.name,
+
+  const packed = {
+    serial,
     type: block.type,
     modalConfigs, states,
     injectTriggers,
     contents
+  };
+
+  const hasParents =
+    typeof wholeBundle[section] !== 'undefined' ?
+      typeof wholeBundle[section][field] !== 'undefined' ?
+        typeof wholeBundle[section][field]['nested'][article] !== 'undefined' ? true : false
+        : false
+      : false
+  if (hasParents) {
+    wholeBundle[section][field]['nested'][article]['nested'][block.serial] = packed;
   }
 
+  if (process.env.NODE_ENV === 'development') {
+    testBlockList.push(packed);
+  }
 }
 
 
-
-
-export default wholeBundle
+export { wholeBundle, testBlockList }

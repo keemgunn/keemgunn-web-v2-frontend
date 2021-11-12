@@ -3,16 +3,21 @@
   :style="fetchCSS.style"
 >
 
-  <p class="typo-caption1">example</p>
+  <p
+    :class="subStyles.class" 
+    :style="subStyles.style"
+    @click="goToLink()"
+  >{{contents.text}}</p>
 
 </div>
 </template>
 <script>
-const name = 'Block_Quote';
+const name = 'Block_simpleText';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
-import { triggerEvent } from '@/functions/triggers';
+import { triggerEvent, goToLink } from '@/functions/triggers';
 import { basicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
+import { camelToDash } from '@/functions/stringMod';
 
 const props = { 
   blockSeed: Object, 
@@ -27,6 +32,10 @@ function data() { return {
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
   contents: {},
+  link : '',
+  subStyles: {
+    class: [], style: {}
+  }
 }}
 
 const computed = {
@@ -41,6 +50,10 @@ const computed = {
   serial() {
     return this.blockSeed.serial
   },
+
+  type() {
+    return camelToDash(this.blockSeed.type);
+  }
 };
 
 
@@ -50,6 +63,8 @@ const methods = {
   triggerEvent,
   setModalState,
   getCSSbyModal,
+
+  goToLink
 };
 
 
@@ -65,7 +80,6 @@ for ( const [key, value] of Object.entries(basicEventListeners)) {
 
 
 function created() {
-  console.log('MUYAHO!!!!');
   // Inject State Data ----------------------------
   this.modalConfigs = this.blockSeed.modalConfigs;
   this.states = this.blockSeed.states;
@@ -73,6 +87,11 @@ function created() {
 
   // Inject Listener Callbacks --------------------
   injectListnerCallbacks(this, listenersList, this.blockSeed.injectTriggers);
+
+  if( this.contents.link ) {
+    this.subStyles.class.push('link');
+    this.link = this.contents.link;
+  }
 }
 
 

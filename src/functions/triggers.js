@@ -6,3 +6,12 @@ export function triggerEvent(context, method, data = null) {
     })
   }
 }
+
+
+export function goToLink(link) {
+  if(link.split(':')[0] === 'mailto') {
+    window.open(link, '_blank');
+  } else {
+    window.location = link
+  }
+}

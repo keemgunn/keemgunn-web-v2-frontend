@@ -6,8 +6,6 @@
     align-items: flex-start;
   }
 
-
-
   .field-type-a, .field-type-b, .field-type-c {
     display: grid;
     margin: auto;
@@ -23,7 +21,62 @@
     display: flex;
   }
   
+  // ================================
+
+  .block {
+    border-style: solid;
+    border-width: 1rem;
+    border-color: rgba(245, 255, 157, 0.541);
+  }
+
+  .simple-text {
+    transition: all ease 200ms 0s;
+    .link {
+      text-decoration: underline;
+    }
+    .link:hover {
+      color: blue;
+      cursor: pointer;
+    }
+  }
+
+  .simple-dictionary {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    .head {
+      display: inline;
+    }
+    .saparator {
+      display: inline;
+    }
+    .dictionary-key {
+      display: inline;
+    }
+    .dictionary-value {
+      display: inline;
+    }
+    .link {
+      text-decoration: underline;
+    }
+    .link:hover {
+      color: blue;
+      cursor: pointer;
+    }
+  }
   
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // ================================
   
   .XXS{
     .field-type-c {
@@ -180,4 +233,13 @@
 
 
 
+}
+
+
+#idas-block-test-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20rem;
+  padding: 20rem;
 }

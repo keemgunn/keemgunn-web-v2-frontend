@@ -2,7 +2,6 @@
 
 export const s1_f1_a1 = {
   _type: "article",
-  serial: "s1-f1-a1",
   name: "article-name",
   customArticle: null,
   eventTriggers: {
@@ -12,7 +11,6 @@ export const s1_f1_a1 = {
 
 export const s1_f1_a2 = {
   _type: "article",
-  serial: "s1-f1-a2",
   name: "article-name",
   customArticle: null,
   eventTriggers: {

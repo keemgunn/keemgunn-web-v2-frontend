@@ -2,17 +2,15 @@
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
 >
-
-  <p class="typo-caption1">example</p>
-
 </div>
 </template>
 <script>
-const name = 'Block_Quote';
+const name = 'Block_lineVH';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
 import { basicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
+import { camelToDash } from '@/functions/stringMod';
 
 const props = { 
   blockSeed: Object, 
@@ -27,6 +25,9 @@ function data() { return {
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
   contents: {},
+  subStyles: {
+    class: [], style: {}
+  }
 }}
 
 const computed = {
@@ -41,6 +42,10 @@ const computed = {
   serial() {
     return this.blockSeed.serial
   },
+
+  type() {
+    return camelToDash(this.blockSeed.type);
+  }
 };
 
 
@@ -65,7 +70,6 @@ for ( const [key, value] of Object.entries(basicEventListeners)) {
 
 
 function created() {
-  console.log('MUYAHO!!!!');
   // Inject State Data ----------------------------
   this.modalConfigs = this.blockSeed.modalConfigs;
   this.states = this.blockSeed.states;

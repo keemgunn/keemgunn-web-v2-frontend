@@ -26,23 +26,20 @@ const props = { fieldSeed: Object, downstream: Object };
 const emits = [ 'trigger' ];
 function data() { return {
 // state data from fieldSeed obj. -----------------
-  articles: [], // Array of String
+  articles: [],
   sensorConfigs: {}, // { ...Scales : { ...sensors } }
   modalConfigs: {}, // { ...Scales : { ...modals } }
 // state data made in this component. -------------
-  doms: {}, // Injected at created(), used by updaters
+  doms: {}, states: {},
   sensorsActive: {}, // Dynamically injected from sensorConfigs
-  states: {}, // {modals, sensors}
-// LOAD STATE
+// Load States => 0: initial | 1: created | 2: mounted
   loadState: 0
 }}
-// Load States => 0: initial | 1: created | 2: mounted
 
 
 const components = { ArticleContainer };
 const computed = {
   ...mapGetters('ui',[ 'getScale', 'getStageArea' ]),
-
   // Fetched Element class and styles -------------
   // based on window scale and component states.
   fetchCSS() {

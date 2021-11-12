@@ -6,11 +6,13 @@
 
   <NavBar/>
 
+  <main v-if="loadTestField" id="idas">
+    <TestField :testBlockList="testBlockList"/>
+  </main>
+
   <main v-if="loadComplete" id="idas">
     <Section1 :sectionSeed="configs_bundle.s1"/>
   </main>
-
-  <!-- <div :class="testCompute.class" :style="testCompute.style"></div> -->
 
 </template>
 
@@ -21,13 +23,15 @@ const name = 'IDAS';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import NavBar from '@/components/NavBar.vue';
 import Section1 from '@/components/IDAS/sections/Section1.vue'
+import TestField from '@/components/IDAS/IDASblockTestField.vue';
 
 
 // config file will be imported 
 // after this component MOUNTED.
 async function importConfigs() {
   try {
-    return await import("../components/IDAS/configs/configs_bundle.js")
+    const { wholeBundle, testBlockList } = await import("../components/IDAS/configs/configs_bundle.js")
+    return { wholeBundle, testBlockList }
   } catch (err) {
     console.error(err);
   }
@@ -37,14 +41,17 @@ async function importConfigs() {
 function data() { return {
   lang: this.$route.params.lang,
   configs_bundle: {},
+  testBlockList: {},
   loadState: 0,
-  
+  loadTestField: false,
   // showRatio : 0,
 }}
 
 
 const components = {
-  NavBar, Section1,
+  NavBar, 
+  TestField, 
+  Section1,
 };
 
 
@@ -56,15 +63,7 @@ const computed = {
     } else {
       return false
     }
-  },
-  
-  // testCompute() {
-  //   return {
-  //     class: ["this", "is", "test-compute"],
-  //     style: [{'background-color': 'red'}, {'width': '100rem', 'height': '100rem'}]
-  //   }
-  // }
-
+  }
 };
 
 
@@ -86,10 +85,15 @@ function beforeCreate() {
 
 
 function created() {
-  importConfigs("configs_bundle.js")
+  importConfigs()
     .then((obj) => {
-      this.configs_bundle = obj.default;
-      this.loadState += 1;
+      this.configs_bundle = obj.wholeBundle;
+      this.testBlockList = obj.testBlockList;
+
+      // this.loadState += 1;
+      this.loadTestField = true;
+      
+      this.$logg('config_bundled loaded', obj);
     });
 
 }

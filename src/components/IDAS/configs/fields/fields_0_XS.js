@@ -3,7 +3,6 @@
 export const s1_f1 = {
   _type: "field",
   scale: ["XXS", "XS"],
-  serial: "s1-f1",
   name: "field-name",
   self: {
     margin: "0 0",
