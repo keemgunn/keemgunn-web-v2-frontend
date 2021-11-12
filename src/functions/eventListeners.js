@@ -1,4 +1,4 @@
-export const basicEventListeners = {
+const basicEventListeners = {
   // eventListeners will be attached based on these names,
 
   _mouseEnter(context) {
@@ -31,6 +31,16 @@ export const basicEventListeners = {
     return function () {
     }
   },
+}
+
+
+export function injectBasicEventListeners(methods, listenersList) {
+  for ( const [key, value] of Object.entries(basicEventListeners)) {
+    methods[key] = value;
+    const realName = key.replace('_', '');
+    listenersList.push(realName);
+    methods[realName] = function () {};
+  }
 }
 
 

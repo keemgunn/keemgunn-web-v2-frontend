@@ -5,7 +5,7 @@
 </div>
 </template>
 <script>
-const name = 'Block_lineVH';
+const name = 'Block_edgeFrame';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
@@ -25,6 +25,9 @@ function data() { return {
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
   contents: {},
+  subStyles: {
+    class: [], style: {}
+  }
 }}
 
 const computed = {
@@ -59,6 +62,7 @@ const methods = {
 // and inject basic listeners
 const listenersList = [];
 injectBasicEventListeners(methods, listenersList);
+
 
 function created() {
   // Inject State Data ----------------------------

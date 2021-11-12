@@ -113,6 +113,16 @@ export default {
     }
   },
 
+  s1_f3_a3_b2: {
+    type: "edgeFrame",
+    modals: { base: {
+      class: ['typo-header6']
+    }},
+    contents: {
+      text: "Resume",
+    }
+  },
+
 
 
 

@@ -16,7 +16,7 @@ const name = 'Block_simpleText';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
 import { triggerEvent, goToLink } from '@/functions/triggers';
-import { basicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
+import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
 import { camelToDash } from '@/functions/stringMod';
 
 const props = { 
@@ -71,12 +71,7 @@ const methods = {
 // Make Lists of evnetListeners -------------------
 // and inject basic listeners
 const listenersList = [];
-for ( const [key, value] of Object.entries(basicEventListeners)) {
-  methods[key] = value;
-  const realName = key.replace('_', '');
-  listenersList.push(realName);
-  methods[realName] = function () {};
-}
+injectBasicEventListeners(methods, listenersList);
 
 
 function created() {

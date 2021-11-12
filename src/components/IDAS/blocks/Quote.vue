@@ -12,7 +12,7 @@ const name = 'Block_Quote';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
-import { basicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
+import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
 
 const props = { 
   blockSeed: Object, 
@@ -56,12 +56,7 @@ const methods = {
 // Make Lists of evnetListeners -------------------
 // and inject basic listeners
 const listenersList = [];
-for ( const [key, value] of Object.entries(basicEventListeners)) {
-  methods[key] = value;
-  const realName = key.replace('_', '');
-  listenersList.push(realName);
-  methods[realName] = function () {};
-}
+injectBasicEventListeners(methods, listenersList);
 
 
 function created() {
