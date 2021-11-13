@@ -9,6 +9,7 @@
     :blockSeed="articleSeed['nested'][block]"
     :is="articleSeed['nested'][block]['type']"
     :downstream="downstream" 
+    :position="position"
     @trigger="tossEvent"
   />
 

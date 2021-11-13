@@ -30,7 +30,7 @@
 
   </div>
 
-  <div class="bottomline line-ver-1"></div>
+  <div class="bottomline line-flex-hor-1"></div>
 </section>
 
 

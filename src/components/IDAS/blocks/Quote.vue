@@ -2,9 +2,10 @@
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
 >
-
-  <p class="typo-caption1">example</p>
-
+  <div class="flex f-dir-row gap18">
+    <div class="line-flex-ver-3"></div>
+    <p>{{contents.text}}</p>
+  </div>
 </div>
 </template>
 <script>

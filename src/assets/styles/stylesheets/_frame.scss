@@ -34,6 +34,12 @@
 .f-al-item-end {
   align-items: flex-end;
 }
+.f-al-item-baseline {
+  align-items: baseline;
+}
+.f-wrap {
+  flex-wrap: wrap;
+}
 .f-al-cont-space {
   align-content: space-between;
 }
@@ -46,15 +52,30 @@
 .f-js-cont-end {
   justify-content: flex-end;
 }
+
+
+
 @mixin Gap($val) {
   .gap#{$val} {
     gap: $val + rem;
   }
-} @for $i from 1 through 30 {
+  .rgap#{$val} {
+    row-gap: $val + rem;
+  }
+  .cgap#{$val} {
+    column-gap: $val + rem;
+  }
+} @for $i from 1 through 50 {
   @include Gap($i);
 }
 
 
+.w100 {
+  width: 100%;
+}
+.h100 {
+  height: 100%;
+}
 
 
 

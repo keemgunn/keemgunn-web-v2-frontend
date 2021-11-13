@@ -1,32 +1,31 @@
-<template><div :id="blockSeed.serial"
+<template><component :is="contents.tag"
+  :id="blockSeed.serial"
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
 >
+    <div
+      v-for="i in recordsCount"
+      :key="recordKeys[i]"
+      :id="recordKeys[i]"
+    >
+      <div class="head" v-if="this['contents']['heads'][i]">
+        {{" " + this['contents']['heads'][i] + " "}}
+      </div>
 
-  <div
-    v-for="i in recordsCount"
-    :key="recordKeys[i]"
-    :id="recordKeys[i]"
-  >
-    <div class="head" v-if="this['contents']['heads'][i]">
-      {{" " + this['contents']['heads'][i] + " "}}
+      <p :class="recordClasses[i]['key']">
+        {{Object.keys(this['contents']['texts'][i])[0]}}
+      </p>
+
+      <div class="saparator" v-if="this['contents']['separators'][i]">
+        {{" " + this['contents']['separators'][i] + " "}}
+      </div>
+
+      <p :class="recordClasses[i]['value']" 
+      @click="goToLink(this['contents']['links'][i])">
+        {{Object.values(this['contents']['texts'][i])[0]}}
+      </p>
     </div>
-
-    <p :class="recordClasses[i]['key']">
-      {{Object.keys(this['contents']['texts'][i])[0]}}
-    </p>
-
-    <div class="saparator" v-if="this['contents']['separators'][i]">
-      {{" " + this['contents']['separators'][i] + " "}}
-    </div>
-
-    <p :class="recordClasses[i]['value']" 
-    @click="goToLink(this['contents']['links'][i])">
-      {{Object.values(this['contents']['texts'][i])[0]}}
-    </p>
-  </div>
-
-</div>
+</component>
 </template>
 <script>
 const name = 'Block_simpleDictionary';
@@ -122,8 +121,6 @@ function created() {
       this['recordClasses'][i]['value'].push('link');
     }
   }
-
-  console.log(this.recordClasses);
 }
 
 

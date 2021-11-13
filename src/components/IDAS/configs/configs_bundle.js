@@ -173,11 +173,14 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
     const serial = underToDash(_serial);
     const field = getParentName(serial);
     const section = getParentName(field);
-    const { sensors, modals } = article;
-
-    // Make sensorConfigs, modalConfigs by Scales
+    const { sensors } = article;
     const modalConfigs = {};
     const sensorConfigs = {};
+
+    const modals = typeof article.modals !== 'undefined' ? article.modals : { base: { class: [], style: [] } }
+    if (typeof modals.base === 'undefined') {
+      modals.base = { class: [], style: [] };
+    }
     if (typeof modals.base.class === 'undefined') {
       modals.base.class = [];
     }
@@ -257,7 +260,12 @@ for (const [_serial, block] of Object.entries(blocks_All)) {
   const eventTriggers = typeof block.eventTriggers !== 'undefined' ? block.eventTriggers : {};
 
   // Make modalConfigs
-  const modalConfigs = block.modals;
+  const modalConfigs = typeof block.modals !== 'undefined' ? block.modals : { base : { class: [], style: [] }};
+
+
+  if (typeof modalConfigs.base === 'undefined') {
+    modalConfigs.base = { class: [], style: [] };
+  }
   if (typeof modalConfigs.base.class === 'undefined') {
     modalConfigs.base.class = [];
   }

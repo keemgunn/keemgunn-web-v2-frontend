@@ -2,23 +2,21 @@
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
 >
-  <div class="wrapper">
-    <div class="line-ver-1"></div>
-    <div class="line-hor-1"></div>
-  </div>
+  Create • Inspire • Contribute
 </div>
 </template>
 <script>
-const name = 'Block_edgeFrame';
+const name = 'Block_simpleText';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
-import { triggerEvent } from '@/functions/triggers';
+import { triggerEvent, goToLink } from '@/functions/triggers';
 import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
 import { camelToDash } from '@/functions/stringMod';
 
 const props = { 
   blockSeed: Object, 
-  downstream: Object 
+  downstream: Object,
+  position: Number
 };
 const emits = [ 'trigger' ];
 
@@ -29,6 +27,7 @@ function data() { return {
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
   contents: {},
+  link : '',
   subStyles: {
     class: [], style: {}
   }
@@ -59,6 +58,8 @@ const methods = {
   triggerEvent,
   setModalState,
   getCSSbyModal,
+
+  goToLink
 };
 
 
@@ -76,6 +77,11 @@ function created() {
 
   // Inject Listener Callbacks --------------------
   injectListnerCallbacks(this, listenersList, this.blockSeed.injectTriggers);
+
+  if( this.contents.link ) {
+    this.subStyles.class.push('link');
+    this.link = this.contents.link;
+  }
 }
 
 

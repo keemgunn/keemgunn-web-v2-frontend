@@ -12,7 +12,6 @@
   letter-spacing: $ls;
   line-height: $lh;
   word-wrap:break-word;
-  word-break: break-all;
   margin: 0;
   padding: 0;
 }
@@ -31,12 +30,13 @@
 
 
 
-@mixin EnHeader($index, $size, $ls, $lh, $block-start, $block-end) {
+@mixin Header($index, $size, $ls, $lh, $block-start, $block-end) {
   .typo-header#{$index} {
     @include Typeface('Syncopate',700);
     @include FontSquare($size, $ls, $lh);
     @include marginBlock($block-start, $block-end);
     @include noSelect();
+    word-break: break-word;
   }
 }
 @mixin Body($index, $size, $ls, $lh, $block-start, $block-end) {
@@ -44,6 +44,7 @@
     @include Typeface('Inter_SD',400);
     @include FontSquare($size, $ls, $lh);
     @include marginBlock($block-start, $block-end);
+    word-break: break-word;
   }
 }
 @mixin Caption($index, $size, $ls, $lh, $block-start, $block-end) {
@@ -52,6 +53,7 @@
     @include FontSquare($size, $ls, $lh);
     @include marginBlock($block-start, $block-end);
     @include noSelect();
+    word-break: break-word;
   }
 }
 @mixin Marks($index, $size, $ls, $lh, $block-start, $block-end) {
@@ -60,6 +62,7 @@
     @include FontSquare($size, $ls, $lh);
     @include marginBlock($block-start, $block-end);
     @include noSelect();
+    word-break: break-all;
     text-transform: uppercase;
   }
 }
@@ -82,17 +85,17 @@
 
 // ------------- TYPO : - HEADER --------------
 
-@include EnHeader(1, 96rem, -0.02rem, 0.9, 0rem, 0rem);
+@include Header(1, 96rem, -0.02rem, 0.9, 0rem, 0rem);
   @include WeightExtend('.typo-header1', 'light', 400);
-@include EnHeader(2, 72rem, -0.02rem, 0.89, 0rem, 0rem);
+@include Header(2, 72rem, -0.02rem, 0.89, 0rem, 0rem);
   @include WeightExtend('.typo-header2', 'light', 400);
-@include EnHeader(3, 64rem, -0.013rem, 0.88, 0rem, 0rem);
+@include Header(3, 64rem, -0.013rem, 0.88, 0rem, 0rem);
   @include WeightExtend('.typo-header3', 'light', 400);
-@include EnHeader(4, 44rem, -0.013rem, 0.86, 0rem, 0rem);
+@include Header(4, 44rem, -0.013rem, 0.86, 0rem, 0rem);
   @include WeightExtend('.typo-header4', 'light', 400);
-@include EnHeader(5, 32rem, -0.01rem, 0.89, 0rem, 0rem);
+@include Header(5, 32rem, -0.01rem, 0.89, 0rem, 0rem);
   @include WeightExtend('.typo-header5', 'light', 400);
-@include EnHeader(6, 24rem, -0.005rem, 0.92, 0rem, 0rem);
+@include Header(6, 24rem, -0.005rem, 0.92, 0rem, 0rem);
   @include WeightExtend('.typo-header6', 'light', 400);
 
 
@@ -150,6 +153,10 @@
 p {
   margin: 0;
   padding: 0;
+}
+
+em {
+  font-style: normal;
 }
 
 a {

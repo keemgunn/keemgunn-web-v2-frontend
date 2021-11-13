@@ -1,15 +1,29 @@
 <template><div :id="blockSeed.serial"
   :class="fetchCSS.class" 
-  :style="fetchCSS.style"
->
-  <div class="wrapper">
-    <div class="line-ver-1"></div>
-    <div class="line-hor-1"></div>
+  :style="fetchCSS.style">
+  <div class="flex f-dir-row gap22">
+    <div class="line-flex-ver-3"></div>
+    <div class="flex f-dir-col gap18 w100">
+      <p class="typo-mark5--light">{{contents.title}}</p>
+      <div v-for="record in contents.records"
+      :key="record.name"
+      class="flex f-dir-col gap6">
+        <div class="flex f-dir-row f-js-cont-space f-al-item-baseline f-wrap rgap6">
+          <p class="typo-caption4">{{record.name}}</p>
+          <div class="flex f-dir-row f-js-cont-end f-al-item-baseline gap5">
+            <p class="typo-caption5">{{record.time}}</p>
+            <p v-if="record.expected" class="typo-caption6">(expected)</p>
+          </div>
+        </div>
+        <div class="line-flex-hor-1"></div>
+        <p class="typo-body3">{{record.description}}</p>
+      </div>
+    </div>
   </div>
 </div>
 </template>
 <script>
-const name = 'Block_edgeFrame';
+const name = 'Block_simpleDictionary';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
@@ -29,9 +43,6 @@ function data() { return {
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
   contents: {},
-  subStyles: {
-    class: [], style: {}
-  }
 }}
 
 const computed = {
@@ -49,7 +60,8 @@ const computed = {
 
   type() {
     return camelToDash(this.blockSeed.type);
-  }
+  },
+
 };
 
 

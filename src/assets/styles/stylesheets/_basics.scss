@@ -27,7 +27,12 @@
 
 
 @mixin Line($val) {
-  .line-ver-#{$val} {
+  .line-flex-ver-#{$val} {
+    width: $val + rem;
+    align-self: stretch;
+    background-color: var(--i0); 
+  }
+  .line-flex-hor-#{$val} {
     height: $val + rem;
     align-self: stretch;
     background-color: var(--i0); 

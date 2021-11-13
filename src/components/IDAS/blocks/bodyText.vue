@@ -2,19 +2,17 @@
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
 >
-  <div class="wrapper">
-    <div class="line-ver-1"></div>
-    <div class="line-hor-1"></div>
-  </div>
+
+<div v-html="contents.text"></div>
+
 </div>
 </template>
 <script>
-const name = 'Block_edgeFrame';
+const name = 'Block_Quote';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
 import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
-import { camelToDash } from '@/functions/stringMod';
 
 const props = { 
   blockSeed: Object, 
@@ -29,9 +27,6 @@ function data() { return {
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
   contents: {},
-  subStyles: {
-    class: [], style: {}
-  }
 }}
 
 const computed = {
@@ -46,10 +41,6 @@ const computed = {
   serial() {
     return this.blockSeed.serial
   },
-
-  type() {
-    return camelToDash(this.blockSeed.type);
-  }
 };
 
 
@@ -69,6 +60,7 @@ injectBasicEventListeners(methods, listenersList);
 
 
 function created() {
+  console.log('MUYAHO!!!!');
   // Inject State Data ----------------------------
   this.modalConfigs = this.blockSeed.modalConfigs;
   this.states = this.blockSeed.states;
