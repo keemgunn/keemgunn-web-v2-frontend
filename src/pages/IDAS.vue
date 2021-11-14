@@ -6,11 +6,11 @@
 
   <NavBar/>
 
-  <main v-if="loadTestField" id="idas">
+  <main v-if="(loadTestField) && (loadState >= 2)" id="idas">
     <TestField :testBlockList="testBlockList"/>
   </main>
 
-  <main v-if="loadComplete" id="idas">
+  <main v-if="(!loadTestField) && (loadState >= 2)" id="idas">
     <Section1 :sectionSeed="configs_bundle.s1"/>
   </main>
 
@@ -57,6 +57,7 @@ const components = {
 
 const computed = {
   ...mapGetters('ui',[ 'getFrameSize' ]),
+  ...mapGetters('api',[ 'getContentsToken' ]),
   loadComplete() {
     if (this.loadState >= 1) {
       return true
@@ -75,8 +76,13 @@ const methods = {
 
 const watch = {
   loadState(newValue) {
-    this.$logg("loadState:", newValue)
-  }
+    this.$logg("IDAS - loadState :", newValue)
+  },
+  getContentsToken(newValue) {
+    if(newValue) {
+      this.loadState += 1;
+    }
+  },
 };
 
 
@@ -90,7 +96,7 @@ function created() {
       this.configs_bundle = obj.wholeBundle;
       this.testBlockList = obj.testBlockList;
 
-      // this.loadState += 1;
+      this.loadState += 1;
       this.loadTestField = true;
       
       this.$logg('config_bundled loaded', obj);

@@ -16,7 +16,7 @@
 
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 // import test003 from '@/pages/test/003_ContentImport.vue'
 // import test005 from '@/pages/test/005_IdasBundleMonitor.vue'
 import testContent from "@/assets/contents/testContent";
@@ -28,8 +28,8 @@ export default {
     // test005, 
   },
   data() { return {
-    testContent
-
+    testContent,
+    loadState: 0
   }},
   computed: {
     ...mapGetters(['getENV']),
@@ -40,6 +40,9 @@ export default {
       'getThemeColor',
       'whatLanguage',
     ]),
+    ...mapGetters('api',[
+      'getCliIP', 'getContentsToken'
+    ]),
     appFontSize() {
       return String(this.fontScale) + "%"
     }
@@ -49,6 +52,9 @@ export default {
     ...mapMutations('ui', {
       frameResize: 'resize'
     }),
+    ...mapActions('api', [
+      'openTheDoor'
+    ]),
     fetchFrameSize() {
       this.frameResize({
         width: window.innerWidth,
@@ -59,13 +65,13 @@ export default {
 
 
   created() {
+    this.openTheDoor();
 
     // Adjust Screen Size ---------------------
     this.fetchFrameSize()
     this.$nextTick(() => {
       window.addEventListener('resize', this.fetchFrameSize);
     });
-
   },
 
 }

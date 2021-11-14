@@ -1,0 +1,6 @@
+{
+  "destinations": {
+    "cli-server" : "dev",
+    "contents-server" : "dev"
+  }
+}

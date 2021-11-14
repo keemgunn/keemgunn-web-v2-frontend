@@ -305,6 +305,29 @@ export default {
 
 
 
+  s2_f4_a1_b1: {
+    type: "imageContainer",
+    modals: { base: {
+    }},
+    contents: {
+      type: 'png',
+      alt: "When I was preparing for CSAT again in 2017.",
+    }
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

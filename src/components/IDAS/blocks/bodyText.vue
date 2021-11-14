@@ -60,7 +60,6 @@ injectBasicEventListeners(methods, listenersList);
 
 
 function created() {
-  console.log('MUYAHO!!!!');
   // Inject State Data ----------------------------
   this.modalConfigs = this.blockSeed.modalConfigs;
   this.states = this.blockSeed.states;
