@@ -2,20 +2,18 @@
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
 >
-
   <p
     :class="subStyles.class" 
     :style="subStyles.style"
-    @click="goToLink()"
-  >{{contents.text}}</p>
-
+    v-html="contents.text"
+  ></p>
 </div>
 </template>
 <script>
 const name = 'Block_simpleText';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
-import { triggerEvent, goToLink } from '@/functions/triggers';
+import { triggerEvent } from '@/functions/triggers';
 import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
 import { camelToDash } from '@/functions/stringMod';
 
@@ -63,8 +61,6 @@ const methods = {
   triggerEvent,
   setModalState,
   getCSSbyModal,
-
-  goToLink
 };
 
 

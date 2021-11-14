@@ -57,10 +57,10 @@
     .dictionary-value {
       display: inline;
     }
-    .link {
+    a {
       text-decoration: underline;
     }
-    .link:hover {
+    a:hover {
       color: blue;
       cursor: pointer;
     }

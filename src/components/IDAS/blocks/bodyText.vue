@@ -3,7 +3,7 @@
   :style="fetchCSS.style"
 >
 
-<div v-html="contents.text"></div>
+<p v-html="contents.text"></p>
 
 </div>
 </template>

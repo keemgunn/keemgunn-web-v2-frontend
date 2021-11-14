@@ -1,37 +1,34 @@
 <template><component :is="contents.tag"
-  :id="blockSeed.serial"
-  :class="fetchCSS.class" 
-  :style="fetchCSS.style"
->
-    <div
-      v-for="i in recordsCount"
-      :key="recordKeys[i]"
-      :id="recordKeys[i]"
-    >
-      <div class="head" v-if="this['contents']['heads'][i]">
-        {{" " + this['contents']['heads'][i] + " "}}
-      </div>
-
-      <p :class="recordClasses[i]['key']">
-        {{Object.keys(this['contents']['texts'][i])[0]}}
-      </p>
-
-      <div class="saparator" v-if="this['contents']['separators'][i]">
-        {{" " + this['contents']['separators'][i] + " "}}
-      </div>
-
-      <p :class="recordClasses[i]['value']" 
-      @click="goToLink(this['contents']['links'][i])">
-        {{Object.values(this['contents']['texts'][i])[0]}}
-      </p>
+:id="blockSeed.serial"
+:class="fetchCSS.class" 
+:style="fetchCSS.style">
+  <div
+    v-for="i in recordsCount"
+    :key="recordKeys[i]"
+    :id="recordKeys[i]"
+  >
+    <div class="head" v-if="this['contents']['heads'][i]">
+      {{" " + this['contents']['heads'][i] + " "}}
     </div>
+    <p 
+      :class="recordClasses[i]['key']"
+      v-html="Object.keys(this['contents']['texts'][i])[0]"
+    ></p>
+    <div class="saparator" v-if="this['contents']['separators'][i]">
+      {{" " + this['contents']['separators'][i] + " "}}
+    </div>
+    <p 
+      :class="recordClasses[i]['value']" 
+      v-html="Object.values(this['contents']['texts'][i])[0]"
+    ></p>
+  </div>
 </component>
 </template>
 <script>
 const name = 'Block_simpleDictionary';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
-import { triggerEvent, goToLink } from '@/functions/triggers';
+import { triggerEvent } from '@/functions/triggers';
 import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
 import { camelToDash, spaceToDash } from '@/functions/stringMod';
 
@@ -80,8 +77,6 @@ const methods = {
   triggerEvent,
   setModalState,
   getCSSbyModal,
-
-  goToLink
 };
 
 
@@ -114,12 +109,6 @@ function created() {
         ...this.contents.valueClass
       ]
     });
-  }
-
-  for (const i in this.contents.links) {
-    if(this.contents.links[i]) {
-      this['recordClasses'][i]['value'].push('link');
-    }
   }
 }
 
