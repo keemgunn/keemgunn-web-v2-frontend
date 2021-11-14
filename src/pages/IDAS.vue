@@ -6,11 +6,11 @@
 
   <NavBar/>
 
-  <main v-if="(loadTestField) && (loadState >= 2)" id="idas">
+  <main v-if="(loadTestField) && (loadState >= loadStateEntries.length)" id="idas">
     <TestField :testBlockList="testBlockList"/>
   </main>
 
-  <main v-if="(!loadTestField) && (loadState >= 2)" id="idas">
+  <main v-if="(!loadTestField) && (loadState >= loadStateEntries.length)" id="idas">
     <Section1 :sectionSeed="configs_bundle.s1"/>
   </main>
 
@@ -43,6 +43,10 @@ function data() { return {
   configs_bundle: {},
   testBlockList: {},
   loadState: 0,
+  loadStateEntries: [
+    '1: configsBundle Loaded',
+    '2: content-token loaded'
+  ],
   loadTestField: false,
   // showRatio : 0,
 }}
