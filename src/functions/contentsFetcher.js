@@ -1,6 +1,6 @@
-export function fetchContent(element, src, cli_ip, cli_vendor_token) {
-  const options = { headers: { cli_ip, cli_vendor_token } };
-  fetch(src, options)
+export function fetchContent(element, uri, headers) {
+  console.log(headers);
+  fetch(uri, { headers })
   .then(res => res.blob())
   .then(blob => {
     element.src = URL.createObjectURL(blob);

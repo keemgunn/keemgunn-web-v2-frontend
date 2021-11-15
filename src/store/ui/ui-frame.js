@@ -27,6 +27,17 @@ export default {
     getScale(state) {
       return state.scale
     },
+    getContentsSuffix(state) {
+      if (state.scale === 'XXS') {
+        return '@1x'
+      } else if (state.scale === 'XS' || state.scale === 'S') {
+        return '@2x'
+      } else if (state.scale === 'M' || state.scale === 'L') {
+        return '@4x'
+      } else {
+        return '@6x'
+      }
+    },
     getRatio(state) {
       return state.vw / state.vh
     },

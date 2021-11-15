@@ -4,6 +4,23 @@ export default {
 
 
 
+  s0_f0_a0_b0: {
+    type: "imageContainer",
+    modals: { base: {
+    }},
+    contents: {
+      ext: 'png',
+      alt: "When I was preparing for CSAT again in 2017.",
+    }
+  },
+
+
+
+
+
+
+
+
   s1_f1_a1_b1: {
     _type: "block",
     serial: "s1-f1-a1-b1",
@@ -310,7 +327,7 @@ export default {
     modals: { base: {
     }},
     contents: {
-      type: 'png',
+      ext: 'png',
       alt: "When I was preparing for CSAT again in 2017.",
     }
   },

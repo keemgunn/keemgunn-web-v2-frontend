@@ -9,8 +9,8 @@ export default {
   }),
 
   getters: {
-    getContentsURL: (state) => (payload) => {
-      return state.CS_IP + payload.src + '.' + payload.type
+    getContentsURI: (state) => (payload) => {
+      return state.CS_IP + payload
     }
   },
 

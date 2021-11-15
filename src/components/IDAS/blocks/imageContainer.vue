@@ -3,7 +3,10 @@
   :style="fetchCSS.style"
 >
 
-  <img :id="'image-' + blockSeed.serial" :alt="this.contents.alt">
+  <img :id="'image-' + blockSeed.serial" 
+  :alt="this.contents.alt"
+  :src="imgPlacholder"
+  >
   <p class="typo-caption6" v-html="this.contents.alt"></p>
 
 </div>
@@ -14,7 +17,6 @@ import { mapMutations, mapActions, mapGetters } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
 import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
-import { camelToDash } from '@/functions/stringMod';
 import { fetchContent } from '@/functions/contentsFetcher';
 
 const props = { 
@@ -31,28 +33,24 @@ function data() { return {
   imgEl : {},
   states: {}, // { modals }
   contents: {},
-  link : '',
-  subStyles: {
-    class: [], style: {}
-  }
+  imgPlacholder: require("@/assets/img/placeholder_image.svg"),
+  serialPath: '',
+  mediaRequestHeader : {}
 }}
 
 const computed = {
-  ...mapGetters('api', [ 'getContentsURL', 'getCliIP', 'getContentsToken']),
+  ...mapGetters('api', [ 
+    'getContentsURI', 'getCliIP', 'getContentsToken'
+  ]),
+  ...mapGetters('ui', [ 
+    'getContentsSuffix'
+  ]),
   fetchCSS() {
     const bundle = this.getCSSbyModal(
       this['modalConfigs'],
       this['states']['modals']
     );
     return bundle
-  },
-
-  serial() {
-    return this.blockSeed.serial
-  },
-
-  type() {
-    return camelToDash(this.blockSeed.type);
   }
 };
 
@@ -63,6 +61,7 @@ const methods = {
   triggerEvent,
   setModalState,
   getCSSbyModal,
+  fetchContentAgain() {}
 };
 
 
@@ -82,26 +81,34 @@ function created() {
   injectListnerCallbacks(this, listenersList, this.blockSeed.injectTriggers);
 
 
-  this.contents.url = this.getContentsURL({ 
-    src: '/idas/image/' + this.blockSeed.serial,
-    type: this.contents.type
-  });
+  this.serialPath = this.getContentsURI('/idas/images/' + this.blockSeed.serial);
+  this.mediaRequestHeader = {
+    cli_ip: this.getCliIP,
+    cli_vendor_token: this.getContentsToken,
+    ext: this.contents.ext,
+    suffix: this.getContentsSuffix
+  }
 }
 
 
 function mounted() {
   // Attach DOM Event Listener --------------------
   attachEventListeners(this, this.blockSeed.serial, listenersList);
-
+  // Attach DOM Event Listener --------------------
   this.imgEl = document.querySelector('#image-' + this.blockSeed.serial);
-  fetchContent(
-    this.imgEl,
-    this.contents.url,
-    this.getCliIP,
-    this.getContentsToken
-  );
+  fetchContent(this.imgEl, this.serialPath, this.mediaRequestHeader);
+  // Inject re-fetch method AFTER first fetch
+  this.fetchContentAgain = () => {
+    fetchContent(this.imgEl, this.serialPath, this.mediaRequestHeader);
+  }
+}
 
 
+const watch = {
+  getContentsSuffix(newValue) {
+    this.mediaRequestHeader.suffix = newValue;
+    this.fetchContentAgain();
+  }
 }
 
 
@@ -110,6 +117,7 @@ export default {
   data, computed, 
   methods, 
   created, 
-  mounted
+  mounted,
+  watch
 }
 </script>
