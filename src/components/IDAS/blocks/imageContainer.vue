@@ -83,7 +83,7 @@ function created() {
 
 
   this.contents.url = this.getContentsURL({ 
-    src: '/idas/image/image-' + this.blockSeed.serial,
+    src: '/idas/image/' + this.blockSeed.serial,
     type: this.contents.type
   });
 }
@@ -99,7 +99,7 @@ function mounted() {
     this.contents.url,
     this.getCliIP,
     this.getContentsToken
-  )
+  );
 
 
 }

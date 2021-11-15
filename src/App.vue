@@ -23,14 +23,19 @@ import testContent from "@/assets/contents/testContent";
 
 export default {
   name: 'App',
+
+
   components: {
     // test003, 
     // test005, 
   },
+
+
   data() { return {
     testContent,
-    loadState: 0
   }},
+
+
   computed: {
     ...mapGetters(['getENV']),
     ...mapGetters('ui',[
@@ -47,13 +52,14 @@ export default {
       return String(this.fontScale) + "%"
     }
   },
+  
 
   methods: {
     ...mapMutations('ui', {
       frameResize: 'resize'
     }),
     ...mapActions('api', [
-      'openTheDoor'
+      'openTheDoor', 'checkContentsServer'
     ]),
     fetchFrameSize() {
       this.frameResize({
@@ -73,7 +79,6 @@ export default {
       window.addEventListener('resize', this.fetchFrameSize);
     });
   },
-
 }
 </script>
 

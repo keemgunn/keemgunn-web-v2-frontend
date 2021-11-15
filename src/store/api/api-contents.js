@@ -1,22 +1,26 @@
-// const publicIp = require('public-ip');
 // const axios = require('axios');
-import apiConfigs from '@/store/api/configs.json';
-const contentsProvider_ip = apiConfigs['destinations']['contents-server'] === "dev" ? "http://localhost:4433" : "http://13.76.155.192";
+
 
 export default {
   namespaced: false,
   
   state: () => ({
-    cp_ip: contentsProvider_ip,
+    CS_IP: process.env.NODE_ENV === 'production' ? "http://13.76.155.192/app" : "http://localhost:4433/app"
   }),
 
   getters: {
     getContentsURL: (state) => (payload) => {
-      return state.cp_ip + payload.src + '.' + payload.src
+      return state.CS_IP + payload.src + '.' + payload.type
     }
   },
 
   mutations: {
+    nextCSentry(state) {
+      state.CS_entry_index += 1;
+    },
+    setContentsServerIP(state, payload) {
+      state.CS_IP = payload.url;
+    }
   },
 
   actions: {

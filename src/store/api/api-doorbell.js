@@ -1,14 +1,12 @@
 const publicIp = require('public-ip');
 const axios = require('axios');
-// import apiConfigs from '@/store/api/configs.json';
-// const cliDestination = apiConfigs['destinations']['cli-server'];
 
 
 export default {
   namespaced: false,
   
   state: () => ({
-    cli_ip: '0.0.0.0',
+    cli_ip: "",
     server_message: "",
     contentsToken: "",
   }),
@@ -45,12 +43,12 @@ export default {
         ipv4 = '0.0.0.0'
         console.log('error on ipv4');
       }
-
+      
       axios({
         method: 'post',
         url: '/visitor/api/doorknob',
         data: { ipv4 },
-        timeout: 2000,
+        timeout: 1800,
       })
       .then((response) => {
         const data = response.data;
