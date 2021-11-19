@@ -66,9 +66,9 @@
 html, body {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  -ms-text-size-adjust : 100%;  /* IE */
-  -moz-text-size-adjust : 100%;  /* 파이어폭스 */
-  -o-text-size-adjust : 100%;  /* 오페라 구버전 */
+  -ms-text-size-adjust : 100%;
+  -moz-text-size-adjust : 100%;
+  -o-text-size-adjust : 100%;
   max-width: 100%;
   overflow-x: hidden;
 }

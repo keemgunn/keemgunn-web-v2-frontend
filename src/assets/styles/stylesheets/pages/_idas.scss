@@ -24,6 +24,7 @@
 
   .block {
     width: 100%;
+    height: fit-content;
     border-style: solid;
     border-width: 1rem;
     border-color: rgba(9, 212, 94, 0.781);
@@ -67,8 +68,12 @@
   }
 
   .body-text {
-    em {
-      color: red;
+    b {
+      font-weight: 600;
+    }
+    strong {
+      font-weight: 600;
+      text-decoration: underline;
     }
   }
   
@@ -90,6 +95,31 @@
     // width: 300rem;
   }
 
+
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12rem;
+    img {
+      width: 100%;
+      height: fit-content;
+    }
+    svg {
+      fill: aqua;
+    }
+    a {
+      text-decoration: underline;
+    }
+    a:hover {
+      color: blue;
+    }
+  }
+  
+  
+  
+  
+  
+  
   .idas-motto-text {
     font-family: 'Syncopate';
     font-weight: 700;
@@ -99,27 +129,11 @@
     white-space: nowrap;
     overflow: visible;
     text-overflow: ellipsis;
-  }
 
-  .image-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12rem;
-    img {
-      width: 100%;
-      height: fit-content;
-      svg {
-        fill: aquamarine;
-
-      }
-    }
+    position: relative;
+    width: fit-content;
+    left: -20rem;
   }
-  
-  
-  
-  
-  
-  
   
   
   // ================================

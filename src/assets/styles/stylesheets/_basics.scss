@@ -25,17 +25,16 @@
   opacity: 1;
 }
 
-
 @mixin Line($val) {
   .line-flex-ver-#{$val} {
     width: $val + rem;
     align-self: stretch;
-    background-color: var(--i0); 
+    background-color: var(--ink2); 
   }
   .line-flex-hor-#{$val} {
     height: $val + rem;
     align-self: stretch;
-    background-color: var(--i0); 
+    background-color: var(--ink2); 
   }
 } @for $i from 1 through 8 {
   @include Line($i);

@@ -7,7 +7,7 @@
   :alt="this.contents.alt"
   :src="imgPlacholder"
   >
-  <p class="typo-caption6" v-html="this.contents.alt"></p>
+  <p class="typo-caption6" v-if="contents.showAlt" v-html="this.contents.alt"></p>
 
 </div>
 </template>

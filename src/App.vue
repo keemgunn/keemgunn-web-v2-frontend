@@ -1,6 +1,4 @@
-<template>
-<div id="prime" 
-:class="[ getScale, whatLanguage ]" >
+<template><div :class="[ getScale, whatLanguage ]" >
 
 
   <!-- <test005/> -->
@@ -89,6 +87,4 @@ export default {
 @import "assets/fonts/syncopate.css";
 @import "assets/fonts/inter_sd.css";
 @import "assets/styles/main.scss";
-
-
 </style>

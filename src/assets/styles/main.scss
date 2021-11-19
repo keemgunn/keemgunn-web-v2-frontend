@@ -7,10 +7,22 @@
 @use './stylesheets/components/nav' as nav;
 @use './stylesheets/components/errorpage' as errpg;
 
+body {
+  padding: 0;
+  margin: 0;
 
-#prime {
-  left: 10rem;
-  color: var(--i0);
+  ::-moz-selection { /* Code for Firefox */
+    color: var(--ink0);
+    background-color: var(--accent3);
+  }
+  ::selection {
+    color: var(--ink0);
+    background-color: var(--accent3);
+  }
+}
+
+#app {
+  color: var(--ink1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -20,13 +32,6 @@
   // padding: 15px 0 calc(env(safe-area-inset-bottom) + 15px);
   // shape-rendering: crispEdges;
 }
-
-body {
-  padding: 0;
-  margin: 0;
-}
-
-
 
 
 

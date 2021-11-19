@@ -45,7 +45,7 @@ function data() { return {
   loadState: 0,
   loadStateEntries: [
     '1: configsBundle Loaded',
-    '2: content-token loaded'
+    // '2: content-token loaded'
   ],
   loadTestField: false,
   // showRatio : 0,
