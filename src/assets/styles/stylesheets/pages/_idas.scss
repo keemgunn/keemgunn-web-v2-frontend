@@ -104,14 +104,21 @@
       width: 100%;
       height: fit-content;
     }
-    svg {
-      fill: aqua;
+    .img-zoomable {
+      
+    }
+    .img-zoomable:hover {
+      cursor: pointer;
     }
     a {
       text-decoration: underline;
     }
     a:hover {
-      color: blue;
+      color: var(--accent0);
+    }
+    svg {
+      // for later update...
+      fill: aqua;
     }
   }
   

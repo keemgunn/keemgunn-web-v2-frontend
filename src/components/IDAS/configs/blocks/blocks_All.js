@@ -319,6 +319,7 @@ export default {
       ext: 'png',
       alt: "When I was preparing for CSAT again in 2017.",
       showAlt: true,
+      zoom: true
     }
   },
   // A2 ...............................
