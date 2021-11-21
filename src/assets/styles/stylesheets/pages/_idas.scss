@@ -105,10 +105,17 @@
       height: fit-content;
     }
     .img-zoomable {
-      
+      transition: all 400ms ease;
+      transform-origin: 50% 50%;
+      // position: relative;
+      // width: 100%; height: 100%;
+      top: 30rem; 
     }
     .img-zoomable:hover {
       cursor: pointer;
+      transform:scale(1.014);
+      border: 1.3rem solid;
+      border-color: var(--accent2);
     }
     a {
       text-decoration: underline;
@@ -119,6 +126,15 @@
     svg {
       // for later update...
       fill: aqua;
+    }
+    .large-image {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.74);
+      img {
+        width: 90%;
+      }
     }
   }
   

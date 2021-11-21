@@ -3,12 +3,25 @@
   :style="fetchCSS.style"
 >
 
-  <img :id="'image-' + blockSeed.serial" 
-  :class="imgZoomable"
-  :alt="this.contents.alt"
-  :src="imgPlacholder"
-  >
+  <div class="image-wrapper" :style="imageWrapperStyle">
+    <img :id="'image-' + blockSeed.serial" 
+    :class="imgZoomable"
+    :alt="this.contents.alt"
+    :src="imgPlacholder"
+    @click="getLargeImage()"
+    >
+  </div>
+
   <p class="typo-caption6" v-if="contents.showAlt" v-html="this.contents.alt"></p>
+
+  <div class="large-image" v-show="isZoom">
+    <div class="large-image-header"></div>
+    <div class="large-image-wrapper">
+      <img :id="'image-zoom-' + blockSeed.serial">
+    </div>
+    <div class="large-image-footer"></div>
+  </div>
+
 
 </div>
 </template>
@@ -37,7 +50,13 @@ function data() { return {
   imgPlacholder: require("@/assets/img/placeholder_image.svg"),
   serialPath: '',
   mediaRequestHeader : {},
-  preFetched: {}
+  preFetched: {},
+  isZoom: false,
+  zoomEl: {},
+  imageWrapperStyle: {
+    width: '100%',
+    height: ''
+  }
 }}
 
 const computed = {
@@ -71,7 +90,8 @@ const methods = {
   triggerEvent,
   setModalState,
   getCSSbyModal,
-  fetchContentAgain() {}
+  fetchContentAgain() {},
+  getLargeImage() {}
 };
 
 
@@ -92,14 +112,8 @@ function created() {
 
 
   this.serialPath = this.getContentsURI('/idas/images/' + this.blockSeed.serial);
-  this.mediaRequestHeader = {
-    cli_ip: this.getCliIP,
-    cli_vendor_token: this.getContentsToken,
-    ext: this.contents.ext,
-    suffix: this.getContentsSuffix
-  }
 
-  // pre-fetch using lowest resolution image files...
+  // pre-fetch using lowest resolution image files ...
   fetch(this.serialPath, { headers: {
     cli_ip: this.getCliIP,
     cli_vendor_token: this.getContentsToken,
@@ -110,17 +124,47 @@ function created() {
     this.preFetched = blob
   })
 
+  // Inject main contents request header ...
+  this.mediaRequestHeader = {
+    cli_ip: this.getCliIP,
+    cli_vendor_token: this.getContentsToken,
+    ext: this.contents.ext,
+    suffix: this.getContentsSuffix
+  }
 }
 
 
 function mounted() {
   this.imgEl = document.querySelector('#image-' + this.blockSeed.serial);
+  const imageWrapperStyle = this.imageWrapperStyle;
+  this.imgEl.addEventListener("load", function() {
+    const ratio = this.naturalWidth / this.naturalHeight;
+    imageWrapperStyle.height = `calc( 100% / ${ratio})`
+  });
   fetchContent(this.imgEl, this.serialPath, this.mediaRequestHeader);
   // Attach DOM Event Listener --------------------
   attachEventListeners(this, this.blockSeed.serial, listenersList);
   // Inject re-fetch method AFTER first fetch
   this.fetchContentAgain = () => {
     fetchContent(this.imgEl, this.serialPath, this.mediaRequestHeader);
+  }
+
+  // Make It Zoom-able --------------------
+  if(this.contents.zoom) {
+    this.zoomEl = document.querySelector('#image-zoom-' + this.blockSeed.serial)
+    this.getLargeImage = () => {
+      this.isZoom = true;
+      fetch(this.serialPath, { headers: {
+        cli_ip: this.getCliIP,
+        cli_vendor_token: this.getContentsToken,
+        ext: this.contents.ext,
+        suffix: '@6x'
+      }})
+      .then(res => res.blob())
+      .then(blob => {
+        this.zoomEl.src = URL.createObjectURL(blob);
+      });
+    }
   }
 }
 

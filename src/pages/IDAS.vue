@@ -6,6 +6,8 @@
 
   <NavBar/>
 
+  <iconContainer :iconPayload="iconPayload"/>
+
   <main v-if="(loadTestField) && (loadState >= loadStateEntries.length)" id="idas">
     <TestField :testBlockList="testBlockList"/>
   </main>
@@ -24,6 +26,8 @@ import { mapGetters, mapMutations, mapActions } from 'vuex';
 import NavBar from '@/components/NavBar.vue';
 import Section1 from '@/components/IDAS/sections/Section1.vue'
 import TestField from '@/components/IDAS/IDASblockTestField.vue';
+
+import iconContainer from '@/components/elements/iconContainer.vue'
 
 
 // config file will be imported 
@@ -49,6 +53,11 @@ function data() { return {
   ],
   loadTestField: false,
   // showRatio : 0,
+
+  iconPayload: {
+    name: 'close-x',
+    actions: false,
+  }
 }}
 
 
@@ -56,6 +65,7 @@ const components = {
   NavBar, 
   TestField, 
   Section1,
+  iconContainer
 };
 
 
