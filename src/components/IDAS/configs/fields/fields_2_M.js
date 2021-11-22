@@ -1,20 +1,5 @@
-
-
 export const s1_f1 = {
-  _type: "field",
-  scale: ["M"],
-  serial: "s1-f1",
-  name: "field-name",
-  self: {
-    margin: "0 0",
-    padding: "0 0"
-  },
-  container: {
-    type: "A",
-    columns: 18,
-    gap: "10rem 10rem",
-    widthOverride: "",
-  },
+  type: "A",
   sensors: {
     position: {
       StyleCalc: (position) => {
@@ -32,9 +17,14 @@ export const s1_f1 = {
   modals: {
     base: {
       class: [''],
-      style: [{}],
+      style: [{
+        "margin": "0 0",
+        "padding": "0 0",
+        "grid-template-columns": 18,
+        "gap": "10rem 10rem",
+      }],
     },
-    shown: {
+    position: {
       0: {
         class: 'shown',
         style: {
@@ -47,20 +37,7 @@ export const s1_f1 = {
 
 
 export const s1_f2 = {
-  _type: "field",
-  scale: ["M"],
-  serial: "s1-f2",
-  name: "field-name",
-  self: {
-    margin: "0 0",
-    padding: "0 0"
-  },
-  container: {
-    type: "A",
-    columns: 18,
-    gap: "10rem 10rem",
-    widthOverride: "",
-  },
+  type: "A",
   sensors: {
     position: {
       StyleCalc: (position) => {
@@ -78,7 +55,12 @@ export const s1_f2 = {
   modals: {
     base: {
       class: [''],
-      style: [{}],
+      style: [{
+        "margin": "0 0",
+        "padding": "0 0",
+        "grid-template-columns": 18,
+        "gap": "10rem 10rem",
+      }],
     },
     shown: {
       0: {
@@ -94,20 +76,7 @@ export const s1_f2 = {
 
 
 export const s2_f1 = {
-  _type: "field",
-  scale: ["M"],
-  serial: "s2-f1",
-  name: "field-name",
-  self: {
-    margin: "0 0",
-    padding: "0 0"
-  },
-  container: {
-    type: "A",
-    columns: 18,
-    gap: "10rem 10rem",
-    widthOverride: "",
-  },
+  type: "A",
   sensors: {
     position: {
       StyleCalc: (position) => {
@@ -125,7 +94,12 @@ export const s2_f1 = {
   modals: {
     base: {
       class: [''],
-      style: [{}],
+      style: [{
+        "margin": "0 0",
+        "padding": "0 0",
+        "grid-template-columns": 18,
+        "gap": "10rem 10rem",
+      }],
     },
     shown: {
       0: {
@@ -140,20 +114,7 @@ export const s2_f1 = {
 
 
 export const s2_f2 = {
-  _type: "field",
-  scale: ["M"],
-  serial: "s2-f2",
-  name: "field-name",
-  self: {
-    margin: "0 0",
-    padding: "0 0"
-  },
-  container: {
-    type: "A",
-    columns: 18,
-    gap: "10rem 10rem",
-    widthOverride: "",
-  },
+  type: "A",
   sensors: {
     position: {
       StyleCalc: (position) => {
@@ -171,7 +132,12 @@ export const s2_f2 = {
   modals: {
     base: {
       class: [''],
-      style: [{}],
+      style: [{
+        "margin": "0 0",
+        "padding": "0 0",
+        "grid-template-columns": 18,
+        "gap": "10rem 10rem",
+      }],
     },
     shown: {
       0: {
@@ -183,8 +149,6 @@ export const s2_f2 = {
     },
   }
 }
-
-
 
 
 

@@ -97,9 +97,18 @@ const sensorDefaults = {
 
 const wholeBundle = {};
 
+const scaleEntries = [
+  ["XXS", "XS"],
+  ["S"],
+  ["M"],
+  ["L"],
+  ["XL", "XXL"]
+]
 
-for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
-  for (const [_serial, field] of Object.entries(fieldsByScale)) {
+const allFields = [fields_XS, fields_S, fields_M, fields_L];
+for (const fn in allFields) {
+  const scaleEntry = scaleEntries[fn];
+  for (const [_serial, field] of Object.entries(allFields[fn])) {
     const { modals, sensors } = field;
     const serial = underToDash(_serial);
     // Check and Make Section Object in wholeBundle
@@ -116,15 +125,8 @@ for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
       modals.base.style = [];
     }
     modals.base.class.push(serial);
-    modals.base.class.push(fieldType(field.container.type));
-    modals.base.style.push({
-      "margin": field.self.margin,
-      "padding": field.self.padding,
-      "grid-template-columns": `repeat(${field.container.columns}, 1fr)`,
-      "gap": field.container.gap,
-      "width": field.container.widthOverride
-    });
-    for (const scale of field.scale) {
+    modals.base.class.push(fieldType(field.type));
+    for (const scale of scaleEntry) {
       modalConfigs[scale] = modals;
       sensorConfigs[scale] = SensorConfigs(sensors, 'field');
     }
@@ -167,9 +169,10 @@ for (const fieldsByScale of [ fields_XS, fields_S, fields_M, fields_L ]) {
 
 
 
-
-for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L ]) {
-  for (const [_serial, article] of Object.entries(articlesByScale)) {
+const allArticles = [articles_XS, articles_S, articles_M, articles_L];
+for (const an in allArticles) {
+  const scaleEntry = scaleEntries[an];
+  for (const [_serial, article] of Object.entries(allArticles[an])) {
     const serial = underToDash(_serial);
     const field = getParentName(serial);
     const section = getParentName(field);
@@ -188,7 +191,7 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
       modals.base.style = [];
     }
     modals.base.class.push(serial);
-    for (const scale of article.scale) {
+    for (const scale of scaleEntry) {
       // Configs by Scales
       modalConfigs[scale] = modals;
       sensorConfigs[scale] = SensorConfigs(sensors, 'article');
