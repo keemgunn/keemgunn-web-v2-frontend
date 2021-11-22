@@ -188,16 +188,6 @@ for (const articlesByScale of [ articles_XS, articles_S, articles_M, articles_L 
       modals.base.style = [];
     }
     modals.base.class.push(serial);
-    modals.base.style.push({
-      "grid-area": article.self.gridArea,
-      "width": article.self.width,
-      "place-self": article.self.place,
-      "margin": article.self.margin,
-      "flex-direction": article.container.direction,
-      "justify-content": article.container.justify,
-      "align-items": article.container.align
-      
-    })
     for (const scale of article.scale) {
       // Configs by Scales
       modalConfigs[scale] = modals;
