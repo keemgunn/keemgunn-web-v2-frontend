@@ -9,7 +9,7 @@
 const name = 'Block_simpleText';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
-import { triggerEvent, goToLink } from '@/functions/triggers';
+import { triggerEvent } from '@/functions/triggers';
 import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
 import { camelToDash } from '@/functions/stringMod';
 
@@ -28,9 +28,6 @@ function data() { return {
   states: {}, // { modals }
   contents: {},
   link : '',
-  subStyles: {
-    class: [], style: {}
-  }
 }}
 
 const computed = {
@@ -58,8 +55,6 @@ const methods = {
   triggerEvent,
   setModalState,
   getCSSbyModal,
-
-  goToLink
 };
 
 
@@ -78,10 +73,8 @@ function created() {
   // Inject Listener Callbacks --------------------
   injectListnerCallbacks(this, listenersList, this.blockSeed.injectTriggers);
 
-  if( this.contents.link ) {
-    this.subStyles.class.push('link');
-    this.link = this.contents.link;
-  }
+
+
 }
 
 

@@ -1,17 +1,14 @@
-<template><div :id="blockSeed.serial"
-  :class="fetchCSS.class" 
-  :style="fetchCSS.style"
->
-  <p
-    :class="subStyles.class" 
-    :style="subStyles.style"
-    v-html="contents.text"
-  ></p>
+<template><div
+:id="blockSeed.serial"
+:class="fetchCSS.class" 
+:style="fetchCSS.style">
+
+  <p v-html="contents.text"/>
+
 </div>
 </template>
 <script>
 const name = 'Block_simpleText';
-import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal, setModalState } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
 import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
@@ -30,10 +27,6 @@ function data() { return {
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
   contents: {},
-  link : '',
-  subStyles: {
-    class: [], style: {}
-  }
 }}
 
 const computed = {
@@ -56,8 +49,6 @@ const computed = {
 
 
 const methods = {
-  ...mapMutations('', [  ]),
-  ...mapActions('', [  ]),
   triggerEvent,
   setModalState,
   getCSSbyModal,
@@ -78,11 +69,6 @@ function created() {
 
   // Inject Listener Callbacks --------------------
   injectListnerCallbacks(this, listenersList, this.blockSeed.injectTriggers);
-
-  if( this.contents.link ) {
-    this.subStyles.class.push('link');
-    this.link = this.contents.link;
-  }
 }
 
 

@@ -1,11 +1,14 @@
-<template><div :id="blockSeed.serial"
-  :class="fetchCSS.class" 
-  :style="fetchCSS.style"
->
-  <div class="wrapper">
-    <div class="line-ver-1"></div>
-    <div class="line-hor-1"></div>
+<template><div
+:id="blockSeed.serial"
+:class="fetchCSS.class" 
+:style="fetchCSS.style">
+
+  <p v-html="contents.text"/>
+  <div class="line-wrapper">
+    <div class="line-hor"></div>
+    <div class="line-ver"></div>
   </div>
+
 </div>
 </template>
 <script>
@@ -29,9 +32,6 @@ function data() { return {
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
   contents: {},
-  subStyles: {
-    class: [], style: {}
-  }
 }}
 
 const computed = {

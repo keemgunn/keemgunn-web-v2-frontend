@@ -88,6 +88,8 @@
     --black: #000000;
     --white: #ffffff;
   }
+
+  
 }
 
 @media (prefers-color-scheme: dark) {

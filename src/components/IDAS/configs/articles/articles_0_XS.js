@@ -13,7 +13,7 @@ export const s1_f1_a1 = {
   container: {
     direction: "column",
     justify: "flex-start",
-    align: "flex-start"
+    align: "flex-start",
   },
   sensors: {
     position: {

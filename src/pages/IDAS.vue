@@ -6,7 +6,7 @@
 
   <NavBar/>
 
-  <iconContainer :iconPayload="iconPayload"/>
+  <!-- <iconContainer :iconPayload="iconPayload"/> -->
 
   <main v-if="(loadTestField) && (loadState >= loadStateEntries.length)" id="idas">
     <TestField :testBlockList="testBlockList"/>
@@ -54,10 +54,10 @@ function data() { return {
   loadTestField: false,
   // showRatio : 0,
 
-  iconPayload: {
-    name: 'close-x',
-    actions: false,
-  }
+  // iconPayload: {
+  //   name: 'close-x',
+  //   actions: false,
+  // }
 }}
 
 

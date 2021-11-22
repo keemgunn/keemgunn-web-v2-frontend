@@ -1,5 +1,6 @@
 <template><div id="idas-block-test-field">
 
+  <article class="article-test">
   <component 
     v-for="blockObj of testBlockList"
     :key="blockObj.serial"
@@ -7,6 +8,7 @@
     :is="blockObj.type"
     @trigger="tossEvent"
   />
+  </article>
 
 </div>
 </template>
