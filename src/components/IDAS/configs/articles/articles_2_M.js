@@ -4,17 +4,6 @@ export const s1_f1_a1 = {
   _type: "article",
   scale: ["M"],
   serial: "s1-f1-a1",
-  self: {
-    gridArea: "1/3/2/5",
-    width: "100%",
-    place: "center stretch",
-    margin: "0 0"
-  },
-  container: {
-    direction: "column",
-    justify: "flex-start",
-    align: "flex-start"
-  },
   sensors: {
     position: {
       StyleCalc: (position) => {
@@ -32,13 +21,20 @@ export const s1_f1_a1 = {
   modals: {
     base: {
       class: [''],
-      style: [{}],
+      style: [{
+        "grid-area": "1/3/2/5",
+        "place-self": "center stretch",
+        "margin": "0 0",
+        "flex-direction": "column",
+        "justify-content": "flex-start",
+        "align-items": "flex-start",
+        "gap": "20rem",
+      }],
     },
     hover: {
       true: {
-        class: 'mouse-over',
+        class: 'hover',
         style: {
-          "opacity": "0.6"
         }
       }
     },
@@ -50,7 +46,7 @@ export const s1_f1_a1 = {
         }
       }
     },
-  position: {
+    position: {
       1: {
         class: 'something-1',
         style: {
@@ -66,30 +62,7 @@ export const s1_f1_a2 = {
   _type: "article",
   scale: ["M"],
   serial: "s1-f1-a2",
-  self: {
-    gridArea: "1/3/2/5",
-    width: "100%",
-    place: "center stretch",
-    margin: "0 0"
-  },
-  container: {
-    direction: "column",
-    justify: "flex-start",
-    align: "flex-start"
-  },
   sensors: {
-    position: {
-      StyleCalc: (position) => {
-        return {
-          opacity: position
-        }
-      },
-      reactors: {
-        0: null,
-        0.5: "half",
-        1: null
-      }
-    }
   },
   modals: {
     base: {
@@ -99,9 +72,15 @@ export const s1_f1_a2 = {
     hover: {
       true: {
         class: 'mouse-over',
-        style: {
-          "opacity": "0.6"
-        }
+        style: [{
+          "grid-area": "1/3/2/5",
+          "place-self": "center stretch",
+          "margin": "0 0",
+          "flex-direction": "column",
+          "justify-content": "flex-start",
+          "align-items": "flex-start",
+          "gap": "20rem",
+        }],
       }
     },
     touched: {
@@ -128,23 +107,9 @@ export const s1_f2_a1 = {
   _type: "article",
   scale: ["M"],
   serial: "s1-f2-a1",
-  self: {
-    gridArea: "1/3/2/5",
-    width: "100%",
-    place: "center stretch",
-    margin: "0 0"
-  },
-  container: {
-    direction: "column",
-    justify: "flex-start",
-    align: "flex-start"
-  },
   sensors: {
     position: {
-      StyleCalc: (position) => {
-        return {
-          opacity: position
-        }
+      styleCalc: {
       },
       reactors: {
         0: null,
@@ -156,7 +121,15 @@ export const s1_f2_a1 = {
   modals: {
     base: {
       class: [''],
-      style: [{}],
+      style: [{
+        "grid-area": "1/3/2/5",
+        "place-self": "center stretch",
+        "margin": "0 0",
+        "flex-direction": "column",
+        "justify-content": "flex-start",
+        "align-items": "flex-start",
+        "gap": "20rem",
+      }],
     },
     hover: {
       true: {
@@ -190,17 +163,6 @@ export const s1_f2_a2 = {
   _type: "article",
   scale: ["M"],
   serial: "s1-f2-a2",
-  self: {
-    gridArea: "1/3/2/5",
-    width: "100%",
-    place: "center stretch",
-    margin: "0 0"
-  },
-  container: {
-    direction: "column",
-    justify: "flex-start",
-    align: "flex-start"
-  },
   sensors: {
     position: {
       StyleCalc: (position) => {
@@ -218,7 +180,15 @@ export const s1_f2_a2 = {
   modals: {
     base: {
       class: [''],
-      style: [{}],
+      style: [{
+        "grid-area": "1/3/2/5",
+        "place-self": "center stretch",
+        "margin": "0 0",
+        "flex-direction": "column",
+        "justify-content": "flex-start",
+        "align-items": "flex-start",
+        "gap": "20rem",
+      }],
     },
     hover: {
       true: {
@@ -252,17 +222,6 @@ export const s2_f1_a1 = {
   _type: "article",
   scale: ["M"],
   serial: "s2-f1-a1",
-  self: {
-    gridArea: "1/3/2/5",
-    width: "100%",
-    place: "center stretch",
-    margin: "0 0"
-  },
-  container: {
-    direction: "column",
-    justify: "flex-start",
-    align: "flex-start"
-  },
   sensors: {
     position: {
       StyleCalc: (position) => {
@@ -280,7 +239,15 @@ export const s2_f1_a1 = {
   modals: {
     base: {
       class: [''],
-      style: [{}],
+      style: [{
+        "grid-area": "1/3/2/5",
+        "place-self": "center stretch",
+        "margin": "0 0",
+        "flex-direction": "column",
+        "justify-content": "flex-start",
+        "align-items": "flex-start",
+        "gap": "20rem",
+      }],
     },
     hover: {
       true: {
@@ -314,17 +281,6 @@ export const s2_f1_a2 = {
   _type: "article",
   scale: ["M"],
   serial: "s2-f1-a2",
-  self: {
-    gridArea: "1/3/2/5",
-    width: "100%",
-    place: "center stretch",
-    margin: "0 0"
-  },
-  container: {
-    direction: "column",
-    justify: "flex-start",
-    align: "flex-start"
-  },
   sensors: {
     position: {
       StyleCalc: (position) => {
@@ -342,7 +298,15 @@ export const s2_f1_a2 = {
   modals: {
     base: {
       class: [''],
-      style: [{}],
+      style: [{
+        "grid-area": "1/3/2/5",
+        "place-self": "center stretch",
+        "margin": "0 0",
+        "flex-direction": "column",
+        "justify-content": "flex-start",
+        "align-items": "flex-start",
+        "gap": "20rem",
+      }],
     },
     hover: {
       true: {
@@ -376,17 +340,6 @@ export const s2_f2_a1 = {
   _type: "article",
   scale: ["M"],
   serial: "s2-f2-a1",
-  self: {
-    gridArea: "1/3/2/5",
-    width: "100%",
-    place: "center stretch",
-    margin: "0 0"
-  },
-  container: {
-    direction: "column",
-    justify: "flex-start",
-    align: "flex-start"
-  },
   sensors: {
     position: {
       StyleCalc: (position) => {
@@ -404,7 +357,15 @@ export const s2_f2_a1 = {
   modals: {
     base: {
       class: [''],
-      style: [{}],
+      style: [{
+        "grid-area": "1/3/2/5",
+        "place-self": "center stretch",
+        "margin": "0 0",
+        "flex-direction": "column",
+        "justify-content": "flex-start",
+        "align-items": "flex-start",
+        "gap": "20rem",
+      }],
     },
     hover: {
       true: {
@@ -438,17 +399,6 @@ export const s2_f2_a2 = {
   _type: "article",
   scale: ["M"],
   serial: "s2-f2-a2",
-  self: {
-    gridArea: "1/3/2/5",
-    width: "100%",
-    place: "center stretch",
-    margin: "0 0"
-  },
-  container: {
-    direction: "column",
-    justify: "flex-start",
-    align: "flex-start"
-  },
   sensors: {
     position: {
       StyleCalc: (position) => {
@@ -466,7 +416,15 @@ export const s2_f2_a2 = {
   modals: {
     base: {
       class: [''],
-      style: [{}],
+      style: [{
+        "grid-area": "1/3/2/5",
+        "place-self": "center stretch",
+        "margin": "0 0",
+        "flex-direction": "column",
+        "justify-content": "flex-start",
+        "align-items": "flex-start",
+        "gap": "20rem",
+      }],
     },
     hover: {
       true: {
