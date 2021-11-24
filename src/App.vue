@@ -1,39 +1,15 @@
-<template><div :class="[ getScale, whatLanguage ]" >
-
-
-  <!-- <test005/> -->
-  <!-- <test003 :testContent="testContent" :classTestName="'abcd'"
-  :dynamicTest="'compA'"/> -->
-
-
-<router-view/>
-</div>
+<template>
+  <div :class="[ getScale, whatLanguage ]" >
+    <router-view/>
+  </div>
 </template>
-
-
-
-
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex';
-// import test003 from '@/pages/test/003_ContentImport.vue'
-// import test005 from '@/pages/test/005_IdasBundleMonitor.vue'
-import testContent from "@/assets/contents/testContent";
-
 export default {
   name: 'App',
-
-
-  components: {
-    // test003, 
-    // test005, 
-  },
-
-
+  components: {},
   data() { return {
-    testContent,
   }},
-
-
   computed: {
     ...mapGetters(['getENV']),
     ...mapGetters('ui',[
@@ -50,8 +26,6 @@ export default {
       return String(this.fontScale) + "%"
     }
   },
-  
-
   methods: {
     ...mapMutations('ui', {
       frameResize: 'resize'
@@ -66,11 +40,8 @@ export default {
       });
     }
   },
-
-
   created() {
     this.openTheDoor();
-
     // Adjust Screen Size ---------------------
     this.fetchFrameSize()
     this.$nextTick(() => {
@@ -79,8 +50,6 @@ export default {
   },
 }
 </script>
-
-
 <style lang="scss">
 @import "assets/styles/stylesheets/rootStyle.css";
 @import "assets/styles/stylesheets/colors.css";

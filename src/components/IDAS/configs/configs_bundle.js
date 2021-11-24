@@ -80,7 +80,6 @@ function SensorConfigs(sensors, containerType) {
     output.position = {};
   }
 
-
   return output
 }
 
@@ -191,15 +190,28 @@ for (const an in allArticles) {
       modals.base.style = [];
     }
     modals.base.class.push(serial);
+
+    const hasParents =
+      typeof wholeBundle[section] !== 'undefined' ?
+        typeof wholeBundle[section][field] !== 'undefined' ?
+          true : false
+        : false;
+
     for (const scale of scaleEntry) {
       // Configs by Scales
       modalConfigs[scale] = modals;
       sensorConfigs[scale] = SensorConfigs(sensors, 'article');
 
-      // Inject position sensorConfig to Fields Objects
-      wholeBundle[section][field]['sensorConfigs'][scale]['position'][serial] = (typeof sensors.position !== 'undefined');
-      // Inject position defualt state to Fields Objects
-      wholeBundle[section][field]['states']['sensors']['position'][serial] = sensors.position ? 0 : 1;
+      const parentHasSameScales = hasParents ?
+        typeof wholeBundle[section][field]['sensorConfigs'][scale] !== 'undefined' ? true : false
+        : false;
+
+      if (parentHasSameScales) {
+        // Inject position sensorConfig to Fields Objects
+        wholeBundle[section][field]['sensorConfigs'][scale]['position'][serial] = (typeof sensors.position !== 'undefined');
+        // Inject position defualt state to Fields Objects
+        wholeBundle[section][field]['states']['sensors']['position'][serial] = sensors.position ? 0 : 1;
+      }
     }
 
     // Make states Object from modalConfigs
@@ -212,15 +224,13 @@ for (const an in allArticles) {
       }
     }
 
-    const hasParents =
-      typeof wholeBundle[section] !== 'undefined' ?
-        typeof wholeBundle[section][field] !== 'undefined' ?
-          true : false
-        : false;
     if (hasParents) {
       // Make Bundle by article or only assign modalConfigs and sensorConfigs.
       if (!wholeBundle[section][field]["nested"][serial]) {
-        const basics = articlesBasics[_serial];
+        const basics = typeof articlesBasics[_serial] !== 'undefined' ? articlesBasics[_serial] : { customArticle: null, eventTriggers: {} };
+        if (typeof basics.eventTriggers === 'undefined') {
+          basics.eventTriggers = {};
+        }
         const injectTriggers = {};
         for (const [key, value] of Object.entries(basics.eventTriggers)) {
           injectTriggers[key] = TriggerCallback(value);

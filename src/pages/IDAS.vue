@@ -6,14 +6,11 @@
 
   <NavBar/>
 
-  <!-- <iconContainer :iconPayload="iconPayload"/> -->
+  <main v-if="loadState === 1" id="idas">
+    <component :is="'Section1'" :sectionSeed="configs_bundle.s1"/>
 
-  <main v-if="(loadTestField) && (loadState >= loadStateEntries.length)" id="idas">
-    <TestField :testBlockList="testBlockList"/>
-  </main>
 
-  <main v-if="(!loadTestField) && (loadState >= loadStateEntries.length)" id="idas">
-    <Section1 :sectionSeed="configs_bundle.s1"/>
+
   </main>
 
 </template>
@@ -23,22 +20,25 @@
 <script>
 const name = 'IDAS';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { defineAsyncComponent } from 'vue';
 import NavBar from '@/components/NavBar.vue';
-import Section1 from '@/components/IDAS/sections/Section1.vue'
-import TestField from '@/components/IDAS/IDASblockTestField.vue';
-
-import iconContainer from '@/components/elements/iconContainer.vue'
 
 
-// config file will be imported 
-// after this component MOUNTED.
 async function importConfigs() {
   try {
-    const { wholeBundle, testBlockList } = await import("../components/IDAS/configs/configs_bundle.js")
-    return { wholeBundle, testBlockList }
+    const { wholeBundle } = await import("../components/IDAS/configs/configs_bundle.js")
+    return { wholeBundle }
   } catch (err) {
     console.error(err);
   }
+}
+
+
+const components = { NavBar };
+const sectionFiles = require.context('@/components/IDAS/sections/', true, /^.*\.vue$/);
+for (let file of sectionFiles.keys()) {
+  const sectionName = file.replace('./', '').replace('.vue', '');
+  components[sectionName] = defineAsyncComponent(() => import("../components/IDAS/sections/" + sectionName + ".vue" ))
 }
 
 
@@ -46,38 +46,24 @@ function data() { return {
   lang: this.$route.params.lang,
   configs_bundle: {},
   testBlockList: {},
-  loadState: 0,
-  loadStateEntries: [
-    '1: configsBundle Loaded',
-    // '2: content-token loaded'
-  ],
-  loadTestField: false,
-  // showRatio : 0,
-
-  // iconPayload: {
-  //   name: 'close-x',
-  //   actions: false,
-  // }
+  loadStateEntries: {
+    '1_configsBundle-loaded': false,
+    '2_contentsToken-loaded': false,
+  },
 }}
-
-
-const components = {
-  NavBar, 
-  TestField, 
-  Section1,
-  iconContainer
-};
 
 
 const computed = {
   ...mapGetters('ui',[ 'getFrameSize' ]),
   ...mapGetters('api',[ 'getContentsToken' ]),
-  loadComplete() {
-    if (this.loadState >= 1) {
-      return true
-    } else {
-      return false
+  loadState() {
+    let loadDone = 0;
+    let loadTasks = 0;
+    for (const isDone of Object.values(this.loadStateEntries)) {
+      loadTasks += 1;
+      if(isDone) loadDone += 1;
     }
+    return loadDone / loadTasks
   }
 };
 
@@ -91,10 +77,14 @@ const methods = {
 const watch = {
   loadState(newValue) {
     this.$logg("IDAS - loadState :", newValue)
+    if (newValue === 1) {
+      console.log('IDAS - loadState-fullfilled : renders main element');
+    }
   },
   getContentsToken(newValue) {
+    console.log('watch - getContentsToken :', newValue);
     if(newValue) {
-      this.loadState += 1;
+      this.loadStateEntries['2_contentsToken-loaded'] = true;
     }
   },
 };
@@ -106,16 +96,15 @@ function beforeCreate() {
 
 function created() {
   importConfigs()
-    .then((obj) => {
-      this.configs_bundle = obj.wholeBundle;
-      this.testBlockList = obj.testBlockList;
+  .then((obj) => {
+    this.configs_bundle = obj.wholeBundle;
+    this.loadStateEntries['1_configsBundle-loaded'] = true;
+    this.$logg('config_bundled loaded', obj);
+  });
 
-      this.loadState += 1;
-      this.loadTestField = true;
-      
-      this.$logg('config_bundled loaded', obj);
-    });
-
+  if (this.getContentsToken) { // safe-catch
+    this.loadStateEntries['2_contentsToken-loaded'] = true;
+  }
 }
 
 

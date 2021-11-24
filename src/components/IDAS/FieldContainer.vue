@@ -2,6 +2,8 @@
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
 >
+  <p class="typo-caption1">{{this.states.sensors}}</p>
+  <p class="typo-caption1">{{this.sensorsActive}}</p>
 
   <ArticleContainer v-for="article of Object.keys(fieldSeed.nested)"
     :key="article"

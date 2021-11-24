@@ -1,4 +1,4 @@
-<template><section id="section-1">
+<template><section id="section-2">
 
   <FieldContainer v-for="field of Object.keys(sectionSeed)"
     :key="field"
@@ -10,7 +10,7 @@
 </section>
 </template>
 <script>
-const name = "Section1"
+const name = "Section2"
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import FieldContainer from '@/components/IDAS/FieldContainer.vue'
 
