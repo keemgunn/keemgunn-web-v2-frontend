@@ -18,7 +18,7 @@ const props = {
   downstream: Object,
   position: Number
 };
-const emits = [ 'trigger' ];
+const emits = [ 'trigger', 'mounted' ];
 
 function data() { return {
 // state data from blockSeed obj. ---------------
@@ -81,6 +81,7 @@ function created() {
 function mounted() {
   // Attach DOM Event Listener --------------------
   attachEventListeners(this, this.blockSeed.serial, listenersList);
+  this.$emit('mounted');
 }
 
 

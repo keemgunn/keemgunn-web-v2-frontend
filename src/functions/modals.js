@@ -1,4 +1,19 @@
-export function getCSSbyModal (configs, states) {
+const scaleEntry = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XL'];
+
+export function getConfigsByScale(configs, scale) {
+  if (typeof configs[scale] === 'undefined') {
+    for (const searchScale of scaleEntry) {
+      if (typeof configs[searchScale] !== 'undefined') {
+        return configs[searchScale]
+      }
+    }
+  } else {
+    return configs[scale]
+  }
+}
+
+
+export function getCSSbyModal(configs, states) {
   let classBundle = [];
   let styleBundle = [];
   for (const modal of Object.keys(configs)) {

@@ -15,3 +15,8 @@ export function goToLink(link) {
     window.location = link
   }
 }
+
+
+export function childMounted(context) {
+  context.childrenMounted += 1;
+}

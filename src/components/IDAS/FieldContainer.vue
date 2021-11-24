@@ -1,9 +1,8 @@
-<template><div :id="fieldSeed.serial"
+<template><div
+  :id="fieldSeed.serial"
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
 >
-  <p class="typo-caption1">{{this.states.sensors}}</p>
-  <p class="typo-caption1">{{this.sensorsActive}}</p>
 
   <ArticleContainer v-for="article of Object.keys(fieldSeed.nested)"
     :key="article"
@@ -11,6 +10,7 @@
     :position="states['sensors']['position'][article]"
     :downstream="downstream" 
     @trigger="tossEvent"
+    @mounted="childMounted(this)"
   />
 
 </div>
@@ -19,41 +19,63 @@
 const name = "FieldContainer"
 import { mapGetters } from 'vuex';
 import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
-import { getCSSbyModal, setModalState } from '@/functions/modals';
-import { triggerEvent } from '@/functions/triggers';
+import { getConfigsByScale, getCSSbyModal, setModalState } from '@/functions/modals';
+import { childMounted, triggerEvent } from '@/functions/triggers';
 import { watchPosition } from '@/functions/watchers';
 
 
 const props = { fieldSeed: Object, downstream: Object };
-const emits = [ 'trigger' ];
+const emits = [ 'trigger', 'mounted' ];
 function data() { return {
-// state data from fieldSeed obj. -----------------
   articles: [],
   sensorConfigs: {}, // { ...Scales : { ...sensors } }
   modalConfigs: {}, // { ...Scales : { ...modals } }
-// state data made in this component. -------------
-  doms: {}, states: {},
-  sensorsActive: {}, // Dynamically injected from sensorConfigs
-// Load States => 0: initial | 1: created | 2: mounted
-  loadState: 0
+  doms: {},
+  states: {},
+  sensorsActive: {},
+  loadStateEntries: {
+    '1_filedSeed-injected': false,
+    '2_positionSensor-initiated': false,
+    '3_all-children-mounted': false
+  },
+  childrenCount: null,
+  childrenMounted: 0
 }}
 
 
 const components = { ArticleContainer };
 const computed = {
   ...mapGetters('ui',[ 'getScale', 'getStageArea' ]),
+  childrenState() {
+    if(this.childrenCount === 0){
+      return 1
+    }else if(this.childrenCount){
+      return this.childrenMounted / this.childrenCount
+    }else{
+      return 0
+    }
+  },
+  loadState() {
+    let loadDone = 0;
+    let loadTasks = 0;
+    for (const isDone of Object.values(this.loadStateEntries)) {
+      loadTasks += 1;
+      if(isDone) loadDone += 1;
+    }
+    return (loadDone / loadTasks)
+  },
+
   // Fetched Element class and styles -------------
   // based on window scale and component states.
   fetchCSS() {
     const bundle = this.getCSSbyModal(
-      this['modalConfigs'][this.getScale],
+      getConfigsByScale(this.modalConfigs, this.getScale),
       this['states']['modals']
     );
-
-    if (typeof this['sensorConfigs'][this.getScale]['position']['self']['StyleCalc'] !== 'undefined') {
-      bundle.style.push(this['sensorConfigs'][this.getScale]['position']['self']['StyleCalc'](this.position));
+    const sensorConfigs = getConfigsByScale(this.sensorConfigs, this.getScale);
+    if (typeof sensorConfigs['position']['self']['StyleCalc'] !== 'undefined') {
+      bundle.style.push(sensorConfigs['position']['self']['StyleCalc'](this.position));
     }
-
     return bundle
   },
 
@@ -62,12 +84,12 @@ const computed = {
   },
 
   position() {
-    if (this.loadState >= 2) {
+    if(this.loadStateEntries['1_filedSeed-injected']) {
       return this.states.sensors.position.self
-    } else {
+    }else {
       return 1
     }
-  }
+  },
 };
 
 
@@ -75,20 +97,24 @@ const methods = {
   tossEvent(payload) {
     this.$emit('trigger', payload);
   },
+  childMounted,
   triggerEvent,
   setModalState,
   getCSSbyModal,
 
   // Chage Sensor Configurations by Scale ---------
   sensorShift(target, scale){
-    this["sensorsActive"][target] = this["sensorConfigs"][scale][target];
-    this["sensorsActive"][target]['self'] = Object.keys(this["sensorConfigs"][scale][target]).length !== 0;
+    const sensorConfigs = getConfigsByScale(this.sensorConfigs, scale);
+    this["sensorsActive"][target] = sensorConfigs[target];
+    this["sensorsActive"][target]['self'] = Object.keys(sensorConfigs[target]['self']).length !== 0;
   },
 
   // Get Element Progress based on "Stage Area"
   // for Stage Area, see store/ui-frame 
   getElPos(element) {
-    return (this.getStageArea.bottom - element.getBoundingClientRect().top) / element.offsetHeight
+    const top = element.getBoundingClientRect().top;
+    const height = element.getBoundingClientRect().height;
+    return (this.getStageArea.bottom - top) / height
   },
 
   // Position Updator for position-state-chain
@@ -103,9 +129,7 @@ const methods = {
 
   // Attatch || Detatch positionUpdater -----------
   attachpositionUpdater() {
-    if(this.sensorsActive.position.self) {
-      window.addEventListener('scroll', this.positionUpdater, { passive: true });
-    }
+    window.addEventListener('scroll', this.positionUpdater, { passive: true });
   },
   detatchpositionUpdater() {
     window.removeEventListener('scroll', this.positionUpdater);
@@ -114,20 +138,30 @@ const methods = {
 
 
 const watch = {
-  // Decide sensorsActive by Scale -------------
+  childrenState(newValue) {
+    if(newValue === 1) {
+      this.$logg(`-- ${this.serial} mounted --`);
+      this.$emit('mounted');
+      this.loadStateEntries['3_all-children-mounted'] = true;
+    }
+  },
+
+  loadState(newValue) {
+    console.log('loadState:', this.serial, newValue);
+    if(newValue === 1) {
+      this.positionUpdater();
+      setTimeout(this.positionUpdater, 250);
+    }
+  },
+
   getScale(newValue) {
     this.sensorShift('position', newValue)
-    if(this.sensorsActive.position.self){
-      this.attachpositionUpdater();
-    }else{
-      this.detatchpositionUpdater();
-    }
     this.positionUpdater();
   },
 
   position(newValue) {
     watchPosition(newValue, this);
-  }
+  },
 };
 
 
@@ -140,6 +174,7 @@ function created() {
   
   // Inject State Data ----------------------------
   this.articles = Object.keys(this.fieldSeed.nested);
+  this.childrenCount = this.articles.length;
   this.sensorConfigs = this.fieldSeed.sensorConfigs;
   this.modalConfigs = this.fieldSeed.modalConfigs;
   this.states = this.fieldSeed.states;
@@ -147,13 +182,13 @@ function created() {
   // Inject Sensors Configurations ----------------
   this.sensorShift('position', this.getScale);
 
-  this.loadState += 1;
+  this.loadStateEntries['1_filedSeed-injected'] = true;
 }
 
 
 function mounted() {
   // Inject DOM elements to data() ----------------
-  this.doms.self = document.querySelector("#"+this.fieldSeed.serial)
+  this.doms.self = document.querySelector("#"+this.serial)
   for (let article of this.articles) {
     this.doms[article] = document.querySelector("#"+article);
   }
@@ -168,9 +203,7 @@ function mounted() {
   }, { threshold: [0, 1] })
   intersectObserver.observe(this.doms.self);
 
-  // initialize position state --------------------
-  this.positionUpdater();
-  this.loadState += 1;
+  this.loadStateEntries['2_positionSensor-initiated'] = true;
 }
 
 
@@ -181,6 +214,6 @@ export default {
   methods, 
   watch, 
   created, 
-  mounted, 
+  mounted
 }
 </script>

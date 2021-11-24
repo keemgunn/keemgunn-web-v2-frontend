@@ -11,6 +11,7 @@
     :downstream="downstream" 
     :position="position"
     @trigger="tossEvent"
+    @mounted="childMounted(this)"
   />
 
 </article>
@@ -19,8 +20,8 @@
 const name = 'ArticleContainer';
 import { mapGetters } from 'vuex';
 import { defineAsyncComponent } from 'vue';
-import { getCSSbyModal, setModalState } from '@/functions/modals';
-import { triggerEvent } from '@/functions/triggers';
+import { getConfigsByScale, getCSSbyModal, setModalState } from '@/functions/modals';
+import { childMounted, triggerEvent } from '@/functions/triggers';
 import { watchPosition } from '@/functions/watchers';
 import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
 
@@ -30,14 +31,16 @@ const props = {
   position: Number, 
   downstream: Object
 };
-const emits = [ 'trigger' ];
+const emits = [ 'trigger', 'mounted' ];
 function data() { return {
 // state data from articleSeed obj. ---------------
   blocks: [],
   sensorConfigs: {}, // { ...Scales : { ...sensors: { WK, SC }}}
   modalConfigs: {}, // { ...Scales : { ...modals } }
 // state data made in this component. -------------
-  el : {}, states: {}
+  el : {}, states: {},
+  childrenCount: null,
+  childrenMounted: 0
 }}
 
 
@@ -54,16 +57,26 @@ for (let file of blockFiles.keys()) {
 
 const computed = {
   ...mapGetters('ui',[ 'getScale' ]),
+  childrenState() {
+    if(this.childrenCount === 0){
+      return 1
+    }else if(this.childrenCount){
+      return this.childrenMounted / this.childrenCount
+    }else{
+      return 0
+    }
+  },
+
   // Fetched Element class and styles -------------
   // based on window scale and component states.
   fetchCSS() {
     const bundle = this.getCSSbyModal(
-      this['modalConfigs'][this.getScale],
+      getConfigsByScale(this.modalConfigs, this.getScale),
       this['states']['modals']
     );
-
-    if (typeof this['sensorConfigs'][this.getScale]['position']['StyleCalc'] !== 'undefined') {
-      bundle.style.push(this['sensorConfigs'][this.getScale]['position']['StyleCalc'](this.position));
+    const sensorConfigs = getConfigsByScale(this.sensorConfigs, this.getScale)
+    if (typeof sensorConfigs['position']['StyleCalc'] !== 'undefined') {
+      bundle.style.push(sensorConfigs['position']['StyleCalc'](this.position));
     }
 
     return bundle
@@ -79,6 +92,7 @@ const methods = {
   tossEvent(payload) {
     this.$emit('trigger', payload);
   },
+  childMounted,
   triggerEvent,
   setModalState,
   getCSSbyModal,
@@ -92,6 +106,13 @@ injectBasicEventListeners(methods, listenersList);
 
 
 const watch = {
+  childrenState(newValue) {
+    if(newValue === 1) {
+      this.$logg(`-- ${this.serial} mounted --`);
+      this.$emit('mounted');
+    }
+  },
+
   position(newValue) {
     watchPosition(newValue, this);
   }
@@ -101,6 +122,7 @@ const watch = {
 function created() {
   // Inject State Data ----------------------------
   this.blocks = Object.keys(this.articleSeed.nested);
+  this.childrenCount = this.blocks.length;
   this.sensorConfigs = this.articleSeed.sensorConfigs;
   this.modalConfigs = this.articleSeed.modalConfigs;
   this.states = this.articleSeed.states;
@@ -112,7 +134,7 @@ function created() {
 
 function mounted() { 
   // Attach DOM Event Listener --------------------
-  attachEventListeners(this, this.articleSeed.serial, listenersList);
+  attachEventListeners(this, this.serial, listenersList);
 }
 
 

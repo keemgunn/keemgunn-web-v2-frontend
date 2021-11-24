@@ -37,7 +37,7 @@ const props = {
   blockSeed: Object, 
   downstream: Object 
 };
-const emits = [ 'trigger' ];
+const emits = [ 'trigger', 'mounted' ];
 
 function data() { return {
 // state data from blockSeed obj. ---------------
@@ -166,6 +166,8 @@ function mounted() {
       });
     }
   }
+
+  this.$emit('mounted');
 }
 
 

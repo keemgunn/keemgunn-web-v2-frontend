@@ -18,7 +18,7 @@ const props = {
   blockSeed: Object, 
   downstream: Object 
 };
-const emits = [ 'trigger' ];
+const emits = [ 'trigger', 'mounted' ];
 
 function data() { return {
 // state data from blockSeed obj. ---------------
@@ -27,6 +27,7 @@ function data() { return {
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
   contents: {},
+  mountReported: false
 }}
 
 const computed = {
@@ -75,8 +76,8 @@ function created() {
 function mounted() {
   // Attach DOM Event Listener --------------------
   attachEventListeners(this, this.blockSeed.serial, listenersList);
+  this.$emit('mounted');
 }
-
 
 export default {
   name, props, emits,
