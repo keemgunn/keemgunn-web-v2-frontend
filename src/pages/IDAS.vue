@@ -82,7 +82,7 @@ const watch = {
     }
   },
   getContentsToken(newValue) {
-    console.log('watch - getContentsToken :', newValue);
+    this.$logg('watch - getContentsToken :', newValue);
     if(newValue) {
       this.loadStateEntries['2_contentsToken-loaded'] = true;
     }

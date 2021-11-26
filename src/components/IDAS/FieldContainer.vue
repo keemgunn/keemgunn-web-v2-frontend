@@ -19,7 +19,7 @@
 const name = "FieldContainer"
 import { mapGetters } from 'vuex';
 import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
-import { getConfigsByScale, getCSSbyModal, setModalState } from '@/functions/modals';
+import { getConfigsByScale, getCSSbyModal } from '@/functions/modals';
 import { childMounted, triggerEvent } from '@/functions/triggers';
 import { watchPosition } from '@/functions/watchers';
 
@@ -68,15 +68,18 @@ const computed = {
   // Fetched Element class and styles -------------
   // based on window scale and component states.
   fetchCSS() {
-    const bundle = this.getCSSbyModal(
-      getConfigsByScale(this.modalConfigs, this.getScale),
-      this['states']['modals']
-    );
-    const sensorConfigs = getConfigsByScale(this.sensorConfigs, this.getScale);
-    if (typeof sensorConfigs['position']['self']['StyleCalc'] !== 'undefined') {
-      bundle.style.push(sensorConfigs['position']['self']['StyleCalc'](this.position));
+    try {
+      const bundle = this.getCSSbyModal(this);
+      const sensorConfigs = getConfigsByScale(this.sensorConfigs, this.getScale);
+      if (typeof sensorConfigs['position']['self']['StyleCalc'] !== 'undefined') {
+        bundle.style.push(sensorConfigs['position']['self']['StyleCalc'](this.position));
+      }
+      return bundle
     }
-    return bundle
+    catch (err) {
+      console.error('!error!', `@${this.serial || 'unknown'}`);
+      console.error(err);
+    }
   },
 
   serial() {
@@ -99,7 +102,6 @@ const methods = {
   },
   childMounted,
   triggerEvent,
-  setModalState,
   getCSSbyModal,
 
   // Chage Sensor Configurations by Scale ---------

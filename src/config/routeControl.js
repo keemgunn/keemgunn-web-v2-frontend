@@ -2,10 +2,14 @@ import bundle from "@/functions/bundler";
 
 function routeParams(name, examples) {
   // make router parameter strings like: '/:name('ex1'||'ex2')'
-  const result = examples.length ? 
-    [':', String(name), '(', bundle.params(examples), ')'] :
-    [':', String(name)]
-  return result.join('')
+  try {
+    const result = examples.length ? 
+      [':', String(name), '(', bundle.params(examples), ')'] :
+      [':', String(name)]
+    return result.join('')
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function Page(name, allow, onNav, paramSetArr, inboundsFactory, redirectSuffix) {

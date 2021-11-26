@@ -42,6 +42,7 @@ export function watchPosition(value, context) {
       }
     }
   } catch(err) {
-    console.log(`!error! ${context.serial} : ${err}`);
+    console.log(`!error! ${context.serial}`);
+    console.error(err);
   }
 }

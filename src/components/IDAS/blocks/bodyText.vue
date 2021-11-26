@@ -10,9 +10,9 @@
 <script>
 const name = 'Block_Quote';
 import { mapMutations, mapActions } from 'vuex';
-import { getCSSbyModal, setModalState } from '@/functions/modals';
+import { getCSSbyModal } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
-import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
+import { injectBasicEventListeners, mergeAttachEventListeners } from '@/functions/eventListeners';
 
 const props = { 
   blockSeed: Object, 
@@ -31,11 +31,13 @@ function data() { return {
 
 const computed = {
   fetchCSS() {
-    const bundle = this.getCSSbyModal(
-      this['modalConfigs'],
-      this['states']['modals']
-    );
-    return bundle
+    try {
+      return this.getCSSbyModal(this);
+    }
+    catch (err) {
+      console.error('!error!', `@${this.serial || 'unknown'}`);
+      console.error(err);
+    }
   },
 
   serial() {
@@ -48,7 +50,6 @@ const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
   triggerEvent,
-  setModalState,
   getCSSbyModal,
 };
 
@@ -64,15 +65,11 @@ function created() {
   this.modalConfigs = this.blockSeed.modalConfigs;
   this.states = this.blockSeed.states;
   this.contents = this.blockSeed.contents;
-
-  // Inject Listener Callbacks --------------------
-  injectListnerCallbacks(this, listenersList, this.blockSeed.injectTriggers);
 }
 
 
 function mounted() {
-  // Attach DOM Event Listener --------------------
-  attachEventListeners(this, this.blockSeed.serial, listenersList);
+  mergeAttachEventListeners(this, listenersList, this.blockSeed.injectTriggers);
   this.$emit('mounted');
 }
 

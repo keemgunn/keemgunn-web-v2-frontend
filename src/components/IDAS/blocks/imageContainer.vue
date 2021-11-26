@@ -28,9 +28,9 @@
 <script>
 const name = 'Block_simpleText';
 import { mapMutations, mapActions, mapGetters } from 'vuex';
-import { getCSSbyModal, setModalState } from '@/functions/modals';
+import { getCSSbyModal } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
-import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
+import { injectBasicEventListeners, mergeAttachEventListeners } from '@/functions/eventListeners';
 import { fetchContent } from '@/functions/contentsFetcher';
 
 const props = { 
@@ -67,11 +67,13 @@ const computed = {
     'getContentsSuffix'
   ]),
   fetchCSS() {
-    const bundle = this.getCSSbyModal(
-      this['modalConfigs'],
-      this['states']['modals']
-    );
-    return bundle
+    try {
+      return this.getCSSbyModal(this);
+    }
+    catch (err) {
+      console.error('!error!', `@${this.serial || 'unknown'}`);
+      console.error(err);
+    }
   },
   serial() {
     return this.blockSeed.serial
@@ -88,7 +90,6 @@ const methods = {
   ...mapMutations('', []),
   ...mapActions('', []),
   triggerEvent,
-  setModalState,
   getCSSbyModal,
   fetchContentAgain() {},
   getLargeImage() {}
@@ -106,10 +107,6 @@ function created() {
   this.modalConfigs = this.blockSeed.modalConfigs;
   this.states = this.blockSeed.states;
   this.contents = this.blockSeed.contents;
-
-  // Inject Listener Callbacks --------------------
-  injectListnerCallbacks(this, listenersList, this.blockSeed.injectTriggers);
-
 
   this.serialPath = this.getContentsURI('/idas/images/' + this.blockSeed.serial);
 
@@ -142,8 +139,10 @@ function mounted() {
     imageWrapperStyle.height = `calc( 100% / ${ratio})`
   });
   fetchContent(this.imgEl, this.serialPath, this.mediaRequestHeader);
+
   // Attach DOM Event Listener --------------------
-  attachEventListeners(this, this.blockSeed.serial, listenersList);
+  mergeAttachEventListeners(this, listenersList, this.blockSeed.injectTriggers);
+
   // Inject re-fetch method AFTER first fetch
   this.fetchContentAgain = () => {
     fetchContent(this.imgEl, this.serialPath, this.mediaRequestHeader);

@@ -11,7 +11,7 @@
 <script>
 const name = 'Block_Quote';
 import { mapMutations, mapActions } from 'vuex';
-import { getCSSbyModal, setModalState } from '@/functions/modals';
+import { getCSSbyModal } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
 import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
 
@@ -32,11 +32,13 @@ function data() { return {
 
 const computed = {
   fetchCSS() {
-    const bundle = this.getCSSbyModal(
-      this['modalConfigs'],
-      this['states']['modals']
-    );
-    return bundle
+    try {
+      return this.getCSSbyModal(this);
+    }
+    catch (err) {
+      console.error('!error!', `@${this.serial || 'unknown'}`);
+      console.error(err);
+    }
   },
 
   serial() {
@@ -49,7 +51,6 @@ const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
   triggerEvent,
-  setModalState,
   getCSSbyModal,
 };
 

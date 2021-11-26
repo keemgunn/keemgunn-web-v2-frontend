@@ -1,33 +1,56 @@
+import { setModalState } from '@/functions/modals';
+
+
 const basicEventListeners = {
   // eventListeners will be attached based on these names,
 
   _mouseEnter(context) {
+    if (typeof context === 'undefined') console.log('!warning!', 'undefined object in param : context');
     return function () {
-      context.setModalState(context, 'hover', true);
-      context.setModalState(context, 'touched', false);
+      try {
+        setModalState(context, 'hover', true);
+        setModalState(context, 'touched', false);
+      } catch (err) {
+        console.error('!error!', `@${context.serial || 'unknown'}`);
+        console.error(err);
+      }
     }
   },
 
-  _mouseMove() {
+  _mouseMove(context) {
+    if (typeof context === 'undefined') console.log('!warning!', 'undefined object in param : context');
     return function () {
     }
   },
 
   _mouseLeave(context) {
+    if (typeof context === 'undefined') console.log('!warning!', 'undefined object in param : context');
     return function () {
-      context.setModalState(context, 'hover', false);
+      try {
+        setModalState(context, 'hover', false);
+      } catch (err) {
+        console.error('!error!', `@${context.serial || 'unknown'}`);
+        console.error(err);
+      }
     }
   },
 
   _touchStart(context) {
+    if (typeof context === 'undefined') console.log('!warning!', 'undefined object in param : context');
     return function () {
-      context.setModalState(context, 'hover', true);
-      context.setModalState(context, 'touched', true);
-      setTimeout(context.mouseLeave, 2000);
+      try {
+        setModalState(context, 'hover', true);
+        setModalState(context, 'touched', true);
+        setTimeout(context.mouseLeave, 2000);
+      } catch (err) {
+        console.error('!error!', `@${context.serial || 'unknown'}`);
+        console.error(err);
+      }
     }
   },
 
-  _click() {
+  _click(context) {
+    if (typeof context === 'undefined') console.log('!warning!', 'undefined object in param : context');
     return function () {
     }
   },
@@ -35,37 +58,44 @@ const basicEventListeners = {
 
 
 export function injectBasicEventListeners(methods, listenersList) {
-  for ( const [key, value] of Object.entries(basicEventListeners)) {
-    methods[key] = value;
-    const realName = key.replace('_', '');
-    listenersList.push(realName);
-    methods[realName] = function () {};
+  try {
+    for ( const [key, value] of Object.entries(basicEventListeners)) {
+      methods[key] = value;
+      const realName = key.replace('_', '');
+      listenersList.push(realName);
+      methods[realName] = function () {};
+    }
+  } catch (err) {
+    console.error('!error!');
+    console.error(err);
   }
 }
 
 
-export function injectListnerCallbacks(context, listenersList, injectTriggers) {
-  const extensionMethodsList = Object.keys(injectTriggers);
-  for (const listener of listenersList) {
-    const basic = context['_' + listener](context);
-    if (extensionMethodsList.includes(listener)) {
-      const ext = injectTriggers[listener](context);
-      context[listener] = function () {
-        basic();
-        ext();
-      }
-    } else {
-      context[listener] = function () {
-        basic();
+
+export function mergeAttachEventListeners(context, listenersList, injectTriggers) {
+  try {
+    const extensionMethodsList = Object.keys(injectTriggers);
+    for (const listener of listenersList) {
+      const basic = context['_' + listener](context);
+      if (extensionMethodsList.includes(listener)) {
+        const ext = injectTriggers[listener](context);
+        context[listener] = function () {
+          basic();
+          ext();
+        }
+      } else {
+        context[listener] = function () {
+          basic();
+        }
       }
     }
-  }
-}
-
-
-export function attachEventListeners(context, serial, listenersList) {
-  context.el = document.querySelector("#" + serial);
-  for (const listener of listenersList) {
-    context.el.addEventListener(listener.toLowerCase(), context[listener], { passive: true });
+    context.el = document.querySelector("#" + context.serial);
+    for (const listener of listenersList) {
+      context.el.addEventListener(listener.toLowerCase(), context[listener], { passive: true });
+    }
+  } catch (err) {
+    console.error('!error!', `@${context.serial || 'unknown'}`);
+    console.error(err);
   }
 }

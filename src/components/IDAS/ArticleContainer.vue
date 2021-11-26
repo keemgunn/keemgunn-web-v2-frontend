@@ -20,10 +20,10 @@
 const name = 'ArticleContainer';
 import { mapGetters } from 'vuex';
 import { defineAsyncComponent } from 'vue';
-import { getConfigsByScale, getCSSbyModal, setModalState } from '@/functions/modals';
+import { getConfigsByScale, getCSSbyModal } from '@/functions/modals';
 import { childMounted, triggerEvent } from '@/functions/triggers';
 import { watchPosition } from '@/functions/watchers';
-import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
+import { injectBasicEventListeners, mergeAttachEventListeners } from '@/functions/eventListeners';
 
 
 const props = { 
@@ -70,16 +70,18 @@ const computed = {
   // Fetched Element class and styles -------------
   // based on window scale and component states.
   fetchCSS() {
-    const bundle = this.getCSSbyModal(
-      getConfigsByScale(this.modalConfigs, this.getScale),
-      this['states']['modals']
-    );
-    const sensorConfigs = getConfigsByScale(this.sensorConfigs, this.getScale)
-    if (typeof sensorConfigs['position']['StyleCalc'] !== 'undefined') {
-      bundle.style.push(sensorConfigs['position']['StyleCalc'](this.position));
+    try {
+      const bundle = this.getCSSbyModal(this);
+      const sensorConfigs = getConfigsByScale(this.sensorConfigs, this.getScale)
+      if (typeof sensorConfigs['position']['StyleCalc'] !== 'undefined') {
+        bundle.style.push(sensorConfigs['position']['StyleCalc'](this.position));
+      }
+      return bundle
     }
-
-    return bundle
+    catch (err) {
+      console.error('!error!', `@${this.serial || 'unknown'}`);
+      console.error(err);
+    }
   },
 
   serial() {
@@ -94,7 +96,6 @@ const methods = {
   },
   childMounted,
   triggerEvent,
-  setModalState,
   getCSSbyModal,
 };
 
@@ -126,15 +127,11 @@ function created() {
   this.sensorConfigs = this.articleSeed.sensorConfigs;
   this.modalConfigs = this.articleSeed.modalConfigs;
   this.states = this.articleSeed.states;
-
-  // Inject Listener Callbacks --------------------
-  injectListnerCallbacks(this, listenersList, this.articleSeed.injectTriggers);
 }
 
 
 function mounted() { 
-  // Attach DOM Event Listener --------------------
-  attachEventListeners(this, this.serial, listenersList);
+  mergeAttachEventListeners(this, listenersList, this.articleSeed.injectTriggers);
 }
 
 
