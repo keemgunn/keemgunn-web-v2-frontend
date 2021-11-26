@@ -8,6 +8,9 @@
 
   <main v-if="loadState === 1" id="idas">
     <component :is="'Section1'" :sectionSeed="configs_bundle.s1"/>
+    <component :is="'Section2'" :sectionSeed="configs_bundle.s2"/>
+    <component :is="'Section3'" :sectionSeed="configs_bundle.s3"/>
+    <component :is="'Section4'" :sectionSeed="configs_bundle.s4"/>
 
 
 
@@ -48,7 +51,7 @@ function data() { return {
   testBlockList: {},
   loadStateEntries: {
     '1_configsBundle-loaded': false,
-    '2_contentsToken-loaded': false,
+    // '2_contentsToken-loaded': false,
   },
 }}
 

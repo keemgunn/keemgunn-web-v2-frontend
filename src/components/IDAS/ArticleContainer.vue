@@ -22,7 +22,7 @@ import { mapGetters } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 import { getConfigsByScale, getCSSbyModal } from '@/functions/modals';
 import { childMounted, triggerEvent } from '@/functions/triggers';
-import { watchPosition } from '@/functions/watchers';
+import { watchPosition, positionTrigger } from '@/functions/watchers';
 import { injectBasicEventListeners, mergeAttachEventListeners } from '@/functions/eventListeners';
 
 
@@ -36,6 +36,7 @@ function data() { return {
 // state data from articleSeed obj. ---------------
   blocks: [],
   sensorConfigs: {}, // { ...Scales : { ...sensors: { WK, SC }}}
+  positionState: null,
   modalConfigs: {}, // { ...Scales : { ...modals } }
 // state data made in this component. -------------
   el : {}, states: {},
@@ -115,7 +116,10 @@ const watch = {
   },
 
   position(newValue) {
-    watchPosition(newValue, this);
+    this.positionState = watchPosition(newValue, this);
+  },
+  positionState(newValue) {
+    positionTrigger(newValue, this);
   }
 };
 

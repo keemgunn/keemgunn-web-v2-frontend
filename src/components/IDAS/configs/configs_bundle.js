@@ -121,7 +121,8 @@ for (const fn in allFields) {
   const scaleEntry = scaleEntries[fn];
   for (const [_serial, field] of Object.entries(allFields[fn])) {
     try {
-      const { modals, sensors } = field;
+      const { modals } = field;
+      const sensors = typeof field.sensors !== 'undefined' ? field.sensors : {};
       const serial = underToDash(_serial);
       // Check and Make Section Object in wholeBundle
       const section = getParentName(serial);
@@ -194,7 +195,7 @@ for (const an in allArticles) {
       const serial = underToDash(_serial);
       const field = getParentName(serial);
       const section = getParentName(field);
-      const { sensors } = article;
+      const { sensors } = typeof article.sensors !== 'undefined' ? article : { sensors: {} };
       const modalConfigs = {};
       const sensorConfigs = {};
   

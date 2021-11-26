@@ -33,7 +33,9 @@ function data() { return {
 const computed = {
   fetchCSS() {
     try {
-      return this.getCSSbyModal(this);
+      const bundle = this.getCSSbyModal(this);
+      bundle.left = String(this.position) + "rem"
+      return bundle
     }
     catch (err) {
       console.error('!error!', `@${this.serial || 'unknown'}`);

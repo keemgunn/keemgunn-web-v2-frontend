@@ -1,4 +1,6 @@
 import { getConfigsByScale } from "@/functions/modals";
+import { triggerEvent } from "@/functions/triggers";
+
 
 export function watchPosition(value, context) {
   try {
@@ -9,39 +11,53 @@ export function watchPosition(value, context) {
     if ((Object.keys(position).length !== 0)
      && (position['watchKit']['breakpoints'][0] !== 999)) {
       const breakpoints = position['watchKit']['breakpoints'];
-      const emits = position['watchKit']['emits'];
-      const trigger = context.triggerEvent;
-      
       if (breakpoints[8] < value) {
-        trigger(context, emits[8]);
         context.states.modals.position = breakpoints[8];
+        return 8
       } else if (breakpoints[7] < value) {
-        trigger(context, emits[7]);
         context.states.modals.position = breakpoints[7];
+        return 7
       } else if (breakpoints[6] < value) {
-        trigger(context, emits[6]);
         context.states.modals.position = breakpoints[6];
+        return 6
       } else if (breakpoints[5] < value) {
-        trigger(context, emits[5]);
         context.states.modals.position = breakpoints[5];
+        return 5
       } else if (breakpoints[4] < value) {
-        trigger(context, emits[4]);
         context.states.modals.position = breakpoints[4];
+        return 4
       } else if (breakpoints[3] < value) {
-        trigger(context, emits[3]);
         context.states.modals.position = breakpoints[3];
+        return 3
       } else if (breakpoints[2] < value) {
-        trigger(context, emits[2]);
         context.states.modals.position = breakpoints[2];
+        return 2
       } else if (breakpoints[1] < value) {
-        trigger(context, emits[1]);
         context.states.modals.position = breakpoints[1];
+        return 1
       } else if (breakpoints[0] < value) {
-        trigger(context, emits[0]);
         context.states.position = breakpoints[0];
+        return 0
       }
     }
   } catch(err) {
+    console.log(`!error! ${context.serial}`);
+    console.error(err);
+  }
+}
+
+
+export function positionTrigger(value, context) {
+  try {
+    const sensorConfig = getConfigsByScale(context.sensorConfigs, context.getScale);
+    const position = Object.keys(sensorConfig['position']).includes('self') ? sensorConfig['position']['self'] : sensorConfig['position'] ;
+    const fullfilled = (typeof position.watchKit !== 'undefined') && (typeof position.watchKit.emits !== 'undefined');
+    if (fullfilled) {
+      const emits = position.watchKit.emits
+      triggerEvent(context, emits[value]);
+    }
+  }
+  catch (err) {
     console.log(`!error! ${context.serial}`);
     console.error(err);
   }

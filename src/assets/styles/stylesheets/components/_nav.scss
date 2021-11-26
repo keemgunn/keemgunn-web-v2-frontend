@@ -1,9 +1,12 @@
 #nav-bar {
   background-color: var(--ink6);
 
-  .nt--wide { height: 66rem; }
-  .nt--short { height: 47rem; }
+  // .nt--wide { height: 66rem; }
+  // .nt--short { height: 47rem; }
   .nt--expand { height: 100vh; }
+  .nav-top {
+    height: var(--nav-top-height);
+  }
 
   .nav-logo-gunn {
     min-width: 90rem;

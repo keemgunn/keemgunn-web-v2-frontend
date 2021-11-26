@@ -3,7 +3,9 @@
   section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    width: 100vw;
+    height: fit-content;
   }
 
   .field-type-a, .field-type-b, .field-type-c {
@@ -11,6 +13,12 @@
     margin: auto;
     height: fit-content;
     grid-template-rows: auto;
+    border-style: solid;
+    border-width: 1rem 0;
+    border-color: rgba(223, 94, 19, 0.781);
+  }
+  .field-type-b {
+    width: 100%;
   }
   .field-type-a {
     width: 100vw;
@@ -23,6 +31,9 @@
     flex-wrap: wrap;
     position: relative;
     overflow: hidden;
+    border-style: solid;
+    border-width: 1rem;
+    border-color: rgba(236, 42, 188, 0.781);
   }
   .article-test {
     flex-direction: column;
@@ -184,71 +195,11 @@
 
     position: relative;
     width: fit-content;
+    // left: -100rem;
     // left: calc(0 - var(--margin-safe-col));
   }
   
   
-  // ================================
-  
-  .XXS{
-    .field-type-c {
-      width: 284vw;
-    }
-    .field-gap {
-      gap: 3rem
-    }
-  }
-  
-  .XS{
-    .field-type-c {
-      width: 284vw;
-    }
-  }
-  
-  .S{
-    .field-type-b {
-      max-width: 760rem;
-    }
-    .field-type-c {
-      width : 620rem
-    }
-  }
-  
-  .M{
-    .field-type-b {
-      max-width: 1080rem;
-    }
-    .field-type-c {
-      width : calc(var(--min-vw) - var(--margin-safe-col)*2);
-    }
-  }
-  
-  .L{
-    .field-type-b {
-      max-width: 1280rem;
-    }
-    .field-type-c {
-      width: 1000rem;
-    }
-  }
-  
-  .XL{
-    .field-type-b {
-      max-width: 1400rem;
-    }
-    .field-type-c {
-      width: 1080rem;
-    }
-  }
-  
-  .XXL{
-    .field-type-b {
-      max-width: 1720rem;
-    }
-    .field-type-c {
-      width: 1280rem;
-    }
-  }
 
 
 
@@ -261,14 +212,8 @@
 
 
 
+  // ==========================
 
-
-
-
-
-
-
-  
   .grid-test{
     display: grid; //
     // width: 600rem;
@@ -298,8 +243,6 @@
     background-color: rgba(148, 26, 77, 0.514);
   }
 
-
-
   .scrollTest {
     width: 100vw;
     height: 400rem;
@@ -310,41 +253,6 @@
     height: 400rem;
     background-color: rgb(47, 232, 72);
   }
-
-
-  #s1f1 {
-    width: 100vw;
-    height: 2000rem;
-    background-color: rgb(116, 39, 39);
-  }
-  .fieldTest00 {
-    width: 100vw;
-    height: 400rem;
-    background-color: rgba(55, 206, 181, 0.534);
-    margin-top: 30rem;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -355,3 +263,68 @@
   gap: 20rem;
   padding: 20rem 20rem 1000rem 20rem;
 }
+
+
+
+// ================================
+
+.XXS{
+  .field-type-c {
+    width: 284vw;
+  }
+  .field-gap {
+    gap: 3rem
+  }
+}
+
+.XS{
+  .field-type-c {
+    width: 284vw;
+  }
+}
+
+.S{
+  .field-type-b {
+    max-width: 760rem;
+  }
+  .field-type-c {
+    width : 620rem
+  }
+}
+
+.M{
+  .field-type-b {
+    max-width: 1080rem;
+  }
+  .field-type-c {
+    width : calc(var(--min-vw) - var(--margin-safe-col)*2);
+  }
+}
+
+.L{
+  .field-type-b {
+    max-width: 1280rem;
+  }
+  .field-type-c {
+    width: 1000rem;
+  }
+}
+
+.XL{
+  .field-type-b {
+    max-width: 1400rem;
+  }
+  .field-type-c {
+    width: 1080rem;
+  }
+}
+
+.XXL{
+  .field-type-b {
+    max-width: 1720rem;
+  }
+  .field-type-c {
+    width: 1280rem;
+  }
+}
+

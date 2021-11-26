@@ -47,7 +47,7 @@ export const s1_f1 = {
         "padding": "0",
         "grid-template-columns": 1,
         "gap": "0",
-        "height": "100vh",
+        "height": "calc(100vh - var(--nav-top-height))",
         "justify-content" : "center"
       }],
     }

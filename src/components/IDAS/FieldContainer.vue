@@ -21,7 +21,7 @@ import { mapGetters } from 'vuex';
 import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
 import { getConfigsByScale, getCSSbyModal } from '@/functions/modals';
 import { childMounted, triggerEvent } from '@/functions/triggers';
-import { watchPosition } from '@/functions/watchers';
+import { watchPosition, positionTrigger } from '@/functions/watchers';
 
 
 const props = { fieldSeed: Object, downstream: Object };
@@ -29,6 +29,7 @@ const emits = [ 'trigger', 'mounted' ];
 function data() { return {
   articles: [],
   sensorConfigs: {}, // { ...Scales : { ...sensors } }
+  positionState: null,
   modalConfigs: {}, // { ...Scales : { ...modals } }
   doms: {},
   states: {},
@@ -164,6 +165,9 @@ const watch = {
   position(newValue) {
     watchPosition(newValue, this);
   },
+  positionState(newValue) {
+    positionTrigger(newValue, this)
+  }
 };
 
 
