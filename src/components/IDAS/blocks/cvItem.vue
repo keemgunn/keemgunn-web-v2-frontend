@@ -2,13 +2,13 @@
   :class="fetchCSS.class" 
   :style="fetchCSS.style">
   <div class="flex f-dir-row gap22">
-    <div class="line-flex-ver-3"></div>
+    <div class="line-flex-ver-4"></div>
     <div class="flex f-dir-col gap18 w100">
       <p class="typo-mark5--light">{{contents.title}}</p>
       <div v-for="record in contents.records"
       :key="record.name"
       class="flex f-dir-col gap6">
-        <div class="flex f-dir-row f-js-cont-space f-al-item-baseline f-wrap rgap6">
+        <div class="flex f-dir-row f-js-cont-space f-al-item-baseline f-wrap rgap6 b-pad-right--half">
           <p class="typo-caption4">{{record.name}}</p>
           <div class="flex f-dir-row f-js-cont-end f-al-item-baseline gap5">
             <p class="typo-caption5">{{record.time}}</p>

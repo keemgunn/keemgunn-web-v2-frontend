@@ -6,16 +6,22 @@
     align-items: center;
     width: 100vw;
     height: fit-content;
+    z-index: 10;
   }
+
+  #s1-f2 {
+    z-index: 30;
+  }
+
+
+
+  // ================================
 
   .field-type-a, .field-type-b, .field-type-c {
     display: grid;
     margin: auto;
     height: fit-content;
     grid-template-rows: auto;
-    border-style: solid;
-    border-width: 1rem 0;
-    border-color: rgba(223, 94, 19, 0.781);
   }
   .field-type-b {
     width: 100%;
@@ -24,20 +30,14 @@
     width: 100vw;
   }
 
-  article {
+  .article-container {
+  }
+  .article-wrapper {
     display: flex;
+    // position: relative;
     width: 100%;
     height: fit-content;
     flex-wrap: wrap;
-    position: relative;
-    border-style: solid;
-    border-width: 1rem;
-    border-color: rgba(236, 42, 188, 0.781);
-  }
-  .article-test {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 44rem;
   }
   
   // ================================
@@ -45,9 +45,6 @@
   .block {
     width: 100%;
     height: fit-content;
-    border-style: solid;
-    border-width: 1rem;
-    border-color: rgba(9, 212, 94, 0.781);
   }
 
   .simple-text {
@@ -101,11 +98,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 12rem;
-    overflow: hidden;
-
-    // position: relative;
-    // overflow: hidden;
+    overflow: visible;
+    position: relative;
     .line-wrapper {
       display: flex;
       flex-direction: column;
@@ -189,13 +183,9 @@
     line-height: 1.2;
     letter-spacing: -0.02rem;
     white-space: nowrap;
-    // overflow: visible;
     text-overflow: ellipsis;
     position: relative;
-    // width: fit-content;
     width: 100%;
-    // left: -100rem;
-    // left: calc(0 - var(--margin-safe-col));
   }
   
   
@@ -327,3 +317,28 @@
   }
 }
 
+
+
+
+
+
+// .field-type-a, .field-type-b, .field-type-c {
+//   border-style: dashed;
+//   border-width: 1rem;
+//   border-color: rgba(223, 94, 19, 0.781);
+// }
+// .article-container {
+//   border-style: outset;
+//   border-width: 1rem;
+//   border-color: rgba(236, 42, 68, 0.781);
+// }
+// .article-wrapper {
+//   border-style: inset;
+//   border-width: 1rem;
+//   border-color: rgba(144, 124, 253, 0.781);
+// }
+// .block {
+//   border-style: solid;
+//   border-width: 1rem;
+//   border-color: rgba(9, 212, 94, 0.781);
+// }

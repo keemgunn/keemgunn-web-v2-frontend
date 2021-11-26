@@ -45,6 +45,7 @@ export default {
 // S1 : Intro =========================
   
   // S1 F1 : Page Title ---------------
+
   s1_f1_a1_b1: {
     type: "simpleText",
     modals: { base: {
@@ -56,25 +57,29 @@ export default {
   },
 
   // S1 F2 : Motto --------------------
+
   s1_f2_a1_b1: {
     type: "simpleText",
     modals: { base: {
-      class: ['typo-mark4--light']
+      class: ['typo-mark4--light'],
+      style: [{
+        width: 'fit-content'
+      }]
     }},
     contents: {
       text: "Motto",
     }
   },
+
   s1_f2_a2_b1: {
     type: "idasMottoText"
   },
-  s1_f2_a3_b1: {
+
+  // S1 F3 : My Profile --------------------
+  s1_f3_a1_b1: {
     type: 'imageContainer',
     modals: { base: {
-      class: ['sticky'],
-      style: [{
-        top: '0'
-      }]
+      class: ['']
     }},
     contents: {
       ext: 'png',
@@ -83,23 +88,8 @@ export default {
       zoom: false
     }
   },
-  s1_f2_a3_b2: {
-    type: 'imageContainer',
-    modals: { base: {
-      class: ['sticky'],
-      style: [{
-        top: '0'
-      }]
-    }},
-    contents: {
-      ext: 'png',
-      alt: `me`,
-      showAlt: false,
-      zoom: false
-    }
-  },
-  
-  s1_f2_a4_b1: { 
+
+  s1_f3_a2_b1: { 
     type: "simpleText",
     modals: { base: {
       class: ['typo-caption1--thick']
@@ -108,13 +98,13 @@ export default {
       text: "Gunn Keem (김건)",
     }
   },
-  s1_f2_a4_b2: {
+  s1_f3_a2_b2: {
     type: "lineVH",
     modals: { base: {
       class: ['line-flex-hor-1']
     }},
   },
-  s1_f2_a4_b3: {
+  s1_f3_a2_b3: {
     type: "simpleText",
     modals: { base: {
       class: ['typo-caption4']
@@ -123,7 +113,7 @@ export default {
       text: "April 6, 1994",
     }
   },
-  s1_f2_a4_b4: {
+  s1_f3_a2_b4: {
     type: "simpleDictionary",
     modals: { base: {
       class: ['typo-body3'],
@@ -145,18 +135,16 @@ export default {
     }
   },
 
-
-
-  s1_f2_a5_b1: { 
+  s1_f3_a3_b1: { 
     type: "edgeFrame",
     modals: { base: {
-      class: ['typo-header6']
+      class: ['typo-header6 gap14']
     }},
     contents: {
       text: "Resume",
     }
   },
-  s1_f2_a5_b2: {
+  s1_f3_a3_b2: {
     type: "cvItem",
     modals: { base: {
     }},
@@ -172,7 +160,7 @@ export default {
       ]
     }
   },
-  s1_f2_a5_b3: {
+  s1_f3_a3_b3: {
     type: "cvItem",
     modals: { base: {
     }},
@@ -200,7 +188,7 @@ export default {
       ]
     }
   },
-  s1_f2_a5_b4: {
+  s1_f3_a3_b4: {
     type: "cvItem",
     modals: { base: {
     }},
@@ -216,6 +204,36 @@ export default {
       ]
     }
   },
+
+  s1_f4_a1_b1: {
+    type: "simpleText",
+    modals: { base: {
+      class: ['typo-header4--light']
+    }},
+    contents: {
+      text: "Dear professors,",
+    }
+  },
+  s1_f4_a1_b2: {
+    type: "bodyText",
+    modals: { base: {
+      class: ['typo-body2']
+    }},
+    contents: {
+      text: "I'm writing this letter to find an opportunity at IDAS.<br>My name is Gunn Keem, and I'm very happy to introduce myself.",
+    }
+  },
+  s1_f4_a1_b3: {
+    type: "bodyText",
+    modals: { base: {
+      class: ['typo-body2']
+    }},
+    contents: {
+      text: "First of all, I appreciate you for taking the time to read my story.<br>Until I made this decision, I had many insights into myself and considerations about my career path. <br>If you can deliver me the good news, this will significantly change the direction of my life.<br>Otherwise, even if we don't have a further relationship, I hope my story will inspire you at least a little bit.",
+    }
+  },
+
+
 
 
 

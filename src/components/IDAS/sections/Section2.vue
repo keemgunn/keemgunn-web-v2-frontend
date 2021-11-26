@@ -19,14 +19,16 @@ const emits = [ 'trigger' ];
 
 function data() { return {
   downstream : { 
-  // Object that send to all components downward.
-  }
+    sectionPosition : 1,
+  },
+  serial: 'section-2',
+  el: {},
 }}
 
 const components = { FieldContainer };
 
 const computed = {
-  ...mapGetters('',[  ]),
+  ...mapGetters('ui',[ 'getStageArea' ]),
 };
 
 // It handles Triggers Depend on Payloads.
@@ -58,6 +60,14 @@ const methods = {
     }
   },
 
+  getElPos(element) {
+    const top = element.getBoundingClientRect().top;
+    const height = element.getBoundingClientRect().height;
+    return (this.getStageArea.bottom - top) / height
+  },
+  positionUpdater() {
+    this.downstream.sectionPosition = this.getElPos(this.el);
+  },
 };
 
 
@@ -78,6 +88,10 @@ function beforeMount() {
 
 
 function mounted() {
+    this.el = document.querySelector("#"+this.serial);
+    window.addEventListener('scroll', this.positionUpdater, { passive: true });
+    this.positionUpdater();
+    setTimeout(this.positionUpdater, 250);
 }
 
 

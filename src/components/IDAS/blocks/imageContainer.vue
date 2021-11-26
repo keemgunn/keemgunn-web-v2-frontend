@@ -134,11 +134,11 @@ function created() {
 
 function mounted() {
   this.imgEl = document.querySelector('#image-' + this.blockSeed.serial);
-  // const imageWrapperStyle = this.imageWrapperStyle;
-  // this.imgEl.addEventListener("load", function() {
-  //   const ratio = this.naturalWidth / this.naturalHeight;
-  //   imageWrapperStyle.height = `calc( 100% / ${ratio})`
-  // });
+  const imageWrapperStyle = this.imageWrapperStyle;
+  this.imgEl.addEventListener("load", function() {
+    const ratio = this.naturalWidth / this.naturalHeight;
+    imageWrapperStyle.height = `calc( 100% / ${ratio})`
+  });
   fetchContent(this.imgEl, this.serialPath, this.mediaRequestHeader);
 
   // Attach DOM Event Listener --------------------

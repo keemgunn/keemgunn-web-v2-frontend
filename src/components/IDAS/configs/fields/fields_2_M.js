@@ -43,12 +43,12 @@ export const s1_f1 = {
     base: {
       class: [''],
       style: [{
-        "margin": "0",
+        "margin": "0 0 150rem",
         "padding": "0",
         "grid-template-columns": 1,
         "gap": "0",
-        "height": "calc(100vh - var(--nav-top-height))",
-        "justify-content" : "center"
+        "height": "150vh",
+        "align-content" : "flex-start"
       }],
     }
   }
@@ -59,16 +59,6 @@ export const s1_f2 = {
   type: "A",
   sensors: {
     position: {
-      StyleCalc: (position) => {
-        return {
-          opacity: position
-        }
-      },
-      reactors: {
-        0: null,
-        0.5: "half",
-        1: null
-      }
     }
   },
   modals: {
@@ -76,7 +66,7 @@ export const s1_f2 = {
       class: ['sticky'],
       style: [{
         "margin": "0",
-        "padding": "140rem 0 0 0",
+        "padding": "calc(var(--nav-top-height) + 40rem) 0 0 0",
         "grid-template-columns": 1,
         "gap": "0",
       }],
@@ -89,16 +79,6 @@ export const s1_f3 = {
   type: "B",
   sensors: {
     position: {
-      StyleCalc: (position) => {
-        return {
-          opacity: position
-        }
-      },
-      reactors: {
-        0: null,
-        0.5: "half",
-        1: null
-      }
     }
   },
   modals: {

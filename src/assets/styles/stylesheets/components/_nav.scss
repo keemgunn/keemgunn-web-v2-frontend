@@ -1,5 +1,10 @@
 #nav-bar {
   background-color: var(--ink6);
+  position: sticky;
+  top: 0;
+  z-index: 500;
+
+  opacity: 0.5;
 
   // .nt--wide { height: 66rem; }
   // .nt--short { height: 47rem; }

@@ -57,7 +57,7 @@ body {
     background-color: var(--ink2); 
   }
   .line-flex-hor-#{$val} {
-    height: $val + rem;
+    height: $val + rem !important;
     align-self: stretch;
     background-color: var(--ink2); 
   }

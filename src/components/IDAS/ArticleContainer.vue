@@ -1,19 +1,20 @@
-<template><article :id="articleSeed.serial" 
-  :class="fetchCSS.class" 
-  :style="fetchCSS.style"
->
-
-  <component 
-    v-for="block of Object.keys(articleSeed.nested)"
-    :key="block"
-    :blockSeed="articleSeed['nested'][block]"
-    :is="articleSeed['nested'][block]['type']"
-    :downstream="downstream" 
-    :position="position"
-    @trigger="tossEvent"
-    @mounted="childMounted(this)"
-  />
-
+<template><article 
+:class="fetchCSS.container.class" 
+:style="fetchCSS.container.style">
+  <div 
+  :id="articleSeed.serial" 
+  :class="fetchCSS.wrapper.class" 
+  :style="fetchCSS.wrapper.style">
+    <component 
+      v-for="block of Object.keys(articleSeed.nested)"
+      :key="block"
+      :blockSeed="articleSeed['nested'][block]"
+      :is="articleSeed['nested'][block]['type']"
+      :downstream="downstream" 
+      :position="position"
+      @trigger="tossEvent"
+      @mounted="childMounted(this)"/>
+  </div>
 </article>
 </template>
 <script>
@@ -75,7 +76,7 @@ const computed = {
       const bundle = this.getCSSbyModal(this);
       const sensorConfigs = getConfigsByScale(this.sensorConfigs, this.getScale)
       if (typeof sensorConfigs['position']['StyleCalc'] !== 'undefined') {
-        bundle.style.push(sensorConfigs['position']['StyleCalc'](this.position));
+        bundle.wrapper.style.push(sensorConfigs['position']['StyleCalc'](this.position));
       }
       return bundle
     }

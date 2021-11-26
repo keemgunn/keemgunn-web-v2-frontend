@@ -3,7 +3,6 @@
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
 >
-  <p class="typo-body1">{{this.position}}</p>
   <ArticleContainer v-for="article of Object.keys(fieldSeed.nested)"
     :key="article"
     :articleSeed="fieldSeed['nested'][article]"

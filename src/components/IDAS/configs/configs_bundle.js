@@ -198,17 +198,37 @@ for (const an in allArticles) {
       const modalConfigs = {};
       const sensorConfigs = {};
   
-      const modals = typeof article.modals !== 'undefined' ? article.modals : { base: { class: [], style: [] } }
+      const modals = typeof article.modals !== 'undefined' ? article.modals
+        : { base: { container: { class: [], style: [] }, wrapper: { class: [], style: [] } } };
+
       if (typeof modals.base === 'undefined') {
-        modals.base = { class: [], style: [] };
+        modals.base = {
+          container: { class: [], style: [] },
+          wrapper: { class: [], style: [] }
+        }
       }
-      if (typeof modals.base.class === 'undefined') {
-        modals.base.class = [];
+      if (typeof modals.base.container === 'undefined') {
+        modals.base.container = { class: [], style: [] };
       }
-      if (typeof modals.base.style === 'undefined') {
-        modals.base.style = [];
+      if (typeof modals.base.wrapper === 'undefined') {
+        modals.base.wrapper = { class: [], style: [] };
       }
-      modals.base.class.push(serial);
+      if (typeof modals.base.container.class === 'undefined') {
+        modals.base.container.class = [];
+      }
+      if (typeof modals.base.container.style === 'undefined') {
+        modals.base.container.style = [];
+      }
+      if (typeof modals.base.wrapper.class === 'undefined') {
+        modals.base.wrapper.class = [];
+      }
+      if (typeof modals.base.wrapper.style === 'undefined') {
+        modals.base.wrapper.style = [];
+      }
+
+      modals.base.container.class.push('article-container');
+      modals.base.wrapper.class.push('article-wrapper');
+      modals.base.wrapper.class.push(serial);
   
       const hasParents =
         typeof wholeBundle[section] !== 'undefined' ?

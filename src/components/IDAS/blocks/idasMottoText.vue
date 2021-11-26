@@ -28,10 +28,6 @@ function data() { return {
 // state data made in this component. -------------
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
-  // wrapperStyle: {
-  //   position: "sticky", 
-  //   top: "50rem"
-  // }
 }}
 
 const computed = {
@@ -39,7 +35,7 @@ const computed = {
     try {
       const bundle = this.getCSSbyModal(this);
       bundle.style.push({
-        left: `calc( 40vw + (0 - ${this.position})* 12vw )`
+        left: `calc( (0.3 - ${this.downstream.sectionPosition}) * 120vw )`
       });
       return bundle
     }

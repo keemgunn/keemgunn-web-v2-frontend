@@ -20,26 +20,69 @@ export function getConfigsByScale(configs, scale) {
 
 export function getCSSbyModal(context) {
   try {
-    const configs = context.serial.split('-').length === 4 ? context.modalConfigs : getConfigsByScale(context.modalConfigs, context.getScale);
+    const indicator = context.serial.split('-').length;
+    const configs = indicator === 4 ? context.modalConfigs : getConfigsByScale(context.modalConfigs, context.getScale);
     const states = context.states;
-    let classBundle = [];
-    let styleBundle = [];
-    for (const modal of Object.keys(configs)) {
-      if (modal === 'base') {
-        classBundle = [...configs[modal]['class']];
-        styleBundle = [...configs[modal]['style']];
-      } else {
-        if (configs[modal][states[modal]]) {
-          if (configs[modal][states[modal]]['class']) {
-            classBundle.push(configs[modal][states[modal]]['class']);
+
+    if (indicator === 3) {
+      let containerClassBundle = [];
+      let containerStyleBundle = [];
+      let wrapperClassBundle = [];
+      let wrapperStyleBundle = [];
+      for (const modal of Object.keys(configs)) {
+        if (modal === 'base') {
+          if (configs[modal]['container']) {
+            containerClassBundle = [...configs[modal]['container']['class']];
+            containerStyleBundle = [...configs[modal]['container']['style']];
           }
-          if (configs[modal][states[modal]]['style']) {
-            styleBundle.push(configs[modal][states[modal]]['style']);
+          if (configs[modal]['wrapper']) {
+            wrapperClassBundle = [...configs[modal]['wrapper']['class']];
+            wrapperStyleBundle = [...configs[modal]['wrapper']['style']];
+          }
+        } else {
+          if (configs[modal][states[modal]]) {
+            if (configs[modal][states[modal]]['class']) {
+              wrapperClassBundle.push(configs[modal][states[modal]]['class']);
+            }
+            if (configs[modal][states[modal]]['style']) {
+              wrapperStyleBundle.push(configs[modal][states[modal]]['style']);
+            }
           }
         }
       }
+      return {
+        container: {
+          class: containerClassBundle,
+          style: containerStyleBundle
+        },
+        wrapper: {
+          class: wrapperClassBundle,
+          style: wrapperStyleBundle
+        }
+      }
     }
-    return { class: classBundle, style: styleBundle }
+
+    else {
+      let classBundle = [];
+      let styleBundle = [];
+      for (const modal of Object.keys(configs)) {
+        if (modal === 'base') {
+          classBundle = [...configs[modal]['class']];
+          styleBundle = [...configs[modal]['style']];
+        } else {
+          if (configs[modal][states[modal]]) {
+            if (configs[modal][states[modal]]['class']) {
+              classBundle.push(configs[modal][states[modal]]['class']);
+            }
+            if (configs[modal][states[modal]]['style']) {
+              styleBundle.push(configs[modal][states[modal]]['style']);
+            }
+          }
+        }
+      }
+      return { class: classBundle, style: styleBundle }
+    }
+
   }
   catch (err) {
     console.error('!error!', `@${context.serial || 'unknown'}`);

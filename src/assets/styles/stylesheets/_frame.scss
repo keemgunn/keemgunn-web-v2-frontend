@@ -17,6 +17,13 @@
   margin: auto;
 }
 
+.b-pad-right {
+  padding-right: var(--b-margin-safe-col);
+}
+.b-pad-right--half {
+  padding-right: calc(var(--b-margin-safe-col)/2);
+}
+
 
 .sticky {
   position: sticky;
