@@ -1,9 +1,11 @@
-<template><div :id="blockSeed.serial"
+<template>
+<!-- <div :style="wrapperStyle"> -->
+  <div :id="blockSeed.serial"
   :class="fetchCSS.class" 
-  :style="fetchCSS.style"
->
-  Create • Inspire • Contribute
-</div>
+  :style="fetchCSS.style">
+    Create • Inspire • Contribute &nbsp; Create • Inspire • Contribute &nbsp; Create • Inspire • Contribute &nbsp; Create • Inspire • Contribute &nbsp; Create • Inspire • Contribute &nbsp; Create • Inspire • Contribute &nbsp; Create • Inspire • Contribute
+  </div>
+<!-- </div> -->
 </template>
 <script>
 const name = 'Block_simpleText';
@@ -26,15 +28,19 @@ function data() { return {
 // state data made in this component. -------------
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
-  contents: {},
-  link : '',
+  // wrapperStyle: {
+  //   position: "sticky", 
+  //   top: "50rem"
+  // }
 }}
 
 const computed = {
   fetchCSS() {
     try {
       const bundle = this.getCSSbyModal(this);
-      bundle.left = String(this.position) + "rem"
+      bundle.style.push({
+        left: `calc( 40vw + (0 - ${this.position})* 12vw )`
+      });
       return bundle
     }
     catch (err) {

@@ -76,7 +76,7 @@ export const s1_f2_a1 = {
     base: {
       class: [''],
       style: [{
-        "grid-area": "1/1/2/9",
+        "grid-area": "1/1/2/2",
         "place-self": "center stretch",
         "margin": "0 0",
         "flex-direction": "column",
@@ -90,30 +90,42 @@ export const s1_f2_a1 = {
 
 
 export const s1_f2_a2 = {
-  sensors: {
-    position: {
-      reactors: {
-        0: "start",
-        1: "end"
-      }
-    }
-  },
   modals: {
     base: {
       class: [''],
       style: [{
-        "grid-area": "2/1/3/9",
+        "grid-area": "2/1/3/2",
+        "place-self": "center stretch",
+        "margin": "0 0 0 0",
+        "flex-direction": "column",
+        "justify-content": "flex-start",
+        "align-items": "flex-start",
+        "gap": "0",
+        // "width": "10rem",
+        "overflow": "hidden",
+        "position": "sticky",
+        "top": "20rem",
+        "text-overflow": "ellipsis",
+      }],
+    }
+  }
+}
+
+
+export const s1_f3_a1 = {
+  modals: {
+    base: {
+      class: [''],
+      style: [{
+        "grid-area": "1/1/2/5",
         "place-self": "center stretch",
         "margin": "0 0",
         "flex-direction": "column",
         "justify-content": "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "overflow": "visible",
-        "text-overflow": "ellipsis",
-
+        "height": "1320rem"
       }],
     }
   }
 }
-

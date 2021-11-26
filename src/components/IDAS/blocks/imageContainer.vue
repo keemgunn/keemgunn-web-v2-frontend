@@ -35,7 +35,8 @@ import { fetchContent } from '@/functions/contentsFetcher';
 
 const props = { 
   blockSeed: Object, 
-  downstream: Object 
+  downstream: Object,
+  position: Number
 };
 const emits = [ 'trigger', 'mounted' ];
 
@@ -55,7 +56,7 @@ function data() { return {
   zoomEl: {},
   imageWrapperStyle: {
     width: '100%',
-    height: ''
+    height: 'fit-content'
   }
 }}
 
@@ -133,11 +134,11 @@ function created() {
 
 function mounted() {
   this.imgEl = document.querySelector('#image-' + this.blockSeed.serial);
-  const imageWrapperStyle = this.imageWrapperStyle;
-  this.imgEl.addEventListener("load", function() {
-    const ratio = this.naturalWidth / this.naturalHeight;
-    imageWrapperStyle.height = `calc( 100% / ${ratio})`
-  });
+  // const imageWrapperStyle = this.imageWrapperStyle;
+  // this.imgEl.addEventListener("load", function() {
+  //   const ratio = this.naturalWidth / this.naturalHeight;
+  //   imageWrapperStyle.height = `calc( 100% / ${ratio})`
+  // });
   fetchContent(this.imgEl, this.serialPath, this.mediaRequestHeader);
 
   // Attach DOM Event Listener --------------------

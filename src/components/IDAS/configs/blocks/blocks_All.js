@@ -70,6 +70,12 @@ export default {
   },
   s1_f2_a3_b1: {
     type: 'imageContainer',
+    modals: { base: {
+      class: ['sticky'],
+      style: [{
+        top: '0'
+      }]
+    }},
     contents: {
       ext: 'png',
       alt: `me`,
@@ -77,6 +83,22 @@ export default {
       zoom: false
     }
   },
+  s1_f2_a3_b2: {
+    type: 'imageContainer',
+    modals: { base: {
+      class: ['sticky'],
+      style: [{
+        top: '0'
+      }]
+    }},
+    contents: {
+      ext: 'png',
+      alt: `me`,
+      showAlt: false,
+      zoom: false
+    }
+  },
+  
   s1_f2_a4_b1: { 
     type: "simpleText",
     modals: { base: {

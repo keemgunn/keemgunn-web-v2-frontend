@@ -143,7 +143,6 @@ for (const fn in allFields) {
         modalConfigs[scale] = modals;
         sensorConfigs[scale] = SensorConfigs(sensors, 'field', serial);
       }
-  
       // Make states Object from modalConfigs -------
       // default modal states: [ Boolean || Int ]
       // default sensor states: [ 1 ]
@@ -334,7 +333,7 @@ for (const [_serial, block] of Object.entries(blocks_All)) {
           : false
         : false
     if (hasParents) {
-      wholeBundle[section][field]['nested'][article]['nested'][block.serial] = packed;
+      wholeBundle[section][field]['nested'][article]['nested'][serial] = packed;
     }
   
     if (process.env.NODE_ENV === 'development') {

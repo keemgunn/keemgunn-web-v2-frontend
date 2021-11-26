@@ -92,7 +92,7 @@ html, body {
   -moz-text-size-adjust : 100%;
   -o-text-size-adjust : 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 

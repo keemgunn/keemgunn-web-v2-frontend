@@ -3,7 +3,7 @@
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
 >
-
+  <p class="typo-body1">{{this.position}}</p>
   <ArticleContainer v-for="article of Object.keys(fieldSeed.nested)"
     :key="article"
     :articleSeed="fieldSeed['nested'][article]"
@@ -108,7 +108,7 @@ const methods = {
   // Chage Sensor Configurations by Scale ---------
   sensorShift(target, scale){
     const sensorConfigs = getConfigsByScale(this.sensorConfigs, scale);
-    this["sensorsActive"][target] = sensorConfigs[target];
+    this["sensorsActive"][target] = Object.assign({},sensorConfigs[target]);
     this["sensorsActive"][target]['self'] = Object.keys(sensorConfigs[target]['self']).length !== 0;
   },
 
