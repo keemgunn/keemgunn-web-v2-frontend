@@ -65,7 +65,7 @@ export const s1_f2 = {
     base: {
       class: ['sticky'],
       style: [{
-        "margin": "0",
+        "margin": "0 0 200rem 0",
         "padding": "calc(var(--nav-top-height) + 40rem) 0 0 0",
         "grid-template-columns": 1,
         "gap": "0",
@@ -102,11 +102,11 @@ export const s1_f4 = {
     base: {
       class: [''],
       style: [{
-        "margin": "0",
+        "margin": "0 0 200rem 0",
         "padding": "0",
         "grid-template-columns": 1,
         "gap": "0rem 0rem",
-        "height": "600rem",
+        "height": "800rem",
         "justify-content" : "center"
       }],
     }
@@ -136,10 +136,10 @@ export const s2_f2 = {
     base: {
       class: [''],
       style: [{
-        "margin": "0",
+        "margin": "0 var(--b-safe-margin)",
         "padding": "0",
         "grid-template-columns": "repeat(12, 1fr)",
-        "gap": "0rem 40rem",
+        "gap": "40rem 40rem",
       }],
     }
   }
@@ -156,7 +156,7 @@ export const s2_f3 = {
         "padding": "0",
         "grid-template-columns": 1,
         "gap": "0rem 0rem",
-        "height": "320rem",
+        "height": "400rem",
         "justify-content" : "center"
       }],
     }
@@ -164,7 +164,7 @@ export const s2_f3 = {
 }
 
 export const s2_f4 = {
-  type: "B",
+  type: "A",
   sensors: {},
   modals: {
     base: {
@@ -173,7 +173,7 @@ export const s2_f4 = {
         "margin": "0",
         "padding": "0",
         "grid-template-columns": "repeat(18, 1fr)",
-        "gap": "0rem 0rem",
+        "gap": "calc(var(--b-width) / (18 * 1.8)) 0rem",
       }],
     }
   }

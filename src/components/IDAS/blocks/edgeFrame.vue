@@ -1,14 +1,17 @@
-<template><div
-:id="blockSeed.serial"
-:class="fetchCSS.class" 
-:style="fetchCSS.style">
+<template>
+<div class="edge-wrapper">
+  <div
+  :id="blockSeed.serial"
+  :class="fetchCSS.class" 
+  :style="fetchCSS.style">
 
-  <p v-html="contents.text"/>
-  <div class="line-wrapper">
-    <div class="line-hor"></div>
-    <div class="line-ver"></div>
+    <p v-html="contents.text"/>
+    <div class="line-wrapper">
+      <div class="line-hor"></div>
+      <div class="line-ver"></div>
+    </div>
+    
   </div>
-
 </div>
 </template>
 <script>
@@ -21,7 +24,8 @@ import { camelToDash } from '@/functions/stringMod';
 
 const props = { 
   blockSeed: Object, 
-  downstream: Object 
+  downstream: Object,
+  position: Number
 };
 const emits = [ 'trigger', 'mounted' ];
 

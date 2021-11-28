@@ -205,6 +205,7 @@ export default {
     }
   },
 
+  // S1 F4 : Dear Professors, --------------------
   s1_f4_a1_b1: {
     type: "simpleText",
     modals: { base: {
@@ -235,31 +236,23 @@ export default {
 
 
 
-
-
-
-
 // S2 : LIFE STORY ====================
 
   // S2 F1 : title --------------------
-  // A1 ...............................
   s2_f1_a1_b1: {
     type: "simpleText",
     modals: { base: {
-      class: ['typo-header2']
+      class: ['typo-header5']
     }},
     contents: {
-      text: "Attitude toward life",
+      text: "I. My life story",
     }
   },
   s2_f1_a1_b2: {
-    type: "simpleText",
+    type: "lineVH",
     modals: { base: {
-      class: ['typo-header2--light']
+      class: ['line-flex-hor-1']
     }},
-    contents: {
-      text: "Determines",
-    }
   },
   s2_f1_a1_b3: {
     type: "simpleText",
@@ -267,7 +260,7 @@ export default {
       class: ['typo-header2--light']
     }},
     contents: {
-      text: "Life's attitude toward us.",
+      text: "<b>Attitude toward life</b><br>Determines<br>Life's attitude toward us.",
     }
   },
 
@@ -292,14 +285,23 @@ export default {
     }
   },
   // A2 ...............................
+  s2_f2_a2_b1: {
+    type: "edgeFrame",
+    modals: { base: {
+      class: ['typo-caption5--thick gap12']
+    }},
+    contents: {
+      text: "<i>&lt;fig 1. I just followed the act of fate.&gt;</i>",
+    }
+  },
   // A3 ...............................
-  s2_f1_a3_b1: {
+  s2_f2_a3_b1: {
     type: "simpleText",
     modals: { base: {
       class: ['typo-header6']
     }},
     contents: {
-      text: "I just followed my life",
+      text: "I Just Followed my life",
     }
   },
   s2_f2_a3_b2: {
@@ -346,7 +348,9 @@ export default {
   // A1 ...............................
   s2_f4_a1_b1: {
     type: "imageContainer",
-    modals: { base: {
+    modals: {
+      base: {
+        class: ['text-right']
     }},
     contents: {
       ext: 'png',
@@ -383,6 +387,34 @@ export default {
       text: "It was the first time I resisted fate. Otherwise, I would have been worried about my future while attending a school and major that I was not interested in. Ironically, the CSAT, which brought me to huge pain a few years ago, was an opportunity to encourage me. <strong>Then I realized that I could always make my own decision against fate. <i>(fig. 2)</i></strong>",
     }
   },
+  s2_f4_a3_b1: {
+    type: "edgeFrame",
+    modals: { base: {
+      class: ['typo-caption5--thick gap12']
+    }},
+    contents: {
+      text: "<i>&lt;fig 2. I can make my own decision.&gt;</i>",
+    }
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // S3 F1 : This is the new me -------
   // A1 ...............................

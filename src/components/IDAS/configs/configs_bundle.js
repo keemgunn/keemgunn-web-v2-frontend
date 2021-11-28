@@ -227,6 +227,7 @@ for (const an in allArticles) {
       }
 
       modals.base.container.class.push('article-container');
+      modals.base.container.class.push(serial);
       modals.base.wrapper.class.push('article-wrapper');
       modals.base.wrapper.class.push(serial);
   

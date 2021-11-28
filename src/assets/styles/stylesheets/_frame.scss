@@ -9,19 +9,24 @@
 .h-fit {
   height: fit-content;
 }
-.al-self-str {
-  align-self: stretch;
+.w100 {
+  width: 100%;
 }
+.h100 {
+  height: 100%;
+}
+
 
 .m-auto {
   margin: auto;
 }
 
+
 .b-pad-right {
-  padding-right: var(--b-margin-safe-col);
+  padding-right: var(--b-safe-margin);
 }
 .b-pad-right--half {
-  padding-right: calc(var(--b-margin-safe-col)/2);
+  padding-right: calc(var(--b-safe-margin)/2);
 }
 
 
@@ -30,6 +35,26 @@
   position: -webkit-sticky;
   top: 0;
 }
+.relative {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+
+.over-hidden {
+  overflow: hidden;
+}
+
+
+.top-stage-top {
+  top: calc(var(--stage-top) * 1);
+}
+.top-stage-top--double {
+  top: calc(var(--stage-top) * 2);
+}
+
+
 
 
 .flex {
@@ -67,6 +92,11 @@
 }
 
 
+.al-self-str {
+  align-self: stretch;
+}
+
+
 
 @mixin Gap($val) {
   .gap#{$val} {
@@ -81,16 +111,6 @@
 } @for $i from 1 through 50 {
   @include Gap($i);
 }
-
-
-.w100 {
-  width: 100%;
-}
-.h100 {
-  height: 100%;
-}
-
-
 
 
 

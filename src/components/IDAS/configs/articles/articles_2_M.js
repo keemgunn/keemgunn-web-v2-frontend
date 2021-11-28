@@ -87,7 +87,7 @@ export const s1_f2_a1 = {
         style: [{
           "grid-area": "1/1/2/2",
           "place-self": "center stretch",
-          "padding": "0 0 0 var(--margin-safe-col)",
+          "padding": "0 0 0 var(--safe-margin)",
           "width": "fit-content"
         }],
       },
@@ -116,7 +116,6 @@ export const s1_f2_a2 = {
           "place-self": "center stretch",
           "margin": "0 0 0 0",
           "overflow": "hidden",
-          "top": "20rem",
           "text-overflow": "ellipsis",
         }],
       },
@@ -167,7 +166,7 @@ export const s1_f3_a2 = {
   modals: {
     base: {
       container: {
-        class: ['flex'],
+        class: [''],
         style: [{
           "grid-area": "1/5/2/9",
           "place-self": "center stretch",
@@ -195,7 +194,7 @@ export const s1_f3_a3 = {
   modals: {
     base: {
       container: {
-        class: ['flex'],
+        class: [''],
         style: [{
           "grid-area": "2/5/3/9",
           "place-self": "center stretch",
@@ -205,13 +204,11 @@ export const s1_f3_a3 = {
         }],
       },
       wrapper: {
-        class: [''],
+        class: ['over-hidden'],
         style: [{
           "flex-direction": "column",
           "align-items": "flex-start",
           "gap": "40rem",
-          "position": "relative",
-          "overflow": "hidden"
         }],
       }
     }
@@ -223,9 +220,9 @@ export const s1_f4_a1 = {
   modals: {
     base: {
       container: {
-        class: ['flex'],
+        class: [''],
         style: [{
-          "grid-area": "1/1/2/2",
+          "grid-area": "1 / 1 / 2 / 2",
           "place-self": "center stretch",
           "margin": "0 0",
           "align-items": "center",
@@ -243,3 +240,221 @@ export const s1_f4_a1 = {
   }
 }
 
+
+export const s2_f1_a1 = {
+  modals: {
+    base: {
+      container: {
+        class: [''],
+        style: [{
+          "grid-area": "1/1/2/2",
+          "place-self": "center stretch",
+          "margin": "0 0",
+          "align-items": "flex-start",
+        }],
+      },
+      wrapper: {
+        class: [''],
+        style: [{
+          "flex-direction": "column",
+          "align-items": "flex-start",
+          "gap": "14rem",
+        }],
+      }
+    }
+  }
+}
+
+
+export const s2_f2_a1 = {
+  modals:{ base:{
+    container: {
+      class: [''],
+      style: [{
+        "grid-area": "1 / 1 / 2 / 6",
+        "place-self": "stretch stretch",
+        "margin": "0",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+      }],
+    },
+    wrapper: {
+      class: [''],
+      style: [{
+        "flex-direction": "column",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+        "gap": "14rem",
+      }],
+    }
+  }}
+}
+
+
+export const s2_f2_a2 = {
+  modals:{ base:{
+    container: {
+      class: [''],
+      style: [{
+        "grid-area": "2 / 1 / 3 / 6",
+        "place-self": "stretch stretch",
+        "margin": "0",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+        "aspect-ratio" : "0.5",
+      }],
+    },
+    wrapper: {
+      class: ['sticky top-stage-top--double over-hidden'],
+      style: [{
+        "flex-direction": "column",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+        "gap": "0",
+        "aspect-ratio": "0.78",
+      }],
+    }
+  }}
+}
+
+
+export const s2_f2_a3 = {
+  modals:{ base:{
+    container: {
+      class: [''],
+      style: [{
+        "grid-area": "1 / 6 / 3 / 13",
+        "place-self": "stretch stretch",
+        "margin": "0",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+      }],
+    },
+    wrapper: {
+      class: ['sticky top-stage-top--double'],
+      style: [{
+        "flex-direction": "column",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+        "gap": "40rem",
+      }],
+    }
+  }}
+}
+
+
+export const s2_f3_a1 = {
+  modals:{ base:{
+    container: {
+      class: [''],
+      style: [{
+        "grid-area": "1 / 1 / 2 / 2",
+        "place-self": "center stretch",
+        "margin": "0",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "center",
+      }],
+    },
+    wrapper: {
+      class: [''],
+      style: [{
+        "flex-direction": "column",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+        "gap" : "24rem",
+      }],
+    }
+  }}
+}
+
+
+export const s2_f4_a1 = {
+  modals:{ base:{
+    container: {
+      class: [''],
+      style: [{
+        "grid-area": "1 / 1 / 2 / 11",
+        "place-self": "stretch stretch",
+        "margin": "0",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+      }],
+    },
+    wrapper: {
+      class: ['relative'],
+      style: [{
+        "flex-direction": "column",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+        "gap": "0",
+        // "left" : "calc(var(--b-width) / (-18))",
+      }],
+    }
+  }}
+}
+
+
+export const s2_f4_a2 = {
+  modals:{ base:{
+    container: {
+      class: [''],
+      style: [{
+        "grid-area": "1 / 11 / 3 / 19",
+        "place-self": "stretch stretch",
+        "margin": "0 var(--safe-margin)",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+      }],
+    },
+    wrapper: {
+      class: ['sticky top-stage-top--double'],
+      style: [{
+        "flex-direction": "column",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+        "gap": "24rem",
+      }],
+    }
+  }}
+}
+
+
+export const s2_f4_a3 = {
+  modals:{ base:{
+    container: {
+      class: [''],
+      style: [{
+        "grid-area": "2 / 1 / 3 / 11",
+        "place-self": "stretch stretch",
+        "margin": "0 0 0 var(--safe-margin)",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+        "aspect-ratio" : "0.5",
+      }],
+    },
+    wrapper: {
+      class: ['over-hidden sticky top-stage-top--double'],
+      style: [{
+        "flex-direction": "column",
+        "align-content" : "flex-start",
+        "justify-content" : "flex-start",
+        "align-items": "flex-start",
+        "gap": "0",
+        "aspect-ratio" : "1.25",
+      }],
+    }
+  }}
+}

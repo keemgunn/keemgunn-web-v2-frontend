@@ -51,7 +51,7 @@ function data() { return {
   testBlockList: {},
   loadStateEntries: {
     '1_configsBundle-loaded': false,
-    // '2_contentsToken-loaded': false,
+    '2_contentsToken-loaded': false,
   },
 }}
 

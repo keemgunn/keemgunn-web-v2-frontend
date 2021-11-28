@@ -13,7 +13,7 @@ const name = 'Block_Quote';
 import { mapMutations, mapActions } from 'vuex';
 import { getCSSbyModal } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
-import { injectBasicEventListeners, injectListnerCallbacks, attachEventListeners } from '@/functions/eventListeners';
+import { injectBasicEventListeners, mergeAttachEventListeners } from '@/functions/eventListeners';
 
 const props = { 
   blockSeed: Object, 
@@ -68,14 +68,11 @@ function created() {
   this.contents = this.blockSeed.contents;
 
   // Inject Listener Callbacks --------------------
-  injectListnerCallbacks(this, listenersList, this.blockSeed.injectTriggers);
 }
 
 
 function mounted() {
-  // Attach DOM Event Listener --------------------
-  attachEventListeners(this, this.blockSeed.serial, listenersList);
-  this.$emit('mounted');
+  mergeAttachEventListeners(this, listenersList, this.blockSeed.injectTriggers);
 }
 
 
