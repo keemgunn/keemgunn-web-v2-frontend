@@ -5,13 +5,19 @@
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    height: calc(100vh - var(--nav-top-height));
+    height: calc(100vh);
     padding-bottom: var(--nav-top-height);
     justify-content: center;
     .title-wrapper * {
       transition: all 400ms ease;
     }
     .page-title {
+      font-family: 'Syncopate';
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02rem;
+      white-space: normal;
+      text-align: center;
       color: var(--ink0);
     }
     .progress-bar-exc {
@@ -276,65 +282,107 @@
 
 // ================================
 
-.XXS{
+.XXS{ #idas {
+
   .field-type-c {
     width: 284vw;
   }
   .field-gap {
     gap: 3rem
   }
-}
 
-.XS{
+  .page-title {
+    font-size: 4.4vw;
+  }
+
+}}
+
+.XS{ #idas {
+
   .field-type-c {
     width: 284vw;
   }
-}
 
-.S{
+  .page-title {
+    font-size: 4.4vw;
+  }
+
+}}
+
+.S{ #idas {
+
   .field-type-b {
     max-width: 760rem;
   }
   .field-type-c {
     width : 620rem
   }
-}
 
-.M{
+  .page-title {
+    font-size: 3vw;
+  }
+
+}}
+
+.M{ #idas {
+
   .field-type-b {
     max-width: 1080rem;
   }
   .field-type-c {
     width : calc(var(--min-vw) - var(--safe-margin)*2);
   }
-}
+  
+  .page-title {
+    font-size: 3vw;
+  }
 
-.L{
+}}
+
+.L{ #idas {
+
   .field-type-b {
     max-width: 1280rem;
   }
   .field-type-c {
     width: 1000rem;
   }
-}
 
-.XL{
+  .page-title {
+    font-size: 3vw;
+  }
+
+}}
+
+.XL{ #idas {
+
   .field-type-b {
     max-width: 1400rem;
   }
   .field-type-c {
     width: 1080rem;
   }
-}
 
-.XXL{
+  .page-title {
+    font-size: 4vw;
+  }
+
+}}
+
+.XXL{ #idas {
+
   .field-type-b {
     max-width: 1720rem;
   }
   .field-type-c {
     width: 1280rem;
   }
-}
+
+  .page-title {
+    font-size: 4vw;
+  }
+
+}}
 
 
 

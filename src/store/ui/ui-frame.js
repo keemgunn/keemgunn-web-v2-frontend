@@ -18,15 +18,18 @@ export default {
     vh: null,
     scale: null,
     navWidthScale: null,
+    mainEl: {}
   }),
 
   getters: {
     getFrameSize(state) {
       return {width: state.vw, height: state.vh}
     },
+
     getScale(state) {
       return state.scale
     },
+
     getContentsSuffix(state) {
       if (state.scale === 'XXS') {
         return '@1x'
@@ -38,12 +41,15 @@ export default {
         return '@6x'
       }
     },
+
     getRatio(state) {
       return state.vw / state.vh
     },
+
     getNavWidthScale(state) {
       return state.navWidthScale
     },
+
     getStageArea(state) {
       return {
         top: state.vh * 0.1,
@@ -52,6 +58,10 @@ export default {
         right: state.vw * 0.9
       }
     },
+
+    getMainEl(state) {
+      return state.mainEl
+    }
   },
 
   mutations: {
@@ -60,6 +70,11 @@ export default {
       state.vh = payload.height;
       state.scale = setScale(payload.width);
       state.navWidthScale = setNavWidthScale(payload.width);
+    },
+
+    loadMainTag(state, mainId) {
+      state.mainEl = document.getElementById(mainId);
+      console.log(state.mainEl);
     }
   },
 

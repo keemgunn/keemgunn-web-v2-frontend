@@ -140,12 +140,12 @@
   .line-flex-ver-#{$val} {
     width: $val + rem;
     align-self: stretch;
-    background-color: var(--ink2); 
+    background-color: var(--ink1); 
   }
   .line-flex-hor-#{$val} {
     height: $val + rem !important;
     align-self: stretch;
-    background-color: var(--ink2); 
+    background-color: var(--ink1); 
   }
 } @for $i from 1 through 8 {
   @include Line($i);

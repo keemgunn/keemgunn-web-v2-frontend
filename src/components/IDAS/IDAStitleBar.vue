@@ -1,6 +1,6 @@
 <template><div id="idas-title-bar">
   <div class="title-wrapper">
-    <p class="page-title typo-header5">ADMISSION ESSAY FOR IDAS</p>
+    <p class="page-title">ADMISSION ESSAY FOR IDAS</p>
     <div class="progress-bar-exc" :style="progressStyle"></div>
     <div :class="hueClass" :style="hueStyle"></div>
   </div>

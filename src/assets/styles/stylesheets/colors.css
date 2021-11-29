@@ -17,8 +17,7 @@
   --accent6: #FFDBCC;
   --accent7: #FFEDE5;
 
-  --black: #000000;
-  --white: #ffffff;
+  --backblur: #ebebebd0;
   }
 
   .inverted-color {
@@ -39,8 +38,7 @@
     --accent6: #12142C;
     --accent7: #13141E;
 
-    --black: #000000;
-    --white: #ffffff;
+    --backblur: #121212da;
   }
 
   
@@ -65,8 +63,7 @@
     --accent6: #12142C;
     --accent7: #13141E;
 
-    --black: #000000;
-    --white: #ffffff;
+    --backblur: #121212da;
   }
 
   .inverted-color {
@@ -86,8 +83,7 @@
     --accent5: #FFC9B2;
     --accent6: #FFDBCC;
     --accent7: #FFEDE5;
-  
-    --black: #000000;
-    --white: #ffffff;
+
+    --backblur: #ebebebd0;
   }
 }

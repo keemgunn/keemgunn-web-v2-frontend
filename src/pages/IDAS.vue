@@ -68,6 +68,7 @@ const computed = {
 
 const methods = {
   ...mapMutations('moderator', ['addToInitQueue', 'commitInitQueue']),
+  ...mapMutations('ui', ['loadMainTag']),
   serialize(str) {
     return `${this.serial}_${str}`
   },
@@ -117,6 +118,7 @@ function beforeMount() {
 
 
 function mounted() {
+  this.loadMainTag('idas');
 }
 
 

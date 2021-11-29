@@ -202,12 +202,10 @@ html, body {
 html.no-scroll {
   margin-top:0 !important
 }
-
 html.no-scroll, html.no-scroll body {
   overflow: hidden !important;
   height:100% !important
 }
-
 html.no-scroll-long {
   overflow-y:scroll !important
 }
