@@ -36,22 +36,6 @@ export const s1_f2_a2 = {
 }
 
 
-export const s2_f1_a1 = {
-  customArticle: null,
-  eventTriggers: {
-
-  }
-}
-
-
-export const s2_f1_a2 = {
-  customArticle: null,
-  eventTriggers: {
-
-  }
-}
-
-
 export const s2_f2_a1 = {
   customArticle: null,
   eventTriggers: {
@@ -61,6 +45,22 @@ export const s2_f2_a1 = {
 
 
 export const s2_f2_a2 = {
+  customArticle: null,
+  eventTriggers: {
+
+  }
+}
+
+
+export const s2_f3_a1 = {
+  customArticle: null,
+  eventTriggers: {
+
+  }
+}
+
+
+export const s2_f3_a2 = {
   customArticle: null,
   eventTriggers: {
 

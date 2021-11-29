@@ -2,10 +2,8 @@
   :class="fetchCSS.class" 
   :style="fetchCSS.style"
 >
-  <div class="flex f-dir-row gap18">
-    <div class="line-flex-ver-3"></div>
-    <p v-html="contents.text"></p>
-  </div>
+  <div :class="lineClass"></div>
+  <p v-html="contents.text"></p>
 </div>
 </template>
 <script>
@@ -39,6 +37,10 @@ const computed = {
       console.error('!error!', `@${this.serial || 'unknown'}`);
       console.error(err);
     }
+  },
+
+  lineClass() {
+    return `quote-line line-flex-ver-${this.contents.line}`
   },
 
   serial() {

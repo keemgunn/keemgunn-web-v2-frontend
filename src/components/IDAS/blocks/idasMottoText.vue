@@ -27,7 +27,7 @@ function data() { return {
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
 
-  textColorOffset: [130, 60]
+  textColorOffset: [140, 80]
 }}
 
 const computed = {

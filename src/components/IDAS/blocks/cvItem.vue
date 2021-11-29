@@ -8,7 +8,7 @@
       <div v-for="record in contents.records"
       :key="record.name"
       class="flex f-dir-col gap6">
-        <div class="flex f-dir-row f-js-cont-space f-al-item-baseline f-wrap rgap6 b-pad-right--half">
+        <div class="flex f-dir-row f-js-cont-space f-al-item-baseline f-wrap rgap6">
           <p class="typo-caption4">{{record.name}}</p>
           <div class="flex f-dir-row f-js-cont-end f-al-item-baseline gap5">
             <p class="typo-caption5">{{record.time}}</p>

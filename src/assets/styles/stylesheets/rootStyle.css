@@ -42,7 +42,7 @@
     --nav-top-height : 66rem;
   }
 }
-@media (max-width: 1360) {
+@media (max-width: 1360px) {
   /* L @4x */
   html { 
     font-size: 1.1px; 
@@ -81,7 +81,7 @@
     --nav-top-height : 66rem;
   }
 }
-@media (max-width: 1080) {
+@media (max-width: 1080px) {
   /* M @4x */
   html { 
     font-size: 1px;
@@ -181,6 +181,9 @@ html {
   --stage-bottom: calc(100vh* 0.87);
   --stage-left: calc(100vw * 0.1);
   --stage-right: calc(100vw * 0.9);
+
+  --safe-margin--2x: calc(var(--safe-margin)*2);
+  
 }
 
 

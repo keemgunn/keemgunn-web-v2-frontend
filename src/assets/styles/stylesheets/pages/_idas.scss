@@ -15,6 +15,23 @@
     color: rgba(255, 255, 255);
   }
 
+  #s3-f5-a2-b3 {
+    gap: 0;
+    .image-alt {
+      position: relative;
+      top: -18rem;
+      padding: 0 26rem;
+    }
+  }
+  #s3-f5-a3-b2 {
+    gap: 0;
+    .image-alt {
+      position: relative;
+      top: -2rem;
+      padding: 0 26rem;
+    }
+  }
+
 
 
   // ================================
@@ -58,6 +75,15 @@
     a:hover {
       color: blue;
       cursor: pointer;
+    }
+  }
+
+  .quote {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    .quote-line {
+      flex-shrink: 0;
     }
   }
 
@@ -152,10 +178,14 @@
       border: 1.3rem solid;
       border-color: var(--accent2);
     }
+    .image-alt {
+      padding-left: 1rem;
+    }
     a {
       text-decoration: underline;
     }
     a:hover {
+      cursor: pointer;
       color: var(--accent0);
     }
     svg {
@@ -275,9 +305,11 @@
 
 
 
-
-
-
+// section {
+//   border-style: dashed;
+//   border-width: 2rem 0;
+//   border-color: rgba(50, 54, 250, 0.781);
+// }
 // .field-type-a, .field-type-b, .field-type-c {
 //   border-style: dashed;
 //   border-width: 1rem;

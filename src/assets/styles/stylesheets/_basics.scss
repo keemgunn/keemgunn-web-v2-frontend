@@ -1,10 +1,6 @@
 body {
   padding: 0;
   margin: 0;
-  ::selection ::-moz-selection {
-    color: var(--ink0);
-    background-color: var(--accent3);
-  }
 }
 
 #app {
@@ -17,10 +13,6 @@ body {
   // padding: 15px 0 calc(constant(safe-area-inset-bottom) + 15px);
   // padding: 15px 0 calc(env(safe-area-inset-bottom) + 15px);
   // shape-rendering: crispEdges;
-}
-
-*:focus-visible {
-  outline: 1rem solid var(--accent1);
 }
 
 .svg {
@@ -50,20 +42,6 @@ body {
   opacity: 1;
 }
 
-@mixin Line($val) {
-  .line-flex-ver-#{$val} {
-    width: $val + rem;
-    align-self: stretch;
-    background-color: var(--ink2); 
-  }
-  .line-flex-hor-#{$val} {
-    height: $val + rem !important;
-    align-self: stretch;
-    background-color: var(--ink2); 
-  }
-} @for $i from 1 through 8 {
-  @include Line($i);
-}
 
 
 

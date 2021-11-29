@@ -5,14 +5,15 @@
 
   <div class="image-wrapper" :style="imageWrapperStyle">
     <img :id="'image-' + blockSeed.serial" 
-    :class="imgZoomable"
+    :class="imgClass"
+    :style="imgStyle"
     :alt="this.contents.alt"
     :src="imgPlacholder"
     @click="getLargeImage()"
     >
   </div>
 
-  <p class="typo-caption6" v-if="contents.showAlt" v-html="this.contents.alt"></p>
+  <p class="image-alt typo-caption6" v-if="contents.showAlt" v-html="this.contents.alt"></p>
 
   <div class="large-image" v-show="isZoom">
     <div class="large-image-header"></div>
@@ -79,11 +80,24 @@ const computed = {
   serial() {
     return this.blockSeed.serial
   },
-  imgZoomable() {
-    if(this.contents.zoom) {
-      return 'img-zoomable'
+  imgClass() {
+    try {
+      return [
+        this.contents.zoom ? 'img-zoomable' : ''
+      ]
+    } catch(err) {
+      console.error(`!error! ${this.serial} :`, err);
     }
-  }
+  },
+  imgStyle() {
+    try {
+      return [{
+        border: this.contents.border
+      }]
+    } catch(err) {
+      console.error(`!error! ${this.serial} :`, err);
+    }
+  },
 };
 
 
@@ -134,11 +148,6 @@ function created() {
 
 function mounted() {
   this.imgEl = document.querySelector('#image-' + this.blockSeed.serial);
-  // const imageWrapperStyle = this.imageWrapperStyle;
-  // this.imgEl.addEventListener("load", function() {
-  //   const ratio = this.naturalWidth / this.naturalHeight;
-  //   imageWrapperStyle.height = `calc( 100% / ${ratio})`
-  // });
   fetchContent(this.imgEl, this.serialPath, this.mediaRequestHeader);
 
   // Attach DOM Event Listener --------------------
