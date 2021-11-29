@@ -111,7 +111,7 @@ injectBasicEventListeners(methods, listenersList);
 const watch = {
   childrenState(newValue) {
     if(newValue === 1) {
-      this.$logg(`-- ${this.serial} mounted --`);
+      // this.$logg(`-- ${this.serial} mounted --`);
       this.$emit('mounted');
     }
   },

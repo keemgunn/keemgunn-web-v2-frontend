@@ -36,32 +36,34 @@ export default {
   actions: {
     async openTheDoor({ state, commit }) {
       try {
-        let ipv4 = await publicIp.v4();
-        if (ipv4) {
-          commit('setCliInfo', { ipv4 });
-          this.cli_ip = ipv4;
-        } else {
-          ipv4 = '0.0.0.0'
-          console.log('error on ipv4');
-        }
+        // make ipv4 string
+        await publicIp.v4()
+          .then(value => {
+            commit('setCliInfo', { ipv4: value });
+          })
+          .catch(err => {
+            console.error('!error!', `@ipv4 @openTheDoor`, err);
+            commit('setCliInfo', { ipv4: '0.0.0.0' });
+          });
         
+        // request contents-token
         axios({
           method: 'post',
           url: '/visitor/api/doorknob',
-          data: { ipv4 },
+          data: { ipv4: state.cli_ip },
           timeout: 1800,
         })
-        .then((response) => {
-          const data = response.data;
-          commit('saveServerMsg', { message: data.greeting });
-          console.log(state.server_message);
-          commit('saveContentsToken', { token: data.contentsToken });
-        })
-        .catch((error) => {
-          console.error('!error!', `@openTheDoor`);
-          console.error(error);
-          commit('saveContentsToken', { token: 'eyJhbGciOiJIUzI1NiJ9.Y2xpLWRldg.HBpcSKAAF91InMRSb9_DdQQYR83vxyX2eLh9rV4G3MQ' });
-        })
+          .then((response) => {
+            const { data } = response;
+            commit('saveServerMsg', { message: data.greeting });
+            console.log(state.server_message);
+            commit('saveContentsToken', { token: data.contentsToken });
+          })
+          .catch((error) => {
+            console.error('!error!', `@openTheDoor`);
+            console.error(error);
+            commit('saveContentsToken', { token: 'eyJhbGciOiJIUzI1NiJ9.Y2xpLWRldg.HBpcSKAAF91InMRSb9_DdQQYR83vxyX2eLh9rV4G3MQ' });
+          });
       }
       catch (err) {
         console.error('!error!', `@openTheDoor`);

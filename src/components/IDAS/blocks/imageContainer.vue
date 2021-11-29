@@ -23,7 +23,6 @@
     <div class="large-image-footer"></div>
   </div>
 
-
 </div>
 </template>
 <script>
@@ -32,7 +31,6 @@ import { mapMutations, mapActions, mapGetters } from 'vuex';
 import { getCSSbyModal } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
 import { injectBasicEventListeners, mergeAttachEventListeners } from '@/functions/eventListeners';
-import { fetchContent } from '@/functions/contentsFetcher';
 
 const props = { 
   blockSeed: Object, 
@@ -49,10 +47,12 @@ function data() { return {
   imgEl : {},
   states: {}, // { modals }
   contents: {},
+  url: '',
   imgPlacholder: require("@/assets/img/placeholder_image.svg"),
-  serialPath: '',
-  mediaRequestHeader : {},
-  preFetched: {},
+  initQueueEntry: {
+    'prefetched': false,
+    'fullfetched': false,
+  },
   isZoom: false,
   zoomEl: {},
   imageWrapperStyle: {
@@ -62,12 +62,8 @@ function data() { return {
 }}
 
 const computed = {
-  ...mapGetters('api', [ 
-    'getContentsURI', 'getCliIP', 'getContentsToken'
-  ]),
-  ...mapGetters('ui', [ 
-    'getContentsSuffix'
-  ]),
+  ...mapGetters('api', ['getContentsToken',]),
+  ...mapGetters('ui', ['getContentsSuffix']),
   fetchCSS() {
     try {
       return this.getCSSbyModal(this);
@@ -102,12 +98,59 @@ const computed = {
 
 
 const methods = {
-  ...mapMutations('', []),
-  ...mapActions('', []),
+  ...mapMutations('moderator', [
+    'addToInitQueue', 
+    'commitInitQueue',
+  ]),
+  ...mapActions('api', [
+    'fetchImage',
+  ]),
+
+  serialize(str) {
+    return `${this.serial}_${str}`
+  },
+  isFullfilled(task) {
+    return this.initQueueEntry[task]
+  },
+  resolveQueue(task) {
+    this.initQueueEntry[task] = true;
+    this.commitInitQueue({pageName: 'idas', taskSerial: this.serialize(task)});
+  },
+
+  async prefetch(){
+    this.fetchImage({
+      element: this.imgEl,
+      url: this.url,
+      ext: this.contents.ext,
+      suffix: ''
+    })
+    .then(result => {
+      this.resolveQueue('prefetched');
+      if (!result) {
+        console.warn(`!warning! prefetching image failed @${this.serial}`);
+      }
+      this.fullfetch();
+    })
+  },
+
+  async fullfetch(){
+    this.fetchImage({
+      element: this.imgEl,
+      url: this.url,
+      ext: this.contents.ext,
+      suffix: this.getContentsSuffix
+    })
+    .then(result => {
+      this.resolveQueue('fullfetched');
+      if (!result) {
+        console.warn(`!warning! fullfetching image failed @${this.serial}`);
+      }
+    })
+  },
+
   triggerEvent,
   getCSSbyModal,
-  fetchContentAgain() {},
-  getLargeImage() {}
+  getLargeImage(){},
 };
 
 
@@ -118,76 +161,58 @@ injectBasicEventListeners(methods, listenersList);
 
 
 function created() {
+  for (const taskSerial of Object.keys(this.initQueueEntry)) {
+    this.addToInitQueue({ pageName: 'idas', taskSerial: this.serialize(taskSerial) });
+  }
+
   // Inject State Data ----------------------------
   this.modalConfigs = this.blockSeed.modalConfigs;
   this.states = this.blockSeed.states;
   this.contents = this.blockSeed.contents;
-
-  this.serialPath = this.getContentsURI('/idas/images/' + this.blockSeed.serial);
-
-  // pre-fetch using lowest resolution image files ...
-  fetch(this.serialPath, { headers: {
-    cli_ip: this.getCliIP,
-    cli_vendor_token: this.getContentsToken,
-    ext: this.contents.ext
-  }})
-  .then(res => res.blob())
-  .then(blob => {
-    this.preFetched = blob
-  })
-
-  // Inject main contents request header ...
-  this.mediaRequestHeader = {
-    cli_ip: this.getCliIP,
-    cli_vendor_token: this.getContentsToken,
-    ext: this.contents.ext,
-    suffix: this.getContentsSuffix
-  }
+  this.url = '/idas/images/' + this.blockSeed.serial;
 }
 
 
 function mounted() {
   this.imgEl = document.querySelector('#image-' + this.blockSeed.serial);
-  fetchContent(this.imgEl, this.serialPath, this.mediaRequestHeader);
 
   // Attach DOM Event Listener --------------------
   mergeAttachEventListeners(this, listenersList, this.blockSeed.injectTriggers);
-
-  // Inject re-fetch method AFTER first fetch
-  this.fetchContentAgain = () => {
-    fetchContent(this.imgEl, this.serialPath, this.mediaRequestHeader);
-  }
 
   // Make It Zoom-able --------------------
   if(this.contents.zoom) {
     this.zoomEl = document.querySelector('#image-zoom-' + this.blockSeed.serial)
     this.getLargeImage = () => {
       this.isZoom = true;
-      fetch(this.serialPath, { headers: {
-        cli_ip: this.getCliIP,
-        cli_vendor_token: this.getContentsToken,
+      this.fetchImage({
+        element: this.imgEl,
+        url: this.url,
         ext: this.contents.ext,
         suffix: '@6x'
-      }})
-      .then(res => res.blob())
-      .then(blob => {
-        this.zoomEl.src = URL.createObjectURL(blob);
       });
-    }
+    };
   }
 
   this.$emit('mounted');
+  if (this.getContentsToken) this.prefetch;
 }
 
 
 const watch = {
-  getContentsSuffix(newValue) {
-    this.mediaRequestHeader.suffix = newValue;
-    this.fetchContentAgain();
+  getContentsToken(newValue) {
+    if(newValue) {
+      this.prefetch();
+    }
   },
-  preFetched(newValue) {
-    document.querySelector('#image-' + this.blockSeed.serial).src = URL.createObjectURL(newValue);
-  }
+
+  getContentsSuffix(newValue) {
+    this.fetchImage({
+      element: this.imgEl,
+      url: this.url,
+      ext: this.contents.ext,
+      suffix: newValue
+    });
+  },
 }
 
 

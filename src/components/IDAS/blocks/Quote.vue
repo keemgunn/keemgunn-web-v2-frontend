@@ -75,6 +75,7 @@ function created() {
 
 function mounted() {
   mergeAttachEventListeners(this, listenersList, this.blockSeed.injectTriggers);
+  this.$emit('mounted');
 }
 
 

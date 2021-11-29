@@ -26,9 +26,9 @@ export function createFetchers(computed, cls) {
     }
     computed[classifyName] = cls.Fetcher(id)
   }
-  if (process.env.NODE_ENV === 'development') {
-    console.log("== Created Fetchers", logOutput);
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   console.log("== Created Fetchers", logOutput);
+  // }
 }
 
 

@@ -36,26 +36,8 @@
 // }
 
 
+
 export const s1_f1 = {
-  type: "C",
-  sensors: {},
-  modals: {
-    base: {
-      class: [''],
-      style: [{
-        "margin": "0 0 150rem",
-        "padding": "0",
-        "grid-template-columns": "repeat(1, 1fr)",
-        "gap": "0",
-        "height": "100vh",
-        "align-content" : "flex-start"
-      }],
-    }
-  }
-}
-
-
-export const s1_f2 = {
   type: "A",
   sensors: {
     position: {
@@ -76,7 +58,7 @@ export const s1_f2 = {
 }
 
 
-export const s1_f3 = {
+export const s1_f2 = {
   type: "A",
   sensors: {
     position: {

@@ -24,5 +24,30 @@ export default {
   },
 
   actions: {
+    async fetchImage({ state, rootGetters }, payload) {
+      try {
+        const { element, url, ext, suffix } = payload;
+        const requestURI = state.CS_IP + url;
+        const headers = {
+          cli_ip: rootGetters['api/getCliIP'], cli_vendor_token: rootGetters['api/getContentsToken'],
+          ext, suffix
+        };
+        const what = fetch(requestURI, { headers })
+          .then(res => res.blob())
+          .then(blob => {
+            element.src = URL.createObjectURL(blob);
+            return true
+          })
+        .catch(err => {
+          console.error('!error!', err);
+          return false
+        });
+        return what
+      }
+      catch (err) {
+        console.error('!error!', err);
+        return false
+      }
+    }
   }
 }

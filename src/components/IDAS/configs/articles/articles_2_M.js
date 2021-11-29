@@ -53,33 +53,8 @@
 // }
 
 
+
 export const s1_f1_a1 = {
-  modals: {
-    base: {
-      container: {
-        class: ['sticky'],
-        style: [{
-          "grid-area": "1/1/2/2",
-          "place-self": "center stretch",
-          "margin": "0 0",
-          "top": "50vh",
-        }],
-      },
-      wrapper: {
-        class: [''],
-        style: [{
-          "flex-direction": "column",
-          "justify-content": "flex-start",
-          "align-items": "flex-start",
-          "gap": "0",
-        }],
-      }
-    }
-  }
-}
-
-
-export const s1_f2_a1 = {
   modals: {
     base: {
       container: {
@@ -106,7 +81,7 @@ export const s1_f2_a1 = {
 }
 
 
-export const s1_f2_a2 = {
+export const s1_f1_a2 = {
   modals: {
     base: {
       container: {
@@ -135,7 +110,7 @@ export const s1_f2_a2 = {
 }
 
 
-export const s1_f3_a1 = {
+export const s1_f2_a1 = {
   modals: {
     base: {
       container: {
@@ -162,7 +137,7 @@ export const s1_f3_a1 = {
 }
 
 
-export const s1_f3_a2 = {
+export const s1_f2_a2 = {
   modals: {
     base: {
       container: {
@@ -190,7 +165,7 @@ export const s1_f3_a2 = {
 }
 
 
-export const s1_f3_a3 = {
+export const s1_f2_a3 = {
   modals: {
     base: {
       container: {

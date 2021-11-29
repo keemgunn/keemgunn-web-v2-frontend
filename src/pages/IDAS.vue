@@ -6,14 +6,15 @@
 
   <NavBar/>
 
-  <main v-if="loadState === 1" id="idas">
-    <component :is="'Section1'" :sectionSeed="configs_bundle.s1"/>
-    <component :is="'Section2'" :sectionSeed="configs_bundle.s2"/>
-    <component :is="'Section3'" :sectionSeed="configs_bundle.s3"/>
-    <component :is="'Section4'" :sectionSeed="configs_bundle.s4"/>
-
-
-
+  <main id="idas">
+    <IDAStitleBar @titlebar-loaded="titlebarCheck()"/>
+    <div 
+    v-if="this.isFullfilled('1-titlebar-loaded') && this.isFullfilled('2-configsBundle-loaded')">
+      <component :is="'Section1'" :sectionSeed="configs_bundle.s1"/>
+      <component :is="'Section2'" :sectionSeed="configs_bundle.s2"/>
+      <component :is="'Section3'" :sectionSeed="configs_bundle.s3"/>
+      <component :is="'Section4'" :sectionSeed="configs_bundle.s4"/>
+    </div>
   </main>
 
 </template>
@@ -22,9 +23,10 @@
 
 <script>
 const name = 'IDAS';
-import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 import NavBar from '@/components/NavBar.vue';
+import IDAStitleBar from '@/components/IDAS/IDAStitleBar.vue';
 
 
 async function importConfigs() {
@@ -37,7 +39,7 @@ async function importConfigs() {
 }
 
 
-const components = { NavBar };
+const components = { NavBar, IDAStitleBar };
 const sectionFiles = require.context('@/components/IDAS/sections/', true, /^.*\.vue$/);
 for (let file of sectionFiles.keys()) {
   const sectionName = file.replace('./', '').replace('.vue', '');
@@ -49,9 +51,11 @@ function data() { return {
   lang: this.$route.params.lang,
   configs_bundle: {},
   testBlockList: {},
-  loadStateEntries: {
-    '1_configsBundle-loaded': false,
-    '2_contentsToken-loaded': false,
+  serial: 'main',
+  initQueueEntry: {
+    '1-titlebar-loaded': false,
+    '2-configsBundle-loaded': false,
+    '3-contentsToken-loaded': false,
   },
 }}
 
@@ -59,54 +63,51 @@ function data() { return {
 const computed = {
   ...mapGetters('ui',[ 'getFrameSize' ]),
   ...mapGetters('api',[ 'getContentsToken' ]),
-  loadState() {
-    let loadDone = 0;
-    let loadTasks = 0;
-    for (const isDone of Object.values(this.loadStateEntries)) {
-      loadTasks += 1;
-      if(isDone) loadDone += 1;
-    }
-    return loadDone / loadTasks
-  }
 };
 
 
 const methods = {
-  ...mapMutations('', [  ]),
-  ...mapActions('', [  ]),
+  ...mapMutations('moderator', ['addToInitQueue', 'commitInitQueue']),
+  serialize(str) {
+    return `${this.serial}_${str}`
+  },
+  isFullfilled(task) {
+    return this.initQueueEntry[task]
+  },
+  resolveQueue(task) {
+    this.initQueueEntry[task] = true;
+    this.commitInitQueue({pageName: 'idas', taskSerial: this.serialize(task)});
+  },
+
+  titlebarCheck() {
+    this.resolveQueue('1-titlebar-loaded');
+    importConfigs()
+    .then((obj) => {
+      this.configs_bundle = obj.wholeBundle;
+      this.resolveQueue('2-configsBundle-loaded');
+      this.$logg('config_bundled loaded', obj);
+    });
+  }
 };
 
 
 const watch = {
-  loadState(newValue) {
-    this.$logg("IDAS - loadState :", newValue)
-    if (newValue === 1) {
-      console.log('IDAS - loadState-fullfilled : renders main element');
-    }
-  },
   getContentsToken(newValue) {
     this.$logg('watch - getContentsToken :', newValue);
     if(newValue) {
-      this.loadStateEntries['2_contentsToken-loaded'] = true;
+      this.resolveQueue('3-contentsToken-loaded');
     }
   },
 };
 
 
-function beforeCreate() {
-}
-
-
 function created() {
-  importConfigs()
-  .then((obj) => {
-    this.configs_bundle = obj.wholeBundle;
-    this.loadStateEntries['1_configsBundle-loaded'] = true;
-    this.$logg('config_bundled loaded', obj);
-  });
+  for (const task of Object.keys(this.initQueueEntry)) {
+    this.addToInitQueue({ pageName: 'idas', taskSerial: this.serialize(task) });
+  }
 
   if (this.getContentsToken) { // safe-catch
-    this.loadStateEntries['2_contentsToken-loaded'] = true;
+    this.resolveQueue('3-contentsToken-loaded');
   }
 }
 
@@ -141,7 +142,7 @@ export default {
   data, computed, 
   methods, 
   watch, 
-  beforeCreate, created, 
+  created, 
   beforeMount, mounted, 
   beforeUpdate, updated, 
   beforeUnmount, unmounted

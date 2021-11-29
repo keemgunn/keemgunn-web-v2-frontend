@@ -7,7 +7,7 @@
 </template>
 <script>
 const name = 'Block_simpleText';
-import { mapMutations, mapActions } from 'vuex';
+import { mapMutations, mapActions, mapGetters } from 'vuex';
 import { getCSSbyModal } from '@/functions/modals';
 import { triggerEvent } from '@/functions/triggers';
 import { injectBasicEventListeners, mergeAttachEventListeners } from '@/functions/eventListeners';
@@ -27,20 +27,26 @@ function data() { return {
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
 
-  textColorOffset: [140, 80]
+  textColorOffset: [100, 80]
 }}
 
 const computed = {
+  ...mapGetters('ui', [ 'isDarkmodeOn' ]),
   textColor() {
-    const l = this.textColorOffset[0] - (this.downstream.sectionPosition)*this.textColorOffset[1];
-    return `hsl(202, 100%, ${l}%)`
+    if(this.isDarkmodeOn) {
+      const l = 50 + this.textColorOffset[0] - (this.downstream.sectionPosition)*this.textColorOffset[1];
+      return `hsl(234, 100%, ${l}%)`
+    } else {
+      const l = 50 - this.textColorOffset[0] + (this.downstream.sectionPosition)*this.textColorOffset[1];
+      return `hsl(18, 100%, ${l}%)`
+    }
   },
 
   fetchCSS() {
     try {
       const bundle = this.getCSSbyModal(this);
       bundle.style.push({
-        left: `calc( (0.3 - ${this.downstream.sectionPosition}) * 120vw )`,
+        left: `calc( (0.1 - ${this.downstream.sectionPosition}) * 120vw )`,
         color: this.textColor
       });
       return bundle

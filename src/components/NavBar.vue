@@ -84,7 +84,7 @@ const methods = {
   ...mapMutations('ui', [  ]),
   setMenu(payload){
     this.states.menu = (payload === 'toggle' ? !this.states.menu : payload);
-    document.documentElement.className = this.states.menu ? 'no-scroll no-scroll-lang' : '';
+    document.documentElement.className = this.states.menu ? 'no-scroll no-scroll-long' : '';
   }
 };
 

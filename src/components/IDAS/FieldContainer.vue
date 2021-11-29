@@ -16,7 +16,7 @@
 </template>
 <script>
 const name = "FieldContainer"
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import ArticleContainer from '@/components/IDAS/ArticleContainer.vue';
 import { getConfigsByScale, getCSSbyModal } from '@/functions/modals';
 import { childMounted, triggerEvent } from '@/functions/triggers';
@@ -24,7 +24,7 @@ import { watchPosition, positionTrigger } from '@/functions/watchers';
 
 
 const props = { fieldSeed: Object, downstream: Object };
-const emits = [ 'trigger', 'mounted' ];
+const emits = [ 'trigger' ];
 function data() { return {
   articles: [],
   sensorConfigs: {}, // { ...Scales : { ...sensors } }
@@ -33,10 +33,10 @@ function data() { return {
   doms: {},
   states: {},
   sensorsActive: {},
-  loadStateEntries: {
-    '1_filedSeed-injected': false,
-    '2_positionSensor-initiated': false,
-    '3_all-children-mounted': false
+  initQueueEntry: {
+    '1-fieldSeed-injected': false,
+    '2-positionSensor-initiated': false,
+    '3-all-children-mounted': false
   },
   childrenCount: null,
   childrenMounted: 0
@@ -58,7 +58,7 @@ const computed = {
   loadState() {
     let loadDone = 0;
     let loadTasks = 0;
-    for (const isDone of Object.values(this.loadStateEntries)) {
+    for (const isDone of Object.values(this.initQueueEntry)) {
       loadTasks += 1;
       if(isDone) loadDone += 1;
     }
@@ -87,7 +87,7 @@ const computed = {
   },
 
   position() {
-    if(this.loadStateEntries['1_filedSeed-injected']) {
+    if(this.initQueueEntry['1-fieldSeed-injected']) {
       return this.states.sensors.position.self
     }else {
       return 1
@@ -97,12 +97,24 @@ const computed = {
 
 
 const methods = {
+  ...mapMutations('moderator', ['addToInitQueue', 'commitInitQueue']),
   tossEvent(payload) {
     this.$emit('trigger', payload);
   },
   childMounted,
   triggerEvent,
   getCSSbyModal,
+
+  serialize(str) {
+    return `${this.serial}_${str}`
+  },
+  isFullfilled(task) {
+    return this.initQueueEntry[task]
+  },
+  resolveQueue(task) {
+    this.initQueueEntry[task] = true;
+    this.commitInitQueue({pageName: 'idas', taskSerial: this.serialize(task)});
+  },
 
   // Chage Sensor Configurations by Scale ---------
   sensorShift(target, scale){
@@ -142,14 +154,11 @@ const methods = {
 const watch = {
   childrenState(newValue) {
     if(newValue === 1) {
-      this.$logg(`-- ${this.serial} mounted --`);
-      this.$emit('mounted');
-      this.loadStateEntries['3_all-children-mounted'] = true;
+      this.resolveQueue('3-all-children-mounted');
     }
   },
 
   loadState(newValue) {
-    console.log('loadState:', this.serial, newValue);
     if(newValue === 1) {
       this.positionUpdater();
       setTimeout(this.positionUpdater, 250);
@@ -171,11 +180,9 @@ const watch = {
 
 
 function created() { 
-  this.$logg(
-    "Field Created", 
-    this.fieldSeed.serial, 
-    this.fieldSeed
-  );
+  for (const taskSerial of Object.keys(this.initQueueEntry)) {
+    this.addToInitQueue({ pageName: 'idas', taskSerial: this.serialize(taskSerial) });
+  }
   
   // Inject State Data ----------------------------
   this.articles = Object.keys(this.fieldSeed.nested);
@@ -187,7 +194,7 @@ function created() {
   // Inject Sensors Configurations ----------------
   this.sensorShift('position', this.getScale);
 
-  this.loadStateEntries['1_filedSeed-injected'] = true;
+  this.resolveQueue('1-fieldSeed-injected');
 }
 
 
@@ -208,7 +215,7 @@ function mounted() {
   }, { threshold: [0, 1] })
   intersectObserver.observe(this.doms.self);
 
-  this.loadStateEntries['2_positionSensor-initiated'] = true;
+  this.resolveQueue('2-positionSensor-initiated');
 }
 
 
