@@ -38,9 +38,9 @@
   .back-cover {
     width: 100%;
     height: 100vh;
-    background-color: var(--backblur);
     position: absolute;
     z-index: -1;
+    background-color: var(--backblur);
     -webkit-backdrop-filter: blur(15rem);
     backdrop-filter: blur(15rem);
   }

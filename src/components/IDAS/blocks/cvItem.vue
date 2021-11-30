@@ -3,7 +3,7 @@
   :style="fetchCSS.style">
   <div class="flex f-dir-row gap22">
     <div class="line-flex-ver-4"></div>
-    <div class="flex f-dir-col gap18 w100">
+    <div class="flex f-dir-col gap20 w100">
       <p class="typo-mark5--light">{{contents.title}}</p>
       <div v-for="record in contents.records"
       :key="record.name"

@@ -26,18 +26,20 @@ function data() { return {
 // state data made in this component. -------------
   el : {}, // Injected at created(), used by updaters
   states: {}, // { modals }
-
-  textColorOffset: [100, 80]
 }}
 
 const computed = {
   ...mapGetters('ui', [ 'isDarkmodeOn' ]),
+  textPosition() {
+    return `calc( (0.02 - ${this.downstream.sectionPosition}) * 100vw )`
+  },
+
   textColor() {
     if(this.isDarkmodeOn) {
-      const l = 50 + this.textColorOffset[0] - (this.downstream.sectionPosition)*this.textColorOffset[1];
+      const l = 50 + 100 - (this.downstream.sectionPosition)*80;
       return `hsl(234, 100%, ${l}%)`
     } else {
-      const l = 50 - this.textColorOffset[0] + (this.downstream.sectionPosition)*this.textColorOffset[1];
+      const l = 50 - 100 + (this.downstream.sectionPosition)*80;
       return `hsl(18, 100%, ${l}%)`
     }
   },
@@ -46,7 +48,7 @@ const computed = {
     try {
       const bundle = this.getCSSbyModal(this);
       bundle.style.push({
-        left: `calc( (0.1 - ${this.downstream.sectionPosition}) * 120vw )`,
+        left: this.textPosition,
         color: this.textColor
       });
       return bundle

@@ -81,9 +81,6 @@
     height: fit-content;
     grid-template-rows: auto;
   }
-  .field-type-b {
-    width: 100%;
-  }
   .field-type-a {
     width: 100vw;
   }
@@ -93,11 +90,48 @@
   }
   .article-wrapper {
     display: flex;
-    // position: relative;
+    top: 0;
+    left: 0;
     width: 100%;
     height: fit-content;
     flex-wrap: wrap;
+    .article-back-cover {
+      position: absolute;
+      height: calc(100% + var(--safe-margin)*1.6);
+      width: calc(100% + var(--safe-margin)*1.8);
+      top: calc(var(--safe-margin) * (-0.8));
+      left: calc(var(--safe-margin) * (-0.9));
+      z-index: -1;
+      background-color: var(--backblur);
+      -webkit-backdrop-filter: blur(6rem);
+      backdrop-filter: blur(6rem);
+      display: none;
+    }
+
   }
+  .article-container.show-back-cover {
+    .article-wrapper {
+      position: sticky;
+    }
+    .article-back-cover {
+      display: block;
+    }
+  }
+  .article-container.show-border {
+    .article-wrapper {
+      position: sticky;
+    }
+    .article-back-cover {
+      border: 1px solid var(--ink1);
+      background-color: unset;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      display: block;
+    }
+  }
+
+
+
   
   // ================================
 
@@ -256,6 +290,7 @@
     font-family: 'Syncopate';
     font-weight: 700;
     line-height: 1.2;
+    font-size: 10vw;
     letter-spacing: -0.02rem;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -272,11 +307,11 @@
 
 .XXS{ #idas {
 
-  .field-type-c {
-    width: 284vw;
+  .field-type-b {
+    width: 100vw;
   }
-  .field-gap {
-    gap: 3rem
+  .field-type-c {
+    width: 300rem;
   }
 
   .page-title {
@@ -287,17 +322,57 @@
 
 .XS{ #idas {
 
+  .field-type-b {
+    width: 100vw;
+  }
   .field-type-c {
-    width: 284vw;
+    width : calc(100vw - var(--safe-margin)*3);
   }
 
   .page-title {
     font-size: 4.4vw;
   }
-
-  .idas-motto-text {
-    font-size: 48rem;
+  #s2-f1-a1-b1 {
+    text-align: left;
+    font-size: 6.8vw;
   }
+  #s2-f1-a1-b2, #s2-f1-a1-b3{
+    text-align: left;
+    font-size: 15rem;
+  }
+  #s2-f2-a1-b3 .t1{
+    word-wrap:break-word;
+    word-break: break-all;
+  }
+  #s3-f2-a1-b2 {
+    width: calc(100vw - var(--safe-margin)) !important;
+    padding: 0 30rem 80rem 30rem !important;
+  }
+  #s3-f3-a1-b1 {
+    font-size: 8.5vw;
+  }
+  #s3-f3-a1-b2 {
+    width: calc(100vw - var(--safe-margin)) !important;
+    padding: 0 30rem 80rem 30rem !important;
+  }
+  #s3-f4-a1-b1 {
+    font-size: 9.8vw;
+  }
+  #s3-f5-a1-b1 {
+    font-size: 9.0vw;
+  }
+  #s3-f5-a1-b2 {
+    width: calc(100vw - var(--safe-margin)) !important;
+    padding: 0 30rem 0 30rem !important;
+  }
+  #s3-f5-a1-b3 {
+    width: calc(100vw - var(--safe-margin)) !important;
+    padding: 0 30rem 80rem 30rem !important;
+  }
+  #s3-f6-a2-b1 {
+    font-size: 9.12vw;
+  }
+
 
 }}
 
@@ -314,6 +389,7 @@
     font-size: 3vw;
   }
 
+
 }}
 
 .M{ #idas {
@@ -324,14 +400,11 @@
   .field-type-c {
     width : calc(var(--min-vw) - var(--safe-margin)*2);
   }
-  
+
   .page-title {
     font-size: 3vw;
   }
 
-  .idas-motto-text {
-    font-size: 90rem;
-  }
 
 }}
 
@@ -348,6 +421,7 @@
     font-size: 3vw;
   }
 
+
 }}
 
 .XL{ #idas {
@@ -363,6 +437,7 @@
     font-size: 4vw;
   }
 
+
 }}
 
 .XXL{ #idas {
@@ -377,6 +452,7 @@
   .page-title {
     font-size: 4vw;
   }
+
 
 }}
 

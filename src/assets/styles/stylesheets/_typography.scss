@@ -85,29 +85,29 @@
 
 // ------------- TYPO : - HEADER --------------
 
-@include Header(1, 96rem, -0.02rem, 0.9, 0rem, 0rem);
+@include Header(1, 96rem, -0.02rem, 1, 0rem, 0rem);
   @include WeightExtend('.typo-header1', 'light', 400);
-@include Header(2, 72rem, -0.02rem, 0.89, 0rem, 0rem);
+@include Header(2, 72rem, -0.02rem, 1, 0rem, 0rem);
   @include WeightExtend('.typo-header2', 'light', 400);
-@include Header(3, 64rem, -0.013rem, 0.88, 0rem, 0rem);
+@include Header(3, 64rem, -0.013rem, 1, 0rem, 0rem);
   @include WeightExtend('.typo-header3', 'light', 400);
-@include Header(4, 44rem, -0.013rem, 0.86, 0rem, 0rem);
+@include Header(4, 44rem, -0.013rem, 1, 0rem, 0rem);
   @include WeightExtend('.typo-header4', 'light', 400);
-@include Header(5, 32rem, -0.01rem, 0.89, 0rem, 0rem);
+@include Header(5, 32rem, -0.01rem, 1, 0rem, 0rem);
   @include WeightExtend('.typo-header5', 'light', 400);
-@include Header(6, 24rem, -0.005rem, 0.92, 0rem, 0rem);
+@include Header(6, 24rem, -0.005rem, 1, 0rem, 0rem);
   @include WeightExtend('.typo-header6', 'light', 400);
 
 
 
 // ------------- TYPO : BODY ------------------
-@include Body(1, 18.4rem, 0.0rem, 1.45, 0rem, 0rem);
+@include Body(1, 18.4rem, 0.0rem, 1.58, 0rem, 0rem);
   @include WeightExtend('.typo-body1', 'light', 300);
   @include WeightExtend('.typo-body1', 'thick', 500);
-@include Body(2, 16.4rem, 0.0rem, 1.50, 0rem, 0rem);
+@include Body(2, 16.4rem, 0.0rem, 1.62, 0rem, 0rem);
   @include WeightExtend('.typo-body2', 'light', 300);
   @include WeightExtend('.typo-body2', 'thick', 500);
-@include Body(3, 14.4rem, 0.0rem, 1.58, 0rem, 0rem);
+@include Body(3, 14.4rem, 0.0rem, 1.62, 0rem, 0rem);
   @include WeightExtend('.typo-body3', 'light', 300);
   @include WeightExtend('.typo-body3', 'thick', 500);
 
@@ -194,12 +194,22 @@ a {
 }
 
 .XS{
-  @include SizeAdjust('.typo-header1', 64rem);
-  @include SizeAdjust('.typo-header2', 57rem);
-  @include SizeAdjust('.typo-header3', 50rem);
-  @include SizeAdjust('.typo-header4', 44rem);
-  @include SizeAdjust('.typo-header5', 36rem);
-  @include SizeAdjust('.typo-header6', 29rem);
+  @include SizeAdjust('.typo-header1', 50rem);
+  @include SizeAdjust('.typo-header2', 44rem);
+  @include SizeAdjust('.typo-header3', 40rem);
+  @include SizeAdjust('.typo-header4', 33rem);
+  @include SizeAdjust('.typo-header5', 26rem);
+  @include SizeAdjust('.typo-header6', 19rem);
+  @include SizeAdjust('.typo-body1', 17rem);
+  @include SizeAdjust('.typo-body2', 15rem);
+  @include SizeAdjust('.typo-body2', 13rem);
+  @include SizeAdjust('.typo-caption1', 20rem);
+  @include SizeAdjust('.typo-caption2', 17rem);
+  @include SizeAdjust('.typo-caption3', 14rem);
+  @include SizeAdjust('.typo-caption4', 11rem);
+  @include SizeAdjust('.typo-caption5', 9.8rem);
+  @include SizeAdjust('.typo-caption6', 8rem);
+
 }
 
 .L , .XL , .XXL {

@@ -72,7 +72,7 @@ const computed = {
       const bundle = this.getCSSbyModal(this);
       const sensorConfigs = getConfigsByScale(this.sensorConfigs, this.getScale);
       if (typeof sensorConfigs['position']['self']['StyleCalc'] !== 'undefined') {
-        bundle.style.push(sensorConfigs['position']['self']['StyleCalc'](this.position));
+        bundle.style.push(sensorConfigs['position']['self']['StyleCalc'](this));
       }
       return bundle
     }

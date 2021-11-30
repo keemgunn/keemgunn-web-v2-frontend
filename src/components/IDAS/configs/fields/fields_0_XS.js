@@ -30,7 +30,7 @@ export const s1_f2 = {
       class: [''],
       style: [{
         "margin": "0",
-        "padding": "200rem 0 0 0",
+        "padding": "100rem 0 0 0",
         "grid-template-columns": "repeat(8, 1fr)",
         "gap": "0rem var(--safe-margin)",
       }],
@@ -47,7 +47,7 @@ export const s2_f1 = {
       class: [''],
       style: [{
         "margin": "0",
-        "padding": "240rem 0",
+        "padding": "200rem 0",
         "grid-template-columns": "repeat(1, 1fr)",
         "gap": "0rem 0rem",
         "justify-content" : "center"
@@ -64,7 +64,7 @@ export const s2_f2 = {
       class: [''],
       style: [{
         "margin": "0",
-        "padding": "0 0 96rem 0",
+        "padding": "0 0 calc(var(--safe-margin)*2) 0",
         "grid-template-columns": "repeat(1, 1fr)",
         "gap": "0rem 0rem",
       }],
@@ -79,9 +79,9 @@ export const s2_f3 = {
     base: {
       class: [''],
       style: [{
-        "padding": "0 var(--b-safe-margin)",
-        "grid-template-columns": "repeat(12, 1fr)",
-        "gap": "var(--safe-margin) var(--safe-margin)",
+        "padding": "0",
+        "grid-template-columns": "repeat(8, 1fr)",
+        "gap": "calc(var(--safe-margin)*2)",
       }],
     }
   }
@@ -113,8 +113,8 @@ export const s2_f5 = {
       style: [{
         "margin": "0",
         "padding": "0",
-        "grid-template-columns": "repeat(18, 1fr)",
-        "gap": "calc(var(--b-width) / (18 * 1.8)) 0rem",
+        "grid-template-columns": "repeat(10, 1fr)",
+        "gap": "calc(var(--safe-margin) * 2) 0rem",
       }],
     }
   }
@@ -144,8 +144,8 @@ export const s3_f2 = {
       class: [''],
       style: [{
         "margin": "0",
-        "padding": "120rem 0",
-        "grid-template-columns": "repeat(18, 1fr)" ,
+        "padding": "100rem 0",
+        "grid-template-columns": "repeat(1, 1fr)" ,
         "gap": "0rem 0rem",
       }],
     }
@@ -160,8 +160,8 @@ export const s3_f3 = {
       class: [''],
       style: [{
         "margin": "0",
-        "padding": "120rem 0",
-        "grid-template-columns": "repeat(18, 1fr)",
+        "padding": "100rem 0",
+        "grid-template-columns": "repeat(1, 1fr)",
         "grid-template-rows": "1fr auto",
         "gap": "0rem 0rem",
       }],
@@ -170,14 +170,14 @@ export const s3_f3 = {
 }
 
 export const s3_f4 = {
-  type: "C",
+  type: "A",
   sensors: {},
   modals: {
     base: {
       class: [''],
       style: [{
         "margin": "0",
-        "padding": "120rem 0",
+        "padding": "100rem 0",
         "grid-template-columns": "repeat(1, 1fr)",
         "gap": "var(--safe-margin) 0rem",
         "justify-content": "center"
@@ -194,8 +194,8 @@ export const s3_f5 = {
       class: [''],
       style: [{
         "margin": "0",
-        "padding": "120rem 0",
-        "grid-template-columns": "repeat(18, 1fr)",
+        "padding": "100rem 0",
+        "grid-template-columns": "repeat(1, 1fr)",
         "gap": "0rem 0rem",
       }],
     }
@@ -211,7 +211,7 @@ export const s3_f6 = {
       class: [''],
       style: [{
         "margin": "0",
-        "padding": "120rem 0",
+        "padding": "30vh 0",
         "grid-template-columns": "repeat(1, 1fr)",
         "gap": "0rem 0rem",
       }],

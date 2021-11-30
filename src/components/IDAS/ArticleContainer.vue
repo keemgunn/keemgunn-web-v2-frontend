@@ -14,6 +14,7 @@
       :position="position"
       @trigger="tossEvent"
       @mounted="childMounted(this)"/>
+    <div class="article-back-cover"></div>
   </div>
 </article>
 </template>
@@ -76,7 +77,7 @@ const computed = {
       const bundle = this.getCSSbyModal(this);
       const sensorConfigs = getConfigsByScale(this.sensorConfigs, this.getScale)
       if (typeof sensorConfigs['position']['StyleCalc'] !== 'undefined') {
-        bundle.wrapper.style.push(sensorConfigs['position']['StyleCalc'](this.position));
+        bundle.wrapper.style.push(sensorConfigs['position']['StyleCalc'](this));
       }
       return bundle
     }

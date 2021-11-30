@@ -135,7 +135,9 @@ s1_f2_a3_b1: {
 },
 s1_f2_a3_b2: {
   type: "cvItem",
-  modals: { base: {
+  modals: {
+    base: {
+      class: ['safe-padding-right']
   }},
   contents: {
     title: "EDUCATION",
@@ -151,7 +153,9 @@ s1_f2_a3_b2: {
 },
 s1_f2_a3_b3: {
   type: "cvItem",
-  modals: { base: {
+  modals: {
+    base: {
+      class: ['safe-padding-right']
   }},
   contents: {
     title: "Activities",
@@ -179,7 +183,9 @@ s1_f2_a3_b3: {
 },
 s1_f2_a3_b4: {
   type: "cvItem",
-  modals: { base: {
+  modals: {
+    base: {
+      class: ['safe-padding-right']
   }},
   contents: {
     title: "work experience",
@@ -201,7 +207,7 @@ s1_f2_a3_b4: {
 s2_f1_a1_b1: {
   type: "simpleText",
   modals: { base: {
-    class: ['typo-header4--light']
+    class: ['typo-header4--light'],
   }},
   contents: {
     text: "Dear professors,",
@@ -251,7 +257,7 @@ s2_f2_a1_b3: {
     }]
   }},
   contents: {
-    text: "<b>Attitude toward life</b><br>Determines<br>Life's attitude toward us.",
+    text: "<p><b>Attitude toward life</b></p><p class=\"t1\">Determines</p><p>Life's attitude toward us.</p>",
   }
 },
 

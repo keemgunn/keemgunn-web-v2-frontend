@@ -2,9 +2,9 @@
 //   type: "A",
 //   sensors: {
 //     position: {
-//       StyleCalc: (position) => {
+//       StyleCalc: (context) => {
 //         return {
-//           opacity: position
+//           opacity: context.position
 //         }
 //       },
 //       reactors: {

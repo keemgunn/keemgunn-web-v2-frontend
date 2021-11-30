@@ -1,9 +1,9 @@
 // export const s1_f1_a1 = {
 //   sensors: {
 //     position: {
-//       StyleCalc: (position) => {
+//       StyleCalc: (context) => {
 //         return {
-//           opacity: position
+//           opacity: context.position
 //         }
 //       },
 //       reactors: {
@@ -129,7 +129,7 @@ export const s1_f2_a1 = {
           "justify-content": "flex-start",
           "align-items": "flex-start",
           "gap": "0",
-          "top" : "calc(var(--nav-top-height) + var(--safe-margin) + 136rem)",
+          "top" : "calc(var(--nav-top-height) + var(--safe-margin) + 15vw)",
         }],
       }
     }
@@ -141,7 +141,7 @@ export const s1_f2_a2 = {
   modals: {
     base: {
       container: {
-        class: ['safe-padding-right'],
+        class: [''],
         style: [{
           "grid-area": "1/5/2/9",
           "place-self": "center stretch",
@@ -157,7 +157,7 @@ export const s1_f2_a2 = {
           "justify-content": "center",
           "align-items": "flex-start",
           "gap": "13rem",
-          "top" : "calc(var(--nav-top-height) + var(--safe-margin) + 136rem)",
+          "top" : "calc(var(--nav-top-height) + var(--safe-margin) + 15vw)",
         }],
       }
     }
@@ -169,7 +169,7 @@ export const s1_f2_a3 = {
   modals: {
     base: {
       container: {
-        class: ['safe-padding-right'],
+        class: [''],
         style: [{
           "grid-area": "2/5/3/9",
           "place-self": "center stretch",
@@ -330,9 +330,9 @@ export const s2_f3_a3 = {
 export const s2_f4_a1 = {
     sensors: {
     position: {
-      StyleCalc: (position) => {
+      StyleCalc: (context) => {
         return {
-          opacity: ((position * 0.68) - 0.88)
+          opacity: ((context.position * 0.68) - 0.88)
         }
       },
     }
@@ -366,9 +366,9 @@ export const s2_f4_a1 = {
 export const s2_f5_a1 = {
   sensors: {
     position: {
-      StyleCalc: (position) => {
+      StyleCalc: (context) => {
         return {
-          opacity: ((position * 1) + 0)
+          opacity: ((context.position * 1) + 0)
         }
       },
     }
@@ -403,9 +403,9 @@ export const s2_f5_a1 = {
 export const s2_f5_a2 = {
   sensors: {
     position: {
-      StyleCalc: (position) => {
+      StyleCalc: (context) => {
         return {
-          opacity: ((position * 1.3) - 0.3)
+          opacity: ((context.position * 1.3) - 0.3)
         }
       },
     }
@@ -468,9 +468,9 @@ export const s2_f5_a3 = {
 export const s3_f1_a1 = {
   sensors: {
     position: {
-      StyleCalc: (position) => {
+      StyleCalc: (context) => {
         return {
-          opacity: ((position * 0.55) - 0.7)
+          opacity: ((context.position * 0.55) - 0.7)
         }
       },
     }
@@ -495,7 +495,7 @@ export const s3_f1_a1 = {
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
-        "gap": "",
+        "gap": "24rem",
       }],
     }
   }}
@@ -505,9 +505,9 @@ export const s3_f1_a1 = {
 export const s3_f2_a1 = {
   sensors: {
     position: {
-      StyleCalc: (position) => {
+      StyleCalc: (context) => {
         return {
-          opacity: ((position * 1) + 0.2)
+          opacity: ((context.position * 1) + 0.2)
         }
       },
     }
@@ -911,9 +911,9 @@ export const s3_f6_a4 = {
 export const s3_f7_a1 = {
   sensors: {
     position: {
-      StyleCalc: (position) => {
+      StyleCalc: (context) => {
         return {
-          opacity: ((position * 0.88) - 0)
+          opacity: ((context.position * 0.88) - 0)
         }
       },
     }
@@ -948,9 +948,9 @@ export const s3_f7_a1 = {
 export const s3_f7_a2 = {
   sensors: {
     position: {
-      StyleCalc: (position) => {
+      StyleCalc: (context) => {
         return {
-          opacity: ((position * 1.2) + 0)
+          opacity: ((context.position * 1.2) + 0)
         }
       },
     }

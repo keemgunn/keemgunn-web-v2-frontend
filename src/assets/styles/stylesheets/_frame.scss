@@ -70,8 +70,8 @@
 
 
 .sticky {
-  position: sticky;
-  position: -webkit-sticky;
+  position: sticky !important;
+  position: -webkit-sticky !important;
   top: 0;
 }
 .relative {

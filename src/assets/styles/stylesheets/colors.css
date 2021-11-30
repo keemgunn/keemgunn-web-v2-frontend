@@ -20,6 +20,8 @@
   --backblur: #ebebebd0;
   }
 
+
+
   .inverted-color {
     --ink0: #FFFFFF;
     --ink1: #D1D1D1;
@@ -86,4 +88,17 @@
 
     --backblur: #ebebebd0;
   }
+}
+
+.exclusion {
+  --ink0: #FFFFFF;
+  --ink1: #FFFFFF;
+  --ink2: #FFFFFF;
+  --ink3: #FFFFFF;
+  --ink4: #FFFFFF;
+  --ink5: #FFFFFF;
+  --ink6: #FFFFFF;
+  --ink7: #FFFFFF;
+  color: var(--ink0);
+  mix-blend-mode: exclusion;
 }
