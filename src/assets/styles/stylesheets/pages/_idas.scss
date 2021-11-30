@@ -255,7 +255,6 @@
   .idas-motto-text {
     font-family: 'Syncopate';
     font-weight: 700;
-    font-size: 90rem;
     line-height: 1.2;
     letter-spacing: -0.02rem;
     white-space: nowrap;
@@ -268,17 +267,6 @@
   
 
 }
-
-
-#idas-block-test-field {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 20rem;
-  padding: 20rem 20rem 1000rem 20rem;
-}
-
-
 
 // ================================
 
@@ -305,6 +293,10 @@
 
   .page-title {
     font-size: 4.4vw;
+  }
+
+  .idas-motto-text {
+    font-size: 48rem;
   }
 
 }}
@@ -335,6 +327,10 @@
   
   .page-title {
     font-size: 3vw;
+  }
+
+  .idas-motto-text {
+    font-size: 90rem;
   }
 
 }}

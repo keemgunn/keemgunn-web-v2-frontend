@@ -74,7 +74,6 @@ export default {
 
     loadMainTag(state, mainId) {
       state.mainEl = document.getElementById(mainId);
-      console.log(state.mainEl);
     }
   },
 

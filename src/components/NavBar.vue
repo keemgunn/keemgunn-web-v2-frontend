@@ -16,13 +16,16 @@
       class="nav-logo-gunn">
     <svgLogoGunn/></div>
 
-    <nav id="nav-top-links" class="nav-top-links">
+    <transition name="nav-list-fade">
+    <nav v-show="showLinks"
+    id="nav-top-links" class="nav-top-links">
       <NavItem v-for="page in getNavMenuArr" 
         class="nav-top-links-item"
         :page="page" :shown="showLinks" :key="page.name">
       </NavItem>
-      <div v-if="(this.states.horizontal === 'short') && (this.states.menu)" id="nav-top-links-blank" @click="setMenu(false)"></div>
+      <div id="nav-top-links-blank" @click="setMenu(false)"></div>
     </nav>
+    </transition>
 
     <div id="nav-top-btns"
       class="nav-top-btns">
@@ -31,7 +34,9 @@
 
   <div class="top-cover"></div>
 
-  <div :class="backCoverClass"></div>
+  <transition name="nav-back-cover-fade">
+    <div class="back-cover" v-if="this.showNavDrawer"></div>
+  </transition>
 
   <div class="bottomline"></div>
 </section>
@@ -77,30 +82,27 @@ const computed = {
   ]),
   // MODAL STATES ---------------------------
   showMenuBtn() {
-    return this.states.horizontal === 'short'
-  },
-  showLinks() {
-    return (this.states.horizontal === 'wide') || (this.states.menu)
+    return this.getNavWidthScale === 'short'
   },
 
+  showLinks() {
+    return (this.getNavWidthScale === 'wide') || (this.states.menu)
+  },
+
+  showNavDrawer() {
+    return (this.getNavWidthScale === 'short') && (this.states.menu)
+  },
 
   navTopClass() {
-    if(this.states.horizontal === 'wide') {
+    if(this.getNavWidthScale === 'wide') {
       return 'nt--wide'
     } else {
       return 'nt--short'
     }
   },
 
-  backCoverClass() {
-    return [
-      'back-cover',
-      (this.states.horizontal === 'short') && (this.states.menu) ? 'back-cover--show' : ''
-    ]
-  },
-
   navTopContentsClass() {
-    if(this.states.horizontal === 'wide') {
+    if(this.getNavWidthScale === 'wide') {
       return 'nav-top-contents ntc--wide'
     } else {
       return 'nav-top-contents ntc--short'
@@ -133,16 +135,10 @@ const methods = {
 
 
 const watch = {
-  getNavWidthScale(newValue) {
-    this.states.horizontal = newValue;
-    this.setMenu(false);
-  }
 };
 
 
 function created() {
-  this.states.horizontal = this.getNavWidthScale;
-    // modify states to current width scale.
 }
 
 

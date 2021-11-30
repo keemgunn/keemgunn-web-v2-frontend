@@ -39,18 +39,10 @@
     width: 100%;
     height: 100vh;
     background-color: var(--backblur);
-    opacity: 0;
     position: absolute;
     z-index: -1;
-    transition-property: all;
-    transition-duration: 600ms;
-    transition-timing-function: cubic-bezier(.34,.25,.61,.98);
-    transition-delay: 0ms;
     -webkit-backdrop-filter: blur(15rem);
     backdrop-filter: blur(15rem);
-  }.back-cover--show {
-    height: 100vh;
-    opacity: 1;
   }
 
   .bottomline {

@@ -52,3 +52,31 @@
 }
 
 
+.nav-list-fade-enter-active{
+  transition: all 500ms ease 100ms;
+}
+.nav-list-fade-leave-active {
+  transition: all 500ms ease;
+}
+.nav-list-fade-enter-from,
+.nav-list-fade-leave-to {
+  transform: translateY(10rem);
+  opacity: 0;
+}
+
+
+.nav-back-cover-fade-enter-active{
+  transition: all 500ms ease 100ms;
+}
+.nav-back-cover-fade-leave-active {
+  transition: all 500ms ease;
+}
+.nav-back-cover-fade-enter-from,
+.nav-back-cover-fade-leave-to {
+  opacity: 0;
+}
+
+
+
+
+
