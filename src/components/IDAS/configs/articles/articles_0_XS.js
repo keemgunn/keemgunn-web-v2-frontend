@@ -85,7 +85,7 @@ export const s1_f2_a2 = {
   modals: {
     base: {
       container: {
-        class: ['show-back-cover'],
+        class: ['show-back-cover bc--right-off'],
         style: [{
           "grid-area": "1/4/2/9",
           "place-self": "stretch stretch",
@@ -438,9 +438,8 @@ export const s3_f2_a1 = {
   sensors: {
     position: {
       StyleCalc: (context) => {
-        console.log(context.serial, context.downstream.sectionPosition);
         const sectionPosition = context.downstream.sectionPosition;
-        const start = 0.06;
+        const start = 0.058;
         const end = 9;
 
         let opacity = ((context.position * 2) + 0.2);
@@ -510,7 +509,7 @@ export const s3_f2_a2 = {
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
-        "gap": "var(--safe-margin)*2",
+        "gap": "calc(var(--safe-margin)*2)",
         "margin" : "0 calc(var(--safe-margin))",
       }],
     }
@@ -593,7 +592,7 @@ export const s3_f3_a2 = {
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
-        "gap": "var(--safe-margin)*2",
+        "gap": "calc(var(--safe-margin)*2)",
         "margin" : "0 calc(var(--safe-margin))",
       }],
     }
@@ -622,7 +621,7 @@ export const s3_f3_a3 = {
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
-        "gap": "var(--safe-margin)*2",
+        "gap": "calc(var(--safe-margin)*2)",
         "margin" : "0 calc(var(--safe-margin))",
       }],
     }
@@ -635,7 +634,7 @@ export const s3_f4_a1 = {
     position: {
       StyleCalc: (context) => {
         const sectionPosition = context.downstream.sectionPosition;
-        const start = 0.477;
+        const start = 0.48;
         const end = 9;
 
         let opacity = ((context.position * 2) + 0.2);
@@ -686,7 +685,7 @@ export const s3_f4_a1 = {
 export const s3_f4_a2 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['sticky'],
       style: [{
         "grid-area": "2 / 1 / 3 / 2",
         "place-self": "stretch stretch",
@@ -716,7 +715,7 @@ export const s3_f5_a1 = {
     position: {
       StyleCalc: (context) => {
         const sectionPosition = context.downstream.sectionPosition;
-        const start = 0.562;
+        const start = 0.563;
         const end = 9;
 
         let opacity = ((context.position * 2) + 0.2);
@@ -831,12 +830,12 @@ export const s3_f6_a1 = {
   },
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
         "grid-area": "1 / 1 / 2 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
-        "padding" : "0 0 80rem 0",
+        "padding-bottom" : "80rem",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -954,7 +953,7 @@ export const s3_f7_a1 = {
     position: {
       StyleCalc: (context) => {
         return {
-          opacity: ((context.position * 1.2) - 0)
+          opacity: ((context.position * 1.8) - 0)
         }
       },
     }
@@ -966,7 +965,7 @@ export const s3_f7_a1 = {
         "grid-area": "1 / 1 / 2 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
-        "padding": "0",
+        "padding": "0 var(--safe-margin)",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-end",
@@ -1001,7 +1000,7 @@ export const s3_f7_a2 = {
       }],
     },
     wrapper: {
-      class: ['over-hidden'],
+      class: ['over-hidden safe-padding-left'],
       style: [{
         "flex-direction": "column",
         "align-content" : "flex-start",
@@ -1020,7 +1019,7 @@ export const s4_f1_a1 = {
     container: {
       class: [''],
       style: [{
-        "grid-area": "1 / 1 / 2 / 13",
+        "grid-area": "1 / 1 / 2 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
         "padding": "0",
@@ -1046,9 +1045,9 @@ export const s4_f1_a1 = {
 export const s4_f1_a2 = {
   modals:{ base:{
     container: {
-      class: ['safe-padding-left'],
+      class: ['safe-padding-sides'],
       style: [{
-        "grid-area": "2 / 1 / 3 / 6",
+        "grid-area": "2 / 1 / 3 / 2",
         "place-self": "stretch stretch",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
@@ -1072,14 +1071,13 @@ export const s4_f1_a2 = {
 export const s4_f1_a3 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-left'],
       style: [{
-        "grid-area": "2 / 6 / 3 / 13",
+        "grid-area": "3 / 1 / 4 / 2",
         "place-self": "stretch stretch",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
-        "margin" : "24rem 0 0 0",
       }],
     },
     wrapper: {
@@ -1102,7 +1100,7 @@ export const s4_f2_a1 = {
     container: {
       class: [''],
       style: [{
-        "grid-area": "1 / 1 / 2 / 11",
+        "grid-area": "1 / 1 / 2 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
         "padding": "0",
@@ -1128,12 +1126,10 @@ export const s4_f2_a1 = {
 export const s4_f2_a2 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
-        "grid-area": "2 / 2 / 3 / 8",
+        "grid-area": "2 / 1 / 3 / 2",
         "place-self": "stretch stretch",
-        "margin": "0",
-        "padding": "0",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -1156,19 +1152,18 @@ export const s4_f2_a2 = {
 export const s4_f2_a3 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['show-back-cover bc--right-off sticky'],
       style: [{
-        "grid-area": "3 / 2 / 4 / 11",
+        "grid-area": "4 / 1 / 5 / 2",
         "place-self": "stretch stretch",
-        "margin": "0",
-        "padding": "0",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
+        "padding-left" : "calc(var(--safe-margin) * (0.9)",
       }],
     },
     wrapper: {
-      class: ['over-hidden'],
+      class: [''],
       style: [{
         "flex-direction": "column",
         "align-content" : "flex-start",
@@ -1184,16 +1179,16 @@ export const s4_f2_a3 = {
 export const s4_f2_a4 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['sticky top-stage-top--2x'],
       style: [{
-        "grid-area": "3 / 7 / 4 / 10",
+        "grid-area": "3 / 1 / 4 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
         "padding": "0",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
-        "z-index" : "10",
+        "z-index" : "-1",
       }],
     },
     wrapper: {
@@ -1215,7 +1210,7 @@ export const s4_f3_a1 = {
     container: {
       class: [''],
       style: [{
-        "grid-area": "1 / 1 / 2 / 6",
+        "grid-area": "1 / 3 / 2 / 6",
         "place-self": "stretch stretch",
         "margin": "0",
         "padding": "0",
@@ -1225,13 +1220,14 @@ export const s4_f3_a1 = {
       }],
     },
     wrapper: {
-      class: [''],
+      class: ['relative'],
       style: [{
         "flex-direction": "column",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
+        "top": "calc(var(--safe-margin)*(-2))"
       }],
     }
   }}
@@ -1241,12 +1237,10 @@ export const s4_f3_a1 = {
 export const s4_f3_a2 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
-        "grid-area": "1 / 6 / 2 / 13",
+        "grid-area": "2 / 1 / 3 / 6",
         "place-self": "stretch stretch",
-        "margin": "0",
-        "padding": "0",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -1271,7 +1265,7 @@ export const s4_f4_a1 = {
     container: {
       class: [''],
       style: [{
-        "grid-area": "1 / 1 / 2 / 11",
+        "grid-area": "1 / 1 / 2 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
         "padding": "0",
@@ -1297,12 +1291,10 @@ export const s4_f4_a1 = {
 export const s4_f4_a2 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
-        "grid-area": "2 / 2 / 3 / 6",
+        "grid-area": "2 / 1 / 3 / 2",
         "place-self": "stretch stretch",
-        "margin": "0",
-        "padding": "0",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -1327,13 +1319,12 @@ export const s4_f4_a3 = {
     container: {
       class: [''],
       style: [{
-        "grid-area": "2 / 6 / 3 / 10",
+        "grid-area": "3 / 1 / 4 / 2",
         "place-self": "stretch stretch",
-        "padding": "0",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-end",
-        "margin" : "26rem 0 0 0",
+        "padding" : "0 0 10rem calc(var(--safe-margin)*(4.2))",
       }],
     },
     wrapper: {
@@ -1344,7 +1335,7 @@ export const s4_f4_a3 = {
         "justify-content" : "flex-start",
         "align-items": "stretch",
         "gap": "0",
-        "height": "100%",
+        "aspect-ratio" : "0.72",
       }],
     }
   }}
@@ -1354,12 +1345,10 @@ export const s4_f4_a3 = {
 export const s4_f4_a4 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
-        "grid-area": "3 / 2 / 4 / 10",
+        "grid-area": "4 / 1 / 5 / 2",
         "place-self": "stretch stretch",
-        "margin": "0",
-        "padding": "0",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -1382,26 +1371,25 @@ export const s4_f4_a4 = {
 export const s4_f4_a5 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['show-border'],
       style: [{
-        "grid-area": "4 / 2 / 5 / 10",
+        "grid-area": "5 / 1 / 6 / 2",
         "place-self": "stretch stretch",
-        "margin": "0",
-        "padding": "0",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
+        "margin-bottom" : "calc(var(--safe-margin)*0.8)",
       }],
     },
     wrapper: {
-      class: ['over-hidden'],
+      class: [''],
       style: [{
         "flex-direction": "column",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "aspect-ratio" : "3.2",
+        "aspect-ratio" : "2",
       }],
     }
   }}
@@ -1411,12 +1399,10 @@ export const s4_f4_a5 = {
 export const s4_f4_a6 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
-        "grid-area": "5 / 2 / 6 / 10",
+        "grid-area": "6 / 1 / 7 / 2",
         "place-self": "stretch stretch",
-        "margin": "0",
-        "padding": "0",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",

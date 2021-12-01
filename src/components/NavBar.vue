@@ -122,12 +122,19 @@ const methods = {
     if (this.states.menu) {
       element.style.position = 'fixed';
       element.style.top = topStyle;
+      element.style.height = '120vh';
+      document.documentElement.style.setProperty("min-height", "100vh");
+      document.documentElement.style.setProperty("height", "100vh");
+
     } else {
       const scrollY = (element.style.top).replace('rem', 'px');
       console.log(scrollY);
       element.style.position = '';
       element.style.top = '';
+      element.style.height = '';
       window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      document.documentElement.style.setProperty("min-height", "-webkit-fill-available");
+      document.documentElement.style.setProperty("height", "-webkit-fill-available");
     }
 
   }

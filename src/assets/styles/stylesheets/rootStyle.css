@@ -181,9 +181,6 @@ html {
   --stage-bottom: calc(100vh* 0.87);
   --stage-left: calc(100vw * 0.1);
   --stage-right: calc(100vw * 0.9);
-
-  --safe-margin--2x: calc(var(--safe-margin)*2);
-  
 }
 
 
@@ -196,6 +193,9 @@ html, body {
   -o-text-size-adjust : 100%;
   max-width: 100%;
   /* overflow-x: hidden; */
+
+  --sa-left : calc(env(safe-area-inset-left) / env(safe-area-inset-left));
+  padding: var(--sa-left);
 }
 
 

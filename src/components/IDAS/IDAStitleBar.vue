@@ -1,8 +1,12 @@
 <template><div id="idas-title-bar">
   <div class="title-wrapper">
-    <p class="page-title">ADMISSION ESSAY FOR IDAS</p>
-    <div class="progress-bar-exc" :style="progressStyle"></div>
+    
     <div :class="hueClass" :style="hueStyle"></div>
+
+    <p class="page-title">ADMISSION ESSAY FOR IDAS</p>
+
+    <!-- <div class="progress-bar-exc" :style="progressStyle"></div> -->
+
   </div>
 </div>
 </template>
@@ -36,12 +40,12 @@ const computed = {
   hueStyle() {
     if(this.isDarkmodeOn) {
       return {
-        "mix-blend-mode": "multiply",
+        // "mix-blend-mode": "multiply",
         "width": `${this.getProgress * 100}%`
       }
     } else {
       return {
-        "mix-blend-mode": "screen",
+        // "mix-blend-mode": "screen",
         "width": `${this.getProgress * 100}%`
       }
     }

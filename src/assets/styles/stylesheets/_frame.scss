@@ -75,7 +75,7 @@
   top: 0;
 }
 .relative {
-  position: relative;
+  position: relative !important;
   top: 0;
   left: 0;
 }
@@ -87,10 +87,10 @@
 
 
 .top-stage-top {
-  top: calc(var(--stage-top) * 1);
+  top: calc(var(--stage-top) * 1) !important;
 }
 .top-stage-top--2x {
-  top: calc(var(--stage-top) * 2);
+  top: calc(var(--stage-top) * 2) !important;
 }
 
 
