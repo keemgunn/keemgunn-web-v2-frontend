@@ -63,7 +63,7 @@ export const s1_f2_a1 = {
           "grid-area": "1/1/3/5",
           "place-self": "start stretch",
           "margin": "0 0",
-          "aspect-ratio": "0.408"
+          "aspect-ratio": "0.36"
         }],
       },
       wrapper: {
@@ -225,7 +225,6 @@ export const s2_f3_a2 = {
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
-        "aspect-ratio" : "0.5",
       }],
     },
     wrapper: {
@@ -236,7 +235,6 @@ export const s2_f3_a2 = {
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "aspect-ratio": "0.78",
       }],
     }
   }}
@@ -264,7 +262,7 @@ export const s2_f3_a3 = {
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "39rem",
-        "top" : "calc(calc(var(--stage-top) * 2) - 36rem)",
+        "top" : "calc(calc(var(--stage-top) * 2) - 62rem)",
       }],
     }
   }}
@@ -276,7 +274,7 @@ export const s2_f4_a1 = {
     position: {
       StyleCalc: (context) => {
         return {
-          opacity: ((context.position * 0.68) - 0.88)
+          opacity: ((context.position * 0.68) - 0.5)
         }
       },
     }
@@ -312,7 +310,7 @@ export const s2_f5_a1 = {
     position: {
       StyleCalc: (context) => {
         return {
-          opacity: ((context.position * 1) + 0)
+          opacity: ((context.position * 1.3) + 0)
         }
       },
     }
@@ -349,7 +347,7 @@ export const s2_f5_a2 = {
     position: {
       StyleCalc: (context) => {
         return {
-          opacity: ((context.position * 1.3) - 0.3)
+          opacity: ((context.position * 1.6) - 0.3)
         }
       },
     }
@@ -389,7 +387,7 @@ export const s2_f5_a3 = {
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
-        "aspect-ratio" : "0.65",
+        "aspect-ratio" : "5",
       }],
     },
     wrapper: {
@@ -400,7 +398,6 @@ export const s2_f5_a3 = {
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "aspect-ratio" : "1.25",
       }],
     }
   }}
@@ -412,7 +409,7 @@ export const s3_f1_a1 = {
     position: {
       StyleCalc: (context) => {
         return {
-          opacity: ((context.position * 0.55) - 0.7)
+          opacity: ((context.position * 0.55) - 0.4)
         }
       },
     }
@@ -449,7 +446,7 @@ export const s3_f2_a1 = {
     position: {
       StyleCalc: (context) => {
         return {
-          opacity: ((context.position * 1) + 0.2)
+          opacity: ((context.position * 1) + 0.3)
         }
       },
     }
@@ -741,12 +738,12 @@ export const s3_f5_a3 = {
 export const s3_f6_a1 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-sides--2x'],
       style: [{
         "grid-area": "1 / 1 / 2 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
-        "padding" : "0 0 60rem 0",
+        "padding-bottom" : "60rem",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -769,12 +766,12 @@ export const s3_f6_a1 = {
 export const s3_f6_a2 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-sides--2x'],
       style: [{
         "grid-area": "2 / 1 / 3 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
-        "padding" : "0 0 60rem 0",
+        "padding-bottom" : "60rem",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": " flex-start",
@@ -854,7 +851,7 @@ export const s3_f7_a1 = {
     position: {
       StyleCalc: (context) => {
         return {
-          opacity: ((context.position * 0.88) - 0)
+          opacity: ((context.position * 0.92) + 0.2)
         }
       },
     }
@@ -891,7 +888,7 @@ export const s3_f7_a2 = {
     position: {
       StyleCalc: (context) => {
         return {
-          opacity: ((context.position * 1.2) + 0)
+          opacity: ((context.position * 1.2) + 0.2)
         }
       },
     }
@@ -917,7 +914,6 @@ export const s3_f7_a2 = {
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "aspect-ratio" : "1.5",
       }],
     }
   }}
@@ -992,14 +988,13 @@ export const s4_f1_a3 = {
       }],
     },
     wrapper: {
-      class: ['over-hidden'],
+      class: ['over-hidden sticky top-stage-top--2x'],
       style: [{
         "flex-direction": "column",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "aspect-ratio" : "1.6",
       }],
     }
   }}
@@ -1310,7 +1305,6 @@ export const s4_f4_a5 = {
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "aspect-ratio" : "3.2",
       }],
     }
   }}

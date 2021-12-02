@@ -32,6 +32,9 @@ function BaseRoute(basePath, pageName) {
 }
 
 function Redirection(inPath, toPath) {
+  // if (inPath.match('errorpage')) {
+    
+  // }
   this.path = inPath;
   this.redirect = toPath;
 }
@@ -82,9 +85,12 @@ function inbounds_type_3() {
   }
 }
 // function inbounds_type_4() {
-//    // No redirection
-//   return function () {
-//     return []
+//    // redirect no-params only
+//    return function (page) {
+//     return [
+//       `/${page}`,
+//       `/${page}/`
+//     ]
 //   }
 // }
 
@@ -153,13 +159,13 @@ export const pages = [
     ['en']
   ),
 
-  new Page( 'TestField',
-    true,
-    false,
-    [ routeParams('key', ['7935']) ],
-    inbounds_type_2(),
-    ['errorpage/404']
-  ),
+  // new Page( 'TestField',
+  //   false,
+  //   false,
+  //   [ routeParams('key', ['']) ],
+  //   inbounds_type_4(),
+  //   ['none']
+  // ),
 
 ]
 

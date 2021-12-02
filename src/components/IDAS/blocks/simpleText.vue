@@ -16,7 +16,8 @@ import { camelToDash } from '@/functions/stringMod';
 
 const props = { 
   blockSeed: Object, 
-  downstream: Object 
+  downstream: Object,
+  position: Number
 };
 const emits = [ 'trigger', 'mounted' ];
 

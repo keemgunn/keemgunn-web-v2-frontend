@@ -294,6 +294,19 @@ s2_f3_a2_b1: {
     text: "&lt;fig 1. I just followed the act of fate.&gt;",
   }
 },
+s2_f3_a2_b2: {
+  type: "idasFigContainer",
+  contents: {
+    figName: 'idas-fig-1'
+  }
+},
+
+
+
+
+
+
+
 // A3 ...............................
 s2_f3_a3_b1: {
   type: "simpleText",
@@ -397,6 +410,12 @@ s2_f5_a3_b1: {
   }},
   contents: {
     text: "<i>&lt;fig 2. I can make my own decision.&gt;</i>",
+  }
+},
+s2_f5_a3_b2: {
+  type: "idasFigContainer",
+  contents: {
+    figName: 'idas-fig-2'
   }
 },
 
@@ -914,6 +933,12 @@ s3_f7_a2_b1: {
     text: "<i>&lt;fig 3. It is me and my fate together who write my life story.&gt;</i>",
   }
 },
+s3_f7_a2_b2: {
+  type: "idasFigContainer",
+  contents: {
+    figName: 'idas-fig-3'
+  }
+},
 
 
 
@@ -981,7 +1006,12 @@ s4_f1_a3_b1: {
     text: "<i>&lt;fig 4. Beauty has another facet except for aesthetics&gt;</i>",
   }
 },
-
+s4_f1_a3_b2: {
+  type: "idasFigContainer",
+  contents: {
+    figName: 'idas-fig-4'
+  }
+},
 
 
 // S4 F2 : Why Softeware Engineering? --------
@@ -1204,6 +1234,13 @@ s4_f4_a3_b1: {
     text: "&lt;fig 5. Between aesthetic and engineering&gt;",
   }
 },
+s4_f4_a3_b2: {
+  type: "idasFigContainer",
+  contents: {
+    figName: 'idas-fig-5'
+  }
+},
+
 // A4 ...............................
 s4_f4_a4_b1: {
   type: "bodyText",
@@ -1222,6 +1259,12 @@ s4_f4_a5_b1: {
   }},
   contents: {
     text: "&lt;fig 5. Between aesthetic and engineering&gt;",
+  }
+},
+s4_f4_a5_b2: {
+  type: "idasFigContainer",
+  contents: {
+    figName: 'idas-fig-6'
   }
 },
 // A6 ...............................

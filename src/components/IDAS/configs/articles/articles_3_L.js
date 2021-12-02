@@ -235,7 +235,6 @@ export const s2_f3_a2 = {
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "aspect-ratio": "0.78",
       }],
     }
   }}
@@ -399,7 +398,6 @@ export const s2_f5_a3 = {
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "aspect-ratio" : "1.25",
       }],
     }
   }}
@@ -745,7 +743,7 @@ export const s3_f6_a1 = {
         "grid-area": "1 / 1 / 2 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
-        "padding" : "0 0 60rem 0",
+        "padding-bottom" : "60rem",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -916,7 +914,6 @@ export const s3_f7_a2 = {
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "aspect-ratio" : "1.5",
       }],
     }
   }}
@@ -998,7 +995,6 @@ export const s4_f1_a3 = {
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "aspect-ratio" : "1.6",
       }],
     }
   }}
@@ -1309,7 +1305,6 @@ export const s4_f4_a5 = {
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "0",
-        "aspect-ratio" : "3.2",
       }],
     }
   }}

@@ -74,6 +74,25 @@
     }
   }
 
+  #s2-f3-a2-b2 {
+    padding: 11% 10% 18% 13%;
+  }
+  #s2-f5-a3-b2 {
+    padding: 11% 10% 18% 12%;
+  }
+  #s3-f7-a2-b2 {
+    padding: 12% 18% 12% 18%;
+  }
+  #s4-f1-a3-b2 {
+    padding: 10% 11% 12% 12%;
+  }
+  #s4-f4-a3-b2 {
+    padding: 12% 12% 16% 15%;
+  }
+  #s4-f4-a5-b2 {
+    padding: 14% 10% 10% 10%;
+  }
+
 
 
   // ================================
@@ -323,6 +342,11 @@
     width: 100%;
   }
 
+  .fig-container {
+    width: 100%;
+    padding: var(--safe-margin);
+  }
+
   
   
 
@@ -502,6 +526,51 @@
     font-size: 3vw;
   }
 
+  #s3-f3-a1-b1 {
+    font-size: 6.4vw;
+    width: calc(100vw * (7/18));
+  }
+  #s3-f4-a1-b1 {
+    font-size: 6.4vw;
+  }
+  #s3-f5-a1-b1 {
+    font-size: 6.4vw;
+    width: calc(100vw * (7/18));
+  }
+  #s3-f6-a3-b1 {
+    img {
+      border: none !important;
+    }
+  }
+  #s3-f6-a3-b2 {
+    img {
+      border: none !important;
+    }
+  }
+  #s3-f6-a4-b1 {
+    img {
+      border: none !important;
+    }
+  }
+  #s3-f6-a4-b2 {
+    img {
+      border: none !important;
+    }
+  }
+  #s3-f6-a4-b3 {
+    img {
+      border: none !important;
+    }
+  }
+  // #s3-f7-a1-b1 {
+  //   font-size: 4.vw;
+  // }
+  #s4-f1-a1-b1 {
+    font-size: 9.2vw;
+  }
+  #s4-f2-a1-b1 {
+    font-size: 8vw;
+  }
 
 }}
 

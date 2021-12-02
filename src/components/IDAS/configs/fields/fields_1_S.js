@@ -77,7 +77,7 @@ export const s2_f3 = {
   sensors: {},
   modals: {
     base: {
-      class: ['safe-padding-sides'],
+      class: ['b-padding-sides'],
       style: [{
         "grid-template-columns": "repeat(12, 1fr)",
         "gap": "var(--safe-margin) var(--safe-margin)",
@@ -203,7 +203,7 @@ export const s3_f5 = {
 
 
 export const s3_f6 = {
-  type: "C",
+  type: "A",
   sensors: {},
   modals: {
     base: {
