@@ -2,11 +2,10 @@ export const s1_f1_a1 = {
   modals: {
     base: {
       container: {
-        class: [''],
+        class: ['safe-padding-left'],
         style: [{
           "grid-area": "1/1/2/2",
           "place-self": "center stretch",
-          "padding": "0 0 0 var(--safe-margin)",
           "width": "fit-content"
         }],
       },
@@ -345,11 +344,10 @@ export const s2_f5_a1 = {
 export const s2_f5_a2 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
         "grid-area": "2 / 1 / 3 / 11",
         "place-self": "stretch stretch",
-        "margin": "0 var(--safe-margin)",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -372,11 +370,10 @@ export const s2_f5_a2 = {
 export const s2_f5_a3 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-left'],
       style: [{
         "grid-area": "3 / 1 / 4 / 11",
         "place-self": "stretch stretch",
-        "margin": "0 0 0 var(--safe-margin)",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -471,7 +468,7 @@ export const s3_f2_a1 = {
       }],
     },
     wrapper: {
-      class: ['over-hidden'],
+      class: ['over-hidden safe-padding-left'],
       style: [{
         "flex-direction": "column",
         "align-content" : "flex-start",
@@ -480,7 +477,6 @@ export const s3_f2_a1 = {
         "gap": "24rem",
         "margin": "60rem 0 0 0",
         "position": "absolute",
-        "padding-left": "var(--safe-margin)",
       }],
     }
   }}
@@ -503,14 +499,13 @@ export const s3_f2_a2 = {
       }],
     },
     wrapper: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
         "flex-direction": "column",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "calc(var(--safe-margin)*2)",
-        "margin" : "0 calc(var(--safe-margin))",
       }],
     }
   }}
@@ -554,7 +549,7 @@ export const s3_f3_a1 = {
       }],
     },
     wrapper: {
-      class: ['over-hidden'],
+      class: ['over-hidden safe-padding-left'],
       style: [{
         "flex-direction": "column",
         "align-content" : "flex-start",
@@ -563,7 +558,6 @@ export const s3_f3_a1 = {
         "gap": "24rem",
         "margin": "60rem 0 0 0",
         "position": "absolute",
-        "padding-left": "var(--safe-margin)",
       }],
     }
   }}
@@ -586,14 +580,13 @@ export const s3_f3_a2 = {
       }],
     },
     wrapper: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
         "flex-direction": "column",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "calc(var(--safe-margin)*2)",
-        "margin" : "0 calc(var(--safe-margin))",
       }],
     }
   }}
@@ -615,14 +608,13 @@ export const s3_f3_a3 = {
       }],
     },
     wrapper: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
         "flex-direction": "column",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
         "gap": "calc(var(--safe-margin)*2)",
-        "margin" : "0 calc(var(--safe-margin))",
       }],
     }
   }}
@@ -685,12 +677,12 @@ export const s3_f4_a1 = {
 export const s3_f4_a2 = {
   modals:{ base:{
     container: {
-      class: ['sticky'],
+      class: ['sticky safe-padding-sides'],
       style: [{
         "grid-area": "2 / 1 / 3 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
-        "padding" : "40vh var(--safe-margin) 0 var(--safe-margin)",
+        "padding-top" : "40vh",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -747,7 +739,7 @@ export const s3_f5_a1 = {
       }],
     },
     wrapper: {
-      class: ['over-hidden'],
+      class: ['over-hidden safe-padding-left'],
       style: [{
         "flex-direction": "column",
         "align-content" : "flex-start",
@@ -756,7 +748,6 @@ export const s3_f5_a1 = {
         "gap": "24rem",
         "margin": "60rem 0 0 0",
         "position": "absolute",
-        "padding-left": "var(--safe-margin)",
       }],
     }
   }}
@@ -960,12 +951,11 @@ export const s3_f7_a1 = {
   },
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
         "grid-area": "1 / 1 / 2 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
-        "padding": "0 var(--safe-margin)",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-end",

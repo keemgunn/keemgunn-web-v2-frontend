@@ -49,24 +49,26 @@
 .safe-padding-bottom--_5x {
   padding-bottom: calc(var(--safe-margin)/2);
 }
+
+
 .safe-padding-sides {
-  padding: 0 var(--safe-margin);
-}
-.safe-padding-sides--_5x {
-  padding: 0 calc(var(--safe-margin)/2);
+  padding-left: max(var(--safe-margin), constant(safe-area-inset-left));
+  padding-left: max(var(--safe-margin), env(safe-area-inset-left));
+  padding-right: max(var(--safe-margin), constant(safe-area-inset-right));
+  padding-right: max(var(--safe-margin), env(safe-area-inset-right));
 }
 .safe-padding-left {
-  padding-left: var(--safe-margin);
-}
-.safe-padding-left--_5x {
-  padding-left: calc(var(--safe-margin)/2);
+  padding-left: max(var(--safe-margin), constant(safe-area-inset-left));
+  padding-left: max(var(--safe-margin), env(safe-area-inset-left));
 }
 .safe-padding-right {
-  padding-right: var(--safe-margin);
+  padding-right: max(var(--safe-margin), constant(safe-area-inset-right));
+  padding-right: max(var(--safe-margin), env(safe-area-inset-right));
 }
-.safe-padding-right--_5x {
-  padding-right: calc(var(--safe-margin)/2);
-}
+// .safe-padding-right {
+//   padding-right: max(var(--safe-margin), constant(safe-area-inset-right));
+//   padding-right: max(var(--safe-margin), env(safe-area-inset-right));
+// }
 
 
 .sticky {

@@ -58,11 +58,10 @@ export const s1_f1_a1 = {
   modals: {
     base: {
       container: {
-        class: [''],
+        class: ['safe-padding-left'],
         style: [{
           "grid-area": "1/1/2/2",
           "place-self": "center stretch",
-          "padding": "0 0 0 var(--safe-margin)",
           "width": "fit-content"
         }],
       },
@@ -412,11 +411,10 @@ export const s2_f5_a2 = {
   },
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
         "grid-area": "1 / 11 / 3 / 19",
         "place-self": "stretch stretch",
-        "margin": "0 var(--safe-margin)",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -439,11 +437,10 @@ export const s2_f5_a2 = {
 export const s2_f5_a3 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-left'],
       style: [{
         "grid-area": "2 / 1 / 3 / 11",
         "place-self": "stretch stretch",
-        "margin": "0 0 0 var(--safe-margin)",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",
@@ -855,12 +852,11 @@ export const s3_f6_a2 = {
 export const s3_f6_a3 = {
   modals:{ base:{
     container: {
-      class: [''],
+      class: ['safe-padding-bottom'],
       style: [{
         "grid-area": "3 / 1 / 4 / 2",
         "place-self": "stretch stretch",
         "margin": "0",
-        "padding": "0 0 var(--safe-margin) 0",
         "align-content" : "flex-start",
         "justify-content" : "flex-start",
         "align-items": "flex-start",

@@ -116,9 +116,8 @@ export const s2_f3 = {
   sensors: {},
   modals: {
     base: {
-      class: [''],
+      class: ['safe-padding-sides'],
       style: [{
-        "padding": "0 var(--b-safe-margin)",
         "grid-template-columns": "repeat(12, 1fr)",
         "gap": "var(--safe-margin) var(--safe-margin)",
       }],

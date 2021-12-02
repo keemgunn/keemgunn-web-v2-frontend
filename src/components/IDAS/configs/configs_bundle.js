@@ -112,8 +112,7 @@ const scaleEntries = [
   ["XXS", "XS"],
   ["S"],
   ["M"],
-  ["L"],
-  ["XL", "XXL"]
+  ["L", "XL", "XXL"],
 ]
 
 const allFields = [fields_XS, fields_S, fields_M, fields_L];
