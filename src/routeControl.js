@@ -18,7 +18,12 @@ function Page(name, allow, onNav, paramSetArr, inboundsFactory, redirectSuffix) 
   this.onNav = onNav;
   this.basePath = bundle.url([name.toLowerCase(), ...paramSetArr]);
   this.inbounds = inboundsFactory(name.toLowerCase());
-  this.redirectPath = bundle.url([name.toLowerCase(), ...redirectSuffix]);
+
+  if (redirectSuffix.filter(item => item.match('errorpage')).length) {
+    this.redirectPath = bundle.url([...redirectSuffix]);
+  } else {
+    this.redirectPath = bundle.url([name.toLowerCase(), ...redirectSuffix]);
+  }
 }
 
 function BaseRoute(basePath, pageName) {
@@ -76,6 +81,13 @@ function inbounds_type_3() {
     ]
   }
 }
+// function inbounds_type_4() {
+//    // No redirection
+//   return function () {
+//     return []
+//   }
+// }
+
 
 
 
@@ -139,6 +151,14 @@ export const pages = [
     [ routeParams('lang', ['en']) ],
     inbounds_type_2(),
     ['en']
+  ),
+
+  new Page( 'TestField',
+    true,
+    false,
+    [ routeParams('key', ['7935']) ],
+    inbounds_type_2(),
+    ['errorpage/404']
   ),
 
 ]

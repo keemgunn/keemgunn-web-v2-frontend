@@ -1,7 +1,7 @@
-import { logger } from "@/functions/logger";
+import { logg } from "@/functions/logger";
 import { navigations } from "@/routeControl";
 
-logger('== Navigations', navigations);
+logg('== Navigations', navigations);
 
 export default {
   namespaced: false,

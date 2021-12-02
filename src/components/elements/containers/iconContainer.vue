@@ -33,7 +33,7 @@ const computed = {
       return require("@/assets/icons/icon-" + this.iconPayload.name + ".svg")
     }
     catch (err) {
-      console.log(String(err).split('\n')[0])
+      console.error(String(err).split('\n')[0])
       return ''
     }
   },
