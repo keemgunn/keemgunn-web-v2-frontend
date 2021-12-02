@@ -25,7 +25,7 @@
         class="nav-top-links-item"
         :page="page" :shown="showLinks" :key="page.name">
       </NavItem>
-      <div id="nav-top-links-blank" @click="setMenu(false)"></div>
+      <div v-show="horizontal==='short'" id="nav-top-links-blank" @click="setMenu(false)"></div>
     </nav>
     </transition>
 
