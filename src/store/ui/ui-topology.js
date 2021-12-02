@@ -1,7 +1,7 @@
-import { navigations } from "@/config/routeControl";
-if (process.env.NODE_ENV === 'development') {
-  console.log('== Navigations', navigations);
-}
+import { logger } from "@/functions/logger";
+import { navigations } from "@/routeControl";
+
+logger('== Navigations', navigations);
 
 export default {
   namespaced: false,

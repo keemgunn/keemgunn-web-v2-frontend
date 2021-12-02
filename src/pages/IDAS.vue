@@ -25,7 +25,7 @@
 const name = 'IDAS';
 import { mapGetters, mapMutations } from 'vuex';
 import { defineAsyncComponent } from 'vue';
-import NavBar from '@/components/NavBar.vue';
+import NavBar from '@/components/NavBar/NavBar.vue';
 import IDAStitleBar from '@/components/IDAS/IDAStitleBar.vue';
 
 
