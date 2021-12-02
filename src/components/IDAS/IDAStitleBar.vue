@@ -1,13 +1,17 @@
 <template><div id="idas-title-bar">
   <div class="title-wrapper">
-    
     <div :class="hueClass" :style="hueStyle"></div>
-
     <p class="page-title">ADMISSION ESSAY FOR IDAS</p>
-
-    <!-- <div class="progress-bar-exc" :style="progressStyle"></div> -->
-
   </div>
+
+  <transition name="idas-scroll-indi">
+    <div v-show="progressDone" 
+    id="idas-scroll-indicator"
+    class="scroll-indicator">
+      <p class="typo-header6--light" :style="sciStyle">
+      scroll down</p>
+    </div>
+  </transition>
 </div>
 </template>
 <script>
@@ -18,7 +22,9 @@ import { mapGetters, mapMutations, mapActions } from 'vuex';
 const props = {};
 const emits = [ 'titlebar-loaded' ];
 function data() { return {
-  progressDone: false
+  progressDone: false,
+  sciEl: {},
+  sciPos: 1,
 }}
 
 
@@ -28,7 +34,7 @@ const components = {
 
 const computed = {
   ...mapGetters('moderator',[ 'getInitState' ]),
-  ...mapGetters('ui', [ 'isDarkmodeOn' ]),
+  ...mapGetters('ui', [ 'isDarkmodeOn', 'getStageArea' ]),
   getProgress() {
     return this.getInitState('idas')
   },
@@ -56,6 +62,11 @@ const computed = {
       result = result + 'progress-done';
     }
     return result
+  },
+  sciStyle() {
+    return {
+      opacity: 2 - (this.sciPos * 0.12)
+    }
   }
 };
 
@@ -63,6 +74,18 @@ const computed = {
 const methods = {
   ...mapMutations('', [  ]),
   ...mapActions('', [  ]),
+
+  getElPos(element) {
+    const top = element.getBoundingClientRect().top;
+    const height = element.getBoundingClientRect().height;
+    return (this.getStageArea.bottom - top) / height
+  },
+
+
+  positionUpdater() {
+    this.sciPos = this.getElPos(this.sciEl);
+    console.log(this.sciPos);
+  },
 };
 
 
@@ -93,6 +116,8 @@ function mounted() {
   setTimeout(() => {
     this.$emit('titlebar-loaded');
   }, 400);
+  this.sciEl = document.getElementById('idas-scroll-indicator');
+  window.addEventListener('scroll', this.positionUpdater, { passive: true });
 }
 
 

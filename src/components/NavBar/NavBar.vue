@@ -13,7 +13,9 @@
     </div>
 
     <div id="nav-logo-gunn" 
-      class="nav-logo-gunn">
+      class="nav-logo-gunn"
+      @click="this.$redirect('/home')"
+      >
     <svgLogoGunn/></div>
 
     <transition name="nav-list-fade">

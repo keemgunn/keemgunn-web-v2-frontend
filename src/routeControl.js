@@ -117,14 +117,6 @@ export const pages = [
     inbounds_type_1(),
     ['en']
   ),
-  
-  new Page( 'About',
-    true,
-    true,
-    [ routeParams('lang', ['en']) ],
-    inbounds_type_2(),
-    ['en']
-  ),
 
   new Page( 'Works',
     false,
@@ -135,16 +127,16 @@ export const pages = [
   ),
 
   new Page( 'Blog',
-    true,
-    true,
+    false,
+    false,
     [ routeParams('lang', ['en']) ],
     inbounds_type_2(),
     ['en']
   ),
 
   new Page( 'Lab',
-    true,
-    true,
+    false,
+    false,
     [ routeParams('room', ['home']),
       routeParams('lang', ['en']) ],
     inbounds_type_3(),
@@ -152,6 +144,14 @@ export const pages = [
   ),
 
   new Page( 'IDAS',
+    true,
+    true,
+    [ routeParams('lang', ['en']) ],
+    inbounds_type_2(),
+    ['en']
+  ),
+
+  new Page( 'About',
     true,
     true,
     [ routeParams('lang', ['en']) ],

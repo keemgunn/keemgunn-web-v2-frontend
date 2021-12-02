@@ -40,6 +40,11 @@
       animation: progress-bar-done 500ms ease-in-out 550ms;
     }
 
+    .scroll-indicator {
+      position: absolute;
+      bottom: 12%;
+    }
+
   }
 
   section {
@@ -84,10 +89,10 @@
     padding: 12% 18% 12% 18%;
   }
   #s4-f1-a3-b2 {
-    padding: 10% 11% 12% 12%;
+    padding: 14% 12% 12% 12%;
   }
   #s4-f4-a3-b2 {
-    padding: 12% 12% 16% 15%;
+    padding: 16% 11% 16% 16%;
   }
   #s4-f4-a5-b2 {
     padding: 14% 10% 10% 10%;

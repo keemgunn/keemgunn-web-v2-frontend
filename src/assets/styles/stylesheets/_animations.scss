@@ -130,5 +130,19 @@
 
 
 
+.idas-scroll-indi-enter-active{
+  transition: all 500ms ease 800ms;
+}
+.idas-scroll-indi-leave-active {
+  transition: all 500ms ease;
+}
+.idas-scroll-indi-enter-from,
+.idas-scroll-indi-leave-to {
+  transform: translateY(10rem);
+  opacity: 0;
+}
+
+
+
 
 
