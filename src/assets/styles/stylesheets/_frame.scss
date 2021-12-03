@@ -1,0 +1,242 @@
+
+
+
+
+
+.w-fit {
+  width: fit-content;
+}
+.h-fit {
+  height: fit-content;
+}
+.w-100per {
+  width: 100%;
+}
+.h-100per {
+  height: 100%;
+}
+.h-100vh{
+  height: var(--vh);
+}
+.w-100vw{
+  width: 100vw;
+}
+
+// #fillav-detector {
+//   height: -webkit-fill-available;
+//   width: -webkit-fill-available;
+//   background-color: coral;
+//   // position: fixed;
+//   // top: 0; left: 0;
+// }
+
+.m-auto {
+  margin: auto;
+}
+
+
+
+
+
+* {
+  box-sizing: border-box; /* 오페라(Opera) */
+  -moz-box-sizing: border-box; /* 파이어폭스(Firefox)*/
+  -webkit-box-sizing: border-box; /* 웹킷(Webkit) & 크롬(Chrome) */
+}
+
+.safe-padding-headtail {
+  padding: 0 var(--safe-margin) 0;
+}
+.safe-padding-headtail--_5x {
+  padding: calc(var(--safe-margin)/2) 0;
+}
+.safe-padding-top {
+  padding-top: var(--safe-margin);
+}
+.safe-padding-top--_5x {
+  padding-top: calc(var(--safe-margin)/2);
+}
+.safe-padding-bottom {
+  padding-bottom: var(--safe-margin);
+}
+.safe-padding-bottom--_5x {
+  padding-bottom: calc(var(--safe-margin)/2);
+}
+
+
+.safe-padding-sides {
+  padding-left: max(var(--safe-margin), constant(safe-area-inset-left));
+  padding-left: max(var(--safe-margin), env(safe-area-inset-left));
+  padding-right: max(var(--safe-margin), constant(safe-area-inset-right));
+  padding-right: max(var(--safe-margin), env(safe-area-inset-right));
+}
+
+.safe-padding-left {
+  padding-left: max(var(--safe-margin), constant(safe-area-inset-left));
+  padding-left: max(var(--safe-margin), env(safe-area-inset-left));
+}
+.safe-padding-right {
+  padding-right: max(var(--safe-margin), constant(safe-area-inset-right));
+  padding-right: max(var(--safe-margin), env(safe-area-inset-right));
+}
+// .safe-padding-right {
+//   padding-right: max(var(--safe-margin), constant(safe-area-inset-right));
+//   padding-right: max(var(--safe-margin), env(safe-area-inset-right));
+// }
+.safe-padding-sides--2x {
+  padding-left: max(calc(var(--safe-margin)*2), constant(safe-area-inset-left));
+  padding-left: max(calc(var(--safe-margin)*2), env(safe-area-inset-left));
+  padding-right: max(calc(var(--safe-margin)*2), constant(safe-area-inset-right));
+  padding-right: max(calc(var(--safe-margin)*2), env(safe-area-inset-right));
+}
+.safe-padding-left--2x {
+  padding-left: max(calc(var(--safe-margin)*2), constant(safe-area-inset-left));
+  padding-left: max(calc(var(--safe-margin)*2), env(safe-area-inset-left));
+}
+.safe-padding-right--2x {
+  padding-right: max(calc(var(--safe-margin)*2), constant(safe-area-inset-right));
+  padding-right: max(calc(var(--safe-margin)*2), env(safe-area-inset-right));
+}
+.b-padding-sides {
+  padding-left: var(--b-safe-margin);
+  padding-right: var(--b-safe-margin);
+}
+.b-padding-left {
+  padding-left: var(--b-safe-margin);
+}
+.b-padding-right {
+  padding-right: var(--b-safe-margin);
+}
+
+
+
+
+
+.sticky {
+  position: sticky !important;
+  position: -webkit-sticky !important;
+  top: 0;
+}
+.relative {
+  position: relative !important;
+  top: 0;
+  left: 0;
+}
+
+
+.over-hidden {
+  overflow: hidden;
+}
+
+
+.top-stage-top {
+  top: calc(var(--stage-top) * 1) !important;
+}
+.top-stage-top--2x {
+  top: calc(var(--stage-top) * 2) !important;
+}
+
+
+
+
+.flex {
+  display: flex;
+}
+.f-dir-col {
+  flex-direction: column;
+}
+.f-dir-row {
+  flex-direction: row;
+}
+.f-al-item-start {
+  align-items: flex-start;
+}
+.f-al-item-end {
+  align-items: flex-end;
+}
+.f-al-item-baseline {
+  align-items: baseline;
+}
+.f-wrap {
+  flex-wrap: wrap;
+}
+.f-al-cont-space {
+  align-content: space-between;
+}
+.f-js-cont-space {
+  justify-content: space-between;
+}
+.f-js-cont-start {
+  justify-content: flex-start;
+}
+.f-js-cont-end {
+  justify-content: flex-end;
+}
+
+
+.al-self-str {
+  align-self: stretch;
+}
+
+
+@mixin Line($val) {
+  .line-flex-ver-#{$val} {
+    width: $val + rem;
+    align-self: stretch;
+    background-color: var(--ink1); 
+  }
+  .line-flex-hor-#{$val} {
+    height: $val + rem !important;
+    align-self: stretch;
+    background-color: var(--ink1); 
+  }
+} @for $i from 1 through 8 {
+  @include Line($i);
+}
+
+
+@mixin Gap($val) {
+  .gap#{$val} {
+    gap: $val + rem;
+  }
+  .rgap#{$val} {
+    row-gap: $val + rem;
+  }
+  .cgap#{$val} {
+    column-gap: $val + rem;
+  }
+} @for $i from 0 through 50 {
+  @include Gap($i);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

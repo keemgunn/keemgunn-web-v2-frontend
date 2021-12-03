@@ -1,21 +1,18 @@
 import { createLogger, createStore } from 'vuex';
-import ui from '@/store/ui/ui-main'
-
-const ENV = process.env.NODE_ENV;
-const debug = ENV !== 'production';
+import ui from '@/store/ui/ui-main';
+import api from '@/store/api/api-main';
+import moderator from '@/store/moderator/moderator-main';
 
 export default createStore({
   state: {
-    ENV
   },
   getters: {
-    getENV(state) {
-      return state.ENV
-    }
   },
   modules: {
-    ui
+    ui,
+    api,
+    moderator
   },
-  strict: debug,
-  plugins: debug ? [createLogger()] : []
+  strict: process.env.NODE_ENV !== 'production',
+  plugins: process.env.NODE_ENV !== 'production' ? [createLogger()] : []
 })

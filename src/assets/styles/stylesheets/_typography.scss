@@ -1,0 +1,226 @@
+// Inter_SD : 200  (300)  [400]  (500)  (600)  800 
+// Syncopate : (400)  [700] 
+
+
+
+@mixin Typeface($family, $weight) {
+  font-family: $family;
+  font-weight: $weight;
+}
+@mixin FontSquare($size, $ls, $lh) {
+  font-size: $size;
+  letter-spacing: $ls;
+  line-height: $lh;
+  word-wrap:break-word;
+  // margin: 0;
+  // padding: 0;
+}
+@mixin marginBlock($start, $end) {
+  margin-block-start: $start;
+  margin-block-end: $end;
+}
+@mixin noSelect() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+
+@mixin Header($index, $size, $ls, $lh, $block-start, $block-end) {
+  .typo-header#{$index} {
+    @include Typeface('Syncopate',700);
+    @include FontSquare($size, $ls, $lh);
+    @include marginBlock($block-start, $block-end);
+    @include noSelect();
+    word-break: keep-all;
+  }
+}
+@mixin Body($index, $size, $ls, $lh, $block-start, $block-end) {
+  .typo-body#{$index} {
+    @include Typeface('Inter_SD',400);
+    @include FontSquare($size, $ls, $lh);
+    @include marginBlock($block-start, $block-end);
+    word-break: keep-all;
+  }
+}
+@mixin Caption($index, $size, $ls, $lh, $block-start, $block-end) {
+  .typo-caption#{$index} {
+    @include Typeface('Inter_SD',400);
+    @include FontSquare($size, $ls, $lh);
+    @include marginBlock($block-start, $block-end);
+    @include noSelect();
+    word-break: keep-all;
+  }
+}
+@mixin Marks($index, $size, $ls, $lh, $block-start, $block-end) {
+  .typo-mark#{$index} {
+    @include Typeface('Syncopate',700);
+    @include FontSquare($size, $ls, $lh);
+    @include marginBlock($block-start, $block-end);
+    @include noSelect();
+    word-break: break-all;
+    text-transform: uppercase;
+  }
+}
+
+
+
+@mixin WeightExtend($origin, $ext, $weight) {
+  #{$origin}--#{$ext} {
+    @extend #{$origin};
+    font-weight: $weight;
+  }
+}
+@mixin SizeAdjust($origin, $var) {
+  #{$origin} {
+    font-size: $var
+  }
+}
+
+
+
+// ------------- TYPO : - HEADER --------------
+
+@include Header(1, 96rem, -0.02rem, 1, 0rem, 0rem);
+  @include WeightExtend('.typo-header1', 'light', 400);
+@include Header(2, 72rem, -0.02rem, 1, 0rem, 0rem);
+  @include WeightExtend('.typo-header2', 'light', 400);
+@include Header(3, 64rem, -0.013rem, 1, 0rem, 0rem);
+  @include WeightExtend('.typo-header3', 'light', 400);
+@include Header(4, 44rem, -0.013rem, 1, 0rem, 0rem);
+  @include WeightExtend('.typo-header4', 'light', 400);
+@include Header(5, 32rem, -0.01rem, 1, 0rem, 0rem);
+  @include WeightExtend('.typo-header5', 'light', 400);
+@include Header(6, 24rem, -0.005rem, 1, 0rem, 0rem);
+  @include WeightExtend('.typo-header6', 'light', 400);
+
+
+
+// ------------- TYPO : BODY ------------------
+@include Body(1, 18.4rem, 0.0rem, 1.58, 0rem, 0rem);
+  @include WeightExtend('.typo-body1', 'light', 300);
+  @include WeightExtend('.typo-body1', 'thick', 500);
+@include Body(2, 16.4rem, 0.0rem, 1.62, 0rem, 0rem);
+  @include WeightExtend('.typo-body2', 'light', 300);
+  @include WeightExtend('.typo-body2', 'thick', 500);
+@include Body(3, 14.4rem, 0.0rem, 1.62, 0rem, 0rem);
+  @include WeightExtend('.typo-body3', 'light', 300);
+  @include WeightExtend('.typo-body3', 'thick', 500);
+
+
+
+// ------------- TYPO : CAPTION ---------------
+@include Caption(1, 26rem, 0.005rem, 1.35, 0rem, 0rem);
+  @include WeightExtend('.typo-caption1', 'light', 300);
+  @include WeightExtend('.typo-caption1', 'thick', 600);
+@include Caption(2, 23rem, 0.005rem, 1.30, 0rem, 0rem);
+  @include WeightExtend('.typo-caption2', 'light', 300);
+  @include WeightExtend('.typo-caption2', 'thick', 600);
+@include Caption(3, 20rem, 0.005rem, 1.30, 0rem, 0rem);
+  @include WeightExtend('.typo-caption3', 'light', 300);
+  @include WeightExtend('.typo-caption3', 'thick', 600);
+@include Caption(4, 17rem, 0.005rem, 1.40, 0rem, 0rem);
+  @include WeightExtend('.typo-caption4', 'light', 300);
+  @include WeightExtend('.typo-caption4', 'thick', 600);
+@include Caption(5, 14rem, 0.005rem, 1.40, 0rem, 0rem);
+  @include WeightExtend('.typo-caption5', 'light', 300);
+  @include WeightExtend('.typo-caption5', 'thick', 600);
+@include Caption(6, 11rem, 0.005rem, 1.50, 0rem, 0rem);
+  @include WeightExtend('.typo-caption6', 'light', 300);
+  @include WeightExtend('.typo-caption6', 'thick', 600);
+
+
+
+// ------------- TYPO : MARK ------------------
+@include Marks(1, 26rem, 0.04rem, 1.4, 0rem, 0rem);
+  @include WeightExtend('.typo-mark1', 'light', 400);
+@include Marks(2, 23rem, 0.04rem, 1.4, 0rem, 0rem);
+  @include WeightExtend('.typo-mark2', 'light', 400);
+@include Marks(3, 20rem, 0.048rem, 1.4, 0rem, 0rem);
+  @include WeightExtend('.typo-mark3', 'light', 400);
+@include Marks(4, 17rem, 0.056rem, 1.5, 0rem, 0rem);
+  @include WeightExtend('.typo-mark4', 'light', 400);
+@include Marks(5, 14rem, 0.064rem, 1.5, 0rem, 0rem);
+  @include WeightExtend('.typo-mark5', 'light', 400);
+@include Marks(6, 11rem, 0.072rem, 1.6, 0rem, 0rem);
+  @include WeightExtend('.typo-mark6', 'light', 400);
+
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+em {
+  // font-style: normal;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+::selection {
+  color: var(--ink0);
+  background-color: var(--accent5);
+}
+::-moz-selection {
+  color: var(--ink0);
+  background-color: var(--accent5);
+}
+
+.XXS{
+  @include SizeAdjust('.typo-header1', 63rem);
+  @include SizeAdjust('.typo-header2', 56rem);
+  @include SizeAdjust('.typo-header3', 49rem);
+  @include SizeAdjust('.typo-header4', 42rem);
+  @include SizeAdjust('.typo-header5', 34rem);
+  @include SizeAdjust('.typo-header6', 27rem);
+}
+
+.XS{
+  @include SizeAdjust('.typo-header1', 50rem);
+  @include SizeAdjust('.typo-header2', 44rem);
+  @include SizeAdjust('.typo-header3', 40rem);
+  @include SizeAdjust('.typo-header4', 33rem);
+  @include SizeAdjust('.typo-header5', 26rem);
+  @include SizeAdjust('.typo-header6', 19rem);
+  @include SizeAdjust('.typo-body1', 17rem);
+  @include SizeAdjust('.typo-body2', 15rem);
+  @include SizeAdjust('.typo-body2', 13rem);
+  @include SizeAdjust('.typo-caption1', 20rem);
+  @include SizeAdjust('.typo-caption2', 17rem);
+  @include SizeAdjust('.typo-caption3', 14rem);
+  @include SizeAdjust('.typo-caption4', 11rem);
+  @include SizeAdjust('.typo-caption5', 9.8rem);
+  @include SizeAdjust('.typo-caption6', 8rem);
+
+}
+
+.L , .XL , .XXL {
+  @include SizeAdjust('.typo-header1', 114rem);
+  @include SizeAdjust('.typo-header2', 84rem);
+  @include SizeAdjust('.typo-header3', 68rem);
+  @include SizeAdjust('.typo-header4', 50rem);
+  @include SizeAdjust('.typo-header5', 38rem);
+  @include SizeAdjust('.typo-header6', 29rem);
+}
+
+
+  
+  

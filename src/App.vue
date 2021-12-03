@@ -1,23 +1,14 @@
 <template>
-  <div id="app_main" :style="getColors">
-    <p>가나다라 <i>마바사</i> </p>
-    <h2> something </h2>
-    <test-001/>
+  <div :class="[ getScale, whatLanguage ]" >
     <router-view/>
   </div>
 </template>
-
 <script>
-import { mapGetters, mapMutations } from 'vuex';
-import test001 from '@/pages/test/001_UIstate.vue'
-
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 export default {
   name: 'App',
-  components: {
-    test001,
-  },
+  components: {},
   data() { return {
-
   }},
   computed: {
     ...mapGetters(['getENV']),
@@ -27,40 +18,34 @@ export default {
       'getColors',
       'getThemeColor',
       'whatLanguage',
-    ])
-  },
-
-  methods: {
-    ...mapMutations('ui', {
-      frameResize: 'resize'
-    }),
-    fetchFrameSize() {
-      this.frameResize({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
+    ]),
+    ...mapGetters('api',[
+      'getCliIP', 'getContentsToken'
+    ]),
+    appFontSize() {
+      return String(this.fontScale) + "%"
     }
   },
-
-  beforeCreate(){ // ==================================
-
+  methods: {
+    ...mapMutations('ui', [ 'resize' ]),
+    ...mapActions('api', [
+      'openTheDoor', 'checkContentsServer'
+    ]),
   },
-
-  created() { // ======================================
-
+  created() {
+    this.openTheDoor();
     // Adjust Screen Size ---------------------
-    this.fetchFrameSize()
+    this.resize();
     this.$nextTick(() => {
-      window.addEventListener('resize', this.fetchFrameSize);
+      window.addEventListener('resize', this.resize);
     });
-
   },
-
 }
 </script>
-
 <style lang="scss">
-@import "assets/fonts/kopub.css";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import "assets/styles/stylesheets/rootStyle.css";
+@import "assets/styles/stylesheets/colors.css";
+@import "assets/fonts/syncopate.css";
+@import "assets/fonts/inter_sd.css";
 @import "assets/styles/main.scss";
 </style>

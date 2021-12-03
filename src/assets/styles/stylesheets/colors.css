@@ -1,0 +1,104 @@
+@media (prefers-color-scheme: light) {
+  .preferred-color {
+  --ink0: #000000;
+  --ink1: #333333;
+  --ink2: #525252;
+  --ink3: #858585;
+  --ink4: #C2C2C2;
+  --ink5: #D9D9D9;
+  --ink6: #EBEBEB;
+  --ink7: #FFFFFF;
+  --accent0: #FF4D00;
+  --accent1: #FF5C17;
+  --accent2: #FF6C2E;
+  --accent3: #FF824D;
+  --accent4: #FFA680;
+  --accent5: #FFC9B2;
+  --accent6: #FFDBCC;
+  --accent7: #FFEDE5;
+
+  --backblur: #ebebebd0;
+  }
+
+
+
+  .inverted-color {
+    --ink0: #FFFFFF;
+    --ink1: #D1D1D1;
+    --ink2: #9E9E9E;
+    --ink3: #757575;
+    --ink4: #383838;
+    --ink5: #1F1F1F;
+    --ink6: #121212;
+    --ink7: #000000;
+    --accent0: #001AFF;
+    --accent1: #2239E3;
+    --accent2: #2E42C7;
+    --accent3: #1F3188;
+    --accent4: #151E5C;
+    --accent5: #10153E;
+    --accent6: #12142C;
+    --accent7: #13141E;
+
+    --backblur: #121212da;
+  }
+
+  
+}
+
+@media (prefers-color-scheme: dark) {
+  .preferred-color {
+    --ink0: #FFFFFF;
+    --ink1: #D1D1D1;
+    --ink2: #9E9E9E;
+    --ink3: #757575;
+    --ink4: #383838;
+    --ink5: #1F1F1F;
+    --ink6: #121212;
+    --ink7: #000000;
+    --accent0: #001AFF;
+    --accent1: #2239E3;
+    --accent2: #2E42C7;
+    --accent3: #1F3188;
+    --accent4: #151E5C;
+    --accent5: #10153E;
+    --accent6: #12142C;
+    --accent7: #13141E;
+
+    --backblur: #121212da;
+  }
+
+  .inverted-color {
+    --ink0: #000000;
+    --ink1: #333333;
+    --ink2: #525252;
+    --ink3: #858585;
+    --ink4: #C2C2C2;
+    --ink5: #D9D9D9;
+    --ink6: #EBEBEB;
+    --ink7: #FFFFFF;
+    --accent0: #FF4D00;
+    --accent1: #FF5C17;
+    --accent2: #FF6C2E;
+    --accent3: #FF824D;
+    --accent4: #FFA680;
+    --accent5: #FFC9B2;
+    --accent6: #FFDBCC;
+    --accent7: #FFEDE5;
+
+    --backblur: #ebebebd0;
+  }
+}
+
+.exclusion {
+  --ink0: #FFFFFF;
+  --ink1: #FFFFFF;
+  --ink2: #FFFFFF;
+  --ink3: #FFFFFF;
+  --ink4: #FFFFFF;
+  --ink5: #FFFFFF;
+  --ink6: #FFFFFF;
+  --ink7: #FFFFFF;
+  color: var(--ink0);
+  mix-blend-mode: exclusion;
+}

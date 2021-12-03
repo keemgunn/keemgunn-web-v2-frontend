@@ -1,0 +1,148 @@
+
+
+// SVG ANIMATIONS =============================
+
+@mixin make-all-ease($val) {
+  .all-ease-#{$val*100}{
+    transition: all (($val * 100) + ms) ease;
+  }
+} @for $i from 1 through 30 {
+  @include make-all-ease($i);
+}
+
+// #idas-fig-1 * {
+//   transition: all 600ms ease;
+//   transform-origin: center center;
+// }
+
+// #idas-fig-1 {
+//   transform-origin: center center;
+//   .g-fate {
+//     transform-origin: center center;
+//     // -webkit-animation:spin 8s linear infinite;
+//     // -moz-animation:spin 8s linear infinite;
+//     // animation:spin 8s linear infinite;
+//     transform: translateY(5rem) rotate(45deg) ;
+//   }
+//   .g-fate * {
+//     transform-origin: center center;
+//   }
+// }
+
+
+
+
+
+
+
+
+
+// @-moz-keyframes spin { 
+//     100% { -moz-transform: rotate(360deg); } 
+// }
+// @-webkit-keyframes spin { 
+//     100% { -webkit-transform: rotate(360deg); } 
+// }
+// @keyframes spin { 
+//     100% { 
+//       -webkit-transform: rotate(360deg); 
+//       transform:rotate(360deg); 
+//     } 
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// COMP TRANSITIONS ============================
+
+.animation-prop-examples {
+  animation-name: stretch;
+  animation-duration: 1.5s; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: none;
+  animation-play-state: running; 
+}
+
+@keyframes progress-bar-done {
+  0%, 100%{background-color: var(--accent0);}
+  50% {background-color: var(--accent3);}
+}
+
+
+
+
+// VUE TRANSITIONS ============================
+
+@mixin nav-item-fade($val) {
+  .nav-item-fade-#{$val}-enter-active{
+    transition: all 500ms ease (($val * 100) + ms);
+  }
+  .nav-item-fade-#{$val}-leave-active {
+    transition: all 500ms ease;
+  }
+  .nav-item-fade-#{$val}-enter-from,
+  .nav-item-fade-#{$val}-leave-to {
+    transform: translateY(10rem);
+    opacity: 0;
+  }
+} @for $i from 1 through 8 {
+  @include nav-item-fade($i);
+}
+
+
+.nav-list-fade-enter-active{
+  transition: all 500ms ease 100ms;
+}
+.nav-list-fade-leave-active {
+  transition: all 500ms ease;
+}
+.nav-list-fade-enter-from,
+.nav-list-fade-leave-to {
+  transform: translateY(10rem);
+  opacity: 0;
+}
+
+
+.nav-back-cover-fade-enter-active{
+  transition: all 500ms ease 100ms;
+}
+.nav-back-cover-fade-leave-active {
+  transition: all 500ms ease;
+}
+.nav-back-cover-fade-enter-from,
+.nav-back-cover-fade-leave-to {
+  opacity: 0;
+}
+
+
+
+.idas-scroll-indi-enter-active{
+  transition: all 500ms ease 800ms;
+}
+.idas-scroll-indi-leave-active {
+  transition: all 500ms ease;
+}
+.idas-scroll-indi-enter-from,
+.idas-scroll-indi-leave-to {
+  transform: translateY(10rem);
+  opacity: 0;
+}
+
+
+
+
+

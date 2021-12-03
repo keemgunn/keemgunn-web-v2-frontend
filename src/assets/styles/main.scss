@@ -1,30 +1,248 @@
+@use './stylesheets/frame' as frame;
+@use './stylesheets/typography' as typo;
+@use './stylesheets/basics' as basics;
+@use './stylesheets/animations' as ani;
+@use './stylesheets/icons' as icon;
+@use './stylesheets/pages/idas' as idas;
+@use './stylesheets/components/nav' as nav;
+@use './stylesheets/components/errorpage' as errpg;
 
 
 
 
-h1 {
-  color: aquamarine;
-  
+
+
+
+
+
+
+
+
+
+
+
+.test-a {
+  width: 30%;
+  // height: calc(1rem + env(safe-area-inset-bottom));
+  height: 500rem;
+  margin: 10rem; 
+  // background-color: bisque;
+}
+.test-b {
+  width: 40rem;
+  height: 50rem;
+  margin: auto;
+  // background-color: rgb(179, 112, 30);
+}
+.test-c {
+  height: 400rem;
+  background-color: crimson;
+}
+.test-c {
+  // max-width: 1080em;
+  margin: auto;
 }
 
 
-body {
-  background-color: var(--i94);
-}
-#app_main {
-  background-color: var(--i94);
-  color: var(--i0);
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  margin-top: 60px;
-  p {
-    font-family: 'KoPub Batang';
-    font-size: 8rem;
-    i{
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-style: normal;
-    }
+.flex-container--row {
+  display: flex;
+  max-width: 1400px;
+  padding: 10px;
+  gap: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  background-color: rgba(0, 255, 255, 0.37);
+
+  .flex-item {
+    // width: 200px;
+    min-width: 200px;
+    max-width: 300px;
+    flex-grow: 1;
+    
+    text-align: center;
+    background-color: tomato;
+    color: white;
   }
+
 }
+
+
+.test-back {
+  width: 100%;
+  height: 100%;
+  margin: 0rem;
+  background-image: url(https://unsplash.com/photos/xsYnxFXOAMA/download?force=true);
+  background-size: cover;
+}
+
+
+
+
+
+.to-back {
+  background-image: url(https://unsplash.com/photos/QUEPJuMMVKY/download?force=true&w=2400);
+  background-size: cover;
+  width: 100vw;
+  height: 120vh;
+  position: fixed;
+  // position: -webkit-sticky;
+  // position: sticky;
+  top: 0rem;
+  z-index: -3;
+}
+.backcol-1 {
+  background-color: rgb(53, 99, 99);
+}
+
+
+
+.blur {
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
+}
+.brightness {
+  -webkit-backdrop-filter: brightness(1.5);
+  backdrop-filter: brightness(1.5);
+}
+.contrast {
+  -webkit-backdrop-filter: contrast(.2);
+  backdrop-filter: contrast(.2);
+}
+.drop-shadow {
+  -webkit-backdrop-filter: drop-shadow(5px 5px red);
+  backdrop-filter: drop-shadow(5px 5px red);
+}
+.grayscale {
+  -webkit-backdrop-filter: grayscale(.8);
+  backdrop-filter: grayscale(.8);
+}
+.hue-rotate {
+  -webkit-backdrop-filter: hue-rotate(45deg);
+  backdrop-filter: hue-rotate(45deg);
+}
+.invert {
+  -webkit-backdrop-filter: invert(1);
+  backdrop-filter: invert(1);
+}
+.opacity {
+  -webkit-backdrop-filter: opacity(.4);
+  backdrop-filter: opacity(.4);
+}
+.saturate {
+  -webkit-backdrop-filter: saturate(.3);
+  backdrop-filter: saturate(.3);
+}
+.sepia {
+  -webkit-backdrop-filter: sepia(.9);
+  backdrop-filter: sepia(.9);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// h1 {
+//   color: aquamarine;
+//   line-height: 1.2;
+// }
+
+
+// .aaaa {
+//   margin: 0;
+
+// }
+
+
+// @mixin app_main($p_size) {
+//   background-color: var(--i94);
+//   color: var(--i0);
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   text-align: center;
+//   font-family: 'Inter_SD';
+
+
+//   p {
+//     background-color: chartreuse;
+//     font-size: $p_size;
+//     line-height: 1.5;
+//     letter-spacing: -0.1em;
+//     i{
+//       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+//       font-style: normal;
+//     }
+//   }
+  
+//   #uistatetest {
+//     background-color: rgba(0, 0, 0, 0.288);
+    
+//     h4 {
+//       // color: rgb(255, 196, 0);
+//       background-color: rgba(0, 0, 0, 0.288);
+//     }
+    
+//     .a {
+//       background-color: rgba(42, 42, 240, 0.13);
+//     }
+//     .b {
+//       color: rgb(234, 0, 255);
+//       i {
+//         color: yellow;
+//       }
+//     }
+//   }
+
+// }
+
+
+// .en {
+//   // font-family: Avenir;
+// }
+// .ko {
+//   // font-family: Helvetica;
+// }
+
+// .M {
+//   $p_size: 8em;
+//   @include app_main($p_size);
+// }
+// .S {
+//   $p_size: 7em;
+//   @include app_main($p_size);
+// }
+
+
+
+
+
+
+
+
+

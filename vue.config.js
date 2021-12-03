@@ -1,7 +1,13 @@
 module.exports = {
     outputDir: '../keemgunn-web-v2-backend/public',
     devServer: {
-        proxy: 'http://localhost:8080'
+        proxy: {
+            'visitor/api': {
+            target: 'http://localhost:8080/visitor/api',
+            changeOrigin: true,
+            pathRewrite: { '^/visitor/api': '' },
+            },
+        }
     },
     // chainWebpack: (config) => {
     //     config
