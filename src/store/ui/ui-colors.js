@@ -1,3 +1,5 @@
+import { logg } from '@/functions/logger';
+
 // Dark Mode Detection ------------------------
 const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -16,7 +18,7 @@ export default {
   mutations: {
     toggleDarkmode(state) {
       state.darkmode = !state.darkmode
-      console.log('darkmode:', state.darkmode);
+      logg('darkmode:', state.darkmode);
     }
   },
 

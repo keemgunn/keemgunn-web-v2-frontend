@@ -41,7 +41,7 @@ export function watchPosition(value, context) {
       }
     }
   } catch(err) {
-    console.log(`!error! ${context.serial}`);
+    console.error(`!error! ${context.serial}`);
     console.error(err);
   }
 }
@@ -58,7 +58,7 @@ export function positionTrigger(value, context) {
     }
   }
   catch (err) {
-    console.log(`!error! ${context.serial}`);
+    console.error(`!error! ${context.serial}`);
     console.error(err);
   }
 }

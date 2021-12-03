@@ -5,7 +5,7 @@ const basicEventListeners = {
   // eventListeners will be attached based on these names,
 
   _mouseEnter(context) {
-    if (typeof context === 'undefined') console.log('!warning!', 'undefined object in param : context');
+    if (typeof context === 'undefined') context.$logg('!warning!', 'undefined object in param : context');
     return function () {
       try {
         setModalState(context, 'hover', true);
@@ -18,13 +18,13 @@ const basicEventListeners = {
   },
 
   _mouseMove(context) {
-    if (typeof context === 'undefined') console.log('!warning!', 'undefined object in param : context');
+    if (typeof context === 'undefined') context.$logg('!warning!', 'undefined object in param : context');
     return function () {
     }
   },
 
   _mouseLeave(context) {
-    if (typeof context === 'undefined') console.log('!warning!', 'undefined object in param : context');
+    if (typeof context === 'undefined') context.$logg('!warning!', 'undefined object in param : context');
     return function () {
       try {
         setModalState(context, 'hover', false);
@@ -36,7 +36,7 @@ const basicEventListeners = {
   },
 
   _touchStart(context) {
-    if (typeof context === 'undefined') console.log('!warning!', 'undefined object in param : context');
+    if (typeof context === 'undefined') context.$logg('!warning!', 'undefined object in param : context');
     return function () {
       try {
         setModalState(context, 'hover', true);
@@ -50,7 +50,7 @@ const basicEventListeners = {
   },
 
   _click(context) {
-    if (typeof context === 'undefined') console.log('!warning!', 'undefined object in param : context');
+    if (typeof context === 'undefined') context.$logg('!warning!', 'undefined object in param : context');
     return function () {
     }
   },

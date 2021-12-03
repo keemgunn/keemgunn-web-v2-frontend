@@ -194,7 +194,9 @@ function mounted() {
   }
 
   this.$emit('mounted');
-  if (this.getContentsToken) this.prefetch;
+  if (this.getContentsToken) {
+    this.prefetch();
+  }
 }
 
 

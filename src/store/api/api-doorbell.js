@@ -1,5 +1,6 @@
 const publicIp = require('public-ip');
 const axios = require('axios');
+import { logg } from '@/functions/logger';
 
 
 export default {
@@ -56,7 +57,7 @@ export default {
           .then((response) => {
             const { data } = response;
             commit('saveServerMsg', { message: data.greeting });
-            console.log(state.server_message);
+            logg(state.server_message);
             commit('saveContentsToken', { token: data.contentsToken });
           })
           .catch((error) => {

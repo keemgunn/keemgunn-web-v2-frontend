@@ -1,4 +1,5 @@
 const scaleEntry = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XL'];
+import { logg } from "@/functions/logger";
 
 export function getConfigsByScale(configs, scale) {
   try {
@@ -94,7 +95,7 @@ export function getCSSbyModal(context) {
 
 export function setModalState(context, modalName, payload) {
   try {
-    console.log(context.serial, ': setModalState :', modalName, payload);
+    logg(context.serial, ': setModalState :', modalName, payload);
     context['states']['modals'][modalName] = (payload === 'toggle') ? !context['states']['modals'][modalName] : payload;
   } catch (err) {
     console.error('!error!', `@${context.serial || 'unknown'}`);

@@ -84,7 +84,6 @@ const methods = {
 
   positionUpdater() {
     this.sciPos = this.getElPos(this.sciEl);
-    console.log(this.sciPos);
   },
 };
 
