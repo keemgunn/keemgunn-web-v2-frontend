@@ -5,7 +5,7 @@ export default {
   namespaced: false,
   
   state: () => ({
-    CS_IP: process.env.NODE_ENV === 'production' ? "http://52.78.122.124:4433/app" : "http://localhost:4433/app"
+    CS_IP: process.env.NODE_ENV === 'production' ? "https://52.78.122.124:4433/app" : "http://localhost:4433/app"
   }),
 
   getters: {
