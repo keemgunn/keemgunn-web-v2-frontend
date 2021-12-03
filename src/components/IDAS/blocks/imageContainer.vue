@@ -122,7 +122,7 @@ const methods = {
       element: this.imgEl,
       url: this.url,
       ext: this.contents.ext,
-      suffix: ''
+      suffix: '@_75x'
     })
     .then(result => {
       this.resolveQueue('prefetched');
@@ -169,7 +169,10 @@ function created() {
   this.modalConfigs = this.blockSeed.modalConfigs;
   this.states = this.blockSeed.states;
   this.contents = this.blockSeed.contents;
-  this.url = '/idas/images/' + this.blockSeed.serial;
+
+  // revision ---- 
+  // this.url = '/idas/images/' + this.blockSeed.serial;
+  this.url = this.blockSeed.serial;
 }
 
 
