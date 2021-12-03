@@ -25,7 +25,7 @@
         class="nav-top-links-item"
         :page="page" :shown="showLinks" :key="page.name">
       </NavItem>
-      <div v-show="horizontal==='short'" id="nav-top-links-blank" @click="setMenu(false)"></div>
+      <div v-show="states.horizontal==='short'" id="nav-top-links-blank" @click="setMenu(false)"></div>
     </nav>
     </transition>
 
@@ -80,7 +80,8 @@ const computed = {
   ...mapGetters('ui',[
     'getNavMenuArr', 
     'getNavWidthScale', 
-    'getMainEl'
+    'getMainEl',
+    'isMobile',
   ]),
   // MODAL STATES ---------------------------
   showMenuBtn() {
@@ -119,24 +120,20 @@ const methods = {
   ...mapMutations('ui', [  ]),
   setMenu(payload){
     this.states.menu = (payload === 'toggle' ? !this.states.menu : payload);
-    const element = this.getMainEl;
-      const topStyle = `-${window.scrollY}rem`;
+    const mainEl = this.getMainEl;
+    const topStyle = `-${window.scrollY}px`;
     if (this.states.menu) {
-      element.style.position = 'fixed';
-      element.style.top = topStyle;
-      element.style.height = '120vh';
-      document.documentElement.style.setProperty("min-height", "100vh");
-      document.documentElement.style.setProperty("height", "100vh");
-
+      mainEl.style.position = 'fixed';
+      mainEl.style.top = topStyle;
+      mainEl.style.height = 'var(--vh)';
+      document.documentElement.style.setProperty("height", "var(--vh)");
     } else {
-      const scrollY = (element.style.top).replace('rem', 'px');
-      console.log(scrollY);
-      element.style.position = '';
-      element.style.top = '';
-      element.style.height = '';
+      const scrollY = (mainEl.style.top);
+      mainEl.style.position = '';
+      mainEl.style.top = '';
+      mainEl.style.height = '';
+      document.documentElement.style.setProperty("height", "");
       window.scrollTo(0, parseInt(scrollY || '0') * -1);
-      document.documentElement.style.setProperty("min-height", "-webkit-fill-available");
-      document.documentElement.style.setProperty("height", "-webkit-fill-available");
     }
 
   }

@@ -9,13 +9,26 @@
 .h-fit {
   height: fit-content;
 }
-.w100 {
+.w-100per {
   width: 100%;
 }
-.h100 {
+.h-100per {
   height: 100%;
 }
+.h-100vh{
+  height: var(--vh);
+}
+.w-100vw{
+  width: 100vw;
+}
 
+// #fillav-detector {
+//   height: -webkit-fill-available;
+//   width: -webkit-fill-available;
+//   background-color: coral;
+//   // position: fixed;
+//   // top: 0; left: 0;
+// }
 
 .m-auto {
   margin: auto;

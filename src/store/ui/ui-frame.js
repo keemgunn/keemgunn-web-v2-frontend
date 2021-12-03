@@ -11,6 +11,9 @@ function setNavWidthScale(width) {
   return (width > 780) ? "wide" : "short"
 }
 
+const userAgent = navigator.userAgent;
+const mobileNavigator = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
+
 export default {
   namespaced: false,
   state: () => ({
@@ -18,7 +21,9 @@ export default {
     vh: null,
     scale: null,
     navWidthScale: null,
-    mainEl: {}
+    mainEl: {},
+    userAgent,
+    mobileNavigator,
   }),
 
   getters: {
@@ -61,15 +66,23 @@ export default {
 
     getMainEl(state) {
       return state.mainEl
-    }
+    },
+
+    getUserAgent(state) {
+      return state.userAgent
+    },
+    isMobile(state) {
+      return state.mobileNavigator
+    },
   },
 
   mutations: {
-    resize(state, payload) {
-      state.vw = payload.width;
-      state.vh = payload.height;
-      state.scale = setScale(payload.width);
-      state.navWidthScale = setNavWidthScale(payload.width);
+    resize(state) {
+      state.vw = window.innerWidth;
+      state.vh = window.innerHeight;
+      state.scale = setScale(state.vw);
+      state.navWidthScale = setNavWidthScale(state.vw);
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`)
     },
 
     loadMainTag(state, mainId) {

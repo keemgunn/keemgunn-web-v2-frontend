@@ -27,25 +27,17 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('ui', {
-      frameResize: 'resize'
-    }),
+    ...mapMutations('ui', [ 'resize' ]),
     ...mapActions('api', [
       'openTheDoor', 'checkContentsServer'
     ]),
-    fetchFrameSize() {
-      this.frameResize({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-    }
   },
   created() {
     this.openTheDoor();
     // Adjust Screen Size ---------------------
-    this.fetchFrameSize()
+    this.resize();
     this.$nextTick(() => {
-      window.addEventListener('resize', this.fetchFrameSize);
+      window.addEventListener('resize', this.resize);
     });
   },
 }
