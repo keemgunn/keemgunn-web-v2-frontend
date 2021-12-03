@@ -1,15 +1,17 @@
 {
   "name": "keemgunn.com-frontend",
-  "version": "0.2.0",
+  "version": "0.9.0",
   "private": true,
   "scripts": {
     "dev": "export NODE_ENV=development && vue-cli-service serve",
+    "test": "export NODE_ENV=production && vue-cli-service serve",
     "build": "export NODE_ENV=production && vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.21.4",
-    "core-js": "^3.6.5",
+    "axios": "^0.23.0",
+    "core-js": "^3.18.3",
+    "nanoid": "^3.1.30",
     "public-ip": "^4.0.4",
     "vue": "^3.2.16",
     "vue-plugin-load-script": "^2.0.1",

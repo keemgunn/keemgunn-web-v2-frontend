@@ -1,3 +1,62 @@
+// ---- iconContainer ---------------------
+.icon-dull {
+  width: 32rem;
+  height: 32rem;
+  --iconfill : var(--ink1);
+  --bgfill : var(--ink1);
+}
+.icon-actions {
+  width: 32rem;
+  height: 32rem;
+  --iconfill : var(--ink1);
+  --bgfill : var(--ink1);
+  svg * {
+    transition: all 300ms ease;
+    transform-origin: 50% 50%
+  }
+}
+.icon-actions--hover {
+  cursor: pointer;
+  --iconfill : var(--accent3);
+  --bgfill : var(--ink1);
+}
+.icon-actions--pushed {
+  cursor: pointer;
+  --iconfill : var(--ink4);
+  --bgfill : var(--ink6);
+}
+
+
+
+// .icon-close-x {
+//   --iconfill : var(--ink1);
+//   --bgfill : var(--ink6);
+// }
+// .icon-close-x--hover {
+//   cursor: pointer;
+//   --iconfill : #e20303;
+//   --bgfill : var(--ink6);
+// }
+// .icon-close-x--pushed {
+//   cursor: pointer;
+//   --iconfill : var(--ink4);
+//   --bgfill : var(--ink6);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ---- btn_darkmode ----------------------
 

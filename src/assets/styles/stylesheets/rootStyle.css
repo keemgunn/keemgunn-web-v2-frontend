@@ -1,79 +1,211 @@
 
+
 @media (max-width: 6000px) { 
+  /* XXL @6x */
   html { 
     font-size: 1.3px; 
-    --margin-safe-col : 50rem; 
+    --safe-margin : 56rem; 
+    --b-safe-margin : 56rem;
+    --b-width : 1720rem;
     --max-vw : 6000rem;
     --min-vw : 2400rem;
+    --nav-top-height : 66rem;
   }
 }
+
+
+
 @media (max-width: 2400px) { 
+  /* XL @6x */
   html { 
     font-size: 1.2px; 
-    --margin-safe-col : 40rem; 
+    --safe-margin : 48rem; 
+    --b-safe-margin : 48rem;
+    --b-width : 1400rem;
     --max-vw : 2400rem;
     --min-vw : 1920rem;
+    --nav-top-height : 66rem;
   }
 }
+
+
+
 @media (max-width: 1920px) {
+  /* L @4x */
   html { 
     font-size: 1.1px; 
-    --margin-safe-col : 40rem; 
+    --safe-margin : 40rem; 
+    --b-safe-margin : 0;
+    --b-width : 1280rem;
     --max-vw : 1920rem;
     --min-vw : 1320rem;
+    --nav-top-height : 66rem;
   }
 }
+@media (max-width: 1360px) {
+  /* L @4x */
+  html { 
+    font-size: 1.1px; 
+    --safe-margin : 40rem; 
+    --b-safe-margin : calc((1360rem - 100vw)/2);
+    --b-width : 1280rem;
+    --max-vw : 1920rem;
+    --min-vw : 1320rem;
+    --nav-top-height : 66rem;
+  }
+}
+
+
+
 @media (max-width: 1320px) {
+  /* M @4x */
   html { 
     font-size: 1px; 
-    --margin-safe-col : 40rem; 
+    --safe-margin : 40rem; 
+    --b-safe-margin : 0;
+    --b-width : 1080rem;
     --max-vw : 1320rem;
     --min-vw : 960rem;
+    --nav-top-height : 66rem;
   }
 }
-@media (max-width: 960px) {
+@media (max-width: 1160px) {
+  /* M @4x */
   html { 
     font-size: 1px; 
-    --margin-safe-col : 30rem; 
+    --safe-margin : 40rem; 
+    --b-safe-margin : calc((1160rem - 100vw)/2);
+    --b-width : 1080rem;
+    --max-vw : 1320rem;
+    --min-vw : 960rem;
+    --nav-top-height : 66rem;
+  }
+}
+@media (max-width: 1080px) {
+  /* M @4x */
+  html { 
+    font-size: 1px;
+    --safe-margin : 40rem; 
+    --b-safe-margin : 40rem;
+    --b-width : 100vw;
+    --max-vw : 1320rem;
+    --min-vw : 960rem;
+    --nav-top-height : 66rem;
+  }
+}
+
+
+
+@media (max-width: 960px) {
+  /* S @2x */
+  html { 
+    font-size: 1px; 
+    --safe-margin : 30rem; 
+    --b-safe-margin : 0;
+    --b-width : 760rem;
     --max-vw : 960rem;
     --min-vw : 680rem;
+    --nav-top-height : 66rem;
   }
 }
-@media (max-width: 680px) {
+@media (max-width: 820px) {
+  /* S @2x */
   html { 
     font-size: 1px; 
-    --margin-safe-col : 18rem; 
+    --safe-margin : 30rem; 
+    --b-safe-margin : calc((820rem - 100vw)/2);
+    --b-width : 760rem;
+    --max-vw : 960rem;
+    --min-vw : 680rem;
+    --nav-top-height : 66rem;
+  }
+}
+@media (max-width: 780px) {
+  /* S @2x */
+  html { 
+    font-size: 1px; 
+    --safe-margin : 30rem; 
+    --b-safe-margin : calc((820rem - 100vw)/2);
+    --b-width : 760rem;
+    --max-vw : 960rem;
+    --min-vw : 680rem;
+    --nav-top-height : 47rem;
+  }
+}
+@media (max-width: 760px) {
+  /* S @2x */
+  html { 
+    font-size: 1px; 
+    --safe-margin : 30rem; 
+    --b-safe-margin : 30rem;
+    --b-width : 100vw;
+    --max-vw : 960rem;
+    --min-vw : 680rem;
+    --nav-top-height : 47rem;
+  }
+}
+
+
+
+@media (max-width: 680px) {
+  /* XS @2x */
+  html { 
+    font-size: 1px; 
+    --safe-margin : 18rem; 
+    --b-safe-margin : 18rem;
+    --b-width : 100vw;
     --max-vw : 680rem;
     --min-vw : 320rem;
+    --nav-top-height : 47rem;
   }
 }
+
+
+
 @media (max-width: 320px) {
+  /* XXS @1x */
   html { 
     font-size: 0.9px; 
-    --margin-safe-col : 18rem; 
+    --safe-margin : 18rem; 
+    --b-safe-margin : 18rem;
+    --b-width : 100vw;
     --max-vw : 320rem;
     --min-vw : 36rem;
+    --nav-top-height : 47rem;
   }
 }
+
+
+html {
+  --stage-top: calc(100vh * 0.1);
+  --stage-bottom: calc(100vh* 0.87);
+  --stage-left: calc(100vw * 0.1);
+  --stage-right: calc(100vw * 0.9);
+}
+
+
 
 html, body {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  -ms-text-size-adjust : 100%;  /* IE */
-  -moz-text-size-adjust : 100%;  /* 파이어폭스 */
-  -o-text-size-adjust : 100%;  /* 오페라 구버전 */
+  -ms-text-size-adjust : 100%;
+  -moz-text-size-adjust : 100%;
+  -o-text-size-adjust : 100%;
+  max-width: 100%;
+  /* overflow-x: hidden; */
+
+  --sa-left : calc(env(safe-area-inset-left) / env(safe-area-inset-left));
+  padding: var(--sa-left);
 }
 
 
 html.no-scroll {
   margin-top:0 !important
 }
-
 html.no-scroll, html.no-scroll body {
   overflow: hidden !important;
   height:100% !important
 }
-
 html.no-scroll-long {
   overflow-y:scroll !important
 }

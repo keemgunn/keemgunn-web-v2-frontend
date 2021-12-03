@@ -1,115 +1,104 @@
 @media (prefers-color-scheme: light) {
   .preferred-color {
-  --i100: #ffffff;
-  --i98: #FAFAFA;
-  --i94: #F0F0F0;
-  --i90: #E6E6E6;
-  --i80: #CCCCCC;
-  --i70: #B3B3B3;
-  --i60: #999999;
-  --i45: #737373;
-  --i30: #4D4D4D;
-  --i20: #323232;
-  --i10: #1A1A1A;
-  --i0: #000000;
-  --accent00: #ffffff;
-  --accent03: #FF5224;
-  --accent02: #FF7955;
-  --accent01: #FF9470;
-  --alert03: #EA0030;
-  --alert02: #D9414E;
-  --alert01: #F27882;
-  --pos03: #0FB337;
-  --pos02: #2D9647;
-  --pos01: #6BBE7F;
+  --ink0: #000000;
+  --ink1: #333333;
+  --ink2: #525252;
+  --ink3: #858585;
+  --ink4: #C2C2C2;
+  --ink5: #D9D9D9;
+  --ink6: #EBEBEB;
+  --ink7: #FFFFFF;
+  --accent0: #FF4D00;
+  --accent1: #FF5C17;
+  --accent2: #FF6C2E;
+  --accent3: #FF824D;
+  --accent4: #FFA680;
+  --accent5: #FFC9B2;
+  --accent6: #FFDBCC;
+  --accent7: #FFEDE5;
 
-  --black: #000000;
-  --white: #ffffff;
+  --backblur: #ebebebd0;
   }
+
+
 
   .inverted-color {
-    --i100: #DDD5FF;
-    --i98: #101017;
-    --i94: #191924;
-    --i90: #242433;
-    --i80: #303045;
-    --i70: #40415C;
-    --i60: #505373;
-    --i45: #8185A6;
-    --i30: #A9AECF;
-    --i20: #B1B9E3;
-    --i10: #A6B3ED;
-    --i0: #97ACFF;
-    --accent00: #ffffff;
-    --accent03: #00F0EC;
-    --accent02: #52FAF7;
-    --accent01: #94FFF4;
-    --alert03: #EA0030;
-    --alert02: #D9414E;
-    --alert01: #F27882;
-    --pos03: #0FB337;
-    --pos02: #2D9647;
-    --pos01: #6BBE7F;
+    --ink0: #FFFFFF;
+    --ink1: #D1D1D1;
+    --ink2: #9E9E9E;
+    --ink3: #757575;
+    --ink4: #383838;
+    --ink5: #1F1F1F;
+    --ink6: #121212;
+    --ink7: #000000;
+    --accent0: #001AFF;
+    --accent1: #2239E3;
+    --accent2: #2E42C7;
+    --accent3: #1F3188;
+    --accent4: #151E5C;
+    --accent5: #10153E;
+    --accent6: #12142C;
+    --accent7: #13141E;
 
-    --black: #000000;
-    --white: #ffffff;
+    --backblur: #121212da;
   }
+
+  
 }
 
 @media (prefers-color-scheme: dark) {
   .preferred-color {
-    --i100: #DDD5FF;
-    --i98: #101017;
-    --i94: #191924;
-    --i90: #242433;
-    --i80: #303045;
-    --i70: #40415C;
-    --i60: #505373;
-    --i45: #8185A6;
-    --i30: #A9AECF;
-    --i20: #B1B9E3;
-    --i10: #A6B3ED;
-    --i0: #97ACFF;
-    --accent00: #ffffff;
-    --accent03: #00F0EC;
-    --accent02: #52FAF7;
-    --accent01: #94FFF4;
-    --alert03: #EA0030;
-    --alert02: #D9414E;
-    --alert01: #F27882;
-    --pos03: #0FB337;
-    --pos02: #2D9647;
-    --pos01: #6BBE7F;
+    --ink0: #FFFFFF;
+    --ink1: #D1D1D1;
+    --ink2: #9E9E9E;
+    --ink3: #757575;
+    --ink4: #383838;
+    --ink5: #1F1F1F;
+    --ink6: #121212;
+    --ink7: #000000;
+    --accent0: #001AFF;
+    --accent1: #2239E3;
+    --accent2: #2E42C7;
+    --accent3: #1F3188;
+    --accent4: #151E5C;
+    --accent5: #10153E;
+    --accent6: #12142C;
+    --accent7: #13141E;
 
-    --black: #000000;
-    --white: #ffffff;
+    --backblur: #121212da;
   }
 
   .inverted-color {
-    --i100: #ffffff;
-    --i98: #FAFAFA;
-    --i94: #F0F0F0;
-    --i90: #E6E6E6;
-    --i80: #CCCCCC;
-    --i70: #B3B3B3;
-    --i60: #999999;
-    --i45: #737373;
-    --i30: #4D4D4D;
-    --i20: #323232;
-    --i10: #1A1A1A;
-    --i0: #000000;
-    --accent00: #ffffff;
-    --accent03: #FF5224;
-    --accent02: #FF7955;
-    --accent01: #FF9470;
-    --alert03: #EA0030;
-    --alert02: #D9414E;
-    --alert01: #F27882;
-    --pos03: #0FB337;
-    --pos02: #2D9647;
-    --pos01: #6BBE7F;
-  
-    --black: #000000;
-    --white: #ffffff;
+    --ink0: #000000;
+    --ink1: #333333;
+    --ink2: #525252;
+    --ink3: #858585;
+    --ink4: #C2C2C2;
+    --ink5: #D9D9D9;
+    --ink6: #EBEBEB;
+    --ink7: #FFFFFF;
+    --accent0: #FF4D00;
+    --accent1: #FF5C17;
+    --accent2: #FF6C2E;
+    --accent3: #FF824D;
+    --accent4: #FFA680;
+    --accent5: #FFC9B2;
+    --accent6: #FFDBCC;
+    --accent7: #FFEDE5;
+
+    --backblur: #ebebebd0;
   }
+}
+
+.exclusion {
+  --ink0: #FFFFFF;
+  --ink1: #FFFFFF;
+  --ink2: #FFFFFF;
+  --ink3: #FFFFFF;
+  --ink4: #FFFFFF;
+  --ink5: #FFFFFF;
+  --ink6: #FFFFFF;
+  --ink7: #FFFFFF;
+  color: var(--ink0);
+  mix-blend-mode: exclusion;
 }

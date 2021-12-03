@@ -1,30 +1,89 @@
 #nav-bar {
-  background-color: var(--i94);
+  position: fixed;
+  width: 100vw;
+  height: var(--nav-top-height);
+  z-index: 500;
+  top: 0; left: 0;
 
-  .nt--wide { height: 66rem; }
-  .nt--short { height: 47rem; }
-  .nt--expand { height: 100vh; }
+  #nav-top {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-top-contents {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 1rem);
+  }
+
+  .top-cover {
+    width: 100%;
+    height: 100%;
+    background-color: var(--backblur);
+    position: absolute;
+    z-index: -1;
+    transition-property: all;
+    transition-duration: 600ms;
+    transition-timing-function: cubic-bezier(.34,.25,.61,.98);
+    transition-delay: 0ms;
+    -webkit-backdrop-filter: blur(14rem);
+    backdrop-filter: blur(13rem);
+  }
+
+  .back-cover {
+    width: 100%;
+    height: 120vh;
+    position: absolute;
+    z-index: -1;
+    background-color: var(--backblur);
+    -webkit-backdrop-filter: blur(15rem);
+    backdrop-filter: blur(15rem);
+  }
+
+  .bottomline {
+    width: 100%;
+    height: 1px !important;
+    align-self: stretch;
+    background-color: var(--ink1); 
+  }
 
   .nav-logo-gunn {
+    height: fit-content;
     min-width: 90rem;
     max-width: 90rem;
-    margin-top: 4rem;
   }.nav-logo-gunn:hover {
     cursor: pointer;
   }
 
+  .nav-menu-btn {
+    height: fit-content;
+  }
+
+  .nav-top-links {
+    display: flex;
+    align-items: flex-start;
+  }
   .nav-top-links-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     .text {
       transition: all ease 200ms 0s;
-      color: var(--i0);
+      color: var(--ink0);
     }
     .line {
       transition: all ease 200ms 0s;
       opacity: 0;
       align-self: stretch;
-      background-color: var(--i0);  
+      background-color: var(--ink0);  
     }
-  }.nav-top-links-item:hover { 
+  }
+  .nav-top-links-item:hover { 
     cursor: pointer;
     .text {
       opacity: 0.72;
@@ -35,6 +94,12 @@
   }
 
   .nav-top-btns {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+    height: fit-content;
+    gap: 8rem;
     max-width: 90rem;
     min-width: 32rem;
     padding-left: 4vw;
@@ -45,15 +110,19 @@
     max-width: 32rem;
   }
 
-  .ntc--wide { // -- states.horizontal --------
-    padding-top: 16rem;
+  .ntc--wide {
+    padding-left: max(24rem, constant(safe-area-inset-left));
+    padding-left: max(24rem, env(safe-area-inset-left));
+    padding-right: max(24rem, constant(safe-area-inset-right));
+    padding-right: max(24rem, env(safe-area-inset-right));
     position: relative;
     top: 2rem;
-    margin: 0rem 24rem;
     .nav-top-links {
+      flex-direction: row;
       gap: 54rem;
-      margin-top: 5rem;
+      margin-top: 20rem;
       .nav-top-links-item {
+        opacity: 1;
         gap: 16rem;
         .line {
           height: 3rem;
@@ -61,7 +130,7 @@
       }
       .nav-top-links-item:hover { 
         .text {
-          color: var(--i0);
+          color: var(--ink0);
         }
         .line {
           opacity: 1;
@@ -70,36 +139,48 @@
     }
   }
   
-  .ntc--short {  // -- states.horizontal ------
-    padding: 6rem 0 8rem 0;
+  .ntc--short {
+    padding-left: max(16rem, constant(safe-area-inset-left));
+    padding-left: max(16rem, env(safe-area-inset-left));
+    padding-right: max(16rem, constant(safe-area-inset-right));
+    padding-right: max(16rem, env(safe-area-inset-right));
     position: relative;
-    top: 2rem;
-    margin: 0rem 16rem;
+    .nav-logo-gunn {
+      height: 22rem;
+    }
+
     .nav-top-links {
+      flex-direction: column;
       position: fixed;
-        top: 60rem; left: 0rem;
-      width: calc(100vw - 36rem);
-      padding: 0 18rem;
-      // background-color: white;
-      .nav-top-links-item {
-        gap: 10rem;
-        padding-top: 10rem;
-        align-self: stretch;
-        .line {
-          opacity: 1;
-          height: 1rem;
-        }
-      }
-      .nav-top-links-item:hover { 
-        .line {
-          opacity: 0.72;
-        }
+      top: calc(var(--nav-top-height) + var(--safe-margin)); 
+      left: 0rem;
+      width: 100vw;
+      height: 90%;
+      padding: 0 var(--safe-margin);
+    }
+    .nav-top-links-item {
+      gap: 10rem;
+      padding-top: 10rem;
+      align-self: stretch;
+      .line {
+        opacity: 1;
+        height: 1rem;
       }
     }
+    .nav-top-links-item:hover { 
+      .line {
+        opacity: 0.72;
+      }
+    }
+
+    #nav-top-links-blank {
+      width: 100%;
+      height: 100%;
+      background-color: aquamarine;
+      opacity: 0;
+      cursor: alias;
+    }
   }
-
-
-
 
 
 }

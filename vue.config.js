@@ -8,7 +8,7 @@ module.exports = {
             pathRewrite: { '^/visitor/api': '' },
             },
         }
-    }
+    },
     // chainWebpack: (config) => {
     //     config
     //         .plugin('html')

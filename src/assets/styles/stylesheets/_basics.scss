@@ -1,13 +1,26 @@
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+  padding: 0;
+  margin: 0;
 }
 
-.svg {
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+#app {
+  color: var(--ink1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  // padding-left: env(safe-area-inset-left);
+  // padding-right: env(safe-area-inset-right);
+  // padding: 15px 0 calc(constant(safe-area-inset-bottom) + 15px);
+  // padding: 15px 0 calc(env(safe-area-inset-bottom) + 15px);
+  // shape-rendering: crispEdges;
+}
+
+// main {
+// }
+
+svg {
+  width: 100%;
+  height: 100%;
 }
 
 .btn:hover {
@@ -15,12 +28,12 @@ a {
 }
 
 .noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .op0 {
@@ -30,16 +43,6 @@ a {
   opacity: 1;
 }
 
-
-@mixin Line($val) {
-  .line-ver-#{$val} {
-    height: $val + rem;
-    align-self: stretch;
-    background-color: var(--i0); 
-  }
-} @for $i from 1 through 8 {
-  @include Line($i);
-}
 
 
 

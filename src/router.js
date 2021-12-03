@@ -1,15 +1,9 @@
 import { createWebHistory, createRouter } from 'vue-router';
 
-import { pages, baseRoutes, redirections, blockPages } from '@/config/routeControl'
+import { pages, baseRoutes, redirections, blockPages } from '@/routeControl'
 
 if (process.env.NODE_ENV === 'development') {
-  console.log('== Route Controls ==============');
-  console.log(pages);
-  console.log(baseRoutes);
-  console.log(redirections);
-  console.log(blockPages);
-  console.log('-- BASE_URL --');
-  console.log(process.env.BASE_URL);
+  console.log('== Route Controls ::pages', pages,'::baseRoutes', baseRoutes, '::redirections', redirections, '::blockPages', blockPages);
 }
 
 export default new createRouter({

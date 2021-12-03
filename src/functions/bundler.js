@@ -1,11 +1,25 @@
 export default {
 
   url: (arr) => {
-    return '/' + arr.join('/')
+    try {
+      return '/' + arr.join('/')
+    }
+    catch (err) {
+      console.error('!error!', err);
+      console.log('param:', arr);
+      return '!error'
+    }
   },
   
   params: (arr) => {
-    return arr.join('||')
+    try {
+      return arr.join('||')
+    }
+    catch (err) {
+      console.error('!error!', err);
+      console.log('param:', arr);
+      return '!error'
+    }
   }
 
 }

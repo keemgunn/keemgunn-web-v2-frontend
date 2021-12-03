@@ -8,65 +8,65 @@ export default {
   classKit: {
 
     'nav-top': {
-      base: 'flex f-dir-col f-js-cont-space tr-nav-top',
+      base: '',
       states: {
         horizontal: {
-          wide: 'nt--wide',
-          short: 'nt--short'
+          wide: '',
+          short: ''
         },
         menu: {
           false: '',
-          true: 'nt--expand'
+          true: ''
         }
       }
     },
 
     'nav-top-contents': {
-      base: 'flex f-dir-row f-js-cont-space',
+      base: '',
       states: {
         horizontal: {
-          wide: 'ntc--wide',
-          short: 'ntc--short'
+          wide: '',
+          short: ''
         }
       }
     },
 
     'nav-menu-btn': {
-      base: 'btns flex f-dir-row f-al-item-start f-js-cont-start gap8',
+      base: '',
       states: {}
     },
 
     'nav-logo-gunn': {
-      base: 'svg h-fit',
+      base: '',
       states: {}
     },
 
     'nav-top-links': {
-      base: 'flex f-al-item-start noselect',
+      base: '',
       states: {
         horizontal: {
-          wide: 'f-dir-row',
-          short: 'f-dir-col'
+          wide: '',
+          short: ''
         }
       }
     },
     
     'nav-top-links-item': {
-      base: 'flex f-dir-col f-al-item-start',
+      base: '',
       states: {
         horizontal: {
-          wide: 'op1',
+          wide: '',
           short: ''
         },
         menu: {
-          true: 'op1',
-          false: 'op0'
+          true: '',
+          false: ''
         }
       }
     },
 
     'nav-top-btns': {
-      base: 'btns flex f-dir-row f-al-item-start f-js-cont-end gap8',
+      base: '',
       states: {}
     }
 
